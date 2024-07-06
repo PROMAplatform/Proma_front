@@ -1,0 +1,16 @@
+.categoryContainer {
+    display: flex; /* 버튼을 가로로 배치 */
+    gap: 10px; /* 버튼 사이 간격 */
+  }
+  
+  .categoryButton {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .active {
+    background-color: #eee; /* 선택된 버튼 배경색 */
+  }
+  

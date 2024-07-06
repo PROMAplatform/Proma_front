@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  justify-content: space-between; /* 요소 사이 공간을 최대로 벌림 */
+}
+
+.IconNName {
+  display: flex;
+}
