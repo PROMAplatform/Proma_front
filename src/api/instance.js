@@ -12,17 +12,13 @@ const defaultInstance = axios.create({
 // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
 //applyInterceptors(defaultInstance);
 
-//규진
+//규진, 정선
 const userInstance = axios.create(defaultInstance.defaults);
 userInstance.defaults.baseURL += "/user";
 
-//예원
-const compInstance = axios.create(defaultInstance.defaults);
-compInstance.defaults.baseURL += "/comp";
-
-//가연
-const teamInstance = axios.create(defaultInstance.defaults);
-teamInstance.defaults.baseURL += "/team";
+//동현
+const communityIntstance = axios.create(defaultInstance.defaults);
+communityIntstance.defaults.baseURL += "/community";
 
 // const authInstance = axios.create(defaultInstance.defaults);
 // authInstance.defaults.baseURL += "/auth";
@@ -30,4 +26,4 @@ teamInstance.defaults.baseURL += "/team";
 // // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
 // applyInterceptors(authInstance);
 
-export { defaultInstance, userInstance, compInstance, teamInstance };
+export { defaultInstance, userInstance, communityIntstance };
