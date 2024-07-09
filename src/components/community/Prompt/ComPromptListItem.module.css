@@ -1,0 +1,44 @@
+.wrapper {
+    width: 20vw;
+    height: 30vh;
+    border-radius: 2vw;
+}
+
+.wrapper:hover .card {
+    transform: rotateY(180deg);
+}
+
+.card {
+    text-align: center;
+    width: 20vw;
+    height: 30vh;
+    border-radius: 2vw;
+    box-shadow: 0 0 5px -1px;
+    transition: all 0.7s;
+    perspective-origin: center;
+    transform-style: preserve-3d;
+}
+
+.containerFront {
+    width: 20vw;
+    height: 30vh;
+    border-radius: 2vw;
+    position: absolute;
+    backface-visibility: hidden;
+    z-index: 2;
+    background-color: white;
+}
+
+.containerBack {
+    display: flex;
+    width: 20vw;
+    height: 30vh;
+    border-radius: 2vw;
+    position: absolute;
+    transform: rotateY(180deg);
+    z-index: 1;
+    background-color: white;
+
+    justify-content: center;
+    align-items: center;
+}
