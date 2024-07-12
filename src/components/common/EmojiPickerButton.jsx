@@ -35,7 +35,7 @@ function EmojiPcikerButton() {
       <button
         ref={buttonRef}
         onClick={togglePicker}
-        style={{ backgroundColor: "white", border: "none" }}
+        style={{ backgroundColor: "white", border: "none", margin: "5px" }}
       >
         {chosenEmoji == null ? "💡" : <span>{chosenEmoji}</span>}
       </button>

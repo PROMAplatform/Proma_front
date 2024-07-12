@@ -16,13 +16,13 @@ function CustomIconButton({
 
   const iconColor = useActiveState
     ? isActive
-      ? "blue"
+      ? "var(--main_color)"
       : isHovered
-      ? "blue"
-      : "black" // isActive 사용 시
+      ? "var(--main_color)"
+      : "var(--gray-6)" // isActive 사용 시
     : isHovered
-    ? "blue"
-    : "black"; // isActive 미사용 시
+    ? "var(--main_color)"
+    : "var(--gray-6)"; // isActive 미사용 시
 
   return (
     <IconComponent
@@ -32,6 +32,7 @@ function CustomIconButton({
       style={{
         cursor: "pointer",
         color: iconColor,
+        margin: "15px"
       }}
     />
   );

@@ -6,7 +6,7 @@ function App() {
     <BrowserRouter>
       {/*헤더 들어갈 듯 */}
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/intro" element={<MainPage />} />
       </Routes>
     </BrowserRouter>
   );

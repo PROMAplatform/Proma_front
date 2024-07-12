@@ -1,17 +1,21 @@
 import React from "react";
+import styles from "./Toggle.module.css";
 
 function Toggle({ isChatting, setIsChatting }) {
   return (
-    <div>
-      <span>PROMA chatting</span>
-      <label className="switch">
+    <div className={styles.container}>
+      <div className={styles.toggleContainer}>
+      <span className="text700_22">PROMA prompt</span>
+      <label className={styles.toggleSwitch}>
         <input
+          className={styles.checkBox}
           type="checkbox"
           checked={isChatting}
           onChange={() => setIsChatting(!isChatting)}
         />
-        <span className="slider round"></span>
+        <span className={styles.toggleSlider}></span>
       </label>
+      </div>
     </div>
   );
 }

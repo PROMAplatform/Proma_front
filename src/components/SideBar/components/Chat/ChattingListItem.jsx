@@ -20,7 +20,7 @@ function ChattingListItem(props) {
     >
       <div className={styles.IconNName}>
         <EmojiPcikerButton />
-        <h3>{props.name}</h3>
+        <p className={styles.chattingName}>{props.name}</p>
       </div>
 
       <CustomIconButton icon={MoreHorizIcon} onClick={handleIconClick} />

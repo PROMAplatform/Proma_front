@@ -1,8 +1,25 @@
 .container {
   display: flex;
   justify-content: space-between; /* 요소 사이 공간을 최대로 벌림 */
+  align-items: center;
+  width: 100%;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+  background-color: var(--white);
 }
 
 .IconNName {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.promptName {
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+color: var(--gray-8);
 }

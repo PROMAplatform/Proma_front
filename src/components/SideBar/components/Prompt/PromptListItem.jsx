@@ -16,9 +16,8 @@ function PromptListItem(props) {
     <div className={styles.container} onClick={handlePromptClick}>
       <div className={styles.IconNName}>
         <EmojiPcikerButton />
-        <h3>{props.name}</h3>
+        <p className={styles.promptName}>{props.name}</p>
       </div>
-
       <CustomIconButton icon={MoreHorizIcon} onClick={handleIconClick} />
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import useInput from "../hooks/useInput";
 import SideBar from "../components/SideBar/SideBar";
+import styles from "./mainPage.module.css"
 
 function MainPage() {
   const name = useInput("");
@@ -15,10 +16,12 @@ function MainPage() {
     <form onSubmit={handleSubmit}>
       <div>
         <SideBar />
-        <label>
-          Input:
-          <input type="text" value={name.value} onChange={name.onChange} />
-        </label>
+        <div className={styles.content}>
+          <label>
+            Input:
+            <input type="text" value={name.value} onChange={name.onChange} />
+          </label>
+        </div>
       </div>
       <button type="submit">Submit</button>
     </form>
