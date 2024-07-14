@@ -2,6 +2,7 @@ import React from "react";
 import useInput from "../hooks/useInput";
 import SideBar from "../components/SideBar/SideBar";
 import styles from "./mainPage.module.css"
+import Chatting from "../components/Chatting/Chatting";
 
 function MainPage() {
   const name = useInput("");
@@ -13,18 +14,14 @@ function MainPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    // <form onSubmit={handleSubmit}>
       <div>
         <SideBar />
         <div className={styles.content}>
-          <label>
-            Input:
-            <input type="text" value={name.value} onChange={name.onChange} />
-          </label>
+          <Chatting />
         </div>
       </div>
-      <button type="submit">Submit</button>
-    </form>
+    // </form>
   );
 }
 
