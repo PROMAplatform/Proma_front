@@ -1,12 +1,3 @@
-.backGround {
-    width: 80vw;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .title {
     margin-top: 15vh;
 
@@ -18,12 +9,18 @@
     line-height: normal;
 }
 
+.searchBarSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .searchBar {
     display: flex;
     align-items: center;
     gap: 16px;
     flex-shrink: 0;
-    padding: 1vh;
+    padding: 1vh 1vw;
     width: 45vw;
     height: 3vh;
     margin: 3vh;
@@ -43,11 +40,14 @@
     display: flex;
     gap: 10px;
     margin: 1vh;
+
+    align-items: center;
+    justify-content: center;
 }
 
 .categoryButton {
     border-radius: 10px;
-    border: 1px solid #5A5A5A;
+    border: 1.5px solid #5A5A5A;
     padding: 5px 10px;
     background-color: #fff;
     cursor: pointer;
@@ -71,12 +71,11 @@
     line-height: normal;
 }
 
-.filterButton {
-    display: inline-flex;
-    padding: 10px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
+.buttonSection {
+    display: flex;
+    width: 65vw;
+    padding: 1vw;
+    justify-content: space-between;
 
     color: #000;
     font-size: 16px;
@@ -85,11 +84,20 @@
     line-height: normal;
 }
 
-.promptContainer {
-    width: 70vw;
-    margin-top: 5vh;
+.writeButton {
     display: flex;
-    flex-wrap: wrap;
-    gap: 2vw;
-    justify-content: space-between;
+    padding: 0.5vh 1vw;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    border-radius: 20px;
+    border: 1.5px solid #5A5A5A;
+    background: #FFF;
+
+    color: #5A5A5A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
