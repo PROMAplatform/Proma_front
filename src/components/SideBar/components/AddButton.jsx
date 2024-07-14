@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AddButton.module.css";
-import addButtonIcon from "../../assets/images/addButtonIcon.svg";
+import addButtonIcon from "../../../assets/images/addButtonIcon.svg";
 
 function AddButton({ text }) {
     return (

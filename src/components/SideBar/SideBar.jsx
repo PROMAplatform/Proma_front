@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "./SideBar.module.css";
 import ChattingList from "./components/Chat/ChattingList";
-import Toggle from "./Toggle";
+import Toggle from "./components/Toggle";
 import PromptList from "./components/Prompt/PromptList";
-import AddButton from "./AddButton";
+import AddButton from "./components/AddButton";
 import promaLogoSmall from "../../assets/images/promaLogoSmall.svg";
 function SideBar() {
   const [isChatting, setIsChatting] = useState(false);

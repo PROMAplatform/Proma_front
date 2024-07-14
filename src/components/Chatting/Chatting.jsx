@@ -1,37 +1,35 @@
 import React, { useState } from 'react';
-import useInput from '../../hooks/useInput';
 import styles from './Chatting.module.css';
+import { messageState } from '../../recoil/chatting/chattingRecoilState';
+import { useRecoilState } from 'recoil';
+import ChattingInput from './ChattingInput';
+import promaChattingProfile from '../../assets/images/promaChattingProfile.svg';
 
 function Chatting() {
-    const [messages, setMessages] = useState([]);
-    const input = useInput("");
+    const [messages, setMessages] = useRecoilState(messageState);
 
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      if(input.value.trim()) {
-        setMessages([...messages, input.value])
-        input.reset();
-      }
-    };
     return (
         <div className={styles.container}>
             <div className={styles.messagesContainer}>
                 {messages.map((message, index) => (
-                    <div key={index} className={styles.message}>
-                        {message}
+                    <div key={index} className='text500_16'>
+                        <div className={styles.sendMessage}>
+                            <div className={styles.message}>
+                                {message}
+                            </div>
                         </div>
+                        <div className={styles.receiveMessage}>
+                            <div className={styles.promaChattingProfile}>
+                                <img src={promaChattingProfile} />
+                            </div>
+                            <div className={styles.receiveMessageText}>
+                                Answer
+                            </div>
+                        </div>
+                    </div>
                 ))}
             </div>
-            <form onSubmit={handleSubmit} >
-                <input
-                    type="text"
-                    value={input.value}
-                    onChange={input.onChange}
-                    placeholder="질문을 입력하세요."
-                    className={[styles.inputContainer, 'text500_16'].join(' ')} 
-                />
-                <button type="submit" className={styles.button}>Submit</button>
-            </form>
+            <ChattingInput />
         </div>
     );
 }

@@ -8,38 +8,48 @@
 .messagesContainer {
     flex: 1;
     overflow-y: auto;
-    padding: 20px;
+    width: 60%;
+    display: flex;
+    margin: 0 auto;
+    padding: 0 10px;
+    flex-direction: column;
 }
 
 .message {
+    display: inline-flex;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
     border-radius: 20px;
     background-color: var(--gray-2);
     color: var(--gray-8);
     padding: 10px 15px;
-    margin: 10px;
+    margin: 30px 0;
     width: auto;
+    max-width: 700px;
 }
-
-.inputContainer {
-    flex: 1;
+.sendMessage {
     display: flex;
-    border-radius: 30px;
-    border: none;
-    background-color: var(--gray-2);
-    width: 100%;
-    padding: 10px 15px;
-    margin: 10px;
-    outline: 0;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
 }
 
-.inputContainer::placeholder {
-    color: var(--gray-5);
+.promaChattingProfile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 0px var(--gray-3);
 }
 
-.button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    cursor: pointer;
-    color: var(--gray-8);
+.receiveMessage {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.receiveMessageText {
+    margin-top: 12px;
 }
