@@ -1,7 +1,11 @@
 .headerContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto; /* 로고, 네비게이션, 로그인 영역 */
+    align-items: center;
     justify-content: space-between;
+
     width: 90vw;
+    height: 6vh;
     margin: auto;
 }
 
