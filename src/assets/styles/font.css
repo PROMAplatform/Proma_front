@@ -5,6 +5,7 @@
 
 :root {
     --font-family-primary: 'inter', sans-serif;
+    --font-size-50: 50px;
     --font-size-40: 40px;
     --font-size-38: 38px;
     --font-size-36: 36px;
@@ -146,8 +147,8 @@
 }
 
 /* Text800 */
-.text800_60 {
-    font-size: var(--font-size-60);
+.text800_50 {
+    font-size: var(--font-size-50);
     font-weight: var(--font-weight-800);
 }
 

@@ -1,5 +1,6 @@
 .inputContainer {
     width: 60%;
+    min-width: 500px;
     background-color: var(--white);
     margin: 0 auto;
 }

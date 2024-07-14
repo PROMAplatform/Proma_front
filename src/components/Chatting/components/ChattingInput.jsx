@@ -1,10 +1,10 @@
 import React, {useRef} from "react";
 import styles from "./ChattingInput.module.css"
-import { messageState } from "../../recoil/chatting/chattingRecoilState";
-import useInput from "../../hooks/useInput";
+import { messageState } from "../../../recoil/chatting/chattingRecoilState";
+import useInput from "../../../hooks/useInput";
 import { useRecoilState } from "recoil";
-import fileInputIcon from "../../assets/images/fileInputIcon.svg";
-import submitButtonIcon from "../../assets/images/submitButtonIcon.svg";
+import fileInputIcon from "../../../assets/images/fileInputIcon.svg";
+import submitButtonIcon from "../../../assets/images/submitButtonIcon.svg";
 
 function ChattingInput() {
     const [messages, setMessages] = useRecoilState(messageState);

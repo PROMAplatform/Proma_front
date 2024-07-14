@@ -14,14 +14,12 @@ function MainPage() {
   };
 
   return (
-    // <form onSubmit={handleSubmit}>
       <div>
         <SideBar />
         <div className={styles.content}>
           <Chatting />
         </div>
       </div>
-    // </form>
   );
 }
 
