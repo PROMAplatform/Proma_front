@@ -9,6 +9,7 @@
     flex: 1;
     overflow-y: auto;
     width: 60%;
+    min-width: 500px;
     display: flex;
     margin: 0 auto;
     padding: 0 10px;

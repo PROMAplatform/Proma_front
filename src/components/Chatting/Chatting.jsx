@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import styles from './Chatting.module.css';
 import { messageState } from '../../recoil/chatting/chattingRecoilState';
 import { useRecoilState } from 'recoil';
-import ChattingInput from './components/ChattingInput';
+import ChattingInput from './components/input/ChattingInput';
 import promaChattingProfile from '../../assets/images/promaChattingProfile.svg';
 import ChattingMain from './components/ChattingMain';
 
