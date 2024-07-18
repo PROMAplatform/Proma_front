@@ -6,7 +6,7 @@ function AddButton({ text }) {
     return (
         <div className={styles.container}>
             <img className={styles.icon} src={addButtonIcon} alt="icon" />
-            <p className={[styles.text, 'text500_14'].join(' ')}>{text}</p>
+            <p className={[styles.text, 'b6'].join(' ')}>{text}</p>
         </div>
     );
 }

@@ -5,30 +5,26 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
+    width: 80%;
+    align-items: center;
 }
 
 .title {
-    color: var(--black);
+    background: linear-gradient(to right, #AE73DC, #7572E3);
+    color: transparent;
+    -webkit-background-clip: text;
+}
+
+@media screen and (max-width: 1200px) {
+    .title {
+      font-size: 45px;
+    }
 }
 
 .typeContainer {
     display: flex;
     flex-direction: row;
-}
-
-.type {
+    align-items: stretch;
+    justify-content: space-between;
     width: 100%;
-    margin: 10px;
-    height: auto;
-    background-color: var(--gray-2);
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    box-shadow: 0px 0px 10px 0px var(--gray-3);
-    cursor: pointer;
-}
-
-.type:hover {
-    box-shadow: 0px 0px 10px 0px var(--logo--purple-2);
 }

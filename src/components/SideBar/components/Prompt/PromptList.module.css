@@ -10,7 +10,7 @@
   
   .categoryButton {
     padding: 5px 10px;
-    border: 1px solid var(--gray-4);
+    border: 1px solid var(--color-gray4);
     background-color: #fff;
     cursor: pointer;
     border-radius: 6px;
@@ -19,9 +19,9 @@
   }
   
   .active {
-    background-color: var(--main_color); /* 선택된 버튼 배경색 */
+    background-color: var(--block-main-color); /* 선택된 버튼 배경색 */
     color: var(--white);
-    border: 1px solid var(--main_color);
+    border: 1px solid var(--block-main-color);
   }
   
   .promptListContainer {

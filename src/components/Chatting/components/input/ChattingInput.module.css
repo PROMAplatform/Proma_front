@@ -1,6 +1,6 @@
 .container {
     width: 60%;
-    min-width: 500px;
+    min-width: 600px;
     background-color: var(--white);
     margin: 0 auto;
 }
@@ -11,7 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-radius: 18px;
-    background-color: var(--gray-2);
+    background-color: var(--color-gray2);
     padding: 10px 15px;
 }
 
@@ -45,7 +45,7 @@
 }
 
 .textInput::placeholder {
-    color: var(--gray-5);
+    color: var(--color-gray5);
 }
 
 .submitButton {

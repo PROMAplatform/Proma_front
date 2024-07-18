@@ -1,168 +1,100 @@
-@font-face {
-    font-family: 'inter';
-    src: url('https://rsms.me/inter/inter.css') format('truetype');
-}
-
 :root {
     --font-family-primary: 'inter', sans-serif;
-    --font-size-50: 50px;
+    --font-size-60: 60px;
     --font-size-40: 40px;
-    --font-size-38: 38px;
-    --font-size-36: 36px;
-    --font-size-34: 34px;
     --font-size-32: 32px;
-    --font-size-30: 30px;
-    --font-size-28: 28px;
     --font-size-26: 26px;
     --font-size-24: 24px;
-    --font-size-22: 22px;
     --font-size-20: 20px;
     --font-size-18: 18px;
     --font-size-16: 16px;
     --font-size-14: 14px;
     --font-size-12: 12px;
     --font-size-10: 10px;
-    --font-size-8_5: 8.5px;
     --font-size-8: 8px;
 
     /* Font weights */
     --font-weight-800: 800;
-    --font-weight-700: 700;
     --font-weight-600: 600;
     --font-weight-500: 500;
-    --font-weight-300: 300;
 }
 
-/* Text500 */
-.text500_30 {
-    font-size: var(--font-size-30);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_28 {
-    font-size: var(--font-size-28);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_26 {
-    font-size: var(--font-size-26);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_24 {
-    font-size: var(--font-size-24);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_22 {
-    font-size: var(--font-size-22);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_20 {
-    font-size: var(--font-size-20);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_18 {
-    font-size: var(--font-size-18);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_16 {
-    font-size: var(--font-size-16);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_14 {
-    font-size: var(--font-size-14);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_12 {
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_10 {
-    font-size: var(--font-size-10);
-    font-weight: var(--font-weight-500);
-}
-
-.text500_8 {
-    font-size: var(--font-size-8);
-    font-weight: var(--font-weight-500);
-}
-
-/* Text600 */
-.text600_18 {
-    font-size: var(--font-size-18);
-    font-weight: var(--font-weight-600);
-}
-
-.text600_12 {
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-600);
-}
-
-.text600_16 {
-    font-size: var(--font-size-16);
-    font-weight: var(--font-weight-600);
-}
-
-.text600_20 {
-    font-size: var(--font-size-20);
-    font-weight: var(--font-weight-600);
-}
-
-.text600_8_5 {
-    font-size: var(--font-size-8_5);
-    font-weight: var(--font-weight-600);
-}
-
-.text600_22 {
-    font-size: var(--font-size-22);
-    font-weight: var(--font-weight-600);
-}
-
-.text600_40 {
-    font-size: var(--font-size-40);
-    font-weight: var(--font-weight-600);
-}
-
-/* Text700 */
-.text700_14 {
-    font-size: var(--font-size-14);
-    font-weight: var(--font-weight-700);
-}
-
-.text700_18 {
-    font-size: var(--font-size-18);
-    font-weight: var(--font-weight-700);
-}
-
-.text700_22 {
-    font-size: var(--font-size-22);
-    font-weight: var(--font-weight-700);
-}
-
-/* Text800 */
-.text800_50 {
-    font-size: var(--font-size-50);
+.h1 {
+    font-size: var(--font-size-60);
     font-weight: var(--font-weight-800);
 }
 
-.text800_32 {
+.h2 {
+    font-size: var(--font-size-40);
+    font-weight: var(--font-weight-800);
+}
+
+.h3 {
     font-size: var(--font-size-32);
     font-weight: var(--font-weight-800);
 }
 
-.text800_26 {
+.h4 {
     font-size: var(--font-size-26);
     font-weight: var(--font-weight-800);
 }
 
-.text800_20 {
+.h5 {
     font-size: var(--font-size-20);
-    font-weight: var(--font-weight-800);
+    font-weight: var(--font-weight-600);
+}
+
+.h6 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-600);
+}
+
+.h7 {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-600);
+}
+
+.b1 {
+    font-size: var(--font-size-26);
+    font-weight: var(--font-weight-500);
+}
+
+.b2 {
+    font-size: var(--font-size-24);
+    font-weight: var(--font-weight-500);
+}
+
+.b3 {
+    font-size: var(--font-size-20);
+    font-weight: var(--font-weight-500);
+}
+
+.b4 {
+    font-size: var(--font-size-18);
+    font-weight: var(--font-weight-500);
+}
+
+.b5 {
+    font-size: var(--font-size-16);
+    font-weight: var(--font-weight-500);
+}
+
+.b6 {
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-500);
+}
+
+.b7 {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-500);
+}
+
+.b8 {
+    font-size: var(--font-size-10);
+    font-weight: var(--font-weight-500);
+}
+
+.b9 {
+    font-size: var(--font-size-8);
+    font-weight: var(--font-weight-500);
 }

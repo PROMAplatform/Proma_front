@@ -1,14 +1,15 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styles from './Chatting.module.css';
 import { messageState } from '../../recoil/chatting/chattingRecoilState';
 import { useRecoilState } from 'recoil';
-import ChattingInput from './components/input/ChattingInput';
+import ChattingInput from './components/Input/ChattingInput';
 import promaChattingProfile from '../../assets/images/promaChattingProfile.svg';
 import ChattingMain from './components/ChattingMain';
 
 function Chatting() {
     const [messages, setMessages] = useRecoilState(messageState);
     const messagesEndRef = useRef(null);
+    const [loading, setLoading] = useState(false);
 
     const scrollToBottom = () => {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -16,7 +17,7 @@ function Chatting() {
   
     useEffect(() => {
       scrollToBottom();
-    }, [messages]);
+      }, [messages]);
 
     return (
         <div className={styles.container}>
@@ -25,7 +26,7 @@ function Chatting() {
             ) : (
             <div className={styles.messagesContainer}>
                 {messages.map((message, index) => (
-                    <div key={index} className='text500_16'>
+                    <div key={index} className='b5'>
                         <div className={styles.sendMessage}>
                             <div className={styles.message}>
                                 {message}
@@ -36,7 +37,7 @@ function Chatting() {
                                 <img src={promaChattingProfile} />
                             </div>
                             <div className={styles.receiveMessageText}>
-                                Answer
+                                <p>Answer</p>
                             </div>
                         </div>
                     </div>

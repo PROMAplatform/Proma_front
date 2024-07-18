@@ -5,11 +5,11 @@
 }
 
 .filePreview {
+    display: inline-flex;
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 5px;
-    background-color: var(--gray-2);
-    display: flex;
+    background-color: var(--color-gray2);
     flex-direction: row;
     align-items: flex-start;
 }
@@ -19,7 +19,7 @@
     height: 80px;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0px 0px 5px 0px var(--gray-3);
+    box-shadow: 0px 0px 5px 0px var(--color-gray3);
 }
 
 .previewImage {

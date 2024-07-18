@@ -5,7 +5,7 @@ function Toggle({ isChatting, setIsChatting }) {
   return (
     <div className={styles.container}>
       <div className={styles.toggleContainer}>
-      <span className="text700_22">PROMA prompt</span>
+      <span className="h4">PROMA prompt</span>
       <label className={styles.toggleSwitch}>
         <input
           className={styles.checkBox}

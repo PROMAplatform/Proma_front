@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import fileInputIcon from "../../../../assets/images/fileInputIcon.svg";
 import submitButtonIcon from "../../../../assets/images/submitButtonIcon.svg";
 import Preview from "./FilePreview";
+import PromptPreview from "../Prompt/PromptPreview";
 
 function ChattingInput() {
     const [messages, setMessages] = useRecoilState(messageState);
@@ -50,6 +51,7 @@ function ChattingInput() {
 
     return (
         <div className={styles.container}>
+            <PromptPreview />
             <form onSubmit={handleSubmit} className={styles.inputContainer}>
                 <div className={styles.filePreviewContainer}>
                     <Preview selectedFiles={selectedFiles} setSelectedFiles={setSelectedFiles} />
@@ -64,7 +66,7 @@ function ChattingInput() {
                     value={input.value}
                     onChange={input.onChange}
                     placeholder="질문을 입력하세요."
-                    className={[styles.textInput, 'text500_16'].join(' ')} 
+                    className={[styles.textInput, 'b5'].join(' ')} 
                 />
                 <button type="submit" className={styles.submitButton}>
                     <img src={submitButtonIcon} />

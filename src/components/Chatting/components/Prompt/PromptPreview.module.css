@@ -1,0 +1,25 @@
+.container {
+    position: relative;
+    bottom: 10px;
+    left: 15px;
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    padding: 10px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--white);
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
+}
+
+.iconContainer {
+    width: 15px;
+    height: 15px;
+}
+
+.text {
+    color: var(--color-gray6);
+    margin: 0;
+}

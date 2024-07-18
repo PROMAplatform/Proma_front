@@ -23,8 +23,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--gray-5);
-    transition: background-color 0.4s ease, transform 0.4s ease; 
+    background-color: var(--color-gray5);
+    transition: background-color 0.2s, transform 0.2s; 
     border-radius: 30px;
 }
 .toggleSlider:before {
@@ -35,7 +35,7 @@
     left: 4px;
     bottom: 4px;
     background-color: var(--white);
-    transition: transform 0.4s ease;
+    transition: transform 0.2s;
     border-radius: 50%;
 }
 
@@ -46,11 +46,9 @@
 }
 
 .checkBox:checked + .toggleSlider {
-    background-color: var(--main_color);
+    background-color: var(--block-main-color);
 }
 
 .checkBox:checked + .toggleSlider:before {
-    -webkit-transform: translateX(22px);
-    -ms-transform: translateX(22px);
     transform: translateX(22px);
 }
