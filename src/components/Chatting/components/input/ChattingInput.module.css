@@ -1,5 +1,6 @@
 .container {
     width: 60%;
+    height: auto;
     min-width: 600px;
     background-color: var(--white);
     margin: 0 auto;
@@ -23,6 +24,7 @@
 .input {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 10px;
 }
 
@@ -42,6 +44,10 @@
     background: none;
     outline: 0;
     width: 100%;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
+    resize: none;
 }
 
 .textInput::placeholder {

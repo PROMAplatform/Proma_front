@@ -5,11 +5,11 @@
 }
 
 .filePreview {
-    display: inline-flex;
     padding: 5px;
     margin-bottom: 10px;
     border-radius: 5px;
     background-color: var(--color-gray2);
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
 }
