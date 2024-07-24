@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
 import {
   activeBlocksState,
   activeCategoryState,
-} from "../../recoil/prompt/promptRecoilState";
-import logo from "../../../src/assets/logos/Sidebar_Header.png";
+} from "../../../recoil/prompt/promptRecoilState";
+import logo from "../../../../src/assets/logos/Sidebar_Header.png";
+import CreateBlockModal from "./CreateBlockModal";
 
 const categories = [
   { name: "역할", color: "red" },
@@ -20,7 +21,14 @@ const categories = [
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
     useRecoilState(activeCategoryState);
-  const [activeBlocks] = useRecoilState(activeBlocksState);
+  const [activeBlocks, setActiveBlocks] = useRecoilState(activeBlocksState);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleAddBlock = (category, content) => {
+    setActiveBlocks((prevBlocks) => ({
+      ...prevBlocks,
+      [category]: [...prevBlocks[category], content],
+    }));
+  };
 
   const getActiveColor = () => {
     return (
@@ -86,10 +94,17 @@ const PromptMakingSidebar = () => {
           <button
             className={styles.addButton}
             style={{ "--active-color": getActiveColor() }}
+            onClick={() => setIsModalOpen(true)}
           >
             블록 만들기
           </button>
         </div>
+        <CreateBlockModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onAddBlock={handleAddBlock}
+          categories={categories}
+        />
       </div>
     </div>
   );
