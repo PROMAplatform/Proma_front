@@ -1,59 +1,44 @@
-import { useRecoilState, useSetRecoilState } from "recoil";
-
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { enqueueSnackbar } from "notistack";
 import {
   activeBlocksState,
   combinationsState,
+  blockDetailsState,
 } from "../../recoil/prompt/promptRecoilState";
 
 export const usePromptMaking = () => {
   const [combinations, setCombinations] = useRecoilState(combinationsState);
   const setActiveBlocks = useSetRecoilState(activeBlocksState);
+  const blockDetails = useRecoilValue(blockDetailsState);
 
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
 
-    if (
-      !destination ||
-      (source.droppableId === destination.droppableId &&
-        source.index === destination.index)
-    ) {
+    if (!destination) {
       return;
     }
 
     const [blockId, blockCategory] = draggableId.split("|");
+    const numericBlockId = parseInt(blockId);
 
-    if (
-      source.droppableId === "sidebar" &&
-      destination.droppableId !== "sidebar"
-    ) {
-      //사이드바에서 사이드바가 아닌 곳으로 갈 때,
-      handleSidebarToCombinationArea(
-        destination.droppableId,
-        blockId,
-        blockCategory
-      );
-    } else if (
-      source.droppableId !== "sidebar" &&
-      destination.droppableId === "sidebar"
-    ) {
-      // 조합 창에서 사이드바로 갈 때,
-      handleCombinationAreaToSidebar(source.droppableId, blockId);
-    } else if (
-      source.droppableId !== "sidebar" &&
-      destination.droppableId !== "sidebar"
-    ) {
-      // 조합 창에서 조합창으로 갈 때,
-      handleWithinCombinationArea(source.droppableId, destination.droppableId);
+    if (!blockDetails[numericBlockId]) {
+      console.error("Block not found:", numericBlockId);
+      return;
     }
 
-    console.log("Drag ended:", result);
+    if (source.droppableId === "sidebar" && destination.droppableId !== "sidebar") {
+      handleSidebarToCombinationArea(destination.droppableId, numericBlockId, blockCategory);
+    } else if (source.droppableId !== "sidebar" && destination.droppableId === "sidebar") {
+      handleCombinationAreaToSidebar(source.droppableId, numericBlockId);
+    } else if (source.droppableId !== "sidebar" && destination.droppableId !== "sidebar") {
+      handleWithinCombinationArea(source.droppableId, destination.droppableId, numericBlockId);
+    }
   };
 
   const handleSidebarToCombinationArea = (category, blockId, blockCategory) => {
     if (category !== blockCategory) {
       enqueueSnackbar(
-        `🚀 카테고리가 일치하지 않습니다! ${blockCategory} 블럭에 넣어주세요! `
+        `🚀 카테고리가 일치하지 않습니다! ${blockCategory} 블럭에 넣어주세요!`
       );
       return;
     }
@@ -65,7 +50,7 @@ export const usePromptMaking = () => {
 
     setActiveBlocks((prev) => ({
       ...prev,
-      [category]: prev[category].filter((block) => block !== blockId),
+      [category]: prev[category].filter((id) => id !== blockId),
     }));
 
     handleCombinationChange({
@@ -86,18 +71,26 @@ export const usePromptMaking = () => {
     }));
   };
 
-  const handleWithinCombinationArea = (sourceCategory, destinationCategory) => {
+  const handleWithinCombinationArea = (
+    sourceCategory,
+    destinationCategory,
+    blockId
+  ) => {
     if (sourceCategory !== destinationCategory) {
       enqueueSnackbar(
         `🚀 카테고리 간 이동은 불가능합니다! ${sourceCategory}에서 ${destinationCategory}로 이동할 수 없습니다.`
       );
       return;
     }
+
+    // 같은 카테고리 내에서의 이동이므로 아무 작업도 필요하지 않습니다.
+    // 하지만 필요하다면 여기에 추가 로직을 구현할 수 있습니다.
   };
 
   const handleCombinationChange = (newCombinations) => {
     console.log("새로운 조합:", newCombinations);
     console.log("조합 시도");
+    // 여기에 조합 변경에 따른 추가 로직을 구현할 수 있습니다.
   };
 
   return { onDragEnd };
