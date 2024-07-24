@@ -1,6 +1,7 @@
 import React from "react";
-import useInput from "../hooks/useInput";
+
 import SideBar from "../components/SideBar/SideBar";
+import useInput from "../hooks/common/useInput";
 
 function MainPage() {
   const name = useInput("");
