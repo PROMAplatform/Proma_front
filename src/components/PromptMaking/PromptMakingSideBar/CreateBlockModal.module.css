@@ -1,0 +1,63 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.modalContent h2 {
+  color: black;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.modalContent select,
+.modalContent textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.modalContent textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonGroup button {
+  padding: 10px 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.buttonGroup button:first-child {
+  background-color: #007bff;
+  color: white;
+}
+
+.buttonGroup button:last-child {
+  background-color: #f8f9fa;
+  color: #333;
+}
