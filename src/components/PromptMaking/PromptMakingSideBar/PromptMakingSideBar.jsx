@@ -1,40 +1,34 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
 import {
   activeBlocksState,
   activeCategoryState,
+  availableCategoriesState,
+  categoryColorsState,
+  blockDetailsState,
 } from "../../../recoil/prompt/promptRecoilState";
 import logo from "../../../../src/assets/logos/Sidebar_Header.png";
 import CreateBlockModal from "./CreateBlockModal";
 
-const categories = [
-  { name: "역할", color: "red" },
-  { name: "형식", color: "orange" },
-  { name: "지시", color: "yellow" },
-  { name: "참고", color: "green" },
-  { name: "필수", color: "blue" },
-  { name: "제외", color: "indigo" },
-];
-
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
     useRecoilState(activeCategoryState);
-  const [activeBlocks, setActiveBlocks] = useRecoilState(activeBlocksState);
+  const activeBlocks = useRecoilValue(activeBlocksState);
+  const categories = useRecoilValue(availableCategoriesState);
+  const categoryColors = useRecoilValue(categoryColorsState);
+  const blockDetails = useRecoilValue(blockDetailsState);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleAddBlock = (category, content) => {
-    setActiveBlocks((prevBlocks) => ({
-      ...prevBlocks,
-      [category]: [...prevBlocks[category], content],
-    }));
+
+  const handleAddBlock = (category, blockData) => {
+    // 이 함수는 새로운 블록 추가 로직에 맞게 수정해야 할 수 있습니다.
+    //TODO- 블록 추가 로직
+    console.log("Adding new block:", category, blockData);
   };
 
   const getActiveColor = () => {
-    return (
-      categories.find((category) => category.name === activeCategory)?.color ||
-      "purple"
-    );
+    return categoryColors[activeCategory] || "purple";
   };
 
   return (
@@ -44,17 +38,17 @@ const PromptMakingSidebar = () => {
         <div className={styles.categories}>
           {categories.map((category) => (
             <div
-              key={category.name}
+              key={category}
               className={`${styles.category} ${
-                activeCategory === category.name ? styles.active : ""
+                activeCategory === category ? styles.active : ""
               }`}
-              onClick={() => setActiveCategory(category.name)}
+              onClick={() => setActiveCategory(category)}
               style={{
-                "--category-color": category.color,
-                "--category-active-color": `${category.color}33`,
+                "--category-color": categoryColors[category],
+                "--category-active-color": `${categoryColors[category]}33`,
               }}
             >
-              {category.name}
+              {category}
             </div>
           ))}
         </div>
@@ -69,24 +63,29 @@ const PromptMakingSidebar = () => {
                 ref={provided.innerRef}
                 className={styles.blocks}
               >
-                {activeBlocks[activeCategory].map((block, index) => (
-                  <Draggable
-                    key={`${block}|${activeCategory}`}
-                    draggableId={`${block}|${activeCategory}`}
-                    index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className={styles.block}
-                      >
-                        {block}
-                      </div>
-                    )}
-                  </Draggable>
-                ))}
+                {activeBlocks[activeCategory]?.map((blockId, index) => {
+                  const block = blockDetails[blockId];
+                  return (
+                    <Draggable
+                      key={blockId}
+                      draggableId={`${blockId}|${activeCategory}`}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className={styles.block}
+                        >
+                          <div className={styles.blockTitle}>
+                            {block.blockTitle}
+                          </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  );
+                })}
                 {provided.placeholder}
               </div>
             )}
