@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useIconClick from "../../hooks/useIconClick";
+import useIconClick from "../../hooks/common/useIconClick";
 
 function CustomIconButton({
   icon: IconComponent,
