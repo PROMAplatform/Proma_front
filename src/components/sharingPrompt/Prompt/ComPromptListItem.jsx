@@ -4,7 +4,7 @@ import { ReactComponent as TypeIcon } from "../../../assets/images/typeIcon.svg"
 import { ReactComponent as LikeButton } from "../../../assets/images/likeButton.svg";
 import PromptDetailModal from "../modal/DetailModal/PromptDetailModal";
 
-function ComPromptListItem({prompt}) {
+function ComPromptListItem({post}) {
 
     /*const promas = [
         { type: "캐릭터", name: "PROMPT 1", explain: "프롬프트에 대한 설명", imageurl: "test", categories: ["IT", "글쓰기"], like: 1 },
@@ -30,19 +30,19 @@ function ComPromptListItem({prompt}) {
                         <div className={styles.typeSection}>
                             <TypeIcon />
                             <div className={styles.typeText}>
-                                {prompt.promptType}
+                                {post.promptType}
                             </div>
                         </div>
                         <div className={styles.explainSection}>
                             <div className={styles.categorieSection}>
-                                {prompt.prompt_category}
+                                {post.prompt_category}
                             </div>
-                            <h3>{prompt.postTitle}</h3>
-                            <h3>{prompt.postDescription}</h3>
+                            <h3>{post.postTitle}</h3>
+                            <h3>{post.postDescription}</h3>
                         </div>
                         <div className={styles.likeSection}>
                             <div className={styles.likeText}>
-                                {prompt.likeCount}
+                                {post.likeCount}
                             </div>
                             <LikeButton />
                         </div>
@@ -52,22 +52,22 @@ function ComPromptListItem({prompt}) {
                         <div className={styles.typeSection}>
                             <TypeIcon />
                             <div className={styles.typeText}>
-                                {prompt.promptType}
+                                {post.promptType}
                             </div>
                         </div>
                         <div className={styles.explainSection}>
-                            {prompt.promptPreview}
+                            {post.promptPreview}
                         </div>
                         <div className={styles.likeSection}>
                             <div className={styles.likeText}>
-                                {prompt.likeCount}
+                                {post.likeCount}
                             </div>
                             <LikeButton />
                         </div>
                     </div>
                 </div>
             </div>
-            <PromptDetailModal promptId={prompt.promptId} prompt={prompt}
+            <PromptDetailModal postId={post.postId} post={post}
                                isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </>
 

@@ -26,18 +26,9 @@
     z-index: 1102;
 }
 
-.topSection {
-    display: flex;
-    justify-content: space-between;
-}
-
 .blockSection {
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-}
-
-.buttonSection {
-    display: flex;
 }

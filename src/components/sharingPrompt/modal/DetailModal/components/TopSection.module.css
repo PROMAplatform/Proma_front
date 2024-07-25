@@ -1,0 +1,14 @@
+.topSection {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5vh;
+}
+
+.likeSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.likeButton {
+    cursor: pointer;
+}

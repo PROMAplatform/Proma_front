@@ -20,7 +20,7 @@ function SharePromptList () {
             postDescription: "게시글 설명2",
             userName: "박민기",
             likeCount: 1,
-            promptId: 2,
+            promptId: 9,
             promptType: "Task/Research",
             prompt_category : "IT",
             promptPreview: "프롬포트 미리보기2"
@@ -30,7 +30,7 @@ function SharePromptList () {
             postDescription: "게시글 설명3",
             userName: "박민기",
             likeCount: 1,
-            promptId: 3,
+            promptId: 10,
             promptType: "Task/Research",
             prompt_category : "IT",
             promptPreview: "프롬포트 미리보기3"
@@ -81,7 +81,7 @@ function SharePromptList () {
         <div>
             <div className={styles.promptContainer}>
                 {promas.map((proma) => (
-                    <ComPromptListItem key={proma.postId} prompt={proma}/>))}
+                    <ComPromptListItem key={proma.postId} post={proma}/>))}
             </div>
         </div>
     )
