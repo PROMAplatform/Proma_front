@@ -3,7 +3,7 @@ import styles from "../PromptDetailModal.module.css";
 import DeletePromptModal from "../../DeleteModal/DeletePromptModal";
 import {useRecoilValue} from "recoil";
 import {myPageState} from "../../../../../recoil/community/myPageRecoilState";
-import PostWriteOrShare from "../../FixAndShareModal/PostWriteOrShare";
+import PostFixOrShare from "../../FixAndShareModal/PostFixOrShare";
 
 function ButtonSection({onClose}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -54,7 +54,7 @@ function ButtonSection({onClose}) {
                                onDelete={handleDelete}
                                onClose={() => setIsModalOpen(false)}
             />
-            <PostWriteOrShare isOpen={isEditModalOpen}
+            <PostFixOrShare isOpen={isEditModalOpen}
                             onApi={handleFix}
                             state={"fix"}
                             onClose={() => setIsEditModalOpen(false)}
