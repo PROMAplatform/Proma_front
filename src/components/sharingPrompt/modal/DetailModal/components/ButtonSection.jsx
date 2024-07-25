@@ -1,20 +1,25 @@
 import React, {useState} from 'react';
-import styles from "../PromptDetailModal.module.css";
+import styles from "./ButtonSection.module.css";
 import DeletePromptModal from "../../DeleteModal/DeletePromptModal";
 import {useRecoilValue} from "recoil";
 import {myPageState} from "../../../../../recoil/community/myPageRecoilState";
 import PostFixOrShare from "../../FixAndShareModal/PostFixOrShare";
 
-function ButtonSection({onClose}) {
+function ButtonSection({postId, onClose, onApi}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const isMyPageState = useRecoilValue(myPageState);
 
+    function handleScrap() {
+        // 실제 스크랩 로직 (API 호출 등)
+        onClose();
+        console.log("프로젝트 게시글 스크랩 : ", postId);
+    }
+
     function handleDelete() {
         // 실제 삭제 로직 (API 호출 등)
-
         onClose();
-        console.log("프로젝트 게시글 삭제");
+        console.log("프로젝트 게시글 삭제 : ", postId);
     }
 
     function handleFix(data) {
@@ -26,19 +31,13 @@ function ButtonSection({onClose}) {
         });
 
         onClose();
-        console.log("프로젝트 게시글 수정");
+        console.log("프로젝트 게시글 수정 : ", postId);
     }
 
-    function handlePromptClick() {
-        setIsModalOpen(true);
-    }
+    //모달을 열기 위한 상태
+    function handlePromptClick() {setIsModalOpen(true);}
+    function handleEditClick() {setIsEditModalOpen(true);}
 
-    function handleEditClick() {
-        setIsEditModalOpen(true);
-    }
-
-
-    //ToDo - 스크랩 기능 구현
     return (
         <div>
             {isMyPageState === "write" &&
@@ -48,7 +47,7 @@ function ButtonSection({onClose}) {
                 </div>
             }
             {(isMyPageState === "" || isMyPageState === "like") &&
-                <button>스크랩하기</button>
+                <button onClick={handleScrap}>스크랩하기</button>
             }
             <DeletePromptModal isOpen={isModalOpen}
                                onDelete={handleDelete}
