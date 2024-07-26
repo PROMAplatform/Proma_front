@@ -1,0 +1,43 @@
+.blockSection {
+    display: flex;
+}
+
+.categorieSection {
+    display: flex;
+    background-color: #543FD6;
+}
+
+.speakerCategory {
+    display: flex;
+    background-color: aqua;
+}
+
+.listenerCategory {
+    display: flex;
+    background-color: coral;
+}
+
+.instructionCategory {
+    display: flex;
+    background-color: blueviolet;
+}
+
+.formatCategory {
+    display: flex;
+    background-color: darkslateblue;
+}
+
+.requiredCategory {
+    display: flex;
+    background-color: deepskyblue;
+}
+
+.excludedCategory {
+    display: flex;
+    background-color: white;
+}
+
+.titleSection {
+    display: flex;
+    background-color: #5A5A5A;
+}
