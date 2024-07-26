@@ -1,7 +1,7 @@
 import React from "react";
-import SharePromptList from "../components/community/Prompt/SharePromptList";
+import SharePromptList from "../components/sharingPrompt/Prompt/SharePromptList";
 import styles from "./communityPage.module.css";
-import FilterSection from "../components/community/FilterSection";
+import FilterSection from "../components/sharingPrompt/community/FilterSection";
 
 
 function CommunityPage() {
