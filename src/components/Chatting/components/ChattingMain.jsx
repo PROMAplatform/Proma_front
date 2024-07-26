@@ -1,4 +1,5 @@
 import React from "react";
+import { H1 } from "../../../styles/font-styles";
 import styles from "./ChattingMain.module.css";
 import PromptCreateButton from "./Prompt/PromptCreateButton";
 import characterIcon from "../../../assets/images/characterIcon.svg";
@@ -8,9 +9,7 @@ import freeIcon from "../../../assets/images/freeIcon.svg";
 function ChattingMain() {
     return (
         <div className={styles.container}>
-            <div className={[styles.title, 'h1'].join(' ')}>
-                나만의 프롬프트 작성하기
-            </div>
+            <H1 color="purpleGradient">나만의 프롬프트 작성하기</H1>
             <div className={styles.typeContainer}>
                 <PromptCreateButton type="Character" icon={characterIcon} content="나만의 캐릭터를 만들어 대화해봐요!" />
                 <PromptCreateButton type="Task/Research" icon={taskIcon} content="과제나 업무를 도와줍니다" />

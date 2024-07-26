@@ -2,7 +2,7 @@
   width: 390px;
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
   background-color: var(--color-gray1);
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   height: 100vh;
@@ -21,4 +21,6 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  overflow-y: auto; /* 스크롤 가능하게 설정 */
+  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
 }

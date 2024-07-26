@@ -16,12 +16,12 @@ function CustomIconButton({
 
   const iconColor = useActiveState
     ? isActive
-      ? "var(--main_color)"
+      ? "var(--block-main-color)"
       : isHovered
-      ? "var(--main_color)"
+      ? "var(--block-main-color)"
       : "var(--gray-6)" // isActive 사용 시
     : isHovered
-    ? "var(--main_color)"
+    ? "var(--block-main-color)"
     : "var(--gray-6)"; // isActive 미사용 시
 
   return (

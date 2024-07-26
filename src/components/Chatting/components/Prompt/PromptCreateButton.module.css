@@ -23,23 +23,7 @@
     height: 100%;
 }
 
-@media screen and (max-width: 1200px) {
-    .typeText {
-        font-size: 20px;
-    }
-    .promaText {
-        font-size: 16px;
-    }
-    .contentText {
-        font-size: 9px;
-    }
-}
-
 .iconContainer {
     width: 24px;
-}
-
-.contentText, .typeText, .promaText {
-    margin: 0;
 }
 

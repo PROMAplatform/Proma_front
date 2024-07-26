@@ -4,10 +4,10 @@
     min-width: 600px;
     background-color: var(--white);
     margin: 0 auto;
+    padding-bottom: 20px;
 }
 
 .inputContainer {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -24,7 +24,7 @@
 .input {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     gap: 10px;
 }
 
