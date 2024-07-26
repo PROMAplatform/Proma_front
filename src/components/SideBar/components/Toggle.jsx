@@ -1,11 +1,12 @@
 import React from "react";
+import { H4 } from "../../../styles/font-styles";
 import styles from "./Toggle.module.css";
 
 function Toggle({ isChatting, setIsChatting }) {
   return (
     <div className={styles.container}>
       <div className={styles.toggleContainer}>
-      <span className="h4">PROMA prompt</span>
+      <H4>PROMA prompt</H4>
       <label className={styles.toggleSwitch}>
         <input
           className={styles.checkBox}
