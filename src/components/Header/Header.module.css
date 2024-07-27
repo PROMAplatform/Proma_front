@@ -1,14 +1,19 @@
 .headerContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto; /* 로고, 네비게이션, 로그인 영역 */
+    align-items: center;
     justify-content: space-between;
-    width: 90vw;
-    margin: auto;
+    width: 100%;
+    height: 6vh;
+    background-color: var(--white);
+    z-index: 10;
 }
 
 .logoContainer {
     display: flex;
     align-items: center;
     gap: 0.5vw;
+    padding-left: 20px;
 }
 
 .navContainer {

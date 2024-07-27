@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import useEmojiPicker from "../../hooks/useEmojiPicker";
+import useEmojiPicker from "../../hooks/common/useEmojiPicker";
 import EmojiPicker from "emoji-picker-react";
 
 function EmojiPcikerButton() {
@@ -35,7 +35,7 @@ function EmojiPcikerButton() {
       <button
         ref={buttonRef}
         onClick={togglePicker}
-        style={{ backgroundColor: "white", border: "none" }}
+        style={{ backgroundColor: "white", border: "none", margin: "5px" }}
       >
         {chosenEmoji == null ? "💡" : <span>{chosenEmoji}</span>}
       </button>

@@ -1,0 +1,33 @@
+:root {
+  /* 색상 */
+  --logo-purple1: #e1e2ff;
+  --logo-purple2: #8d87ec;
+  --block-main-color: #543fd6;
+  --block-purple: #943fd6;
+  --block-pink: #ee5595;
+  --block-red: #f83600;
+  --block-orange: #feb702;
+  --block-green: #1ccf4e;
+  --white: #ffffff;
+  --black: #000000;
+
+  --color-gray1: #f7f7f7;
+  --color-gray2: #f4f4f4;
+  --color-gray3: #dbdbdb;
+  --color-gray4: #b0b0b0;
+  --color-gray5: #878787;
+  --color-gray6: #5a5a5a;
+  --color-gray7: #393939;
+  --color-gray8: #202020;
+  --color-gray9: #121212;
+
+  --font-family: "Inter", sans-serif; /* 원하는 폰트를 지정 */
+  --font-family: "MavenPro", sans-serif; /* 원하는 폰트를 지정 */
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}

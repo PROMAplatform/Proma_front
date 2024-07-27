@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    padding: 0.2vw 0.5vw 0.2vh 0.2vh;
+    align-items: center;
+
+    border-radius: 0.5vw;
+    background: #F7F7F7;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+
+    margin: 1vh;
+}
+
+.active {
+    display: flex;
+    padding: 0.2vw 0.5vw 0.2vh 0.2vh;
+    align-items: center;
+
+    border-radius: 0.5vw;
+    background: #E1E2FF;
+    box-shadow: 0px 0px 5px 0px rgba(84, 63, 214, 0.30);
+}
+
+.titleContainer {
+    color: #5A5A5A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

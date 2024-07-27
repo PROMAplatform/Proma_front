@@ -1,0 +1,15 @@
+.container {
+    border-radius: 30px;
+    display: inline-flex;
+    padding: 10px 20px;
+    flex-direction: row;
+    gap: 10px;
+    background: var(--white);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+    margin: 10px;
+}
+
+.icon {
+    width: 20px;
+}

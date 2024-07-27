@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useIconClick from "../../hooks/useIconClick";
+import useIconClick from "../../hooks/common/useIconClick";
 
 function CustomIconButton({
   icon: IconComponent,
@@ -16,13 +16,13 @@ function CustomIconButton({
 
   const iconColor = useActiveState
     ? isActive
-      ? "blue"
+      ? "var(--block-main-color)"
       : isHovered
-      ? "blue"
-      : "black" // isActive 사용 시
+      ? "var(--block-main-color)"
+      : "var(--gray-6)" // isActive 사용 시
     : isHovered
-    ? "blue"
-    : "black"; // isActive 미사용 시
+    ? "var(--block-main-color)"
+    : "var(--gray-6)"; // isActive 미사용 시
 
   return (
     <IconComponent
@@ -32,6 +32,7 @@ function CustomIconButton({
       style={{
         cursor: "pointer",
         color: iconColor,
+        margin: "15px"
       }}
     />
   );

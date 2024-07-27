@@ -36,7 +36,7 @@ function PromptList() {
       : promas.filter((proma) => proma.categories.includes(selectedCategory));
 
   return (
-    <div>
+    <div className={styles.container}>
       <div className={styles.categoryContainer}>
         {allCategories.map((category) => (
           <button
@@ -50,7 +50,7 @@ function PromptList() {
           </button>
         ))}
       </div>
-      <div>
+      <div className={styles.promptListContainer}>
         {filteredPrompts.map((proma, index) => (
           <PromptListItem key={index} name={proma.name} />
         ))}

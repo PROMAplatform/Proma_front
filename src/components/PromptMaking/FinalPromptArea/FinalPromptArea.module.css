@@ -1,0 +1,11 @@
+.resultArea {
+  margin-top: 30px;
+  width: 30vw;
+}
+
+.resultTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
