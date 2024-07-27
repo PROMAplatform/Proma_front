@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  src: url("../assets/font/Inter-VariableFont_slnt\,wght.ttf") format('truetype');
+}
+
 :root {
   /* 색상 */
   --logo-purple1: #e1e2ff;

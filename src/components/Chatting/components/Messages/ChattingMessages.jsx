@@ -9,6 +9,7 @@ import SkeletonMessage from './SkeletonMessage';
 import filePreview from '../../../../assets/images/filePreview.svg';
 import MarkdownRenderer from './MarkdownRenderer';
 import styles from "./ChattingMessages.module.css";
+import { B6 } from "../../../../styles/font-styles";
 
 function ChattingMessages() {
     const messages = useRecoilValue(messageState);
@@ -38,7 +39,9 @@ function ChattingMessages() {
                                     />
                                 </a>
                                 {file.isImage === false ? (
-                                    <p className={[styles.fileName, "b6"].join(' ')}>{file.name}</p>
+                                    <div className={styles.fileName}>
+                                        <B6>{file.name}</B6>
+                                    </div>
                                 ) : null}
                             </div>
                         ))}
