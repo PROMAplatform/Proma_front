@@ -7,6 +7,11 @@
 
 .promptCreateButton:hover {
     box-shadow: 0px 0px 10px 0px rgba(84, 63, 214, 0.30);
+    transform: scale(1.1);
+}
+
+.promptCreateButton:active {
+    background-color: var(--color-gray2);
 }
 
 .promptCreateButton {
@@ -24,6 +29,13 @@
 }
 
 .iconContainer {
-    width: 24px;
+    width: 30px;
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
 }
 
