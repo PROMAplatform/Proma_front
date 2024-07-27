@@ -46,6 +46,7 @@ function ChattingInput() {
         setIsLoading(true);
 
         try {
+            // 이 부분 chattingAPI로 분리 예정
             if(isFirst) {
                 const newRoomId = await createChattingRoom(1);
                 setCurrentRoomId(newRoomId);

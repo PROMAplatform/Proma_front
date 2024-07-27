@@ -16,3 +16,13 @@
   flex-direction: row;
   align-items: center;
 }
+
+.iconContainer {
+  margin: 17px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: 20px;
+}
