@@ -29,17 +29,17 @@ export const createUrl = (path, params = {}) => {
 };
 
 // 인터셉터 적용
-export const applyInterceptors = (instance) => {
-  instance.interceptors.request.use(
-    async (config) => {
-      const token = await getAuthToken();
-      if (token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
-      }
-      return config;
-    },
-    (error) => {
-      return Promise.reject(error);
-    }
-  );
-};
+// export const applyInterceptors = (instance) => {
+//   instance.interceptors.request.use(
+//     async (config) => {
+//       const token = await getAuthToken();
+//       if (token) {
+//         config.headers["Authorization"] = `Bearer ${token}`;
+//       }
+//       return config;
+//     },
+//     (error) => {
+//       return Promise.reject(error);
+//     }
+//   );
+// };

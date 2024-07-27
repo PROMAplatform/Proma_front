@@ -1,0 +1,19 @@
+.container {
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    width: 60%;
+    align-items: center;
+}
+
+.typeContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px auto;
+}

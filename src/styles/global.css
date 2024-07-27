@@ -1,12 +1,4 @@
 :root {
-  /* 폰트 크기 */
-  --font-size-Text800: 2.5rem;
-  --font-size-h2: 2rem;
-  --font-size-h3: 1.75rem;
-  --font-size-h4: 1.5rem;
-  --font-size-h5: 1.25rem;
-  --font-size-h6: 1rem;
-
   /* 색상 */
   --logo-purple1: #e1e2ff;
   --logo-purple2: #8d87ec;
@@ -19,12 +11,11 @@
   --white: #ffffff;
   --black: #000000;
 
-  /* ㅇ*/
   --color-gray1: #f7f7f7;
   --color-gray2: #f4f4f4;
   --color-gray3: #dbdbdb;
   --color-gray4: #b0b0b0;
-  --color-gray5: #F878787;
+  --color-gray5: #878787;
   --color-gray6: #5a5a5a;
   --color-gray7: #393939;
   --color-gray8: #202020;
@@ -34,31 +25,9 @@
   --font-family: "MavenPro", sans-serif; /* 원하는 폰트를 지정 */
 }
 
-.h1 {
-  font-size: var(--font-size-h1);
-  color: var(--color-primary);
-}
-
-.h2 {
-  font-size: var(--font-size-h2);
-  color: var(--color-secondary);
-}
-
-.h3 {
-  font-size: var(--font-size-h3);
-  color: var(--color-info);
-}
-
-.h4 {
-  font-size: var(--font-size-h4);
-  color: var(--color-success);
-}
-
-.h5 {
-  font-size: 40px;
-}
-
-.h6 {
-  font-size: var(--font-size-h6);
-  color: var(--color-danger);
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
