@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./CombinationArea.module.css";
+import PromptCategoryBlock from "../components/PromptCategoryBlock";
+import PromptValueBlock from "../components/PromptValueBlock";
+import {H5, H6} from "../../../styles/font-styles";
 import {
   combinationsState,
   categoryColorsState,
   refinedPromptPartsState,
   blockDetailsState,
   availableCategoriesState,
+  BlockVariant
 } from "../../../recoil/prompt/promptRecoilState";
 import SavePromptModal from "./SavePromptModal";
 
 const CombinationArea = () => {
   const combinations = useRecoilValue(combinationsState);
   const categoryColors = useRecoilValue(categoryColorsState);
+  const categoryBlock = useRecoilValue(BlockVariant);
   const refinedPromptParts = useRecoilValue(refinedPromptPartsState);
   const blockDetails = useRecoilValue(blockDetailsState);
   const categories = useRecoilValue(availableCategoriesState);
@@ -23,11 +28,13 @@ const CombinationArea = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className={styles.combinationArea}>
+    <div className={styles.container}>
+      <H5 color="gray5" className={styles.title}>질문형 PROMA</H5>
       <button onClick={openModal} className={styles.saveButton}>
         프롬프트 저장하기
       </button>
-      <h2 className={styles.title}>질문형 proma</h2>
+      
+      <div className={styles.combinationArea}>
       <div className={styles.categoryList}>
         {categories.map((category) => (
           <Droppable key={category} droppableId={category}>
@@ -38,14 +45,9 @@ const CombinationArea = () => {
                 className={`${styles.categoryItem} ${
                   snapshot.isDraggingOver ? styles.draggingOver : ""
                 }`}
-                style={{ borderColor: categoryColors[category] }}
               >
-                <span
-                  className={styles.categoryName}
-                  style={{ color: categoryColors[category] }}
-                >
-                  {category}:
-                </span>
+                <PromptCategoryBlock category={category} color={categoryColors[category]} variant={categoryBlock[category]}/>
+
                 <div className={styles.categoryValue}>
                   {combinations[category] ? (
                     <Draggable
@@ -59,20 +61,14 @@ const CombinationArea = () => {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={styles.draggableItem}
                             style={{
                               ...provided.draggableProps.style,
-                              backgroundColor: snapshot.isDragging
-                                ? `${categoryColors[category]}`
-                                : `${categoryColors[category]}`,
                               boxShadow: snapshot.isDragging
                                 ? "0 5px 10px rgba(0, 0, 0, 0.2)"
                                 : "none",
                             }}
                           >
-                            <div className={styles.blockTitle}>
-                              {block.blockTitle}
-                            </div>
+                            <PromptValueBlock color={categoryColors[category]} value={block.blockTitle} variant={categoryBlock[category]} size="large" />
                           </div>
                         );
                       }}
@@ -93,6 +89,7 @@ const CombinationArea = () => {
         combinations={combinations}
         refinedPromptParts={refinedPromptParts}
       />
+    </div>
     </div>
   );
 };

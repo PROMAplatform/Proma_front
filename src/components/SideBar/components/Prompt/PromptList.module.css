@@ -15,7 +15,8 @@
     cursor: pointer;
     border-radius: 6px;
     padding: 5px 10px;
-    color: var(--gray-6);
+    color: var(--color-gray6);
+    white-space: nowrap;
   }
   
   .active {

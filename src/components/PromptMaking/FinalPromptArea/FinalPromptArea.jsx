@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./FinalPromptArea.module.css";
+import { H4 } from "../../../styles/font-styles";
 import RefinedPromptText from "./RefinedPromptText";
 const FinalPromptArea = () => {
   //TODO- 프롬프트 다듬기 LLM 으로 변환
@@ -9,7 +10,7 @@ const FinalPromptArea = () => {
   }
   return (
     <div className={styles.resultArea}>
-      <h3 className={styles.resultTitle}>프롬프트 미리보기</h3>
+      <H4>프롬프트 미리보기</H4>
       <RefinedPromptText />
       <button onClick={handlePromptTrim}> 프롬프트 다듬기 </button>
     </div>

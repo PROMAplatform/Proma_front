@@ -2,20 +2,24 @@ import React, { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
+import { B6, H4 } from "../../../styles/font-styles";
+import PromptValueBlock from "../components/PromptValueBlock";
 import {
   activeBlocksState,
   activeCategoryState,
   availableCategoriesState,
   categoryColorsState,
   blockDetailsState,
+  BlockVariant
 } from "../../../recoil/prompt/promptRecoilState";
-import logo from "../../../../src/assets/logos/Sidebar_Header.png";
+import logo from "../../../assets/logos/promaLogoSmall.svg";
 import CreateBlockModal from "./CreateBlockModal";
 
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
     useRecoilState(activeCategoryState);
   const activeBlocks = useRecoilValue(activeBlocksState);
+  const categoryBlock = useRecoilValue(BlockVariant);
   const categories = useRecoilValue(availableCategoriesState);
   const categoryColors = useRecoilValue(categoryColorsState);
   const blockDetails = useRecoilValue(blockDetailsState);
@@ -34,6 +38,9 @@ const PromptMakingSidebar = () => {
   return (
     <div className={styles.container}>
       <img alt="sideBar 헤더 로고" src={logo} />
+      <div className={styles.promptTitle}>
+        <H4>PROMA prompt</H4>
+      </div>
       <div className={styles.sidebar}>
         <div className={styles.categories}>
           {categories.map((category) => (
@@ -48,7 +55,7 @@ const PromptMakingSidebar = () => {
                 "--category-active-color": `${categoryColors[category]}33`,
               }}
             >
-              {category}
+              <B6 color="white">{category}</B6>
             </div>
           ))}
         </div>
@@ -78,10 +85,9 @@ const PromptMakingSidebar = () => {
                           {...provided.dragHandleProps}
                           className={styles.block}
                         >
-                          <div className={styles.blockTitle}>
-                            {block.blockTitle}
-                          </div>
+                          <PromptValueBlock color={categoryColors[activeCategory]} value={block.blockTitle} variant={categoryBlock[activeCategory]} size="medium" />
                         </div>
+
                       )}
                     </Draggable>
                   );

@@ -16,8 +16,10 @@ const PromptMakingPage = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={styles.app}>
           <PromptMakingSidebar />
-          <CombinationArea />
-          <FinalPromptArea />
+          <div className={styles.areaContainer}>
+            <CombinationArea />
+            <FinalPromptArea />
+          </div>
         </div>
       </DragDropContext>
     </SnackbarProvider>

@@ -1,11 +1,13 @@
 .resultArea {
-  margin-top: 30px;
-  width: 30vw;
-}
-
-.resultTitle {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
+  width: 30%;
+  margin: 20px;
+  padding: 20px;
+  height: auto;
+  position: absolute;
+  right: 10%;
+  display: inline-flex;
+  flex-direction: column;
+  background-color: var(--color-gray1);
+  border-radius: 10px;
+  gap: 10px;
 }

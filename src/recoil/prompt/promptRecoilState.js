@@ -110,13 +110,25 @@ export const combinationsState = atom({
 export const categoryColorsState = atom({
   key: "categoryColorsState",
   default: {
-    역할: "red",
-    형식: "orange",
-    지시: "yellow",
-    참고: "green",
-    필수: "blue",
-    제외: "indigo",
+    역할: "var(--block-main-color)",
+    형식: "var(--block-purple)",
+    지시: "var(--block-pink)",
+    참고: "var(--block-red)",
+    필수: "var(--block-orange)",
+    제외: "var(--block-green)",
   },
+});
+
+export const BlockVariant = atom({
+  key: "categoryBlockVariantState",
+  default: {
+    역찰: 1,
+    형식: 2,
+    지시: 3,
+    참고: 4,
+    필수: 5,
+    제외: 6
+  }
 });
 
 // 블록 세부 정보
