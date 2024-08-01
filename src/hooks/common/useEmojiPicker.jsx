@@ -10,6 +10,7 @@ function useEmojiPicker() {
   };
 
   const togglePicker = (event) => {
+    console.log("togglePicker 실행");
     event.stopPropagation(); // 이벤트 버블링 중단
     setShowPicker(!showPicker);
   };
