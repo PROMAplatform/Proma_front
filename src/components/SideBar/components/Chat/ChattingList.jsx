@@ -4,9 +4,9 @@ import {
   chattingRoomListState,
   currentRoomIdState,
 } from "../../../../recoil/chatting/chattingRecoilState";
-import { useChattingRoomHooks } from "../../../../api/chatting/chattingRoomAPI";
+import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import ChattingListItem from "./ChattingListItem";
-import styles from "./ChattingList.module.css"
+import styles from "./ChattingList.module.css";
 
 function ChattingList() {
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
@@ -15,7 +15,7 @@ function ChattingList() {
 
   useEffect(() => {
     getChattingRoomList();
-  }, [getChattingRoomList]);
+  }, []);
 
   const handleRoomClick = async (roomId) => {
     setCurrentRoomId(roomId);
@@ -28,7 +28,14 @@ function ChattingList() {
         <div className={styles.scrollContainer}>
           <div className={styles.chattingListContainer}>
             {roomList.map((room) => (
-              <ChattingListItem key={room.roomId} name={room.roomTitle} onClick={() => handleRoomClick(room.roomId)}/>
+              <ChattingListItem
+                key={room.roomId}
+                roomId={room.roomId}
+                emoji={room.emoji}
+                promptTitle={room.promptTitle}
+                promptCategory={room.promptCategory}
+                onClick={() => handleRoomClick(room.roomId)}
+              />
             ))}
           </div>
         </div>
