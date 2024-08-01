@@ -5,7 +5,6 @@ import styles from "./promptMakingPage.module.css";
 import CombinationArea from "../components/PromptMaking/CombinationArea/CombinationArea";
 import { SnackbarProvider } from "notistack";
 import PromptMakingSidebar from "../components/PromptMaking/PromptMakingSideBar/PromptMakingSideBar";
-import FinalPromptArea from "../components/PromptMaking/FinalPromptArea/FinalPromptArea";
 import { usePromptMaking } from "../hooks/promptHook/usePromptMaking";
 
 const PromptMakingPage = () => {
@@ -18,7 +17,6 @@ const PromptMakingPage = () => {
           <PromptMakingSidebar />
           <div className={styles.areaContainer}>
             <CombinationArea />
-            <FinalPromptArea />
           </div>
         </div>
       </DragDropContext>

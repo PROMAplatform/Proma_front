@@ -41,7 +41,7 @@ export const H4 = styled.p`
 
 export const H5 = styled.p`
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   font-family: "Inter", sans-serif;
   color: ${({ theme, color }) => (color ? theme.colors[color] : "black")};
   margin: 0;

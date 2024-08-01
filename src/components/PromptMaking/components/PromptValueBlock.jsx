@@ -37,27 +37,27 @@ const TextContainer = styled.div`
 
 const SvgContentBlock = ({ color, variant, value, size = "medium" }) => {
   const textRef = useRef(null);
-  const [textWidth, setTextWidth] = useState(60); // 기본 너비 설정
+  const [textWidth, setTextWidth] = useState(0); // 기본 너비 설정
 
   useLayoutEffect(() => {
     if (textRef.current) {
-      const newWidth = Math.max(textRef.current.offsetWidth + 30, 60); // 텍스트의 너비에 여유 공간을 추가
+      const newWidth = textRef.current.offsetWidth + 40; // 텍스트의 너비에 여유 공간을 추가
       setTextWidth(newWidth);
     }
-  }, []);
+  }, [value]);
 
   const FontStyle = sizeMap[size].fontSize;
 
   const getPath = (variant, width) => {
     switch (variant) {
       case 1:
-        return `M${width - 23} 0H23C10.2975 0 0 10.2975 0 23C0 35.7025 10.2975 46 23 46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
+        return `M${width - 23} 0H11L11 23L11 12C8.08261 12 5.28472 13.1589 3.22182 15.2218C1.15892 17.2847 0 20.0826 0 23C0 25.9174 1.15893 28.7153 3.22183 30.7782C5.28473 32.8411 8.08262 34 11 34L11 46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       case 2:
-        return `M${width - 23} 0H12V16.0718L0 9.14355V36.8564L12 29.9282V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
+        return `M${width - 23} 0H11V16.3509L0 10V35.4034L11 29.0526V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       case 3:
-        return `M${width - 23} 0H14V12.5L0 23.5L14 33.5V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
+        return `M${width - 23} 0H11V15L0 23.6429L11 31.5V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       case 4:
-        return `M${width - 23} 0H11.2583V10L0 16.5V29.5L11.2583 36V46H${width - 23}C${width - 10.0391} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.0391} 0 ${width - 23} 0Z`;
+        return `M${width - 23} 0H11V10L0 16.3509V29.0526L11 35.4034V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       case 5:
         return `M${width - 23} 0H11V13H0V33H11V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       case 6:
@@ -71,8 +71,8 @@ const SvgContentBlock = ({ color, variant, value, size = "medium" }) => {
     <SvgContainer size={size} width={textWidth} viewBox={`0 0 ${textWidth} 46`}>
       <path fillRule="evenodd" clipRule="evenodd" d={getPath(variant, textWidth)} fill={color} />
       <foreignObject x="0" y="0" width={textWidth} height="46">
-        <TextContainer ref={textRef}>
-          <FontStyle color="white">{value}</FontStyle>
+        <TextContainer>
+          <FontStyle color="white" ref={textRef}>{value}</FontStyle>
         </TextContainer>
       </foreignObject>
     </SvgContainer>

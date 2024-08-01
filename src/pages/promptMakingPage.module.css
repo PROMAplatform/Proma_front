@@ -1,9 +1,10 @@
 .app {
     display: flex;
-    height: 100vh;
+    height: 100%;
   }
 .areaContainer {
   margin-left: 390px;
   width: 100%;
   position: relative;
+  height: 100%;
 }

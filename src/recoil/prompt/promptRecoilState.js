@@ -7,72 +7,72 @@ const initialBlocks = {
     {
       blockId: 1,
       blockTitle: "선생님",
-      blockDescription: "당신은 친절하고 지식이 풍부한 선생님입니다.",
+      blockDescription: "당신은 친절하고 지식이 풍부한 선생님입니다. ",
     },
     {
       blockId: 2,
       blockTitle: "학생",
-      blockDescription: "당신은 호기심 많고 열심히 공부하는 학생입니다.",
+      blockDescription: "당신은 호기심 많고 열심히 공부하는 학생입니다. ",
     },
   ],
   형식: [
     {
       blockId: 3,
       blockTitle: "에세이",
-      blockDescription: "주제에 대해 자유롭게 서술하는 형식입니다.",
+      blockDescription: "주제에 대해 자유롭게 서술하는 형식입니다. ",
     },
     {
       blockId: 4,
       blockTitle: "보고서",
-      blockDescription: "구조화된 형식으로 정보를 전달합니다.",
+      blockDescription: "구조화된 형식으로 정보를 전달합니다. ",
     },
   ],
   지시: [
     {
       blockId: 5,
       blockTitle: "설명하세요",
-      blockDescription: "주제에 대해 상세히 설명해주세요.",
+      blockDescription: "주제에 대해 상세히 설명해주세요. ",
     },
     {
       blockId: 6,
       blockTitle: "비교하세요",
-      blockDescription: "두 가지 이상의 대상을 비교해주세요.",
+      blockDescription: "두 가지 이상의 대상을 비교해주세요. ",
     },
   ],
   참고: [
     {
       blockId: 7,
       blockTitle: "최신 연구",
-      blockDescription: "최근의 연구 결과를 참고하세요.",
+      blockDescription: "최근의 연구 결과를 참고하세요. ",
     },
     {
       blockId: 8,
       blockTitle: "역사적 사실",
-      blockDescription: "관련된 역사적 사실을 고려하세요.",
+      blockDescription: "관련된 역사적 사실을 고려하세요. ",
     },
   ],
   필수: [
     {
       blockId: 9,
       blockTitle: "키워드 포함",
-      blockDescription: "반드시 특정 키워드를 포함해야 합니다.",
+      blockDescription: "반드시 특정 키워드를 포함해야 합니다. ",
     },
     {
       blockId: 10,
       blockTitle: "예시 제시",
-      blockDescription: "설명에 구체적인 예시를 포함해야 합니다.",
+      blockDescription: "설명에 구체적인 예시를 포함해야 합니다. ",
     },
   ],
   제외: [
     {
       blockId: 11,
       blockTitle: "비속어",
-      blockDescription: "비속어 사용을 피해주세요.",
+      blockDescription: "비속어 사용을 피해주세요. ",
     },
     {
       blockId: 12,
       blockTitle: "편견적 표현",
-      blockDescription: "편견이 드러나는 표현을 사용하지 마세요.",
+      blockDescription: "편견이 드러나는 표현을 사용하지 마세요. ",
     },
   ],
 };
@@ -122,7 +122,7 @@ export const categoryColorsState = atom({
 export const BlockVariant = atom({
   key: "categoryBlockVariantState",
   default: {
-    역찰: 1,
+    역할: 1,
     형식: 2,
     지시: 3,
     참고: 4,
