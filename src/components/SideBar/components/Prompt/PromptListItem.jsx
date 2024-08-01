@@ -1,7 +1,7 @@
 import React from "react";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import styles from "./PromptListItem.module.css";
-import EmojiPcikerButton from "../../../common/EmojiPickerButton";
+import EmojiPickerButton from "../../../common/EmojiPickerButton";
 import CustomIconButton from "../../../common/CustomIconButton";
 import { H5 } from "../../../../styles/font-styles";
 
@@ -16,7 +16,7 @@ function PromptListItem(props) {
   return (
     <div className={styles.container} onClick={handlePromptClick}>
       <div className={styles.IconNName}>
-        <EmojiPcikerButton />
+        <EmojiPickerButton emoji={props.emoji} />
         <H5 color="gray8">{props.name}</H5>
       </div>
       <CustomIconButton icon={MoreHorizIcon} onClick={handleIconClick} />

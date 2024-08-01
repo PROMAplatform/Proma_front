@@ -77,6 +77,11 @@ const initialBlocks = {
   ],
 };
 
+//프롬프트 리스트
+export const promptListState = atom({
+  key: "promptListState",
+  default: [],
+});
 // 사용 가능한 모든 카테고리 목록
 export const availableCategoriesState = atom({
   key: "availableCategoriesState",
@@ -223,8 +228,11 @@ export const updatePromptStructureFromApiData =
     }, {});
 
     // 상태 업데이트
+    // 1. 카테고리 설정
     set(availableCategoriesState, categories);
+    // 2. 카테고리 중 첫번째로 active되게끔 설정
     set(activeCategoryState, categories[0]);
+    // 3. 모든 카테고리들에 해당하는 블록들을 설정
     set(
       activeBlocksState,
       Object.fromEntries(
@@ -234,8 +242,11 @@ export const updatePromptStructureFromApiData =
         ])
       )
     );
+    // 4. combination 즉 조합은 초기화 맨 처음에는 아무것도 없으니.
     set(combinationsState, {}); // 초기에는 선택된 조합이 없음
+    // 5. 카테고리에 Colors을 할당함. 해당 색상들로 블럭들을 구분할 것임.
     set(categoryColorsState, colors);
+    // 6. 블럭들의 detai들을 할당한다.
     set(
       blockDetailsState,
       Object.fromEntries(blocks.map((block) => [block.blockId, block]))
