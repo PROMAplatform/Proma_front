@@ -5,7 +5,7 @@ import Toggle from "./components/Toggle";
 import PromptList from "./components/Prompt/PromptList";
 import AddButton from "./components/AddButton";
 import promaLogoSmall from "../../assets/images/promaLogoSmall.svg";
-import { useChattingRoomHooks } from "../../api/chatting/chattingRoomAPI";
+import { useChattingRoomHooks } from "../../api/chatting/chatting";
 
 function SideBar() {
   const [isChatting, setIsChatting] = useState(false);
