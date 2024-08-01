@@ -1,8 +1,8 @@
 import axios from "axios";
-//import { applyInterceptors } from "../utils/request";
+import { applyInterceptors } from "./request";
 
 //env로 숨긴 url 주소 (backend 주소 <-> front 주소)
-//const BASE_URL = process.env.REACT_APP_SERVER_URL;
+const BASE_URL = process.env.REACT_APP_SERVER_URL;
 
 // 우리 서버의 기본 주소
 const defaultInstance = axios.create({
@@ -10,11 +10,19 @@ const defaultInstance = axios.create({
 });
 
 // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
-//applyInterceptors(defaultInstance);
+applyInterceptors(defaultInstance);
+
+//규진
+const promptInstance = axios.create(defaultInstance.defaults);
+promptInstance.defaults.baseURL += "/prompt";
+
+//규진
+const aiChatInstance = axios.create(defaultInstance.defaults);
+aiChatInstance.defaults.baseURL += "/llm";
 
 //규진, 정선
-const userInstance = axios.create(defaultInstance.defaults);
-userInstance.defaults.baseURL += "/user";
+const chattingInstance = axios.create(defaultInstance.defaults);
+chattingInstance.defaults.baseURL += "/chatting";
 
 //동현
 const communityIntstance = axios.create(defaultInstance.defaults);
@@ -26,4 +34,10 @@ communityIntstance.defaults.baseURL += "/community";
 // // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
 // applyInterceptors(authInstance);
 
-export { defaultInstance, userInstance, communityIntstance };
+export {
+  defaultInstance,
+  promptInstance,
+  aiChatInstance,
+  chattingInstance,
+  communityIntstance,
+};

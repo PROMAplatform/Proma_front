@@ -1,4 +1,8 @@
 // 공통 요청 처리기
+// 인증 토큰을 가져오는 함수 (여기서는 예시로 localStorage를 사용)
+//TODO- 로그인 시에 promaToken이라고 저장하는 logic 필요
+export const getAuthToken = () => localStorage.getItem("promaToken");
+
 export const sendRequest = async (instance, method, url, data = {}) => {
   try {
     const response = await instance[method](url, data);
@@ -29,17 +33,17 @@ export const createUrl = (path, params = {}) => {
 };
 
 // 인터셉터 적용
-// export const applyInterceptors = (instance) => {
-//   instance.interceptors.request.use(
-//     async (config) => {
-//       const token = await getAuthToken();
-//       if (token) {
-//         config.headers["Authorization"] = `Bearer ${token}`;
-//       }
-//       return config;
-//     },
-//     (error) => {
-//       return Promise.reject(error);
-//     }
-//   );
-// };
+export const applyInterceptors = (instance) => {
+  instance.interceptors.request.use(
+    async (config) => {
+      const token = await getAuthToken();
+      if (token) {
+        config.headers["Authorization"] = `${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+};

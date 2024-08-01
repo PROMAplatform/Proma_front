@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PromptListItem from "./PromptListItem";
 import styles from "./PromptList.module.css";
+import { useRecoilValue } from "recoil";
+import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
+import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 
 function PromptList() {
+  const { fetchPromptList } = useChattingRoomHooks();
+
+  useEffect(() => {
+    fetchPromptList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 더미로 우선은 하고 나중에 전부 recoil로 수정할 것
-  const promas = [
-    { name: "PROMPT 1", categories: ["IT", "글쓰기"] },
-    { name: "PROMPT 2", categories: ["게임"] },
-    { name: "PROMPT 3", categories: ["글쓰기", "예술"] },
-    { name: "PROMPT 4", categories: ["IT", "교육"] },
-    { name: "PROMPT 5", categories: ["건강"] },
-    { name: "PROMPT 6", categories: ["교육"] },
-    { name: "PROMPT 7", categories: ["예술"] },
-  ];
-
-  // 
-
+  const promptList = useRecoilValue(promptListState);
   // 나중에 이 부분은 consts 라는 폴더에서 관리할 것임.
   const allCategories = [
     "전체",
@@ -32,8 +30,10 @@ function PromptList() {
 
   const filteredPrompts =
     selectedCategory === "전체"
-      ? promas
-      : promas.filter((proma) => proma.categories.includes(selectedCategory));
+      ? promptList
+      : promptList.filter((proma) =>
+          proma.promptCategory.includes(selectedCategory)
+        );
 
   return (
     <div className={styles.container}>
@@ -51,8 +51,12 @@ function PromptList() {
         ))}
       </div>
       <div className={styles.promptListContainer}>
-        {filteredPrompts.map((proma, index) => (
-          <PromptListItem key={index} name={proma.name} />
+        {filteredPrompts.map((prompt, index) => (
+          <PromptListItem
+            key={index}
+            emoji={prompt.emoji}
+            name={prompt.promptTitle}
+          />
         ))}
       </div>
     </div>

@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import useEmojiPicker from "../../hooks/common/useEmojiPicker";
 import EmojiPicker from "emoji-picker-react";
 
-function EmojiPcikerButton() {
+function EmojiPickerButton(props) {
   const { chosenEmoji, showPicker, onEmojiClick, togglePicker, setShowPicker } =
     useEmojiPicker();
   const buttonRef = useRef(null);
@@ -18,6 +18,7 @@ function EmojiPcikerButton() {
         position: "absolute",
         top: buttonRect.bottom + window.scrollY,
         left: buttonRect.right + window.scrollX,
+        zIndex: 1000,
         display: "block", // 표시
       });
     } else {
@@ -37,7 +38,7 @@ function EmojiPcikerButton() {
         onClick={togglePicker}
         style={{ backgroundColor: "white", border: "none", margin: "5px" }}
       >
-        {chosenEmoji == null ? "💡" : <span>{chosenEmoji}</span>}
+        {chosenEmoji == null ? `${props.emoji}` : <span>{chosenEmoji}</span>}
       </button>
 
       {createPortal(
@@ -53,4 +54,4 @@ function EmojiPcikerButton() {
   );
 }
 
-export default EmojiPcikerButton;
+export default EmojiPickerButton;
