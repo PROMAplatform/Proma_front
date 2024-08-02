@@ -33,8 +33,7 @@ function ChattingList() {
                 key={room.roomId}
                 roomId={room.roomId}
                 emoji={room.emoji}
-                promptTitle={room.promptTitle}
-                promptCategory={room.promptCategory}
+                chatRoomTitle={room.chatRoomTitle}
                 onClick={() => handleRoomClick(room.roomId)}
               />
             ))}
