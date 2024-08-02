@@ -13,7 +13,7 @@ function SideBar() {
   // const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
 
   const handleAddChattingRoom = async () => {
-    await createChattingRoom(1);
+    await createChattingRoom();
   };
 
   return (
