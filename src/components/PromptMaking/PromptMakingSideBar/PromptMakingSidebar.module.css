@@ -69,11 +69,11 @@
 }
 
 .blocks {
-  flex-grow: 1;
   overflow-y: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  gap: 10px;
 }
 
 .block {

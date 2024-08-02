@@ -8,7 +8,7 @@ import exitIcon from "../../../assets/images/exitIcon.svg";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 import { usePromptHook } from "../../../api/prompt/prompt";
 
-const allCategories = ["전체", "IT", "게임", "글쓰기", "건강", "교육", "예술"];
+const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술"];
 
 const SavePromptModal = ({
   isOpen,

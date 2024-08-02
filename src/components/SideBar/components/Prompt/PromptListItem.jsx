@@ -1,14 +1,10 @@
 import React from "react";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import styles from "./PromptListItem.module.css";
 import EmojiPickerButton from "../../../common/EmojiPickerButton";
-import CustomIconButton from "../../../common/CustomIconButton";
+import MoreButton from "../MoreButton";
 import { H5 } from "../../../../styles/font-styles";
 
 function PromptListItem(props) {
-  function handleIconClick() {
-    console.log("Icon이 클릭되었습니다.");
-  }
   function handlePromptClick() {
     console.log("Prompt 전환");
   }
@@ -23,7 +19,7 @@ function PromptListItem(props) {
         />
         <H5 color="gray8">{props.name}</H5>
       </div>
-      <CustomIconButton icon={MoreHorizIcon} onClick={handleIconClick} />
+      <MoreButton/>
     </div>
   );
 }

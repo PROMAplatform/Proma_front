@@ -1,7 +1,8 @@
 import React from "react";
-import trashIcon from "../../../../assets/images/trashIcon.svg";
+import { ReactComponent as TrashIcon } from "../../../../assets/images/trashIcon.svg";
 import styles from "./ChattingListItme.module.css";
 import EmojiPcikerButton from "../../../common/EmojiPickerButton";
+import CustomIconButton from "../../../common/CustomIconButton";
 import { H5 } from "../../../../styles/font-styles";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 function ChattingListItem(props) {
@@ -26,14 +27,7 @@ function ChattingListItem(props) {
         />
         <H5>{props.chatRoomTitle}</H5>
       </div>
-      <div className={styles.iconContainer}>
-        <img
-          src={trashIcon}
-          className={styles.icon}
-          alt="trash"
-          onClick={handleIconClick}
-        />
-      </div>
+      <CustomIconButton icon={TrashIcon} onClick={handleIconClick} />
     </div>
   );
 }
