@@ -40,7 +40,7 @@ const CombinationArea = () => {
         </button>
       </div>
       <div className={styles.combinationArea}>
-        <H2 color="gray4" className={styles.dropYourBlocks}>
+        <H2 color="gray3" className={styles.dropYourBlocks}>
           이 곳에 블록을 끌어넣어보아요!
           <hr style={{ visibility: "hidden"}}/> 
           Drop your blocks!
