@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styles from "./SavePromptModal.module.css";
-import { H3, H5, B4 } from "../../../styles/font-styles";
+import { H3, H5, B4, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
+import { activeTypeState } from "../../../recoil/prompt/promptRecoilState";
+import { useRecoilState } from "recoil";
 import exitIcon from "../../../assets/images/exitIcon.svg";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 
@@ -24,7 +26,7 @@ const SavePromptModal = ({
   const [promptTitle, setPromptTitle] = useState("");
   const [promptDescription, setPromptDescription] = useState("");
   const [promptCategory, setPromptCategory] = useState("IT");
-  const [promptType, setPromptType] = useState("task");
+  const activeType = useRecoilState(activeTypeState);
 
   if (!isOpen) return null;
 
@@ -39,7 +41,7 @@ const SavePromptModal = ({
       promptDescription,
       promptPreview,
       promptCategory,
-      promptType,
+      activeType,
       listPromptAtom,
     };
 
@@ -91,16 +93,9 @@ const SavePromptModal = ({
               </ul>
             </div>
           </div>
-
           <div className={styles.formGroup}>
-            <label htmlFor="promptType"><H5>프롬프트 타입</H5></label>
-            <select
-              value={promptType}
-              onChange={(e) => setPromptType(e.target.value)}
-            >
-              <option value="task">Task</option>
-              <option value="research">Research</option>
-            </select>
+            <label><H5>프롬프트 타입</H5></label>
+            <B3 color="black">{activeType} type</B3>
           </div>
           <ModalButton title="저장하기" variant="primary"/>
         </form>

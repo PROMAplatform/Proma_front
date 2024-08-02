@@ -78,7 +78,7 @@
 
 .block {
   cursor: move;
-  opacity: 0.8;
+  opacity: 0.9;
   transition: opacity 0.3s;
 }
 
@@ -96,7 +96,6 @@
   cursor: pointer;
   margin: 10px;
   align-self: center;
-  transition: opacity 0.3s;
 }
 
 .addButton:hover {

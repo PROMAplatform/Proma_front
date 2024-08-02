@@ -6,11 +6,12 @@ import { H4, B5 } from "../../../styles/font-styles";
 import PromptValueBlock from "../components/PromptValueBlock";
 import {
   activeBlocksState,
+  activeTypeState,
   activeCategoryState,
   availableCategoriesState,
   categoryColorsState,
   blockDetailsState,
-  BlockVariant
+  categoryBlockShapesState,
 } from "../../../recoil/prompt/promptRecoilState";
 import logo from "../../../assets/logos/promaLogoSmall.svg";
 import CreateBlockModal from "./CreateBlockModal";
@@ -18,8 +19,9 @@ import CreateBlockModal from "./CreateBlockModal";
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
     useRecoilState(activeCategoryState);
+  const activeType = useRecoilValue(activeTypeState);
   const activeBlocks = useRecoilValue(activeBlocksState);
-  const categoryBlock = useRecoilValue(BlockVariant);
+  const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const categories = useRecoilValue(availableCategoriesState);
   const categoryColors = useRecoilValue(categoryColorsState);
   const blockDetails = useRecoilValue(blockDetailsState);
@@ -88,7 +90,7 @@ const PromptMakingSidebar = () => {
                           <PromptValueBlock 
                             color={categoryColors[activeCategory]} 
                             value={block.blockTitle} 
-                            variant={categoryBlock[activeCategory]} 
+                            variant={categoryBlockShapes[activeCategory]} 
                             size="medium" 
                           />
                         </div>

@@ -15,6 +15,7 @@ function ChattingList() {
 
   useEffect(() => {
     getChattingRoomList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleRoomClick = async (roomId) => {

@@ -6,11 +6,17 @@ import PromptCreateButton from "./Prompt/PromptCreateButton";
 import characterIcon from "../../../assets/images/characterIcon.svg";
 import taskIcon from "../../../assets/images/taskIcon.svg";
 import freeIcon from "../../../assets/images/freeIcon.svg";
+import { activeTypeState, useResetCategoriesOnTypeChange } from "../../../recoil/prompt/promptRecoilState";
+import { useRecoilState } from "recoil";
 
 function ChattingMain() {
     const navigate = useNavigate();
+    const [activeType, setActiveType] = useRecoilState(activeTypeState);
+    const resetCategories = useResetCategoriesOnTypeChange();
 
     const handlePromptCreateClick = (type) => {
+        setActiveType(type);
+        resetCategories();
         navigate(`/promptMaking/`);
     };
 
@@ -21,12 +27,12 @@ function ChattingMain() {
                 <PromptCreateButton 
                     type="Character" 
                     icon={characterIcon} 
-                    onClick={() => handlePromptCreateClick('Character')} 
+                    onClick={() => handlePromptCreateClick('character')} 
                 />
                 <PromptCreateButton 
                     type="Task/Research" 
                     icon={taskIcon} 
-                    onClick={() => handlePromptCreateClick('Task/')} 
+                    onClick={() => handlePromptCreateClick('task')} 
                 />
                 <PromptCreateButton 
                     type="Free" 

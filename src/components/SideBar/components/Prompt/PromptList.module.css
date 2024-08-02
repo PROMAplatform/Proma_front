@@ -23,6 +23,7 @@
     background-color: var(--block-main-color); /* 선택된 버튼 배경색 */
     color: var(--white);
     border: 1px solid var(--block-main-color);
+    transition: 0.2s;
   }
   
   .promptListContainer {

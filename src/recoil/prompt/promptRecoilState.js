@@ -1,7 +1,17 @@
-import { atom, selector } from "recoil";
+import { atom, selector, useRecoilCallback } from "recoil";
 
-// 초기 카테고리 및 블록 데이터
-const initialCategories = ["역할", "형식", "지시", "참고", "필수", "제외"];
+// 타입별 카테고리 옵션
+const categoryOptions = {
+  task: ["역할", "형식", "지시", "참고", "필수", "제외"],
+  character: ["역할", "성격", "배경", "규칙"],
+};
+
+// 활성 타입 상태
+export const activeTypeState = atom({
+  key: "activeTypeState",
+  default: "task", // 기본 타입 설정
+});
+
 const initialBlocks = {
   역할: [
     {
@@ -75,6 +85,27 @@ const initialBlocks = {
       blockDescription: "편견이 드러나는 표현을 사용하지 마세요. ",
     },
   ],
+  성격: [
+    {
+      blockId: 14,
+      blockTitle: "다정한",
+      blockDescription: "다정한 성격이다. ",
+    },
+  ],
+  배경: [
+    {
+      blockId: 15,
+      blockTitle: "배경예시",
+      blockDescription: "이러이러한 배경을 가지고 있다. ",
+    },
+  ],
+  규칙: [
+    {
+      blockId: 16,
+      blockTitle: "규칙예시",
+      blockDescription: "이러이런 규칙이 있다. ",
+    },
+  ],
 };
 
 //프롬프트 리스트
@@ -85,20 +116,26 @@ export const promptListState = atom({
 // 사용 가능한 모든 카테고리 목록
 export const availableCategoriesState = atom({
   key: "availableCategoriesState",
-  default: initialCategories,
+  default: categoryOptions["task"], 
 });
 
 // 활성 카테고리
 export const activeCategoryState = atom({
   key: "activeCategoryState",
-  default: initialCategories[0],
+  default: selector({
+    key: "activeCategoryDefault",
+    get: ({ get }) => {
+      const categories = get(availableCategoriesState);
+      return categories.length > 0 ? categories[0] : null;
+    },
+  }),
 });
 
 // 각 카테고리별 블록 ID
 export const activeBlocksState = atom({
   key: "activeBlocksState",
   default: Object.fromEntries(
-    initialCategories.map((category) => [
+    Object.keys(initialBlocks).map((category) => [
       category,
       initialBlocks[category].map((block) => block.blockId),
     ])
@@ -111,29 +148,47 @@ export const combinationsState = atom({
   default: {},
 });
 
+// 색상 정의
+const predefinedColors = [
+  "var(--block-main-color)",
+  "var(--block-purple)",
+  "var(--block-pink)",
+  "var(--block-red)",
+  "var(--block-orange)",
+  "var(--block-green)",
+];
+
+// 블록 모양 정의
+const predefinedShapes = [
+  1, 2, 3, 4, 5, 6,
+];
+
 // 카테고리별 색상
-export const categoryColorsState = atom({
+export const categoryColorsState = selector({
   key: "categoryColorsState",
-  default: {
-    역할: "var(--block-main-color)",
-    형식: "var(--block-purple)",
-    지시: "var(--block-pink)",
-    참고: "var(--block-red)",
-    필수: "var(--block-orange)",
-    제외: "var(--block-green)",
+  get: ({ get }) => {
+    const categories = get(availableCategoriesState);
+    return Object.fromEntries(
+      categories.map((category, index) => [
+        category,
+        predefinedColors[index % predefinedColors.length],
+      ])
+    );
   },
 });
 
-export const BlockVariant = atom({
-  key: "categoryBlockVariantState",
-  default: {
-    역할: 1,
-    형식: 2,
-    지시: 3,
-    참고: 4,
-    필수: 5,
-    제외: 6
-  }
+// 카테고리별 블록 모양
+export const categoryBlockShapesState = selector({
+  key: "categoryBlockShapesState",
+  get: ({ get }) => {
+    const categories = get(availableCategoriesState);
+    return Object.fromEntries(
+      categories.map((category, index) => [
+        category,
+        predefinedShapes[index % predefinedShapes.length],
+      ])
+    );
+  },
 });
 
 // 블록 세부 정보
@@ -168,11 +223,33 @@ export const refinedPromptPartsState = selector({
   },
 });
 
+// 각종 상태 초기화 함수
+export const useResetCategoriesOnTypeChange = () => {
+  return useRecoilCallback(({ snapshot, set }) => async () => {
+    const currentType = await snapshot.getPromise(activeTypeState);
+    const categories = categoryOptions[currentType];
+
+    // 각종 상태 초기화
+    set(availableCategoriesState, categories);
+    set(activeCategoryState, categories[0]);
+    set(combinationsState, {});
+    // activeBlocksState 초기화
+    const filteredBlocks = Object.fromEntries(
+      categories.map((category) => [
+        category,
+        initialBlocks[category]?.map((block) => block.blockId) || [],
+      ])
+    );
+    set(activeBlocksState, filteredBlocks);
+    
+  });
+};
+
 // 프롬프트 전체 구조를 갱신하는 함수
 export const updateEntirePromptStructure =
   ({ set }) =>
   (newPromptStructure) => {
-    const { categories, blocks, combinations, colors } = newPromptStructure;
+    const { categories, blocks, combinations, colors, shapes } = newPromptStructure;
 
     // 카테고리 업데이트
     set(availableCategoriesState, categories);
@@ -196,6 +273,8 @@ export const updateEntirePromptStructure =
 
     // 카테고리별 색상 업데이트
     set(categoryColorsState, colors);
+
+    set(categoryBlockShapesState, shapes);
 
     // 블록 세부 정보 업데이트
     set(
@@ -227,15 +306,12 @@ export const updatePromptStructureFromApiData =
 
     // 색상 생성 (간단한 예시, 실제로는 더 복잡한 로직이 필요할 수 있습니다)
     const colors = categories.reduce((acc, category, index) => {
-      const predefinedColors = [
-        "red",
-        "blue",
-        "green",
-        "yellow",
-        "purple",
-        "orange",
-      ];
       acc[category] = predefinedColors[index % predefinedColors.length];
+      return acc;
+    }, {});
+
+    const shapes = categories.reduce((acc, category, index) => {
+      acc[category] = predefinedShapes[index % predefinedShapes.length];
       return acc;
     }, {});
 
@@ -258,7 +334,9 @@ export const updatePromptStructureFromApiData =
     set(combinationsState, {}); // 초기에는 선택된 조합이 없음
     // 5. 카테고리에 Colors을 할당함. 해당 색상들로 블럭들을 구분할 것임.
     set(categoryColorsState, colors);
-    // 6. 블럭들의 detai들을 할당한다.
+    // 6. 카테고리에 블럭모양을 할당한다.
+    set(categoryBlockShapesState, shapes);
+    // 7. 블럭들의 detail들을 할당한다.
     set(
       blockDetailsState,
       Object.fromEntries(blocks.map((block) => [block.blockId, block]))

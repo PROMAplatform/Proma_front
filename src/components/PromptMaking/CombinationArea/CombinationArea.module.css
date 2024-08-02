@@ -7,6 +7,8 @@
   background-color: #f5f5f5;
   border-radius: 10px;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10) inset;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .title {
@@ -24,6 +26,7 @@
   border-top-right-radius: 20px;
   border: none;
   padding: 8px 15px;
+  padding-bottom: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -32,11 +35,24 @@
 }
 
 .saveButton:hover {
-  transform: translateY(-10px);
+  background-color: var(--logo-purple2);
+  transition: 0.3s;
 }
 
 .saveIcon {
   width: 20px;
+}
+
+.dropYourBlocks {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .categoryList {

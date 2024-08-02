@@ -4,23 +4,25 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./CombinationArea.module.css";
 import PromptCategoryBlock from "../components/PromptCategoryBlock";
 import PromptValueBlock from "../components/PromptValueBlock";
-import {H5} from "../../../styles/font-styles";
+import { H2, H5 } from "../../../styles/font-styles";
 import saveButtonIcon from "../../../assets/images/saveButtonIcon.svg";
 import FinalPromptArea from "../FinalPromptArea/FinalPromptArea";
 import {
   combinationsState,
+  activeTypeState,
   categoryColorsState,
   refinedPromptPartsState,
   blockDetailsState,
   availableCategoriesState,
-  BlockVariant
+  categoryBlockShapesState
 } from "../../../recoil/prompt/promptRecoilState";
 import SavePromptModal from "./SavePromptModal";
 
 const CombinationArea = () => {
   const combinations = useRecoilValue(combinationsState);
+  const activeType = useRecoilValue(activeTypeState);
   const categoryColors = useRecoilValue(categoryColorsState);
-  const categoryBlock = useRecoilValue(BlockVariant);
+  const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const refinedPromptParts = useRecoilValue(refinedPromptPartsState);
   const blockDetails = useRecoilValue(blockDetailsState);
   const categories = useRecoilValue(availableCategoriesState);
@@ -32,13 +34,18 @@ const CombinationArea = () => {
   return (
     <div className={styles.container}>
       <div className={styles.title}>
-        <H5 color="gray5" >Task/Research PROMA</H5>
+        <H5 color="gray5" >{activeType} PROMA</H5>
         <button onClick={openModal} className={styles.saveButton}>
           <img src={saveButtonIcon} className={styles.saveIcon} alt="save" />
         </button>
       </div>
       <div className={styles.combinationArea}>
-      <div className={styles.categoryList}>
+        <H2 color="gray4" className={styles.dropYourBlocks}>
+          이 곳에 블록을 끌어넣어보아요!
+          <hr style={{ visibility: "hidden"}}/> 
+          Drop your blocks!
+        </H2>
+        <div className={styles.categoryList}>
         {categories.map((category) => (
           <Droppable key={category} droppableId={category}>
             {(provided, snapshot) => (
@@ -58,9 +65,8 @@ const CombinationArea = () => {
                 <PromptCategoryBlock 
                   category={category} 
                   color={categoryColors[category]} 
-                  variant={categoryBlock[category]}
+                  variant={categoryBlockShapes[category]}
                 />
-
                 <div className={styles.categoryValue}>
                   {combinations[category] ? (
                     <Draggable
@@ -78,7 +84,7 @@ const CombinationArea = () => {
                             <PromptValueBlock 
                               color={categoryColors[category]} 
                               value={block.blockTitle} 
-                              variant={categoryBlock[category]} 
+                              variant={categoryBlockShapes[category]} 
                               size="large" 
                             />
                           </div>
