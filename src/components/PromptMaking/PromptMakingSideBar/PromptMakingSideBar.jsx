@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
@@ -6,36 +6,38 @@ import { H4, B5 } from "../../../styles/font-styles";
 import PromptValueBlock from "../components/PromptValueBlock";
 import {
   activeBlocksState,
-  activeTypeState,
   activeCategoryState,
   availableCategoriesState,
   categoryColorsState,
   blockDetailsState,
   categoryBlockShapesState,
+  promptMethodState,
 } from "../../../recoil/prompt/promptRecoilState";
 import logo from "../../../assets/logos/promaLogoSmall.svg";
 import CreateBlockModal from "./CreateBlockModal";
+import { usePromptHook } from "../../../api/prompt/prompt";
 
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
     useRecoilState(activeCategoryState);
-  const activeType = useRecoilValue(activeTypeState);
   const activeBlocks = useRecoilValue(activeBlocksState);
-  const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const categories = useRecoilValue(availableCategoriesState);
   const categoryColors = useRecoilValue(categoryColorsState);
+  const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const blockDetails = useRecoilValue(blockDetailsState);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleAddBlock = (category, blockData) => {
-    // 이 함수는 새로운 블록 추가 로직에 맞게 수정해야 할 수 있습니다.
-    //TODO- 블록 추가 로직
-    console.log("Adding new block:", category, blockData);
-  };
+  const promptMethod =  useRecoilValue(promptMethodState);
+  const { fetchBlocks } = usePromptHook();
 
   const getActiveColor = () => {
     return categoryColors[activeCategory] || "purple";
   };
+
+  useEffect(() => {
+    fetchBlocks(promptMethod);
+    console.log("blocks 불러오기");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -87,14 +89,13 @@ const PromptMakingSidebar = () => {
                           {...provided.dragHandleProps}
                           className={styles.block}
                         >
-                          <PromptValueBlock 
-                            color={categoryColors[activeCategory]} 
-                            value={block.blockTitle} 
-                            variant={categoryBlockShapes[activeCategory]} 
-                            size="medium" 
+                          <PromptValueBlock
+                            color={categoryColors[activeCategory]}
+                            value={block.blockValue}
+                            variant={categoryBlockShapes[activeCategory]}
+                            size="medium"
                           />
                         </div>
-
                       )}
                     </Draggable>
                   );
@@ -113,7 +114,6 @@ const PromptMakingSidebar = () => {
         <CreateBlockModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          onAddBlock={handleAddBlock}
           categories={categories}
         />
       </div>
