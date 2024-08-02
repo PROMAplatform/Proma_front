@@ -3,11 +3,12 @@ import trashIcon from "../../../../assets/images/trashIcon.svg";
 import styles from "./ChattingListItme.module.css";
 import EmojiPcikerButton from "../../../common/EmojiPickerButton";
 import { H5 } from "../../../../styles/font-styles";
-
+import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 function ChattingListItem(props) {
+  const { deleteChattingRoom } = useChattingRoomHooks();
+
   function handleIconClick() {
-    //TODO- 삭제랑 API연결
-    console.log("Icon이 클릭되었습니다.");
+    deleteChattingRoom(props.roomId);
   }
 
   // roomId={room.roomId}
@@ -18,8 +19,12 @@ function ChattingListItem(props) {
   return (
     <div className={styles.container} onClick={props.onClick}>
       <div className={styles.IconNName}>
-        <EmojiPcikerButton emoji={props.emoji} />
-        <H5>{props.promptTitle}</H5>
+        <EmojiPcikerButton
+          isPromptEmoji={false}
+          roomId={props.roomId}
+          emoji={props.emoji}
+        />
+        <H5>{props.chatRoomTitle}</H5>
       </div>
       <div className={styles.iconContainer}>
         <img
