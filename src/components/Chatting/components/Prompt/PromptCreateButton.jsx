@@ -7,7 +7,7 @@ function PromptCreateButton({icon, type, onClick}) {
     return (
         <div className={styles.container} onClick={onClick}>
             <div className={styles.promptCreateButton}>
-                <img src={icon} className={styles.iconContainer}/>
+                <img src={icon} alt="type icon" className={styles.iconContainer}/>
                 <H4>{type}</H4>
                 <div className={styles.contentContainer}>
                     <H5>만들러 가기</H5>

@@ -1,70 +1,79 @@
+.container {
+  margin: 30px;
+  box-sizing: border-box;
+}
 .combinationArea {
-  width: 50%;
   padding: 20px;
   background-color: #f5f5f5;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10) inset;
+  position: relative;
+  box-sizing: border-box;
+  min-height: 600px;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #333;
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.saveButton {
+  background-color: var(--logo-purple1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: none;
+  padding: 8px 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  display: flex;
+}
+
+.saveButton:hover {
+  background-color: var(--logo-purple2);
+  transition: 0.3s;
+}
+
+.saveIcon {
+  width: 20px;
+}
+
+.dropYourBlocks {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .categoryList {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 30px;
+  position: relative;
+  margin: 25px;
 }
 
 .categoryItem {
   display: flex;
   align-items: center;
-  background-color: white;
   padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.categoryName {
-  font-weight: bold;
-  width: 80px;
-  color: #555;
 }
 
 .categoryValue {
-  flex: 1;
-  padding: 5px 10px;
-  background-color: #e9ecef;
-  border-radius: 4px;
-  min-height: 30px;
-  display: flex;
-  align-items: center;
-}
-
-.emptyValue {
-  color: #999;
-  font-style: italic;
-}
-
-
-.draggingOver {
-  background-color: #e6f7ff;
-  border: 2px dashed #1890ff;
-}
-
-.draggableItem {
-  padding: 5px 10px;
-  background-color: #f0f0f0;
-  border-radius: 4px;
-  cursor: move;
-}
-
-.categoryValue {
-  min-height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  left: -11px;
 }

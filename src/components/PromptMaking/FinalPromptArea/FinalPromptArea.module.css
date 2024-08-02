@@ -1,11 +1,28 @@
 .resultArea {
-  margin-top: 30px;
-  width: 30vw;
+  width: 25%;
+  padding: 20px;
+  height: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid var(--color-gray5);
+  background-color: var(--color-gray1);
+  gap: 10px;
+  word-break: keep-all;
 }
 
-.resultTitle {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
+.refreshButton {
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 auto;
+  background-color: var(--white);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
+}
+
+.refreshButton:hover {
+  box-shadow: 0px 0px 5px 0px rgba(84, 63, 214, 0.40);
 }

@@ -2,18 +2,27 @@ import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./CombinationArea.module.css";
+import PromptCategoryBlock from "../components/PromptCategoryBlock";
+import PromptValueBlock from "../components/PromptValueBlock";
+import { H2, H5 } from "../../../styles/font-styles";
+import saveButtonIcon from "../../../assets/images/saveButtonIcon.svg";
+import FinalPromptArea from "../FinalPromptArea/FinalPromptArea";
 import {
   combinationsState,
+  activeTypeState,
   categoryColorsState,
   refinedPromptPartsState,
   blockDetailsState,
   availableCategoriesState,
+  categoryBlockShapesState
 } from "../../../recoil/prompt/promptRecoilState";
 import SavePromptModal from "./SavePromptModal";
 
 const CombinationArea = () => {
   const combinations = useRecoilValue(combinationsState);
+  const activeType = useRecoilValue(activeTypeState);
   const categoryColors = useRecoilValue(categoryColorsState);
+  const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const refinedPromptParts = useRecoilValue(refinedPromptPartsState);
   const blockDetails = useRecoilValue(blockDetailsState);
   const categories = useRecoilValue(availableCategoriesState);
@@ -23,12 +32,20 @@ const CombinationArea = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className={styles.combinationArea}>
-      <button onClick={openModal} className={styles.saveButton}>
-        프롬프트 저장하기
-      </button>
-      <h2 className={styles.title}>질문형 proma</h2>
-      <div className={styles.categoryList}>
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <H5 color="gray5" >{activeType} PROMA</H5>
+        <button onClick={openModal} className={styles.saveButton}>
+          <img src={saveButtonIcon} className={styles.saveIcon} alt="save" />
+        </button>
+      </div>
+      <div className={styles.combinationArea}>
+        <H2 color="gray3" className={styles.dropYourBlocks}>
+          이 곳에 블록을 끌어넣어보아요!
+          <hr style={{ visibility: "hidden"}}/> 
+          Drop your blocks!
+        </H2>
+        <div className={styles.categoryList}>
         {categories.map((category) => (
           <Droppable key={category} droppableId={category}>
             {(provided, snapshot) => (
@@ -38,14 +55,18 @@ const CombinationArea = () => {
                 className={`${styles.categoryItem} ${
                   snapshot.isDraggingOver ? styles.draggingOver : ""
                 }`}
-                style={{ borderColor: categoryColors[category] }}
+                style={{
+                  ...(snapshot.isDraggingOver && {
+                    backgroundColor: "var(--color-gray3)",
+                    border: `2px dashed ${categoryColors[category]}`,
+                  }),
+                }}
               >
-                <span
-                  className={styles.categoryName}
-                  style={{ color: categoryColors[category] }}
-                >
-                  {category}:
-                </span>
+                <PromptCategoryBlock 
+                  category={category} 
+                  color={categoryColors[category]} 
+                  variant={categoryBlockShapes[category]}
+                />
                 <div className={styles.categoryValue}>
                   {combinations[category] ? (
                     <Draggable
@@ -59,26 +80,19 @@ const CombinationArea = () => {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={styles.draggableItem}
-                            style={{
-                              ...provided.draggableProps.style,
-                              backgroundColor: snapshot.isDragging
-                                ? `${categoryColors[category]}`
-                                : `${categoryColors[category]}`,
-                              boxShadow: snapshot.isDragging
-                                ? "0 5px 10px rgba(0, 0, 0, 0.2)"
-                                : "none",
-                            }}
                           >
-                            <div className={styles.blockTitle}>
-                              {block.blockTitle}
-                            </div>
+                            <PromptValueBlock 
+                              color={categoryColors[category]} 
+                              value={block.blockTitle} 
+                              variant={categoryBlockShapes[category]} 
+                              size="large" 
+                            />
                           </div>
                         );
                       }}
                     </Draggable>
                   ) : (
-                    <span className={styles.emptyValue}>여기에 드롭하세요</span>
+                    <></>
                   )}
                 </div>
                 {provided.placeholder}
@@ -86,6 +100,7 @@ const CombinationArea = () => {
             )}
           </Droppable>
         ))}
+        <FinalPromptArea />
       </div>
       <SavePromptModal
         isOpen={isModalOpen}
@@ -93,6 +108,7 @@ const CombinationArea = () => {
         combinations={combinations}
         refinedPromptParts={refinedPromptParts}
       />
+    </div>
     </div>
   );
 };

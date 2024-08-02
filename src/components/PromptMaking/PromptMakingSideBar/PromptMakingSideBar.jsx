@@ -2,20 +2,26 @@ import React, { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
+import { H4, B5 } from "../../../styles/font-styles";
+import PromptValueBlock from "../components/PromptValueBlock";
 import {
   activeBlocksState,
+  activeTypeState,
   activeCategoryState,
   availableCategoriesState,
   categoryColorsState,
   blockDetailsState,
+  categoryBlockShapesState,
 } from "../../../recoil/prompt/promptRecoilState";
-import logo from "../../../../src/assets/logos/Sidebar_Header.png";
+import logo from "../../../assets/logos/promaLogoSmall.svg";
 import CreateBlockModal from "./CreateBlockModal";
 
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
     useRecoilState(activeCategoryState);
+  const activeType = useRecoilValue(activeTypeState);
   const activeBlocks = useRecoilValue(activeBlocksState);
+  const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const categories = useRecoilValue(availableCategoriesState);
   const categoryColors = useRecoilValue(categoryColorsState);
   const blockDetails = useRecoilValue(blockDetailsState);
@@ -33,7 +39,10 @@ const PromptMakingSidebar = () => {
 
   return (
     <div className={styles.container}>
-      <img alt="sideBar 헤더 로고" src={logo} />
+      <img alt="sideBar 헤더 로고" src={logo} className={styles.promaLogo} />
+      <div className={styles.promptTitle}>
+        <H4>PROMA prompt</H4>
+      </div>
       <div className={styles.sidebar}>
         <div className={styles.categories}>
           {categories.map((category) => (
@@ -48,7 +57,7 @@ const PromptMakingSidebar = () => {
                 "--category-active-color": `${categoryColors[category]}33`,
               }}
             >
-              {category}
+              <B5 color="white">{category}</B5>
             </div>
           ))}
         </div>
@@ -78,10 +87,14 @@ const PromptMakingSidebar = () => {
                           {...provided.dragHandleProps}
                           className={styles.block}
                         >
-                          <div className={styles.blockTitle}>
-                            {block.blockTitle}
-                          </div>
+                          <PromptValueBlock 
+                            color={categoryColors[activeCategory]} 
+                            value={block.blockTitle} 
+                            variant={categoryBlockShapes[activeCategory]} 
+                            size="medium" 
+                          />
                         </div>
+
                       )}
                     </Draggable>
                   );
@@ -92,10 +105,9 @@ const PromptMakingSidebar = () => {
           </Droppable>
           <button
             className={styles.addButton}
-            style={{ "--active-color": getActiveColor() }}
             onClick={() => setIsModalOpen(true)}
           >
-            블록 만들기
+            <B5 color="blockMainColor">블록 만들기</B5>
           </button>
         </div>
         <CreateBlockModal

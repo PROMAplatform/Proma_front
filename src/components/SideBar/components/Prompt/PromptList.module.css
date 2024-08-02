@@ -15,13 +15,15 @@
     cursor: pointer;
     border-radius: 6px;
     padding: 5px 10px;
-    color: var(--gray-6);
+    color: var(--color-gray6);
+    white-space: nowrap;
   }
   
   .active {
     background-color: var(--block-main-color); /* 선택된 버튼 배경색 */
     color: var(--white);
     border: 1px solid var(--block-main-color);
+    transition: 0.2s;
   }
   
   .promptListContainer {

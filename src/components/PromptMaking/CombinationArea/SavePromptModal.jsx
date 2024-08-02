@@ -1,6 +1,21 @@
 import React, { useState } from "react";
 import styles from "./SavePromptModal.module.css";
+import { H3, H5, B4, B3 } from "../../../styles/font-styles";
+import ModalButton from "../../common/ModalButton";
+import { activeTypeState } from "../../../recoil/prompt/promptRecoilState";
+import { useRecoilState } from "recoil";
+import exitIcon from "../../../assets/images/exitIcon.svg";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
+
+const allCategories = [
+  "전체",
+  "IT",
+  "게임",
+  "글쓰기",
+  "건강",
+  "교육",
+  "예술",
+];
 
 const SavePromptModal = ({
   isOpen,
@@ -11,7 +26,7 @@ const SavePromptModal = ({
   const [promptTitle, setPromptTitle] = useState("");
   const [promptDescription, setPromptDescription] = useState("");
   const [promptCategory, setPromptCategory] = useState("IT");
-  const [promptType, setPromptType] = useState("task");
+  const activeType = useRecoilState(activeTypeState);
 
   if (!isOpen) return null;
 
@@ -26,7 +41,7 @@ const SavePromptModal = ({
       promptDescription,
       promptPreview,
       promptCategory,
-      promptType,
+      activeType,
       listPromptAtom,
     };
 
@@ -38,36 +53,52 @@ const SavePromptModal = ({
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modalContent}>
-        <h2>프롬프트 저장</h2>
-        <div>
-          <RefinedPromptText />
-        </div>
-        <input
-          placeholder="게시글 제목"
-          value={promptTitle}
-          onChange={(e) => setPromptTitle(e.target.value)}
-        />
-        <input
-          placeholder="게시글 설명"
-          value={promptDescription}
-          onChange={(e) => setPromptDescription(e.target.value)}
-        />
-        <select
-          value={promptCategory}
-          onChange={(e) => setPromptCategory(e.target.value)}
-        >
-          <option value="IT">IT</option>
-          {/* 필요한 경우 더 많은 카테고리 추가 */}
-        </select>
-        <select
-          value={promptType}
-          onChange={(e) => setPromptType(e.target.value)}
-        >
-          <option value="task">Task</option>
-          <option value="research">Research</option>
-        </select>
-        <button onClick={handleSave}>저장하기</button>
-        <button onClick={onClose}>취소</button>
+        <H3>프롬프트 저장</H3>
+        <img src={exitIcon} alt="exit" className={styles.exitButton} onClick={onClose}/>
+        <form onSubmit={handleSave} className={styles.contentContainer}>
+          <div>
+            <RefinedPromptText />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="promptTitle"><H5>프롬프트 제목</H5></label>
+            <input
+            placeholder="프롬프트 제목"
+            value={promptTitle}
+            onChange={(e) => setPromptTitle(e.target.value)}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="promptDescription"><H5>프롬프트 설명</H5></label>
+            <input
+            placeholder="프롬프트 설명"
+            value={promptDescription}
+            onChange={(e) => setPromptDescription(e.target.value)}
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="category"><H5>프롬프트 카테고리</H5></label>
+            <div className={styles.select}>
+              <ul className={styles.options}>
+                {allCategories.map((category) => (
+                  <li 
+                    key={category} 
+                    onClick={(e) => setPromptCategory(category)}
+                    className={`${styles.option} ${
+                      category === promptCategory ? styles.active : styles.none
+                    }`}
+                  >
+                    <B4 color = {category === promptCategory ? "white" : "gray5"}>{category}</B4>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className={styles.formGroup}>
+            <label><H5>프롬프트 타입</H5></label>
+            <B3 color="black">{activeType} type</B3>
+          </div>
+          <ModalButton title="저장하기" variant="primary"/>
+        </form>
       </div>
     </div>
   );

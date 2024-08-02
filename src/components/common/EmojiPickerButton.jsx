@@ -36,7 +36,7 @@ function EmojiPickerButton(props) {
       <button
         ref={buttonRef}
         onClick={togglePicker}
-        style={{ backgroundColor: "white", border: "none", margin: "5px" }}
+        style={{ backgroundColor: "white", border: "none", margin: "5px"}}
       >
         {chosenEmoji == null ? `${props.emoji}` : <span>{chosenEmoji}</span>}
       </button>
