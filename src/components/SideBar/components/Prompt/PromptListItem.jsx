@@ -16,7 +16,11 @@ function PromptListItem(props) {
   return (
     <div className={styles.container} onClick={handlePromptClick}>
       <div className={styles.IconNName}>
-        <EmojiPickerButton emoji={props.emoji} />
+        <EmojiPickerButton
+          isPromptEmoji={true}
+          promptId={props.promptId}
+          emoji={props.emoji}
+        />
         <H5 color="gray8">{props.name}</H5>
       </div>
       <CustomIconButton icon={MoreHorizIcon} onClick={handleIconClick} />
