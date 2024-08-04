@@ -1,60 +1,71 @@
-import React, { useState } from "react";
-import styles from "./SavePromptModal.module.css";
-import { H5, B4, B3 } from "../../../styles/font-styles";
-import ModalButton from "../../common/ModalButton";
-import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
-import { useRecoilState } from "recoil";
-import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
-import { usePromptHook } from "../../../api/prompt/prompt";
-import ModalContainer from "../../common/ModalContainer";
+import React, {useState, useEffect} from "react";
+import styles from "./EditPromptInfoModal.module.css";
+import { H5, B4, B3 } from "../../../../../styles/font-styles";
+import { useSetRecoilState } from "recoil";
+import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
+import ModalContainer from "../../../../common/ModalContainer";
+import ModalButton from "../../../../common/ModalButton";
+import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술"];
 
-const SavePromptModal = ({
+function EditPromptInfoModal({
   isOpen,
   onClose,
-  combinations,
-  refinedPromptParts,
-}) => {
-  const [promptTitle, setPromptTitle] = useState("");
-  const [promptDescription, setPromptDescription] = useState("");
-  const [promptCategory, setPromptCategory] = useState("IT");
-  const promptMethod = useRecoilState(promptMethodState);
+  promptId,
+  initialTitle,
+  initialDescription,
+  initialCategory,
+  promptPreview
+}) {
+  const [promptTitle, setPromptTitle] = useState(initialTitle);
+  const [promptDescription, setPromptDescription] = useState(initialDescription);
+  const [promptCategory, setPromptCategory] = useState(initialCategory);
+  const setPromptList = useSetRecoilState(promptListState);
+  const { patchPromptInfo } = useChattingRoomHooks();
 
-  const { savePrompt } = usePromptHook();
+  useEffect(() => {
+    setPromptTitle(initialTitle);
+  }, [initialTitle]);
+
+  useEffect(() => {
+    setPromptDescription(initialDescription);
+  }, [initialDescription]);
+
+  useEffect(() => {
+    setPromptCategory(initialCategory);
+  }, [initialCategory]);
+
   if (!isOpen) return null;
 
-  const handleSave = () => {
-    const promptPreview = Object.values(refinedPromptParts).join(" ");
-    const listPromptAtom = Object.values(combinations)
-      .filter(Boolean)
-      .map((value, index) => ({ blockId: value }));
-
-    savePrompt(
+  const handleEditClick = () => {
+    patchPromptInfo(
+      promptId,
       promptTitle,
       promptDescription,
-      promptPreview,
       promptCategory,
-      promptMethod,
-      listPromptAtom,
     );
-
+    setPromptList((oldPromptList) => {
+      return oldPromptList.map(prompt => {
+        if (prompt.promptId === promptId) {
+          return { ...prompt, promptTitle, promptDescription, promptCategory };
+        }
+        return prompt;
+      });
+    });
     console.log({
       promptTitle,
       promptDescription,
-      promptPreview,
       promptCategory,
-      promptMethod,
-      listPromptAtom,
     });
     // 여기서 일반적으로 이 데이터를 백엔드로 보내거나 상태 관리 시스템에 저장합니다
     onClose();
   };
 
   return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 저장" onSubmit={handleSave} children>  
+    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 정보 수정하기" onSubmit={handleEditClick}>
       <div>
-        <RefinedPromptText />
+        <div>{promptPreview}</div>
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="promptTitle">
@@ -85,7 +96,7 @@ const SavePromptModal = ({
             {allCategories.map((category) => (
               <li
                 key={category}
-                onClick={(e) => setPromptCategory(category)}
+                onClick={() => setPromptCategory(category)}
                 className={`${styles.option} ${
                   category === promptCategory ? styles.active : styles.none
                 }`}
@@ -98,15 +109,9 @@ const SavePromptModal = ({
           </ul>
         </div>
       </div>
-      <div className={styles.formGroup}>
-        <label>
-          <H5>프롬프트 타입</H5>
-        </label>
-        <B3 color="black">{promptMethod} type</B3>
-      </div>
       <ModalButton title="저장하기" variant="primary" type="submit"/>
-    </ModalContainer>  
+    </ModalContainer>
   );
-};
+}
 
-export default SavePromptModal;
+export default EditPromptInfoModal;

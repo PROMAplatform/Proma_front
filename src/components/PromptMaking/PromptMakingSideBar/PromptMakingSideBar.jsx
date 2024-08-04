@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
 import { H4, B5 } from "../../../styles/font-styles";
-import PromptValueBlock from "../components/PromptValueBlock";
+import PromptValueBlock from "../../common/Prompt/PromptValueBlock";
 import {
   activeBlocksState,
   activeCategoryState,

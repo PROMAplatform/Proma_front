@@ -57,6 +57,7 @@ function PromptList() {
             emoji={prompt.emoji}
             promptId={prompt.promptId}
             name={prompt.promptTitle}
+            prompt={prompt}
           />
         ))}
       </div>

@@ -10,11 +10,23 @@ const ButtonContainer = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 30px;
-  padding: 10px 50px;
   width: auto;
   margin: 0 auto;
   border: 2px solid var(--block-main-color);
   transition: background-color 0.3s;
+
+  ${({ size }) =>
+    size === 'small' &&
+    `
+    padding: 10px 20px;
+  `}
+
+  ${({ size }) =>
+    size === 'medium' &&
+    `
+    padding: 10px 50px;
+  `}
+
   ${({ variant }) =>
     variant === 'primary' &&
     `
@@ -49,9 +61,9 @@ const H6 = styled(BaseH6)`
   `}
 `;
 
-function ModalButton({title, variant}) {
+function ModalButton({title, variant, type, size = 'medium', onClick}) {
   return (
-    <ButtonContainer variant={variant} type="submit" >
+    <ButtonContainer variant={variant} type={type} size={size} onClick={onClick}>
       <H6 variant={variant}>{title}</H6>
     </ButtonContainer>
   );

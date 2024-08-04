@@ -1,11 +1,14 @@
 import React, {useEffect, useState, useRef} from "react";
-import CustomIconButton from "../../common/CustomIconButton";
-import { ReactComponent as MoreIcon } from "../../../assets/images/moreIcon.svg";
-import editIcon from "../../../assets/images/editIcon.svg";
-import trashIcon from "../../../assets/images/trashIcon.svg";
-import shareIcon from "../../../assets/images/shareIcon.svg";
+import CustomIconButton from "../../../common/CustomIconButton";
+import { ReactComponent as MoreIcon } from "../../../../assets/images/moreIcon.svg";
+import editIcon from "../../../../assets/images/editIcon.svg";
+import trashIcon from "../../../../assets/images/trashIcon.svg";
+import shareIcon from "../../../../assets/images/shareIcon.svg";
+import EditPromptInfoModal from "./Modal/EditPromptInfoModal";
+import DeletePromptModal from "./Modal/DeletePromptModal";
+import SharePromptModal from "./Modal/SharePromptModal";
 import styled from "styled-components";
-import { B6 } from "../../../styles/font-styles";
+import { B6 } from "../../../../styles/font-styles";
 
 const IconContainer = styled.div`
   display: inline-flex;
@@ -23,7 +26,7 @@ const Container = styled.div`
   background-color: var(--white);
   border-radius: 13px;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
-  z-index: 10000;
+  z-index: 1000;
   top: ${({ position }) => position.top}px;
   left: ${({ position }) => position.left}px;
   box-sizing: border-box;
@@ -52,11 +55,14 @@ const Icon = styled.img`
   width: 18px;
 `;
 
-function MoreButton() {
+const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory, promptPreview}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const buttonRef = useRef(null);
   const menuRef = useRef(null);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
   const handleClickOutside = (event) => {
     if (
@@ -91,18 +97,18 @@ function MoreButton() {
   }
 
   const handleEditClick = () => {
-    // Handle edit action
-    console.log("Edit clicked");
+    setIsEditModalOpen(true);
+    setShowMenu(false);
   };
 
-  const handleTrashClick = () => {
-    // Handle delete action
-    console.log("Delete clicked");
+  const handleDeleteClick = () => {
+    setIsDeleteModalOpen(true);
+    setShowMenu(false);
   };
 
   const handleShareClick = () => {
-    // Handle share action
-    console.log("Share clicked");
+    setIsShareModalOpen(true);
+    setShowMenu(false);
   };
 
   function MenuComponent({icon, title, onClick}) {
@@ -120,7 +126,7 @@ function MoreButton() {
     return (
       <Container ref={menuRef} position={menuPosition}>
         <MenuComponent icon={editIcon} title="수정하기" onClick={handleEditClick}/>
-        <MenuComponent icon={trashIcon} title="삭제하기" onClick={handleTrashClick}/>
+        <MenuComponent icon={trashIcon} title="삭제하기" onClick={handleDeleteClick}/>
         <MenuComponent icon={shareIcon} title="공유하기" onClick={handleShareClick}/>
       </Container>
     )
@@ -133,6 +139,36 @@ function MoreButton() {
         onClick={handleButtonClick}
       />
       {showMenu && <MenuContainer />}
+      {isShareModalOpen && prompt && (
+        <SharePromptModal
+          isOpen={isShareModalOpen}
+          onClose={() => setIsShareModalOpen(false)}
+          promptId={promptId}
+          initialTitle={promptTitle}
+          initialDescription={promptDescription}
+          initialCategory={promptCategory}
+          promptPreview={promptPreview}
+        />
+      )}
+      {isDeleteModalOpen && prompt && (
+        <DeletePromptModal
+          isOpen={isDeleteModalOpen}
+          onClose={() => setIsDeleteModalOpen(false)}
+          promptId={promptId}
+          promptTitle={promptTitle}
+        />
+      )}
+      {isEditModalOpen && prompt && (
+        <EditPromptInfoModal
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          promptId={promptId}
+          initialTitle={promptTitle}
+          initialDescription={promptDescription}
+          initialCategory={promptCategory}
+          promptPreview={promptPreview}
+        />
+      )}
     </IconContainer>
   );
 }

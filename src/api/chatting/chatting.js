@@ -177,7 +177,7 @@ export const useChattingRoomHooks = () => {
         "post",
         `/sidebar/room/save${mockUserId}`,
         {
-          roomTitle: "roomTitle",
+          roomTitle: roomTitle,
           emoji: "🏎",
         }
       );
@@ -226,7 +226,11 @@ export const useChattingRoomHooks = () => {
       "delete",
       `/sidebar/prompt/${promptId}${mockUserId}`
     );
+    setPromptList((oldPromptList) => 
+      oldPromptList.filter(prompt => prompt.promptId !== promptId)
+    );
   };
+  
   const patchPromptEmoji = async (promptId, emoji) => {
     await sendRequest(
       chattingInstance,
@@ -253,6 +257,26 @@ export const useChattingRoomHooks = () => {
       }
     );
   };
+
+  const patchPromptInfo = async (
+    promptId,
+    promptTitle,
+    promptDescription,
+    promptCategory
+  ) => {
+    await sendRequest(
+      chattingInstance,
+      "patch",
+      `/sidebar/prompt/${promptId}${mockUserId}`,
+      {
+        promptId,
+        promptTitle,
+        promptDescription,
+        promptCategory,
+      }
+    );
+  };
+
   const fetchChattingMessages = async (chatroomId) => {
     await sendRequest(chattingInstance, "get", `/${chatroomId}${mockUserId}`);
   };
@@ -285,6 +309,7 @@ export const useChattingRoomHooks = () => {
     deletePrompt,
     patchPromptEmoji,
     patchPrompt,
+    patchPromptInfo,
     fetchChattingMessages,
     saveChattingMessage,
   };

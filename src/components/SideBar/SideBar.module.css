@@ -25,3 +25,20 @@
   overflow-y: auto; /* 스크롤 가능하게 설정 */
   flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
 }
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input {
+  box-sizing: border-box;
+  background-color: var(--color-gray2);
+  border: none;
+  padding: 15px 18px;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  caret-color: var(--block-main-color);
+}

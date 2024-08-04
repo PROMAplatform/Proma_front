@@ -85,7 +85,7 @@ const CreateBlockModal = ({ isOpen, onClose }) => {
           required
         />
       </div>
-      <ModalButton title="블록 만들기" variant="primary" />
+      <ModalButton title="블록 만들기" variant="primary" type="submit"/>
     </ModalContainer>
   );
 };

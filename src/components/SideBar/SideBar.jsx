@@ -5,16 +5,28 @@ import Toggle from "./components/Toggle";
 import PromptList from "./components/Prompt/PromptList";
 import AddButton from "./components/AddButton";
 import promaLogoSmall from "../../assets/logos/promaLogoSmall.svg";
+import ModalContainer from "../common/ModalContainer";
+import ModalButton from "../common/ModalButton";
+import { H5 } from "../../styles/font-styles";
 import { useChattingRoomHooks } from "../../api/chatting/chatting";
 
 function SideBar() {
   const [isChatting, setIsChatting] = useState(false);
-  const { createChattingRoom } = useChattingRoomHooks();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [roomTitle, setRoomTitle] = useState("");
+  const { createChattingRoom, getChattingRoomList } = useChattingRoomHooks();
   // const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
 
   const handleAddChattingRoom = async () => {
-    await createChattingRoom();
+    await createChattingRoom(roomTitle);
+    await getChattingRoomList(); // 새로운 채팅방 목록을 불러옵니다.
+    setRoomTitle(""); // 입력된 채팅방 이름 초기화
+    setIsModalOpen(false);
   };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  }
 
   return (
     <div className={styles.container}>
@@ -23,9 +35,7 @@ function SideBar() {
       {isChatting ? (
         <div className={styles.listContainer}>
           <ChattingList />
-          <div onClick={handleAddChattingRoom}>
-            <AddButton text="새 채팅 추가하기" />
-          </div>
+          <AddButton text="새 채팅 추가하기" onClick={() => setIsModalOpen(true)}/>
         </div>
       ) : (
         <div className={styles.listContainer}>
@@ -33,6 +43,19 @@ function SideBar() {
           <AddButton text="새 프롬프트 추가하기" />
         </div>
       )}
+      {isModalOpen && <ModalContainer title="새 채팅 추가하기" isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddChattingRoom}>
+        <div className={styles.formGroup}>
+          <label htmlFor="roomTitle">
+            <H5>채팅방 이름</H5>
+          </label>
+          <input
+            placeholder="채팅방 이름"
+            value={roomTitle}
+            onChange={(e) => setRoomTitle(e.target.value)}
+          />
+        </div>
+        <ModalButton title="추가히기" type="submit" variant="primary"/>
+      </ModalContainer>}
     </div>
   );
 }

@@ -15,18 +15,19 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 10000;
 `;
 
 const Container = styled.div`
   background-color: var(--white);
   padding: 35px;
   border-radius: 20px;
-  max-width: 500px;
+  max-width: 600px;
+  min-width: 500px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
   position: relative;
 `;
 
@@ -34,34 +35,41 @@ const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  width: 100%;
 `;
 
 const ExitIconContainer = styled.div`
   position: absolute;
   top: 30px;
   right: 30px;
-  width: 30px;
-  height: 30px;
   margin: 0;
   padding: 0;
+  display: ${({ visibility }) => (visibility ? "block" : "none")}; 
 `;
 
-function ModalContainer({isOpen, onClose, title, onSubmit, children}) {
+function ModalContainer({isOpen, onClose, title, onSubmit, children, exitButton = true}) {
   const { isModalOpen, setIsModalOpen, handleOverlayClick } = useModal(isOpen, onClose);
   if (!isModalOpen) return null;
 
   const closeModal = () => {
     setIsModalOpen(false);
-  }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // 기본 제출 동작을 방지합니다.
+    if (onSubmit) {
+      onSubmit(); // 외부에서 전달된 onSubmit 함수를 호출합니다.
+    }
+  };
 
   return (
     <ModalOverlay onClick={handleOverlayClick}>
       <Container>
         <H3>{title}</H3>
-        <ExitIconContainer>
+        <ExitIconContainer visibility={exitButton}>
           <CustomIconButton icon={ExitIcon} onClick={closeModal} />
         </ExitIconContainer>
-        <FormContainer onSubmit={onSubmit}>
+        <FormContainer onSubmit={handleSubmit}>
           {children}
         </FormContainer>
       </Container>

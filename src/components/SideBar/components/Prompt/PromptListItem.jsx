@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./PromptListItem.module.css";
 import EmojiPickerButton from "../../../common/EmojiPickerButton";
-import MoreButton from "../MoreButton";
+import MoreButton from "./MoreButton";
 import { H5 } from "../../../../styles/font-styles";
 
-function PromptListItem(props) {
+function PromptListItem({emoji, promptId, name, prompt}) {
   function handlePromptClick() {
     console.log("Prompt 전환");
   }
@@ -14,12 +14,18 @@ function PromptListItem(props) {
       <div className={styles.IconNName}>
         <EmojiPickerButton
           isPromptEmoji={true}
-          promptId={props.promptId}
-          emoji={props.emoji}
+          promptId={promptId}
+          emoji={emoji}
         />
-        <H5 color="gray8">{props.name}</H5>
+        <H5 color="gray8">{name}</H5>
       </div>
-      <MoreButton/>
+      <MoreButton
+        promptId={promptId}
+        promptTitle={name}
+        promptDescription={prompt.promptDescription}
+        promptCategory={prompt.promptCategory}
+        promptPreview={prompt.promptPreview}
+      />
     </div>
   );
 }
