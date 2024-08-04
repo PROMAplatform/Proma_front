@@ -1,21 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactComponent as TrashIcon } from "../../../../assets/images/trashIcon.svg";
 import styles from "./ChattingListItme.module.css";
 import EmojiPcikerButton from "../../../common/EmojiPickerButton";
 import CustomIconButton from "../../../common/CustomIconButton";
 import { H5 } from "../../../../styles/font-styles";
-import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
+import DeleteChattingModal from "./Modal/DeleteChattingRoomModal";
 function ChattingListItem(props) {
-  const { deleteChattingRoom } = useChattingRoomHooks();
-
-  function handleIconClick() {
-    deleteChattingRoom(props.roomId);
-  }
-
-  // roomId={room.roomId}
-  // emoji={room.emoji}
-  // promptTitle={room.prompTitle}
-  // promptCategory={room.promptCategory}
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className={styles.container} onClick={props.onClick}>
@@ -27,7 +18,8 @@ function ChattingListItem(props) {
         />
         <H5>{props.chatRoomTitle}</H5>
       </div>
-      <CustomIconButton icon={TrashIcon} onClick={handleIconClick} />
+      <CustomIconButton icon={TrashIcon} onClick={() => setIsModalOpen(true)} />
+      <DeleteChattingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} roomId={props.roomId} />
     </div>
   );
 }

@@ -19,8 +19,8 @@ function SideBar() {
 
   const handleAddChattingRoom = async () => {
     await createChattingRoom(roomTitle);
-    await getChattingRoomList(); // 새로운 채팅방 목록을 불러옵니다.
-    setRoomTitle(""); // 입력된 채팅방 이름 초기화
+    await getChattingRoomList(); // 새로운 채팅방 목록
+    setRoomTitle("");
     setIsModalOpen(false);
   };
 
@@ -54,7 +54,7 @@ function SideBar() {
             onChange={(e) => setRoomTitle(e.target.value)}
           />
         </div>
-        <ModalButton title="추가히기" type="submit" variant="primary"/>
+        <ModalButton title="추가하기" type="submit" variant="primary"/>
       </ModalContainer>}
     </div>
   );

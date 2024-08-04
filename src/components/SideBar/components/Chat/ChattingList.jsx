@@ -28,7 +28,7 @@ function ChattingList() {
       {roomList.length > 0 ? (
         <div className={styles.scrollContainer}>
           <div className={styles.chattingListContainer}>
-            {roomList.map((room) => (
+            {roomList.slice().reverse().map((room) => (
               <ChattingListItem
                 key={room.roomId}
                 roomId={room.roomId}
