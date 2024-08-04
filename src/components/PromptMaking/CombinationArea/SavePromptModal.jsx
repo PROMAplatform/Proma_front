@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./SavePromptModal.module.css";
 import { H5, B4, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
@@ -16,12 +17,13 @@ const SavePromptModal = ({
   combinations,
   refinedPromptParts,
 }) => {
+  const navigate = useNavigate();
   const [promptTitle, setPromptTitle] = useState("");
   const [promptDescription, setPromptDescription] = useState("");
   const [promptCategory, setPromptCategory] = useState("IT");
   const promptMethod = useRecoilState(promptMethodState);
-
   const { savePrompt } = usePromptHook();
+
   if (!isOpen) return null;
 
   const handleSave = () => {
@@ -48,6 +50,7 @@ const SavePromptModal = ({
       listPromptAtom,
     });
     // 여기서 일반적으로 이 데이터를 백엔드로 보내거나 상태 관리 시스템에 저장합니다
+    navigate("/");
     onClose();
   };
 

@@ -22,7 +22,7 @@ const Container = styled.div`
   background-color: var(--white);
   padding: 35px;
   border-radius: 20px;
-  max-width: 600px;
+  max-width: 650px;
   min-width: 500px;
   display: inline-flex;
   flex-direction: column;

@@ -51,7 +51,7 @@ function PromptList() {
         ))}
       </div>
       <div className={styles.promptListContainer}>
-        {filteredPrompts.map((prompt, index) => (
+        {filteredPrompts.slice().reverse().map((prompt, index) => (
           <PromptListItem
             key={index}
             emoji={prompt.emoji}
