@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   chattingRoomListState,
@@ -6,15 +6,22 @@ import {
 } from "../../../../recoil/chatting/chattingRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import ChattingListItem from "./ChattingListItem";
+import SkeletonListItem from "../SkeletonListItem";
 import styles from "./ChattingList.module.css";
 
 function ChattingList() {
+  const [isLoading, setIsLoading] = useState(true);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
   const roomList = useRecoilValue(chattingRoomListState);
   const { getChattingRoomList, getChattingList } = useChattingRoomHooks();
 
   useEffect(() => {
+    setIsLoading(true);
     getChattingRoomList();
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -25,7 +32,15 @@ function ChattingList() {
 
   return (
     <div className={styles.container}>
-      {roomList.length > 0 ? (
+      {isLoading ? ( // 로딩 중일 때
+        <div className={styles.scrollContainer}>
+          <div className={styles.chattingListContainer}>
+            {Array.from({ length: roomList.length || 5 }).map((_, index) => (
+              <SkeletonListItem key={index} />
+            ))}
+          </div>
+        </div>
+      ) : roomList.length > 0 ? (
         <div className={styles.scrollContainer}>
           <div className={styles.chattingListContainer}>
             {roomList.slice().reverse().map((room) => (

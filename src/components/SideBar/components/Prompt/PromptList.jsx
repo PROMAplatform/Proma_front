@@ -4,12 +4,18 @@ import styles from "./PromptList.module.css";
 import { useRecoilValue } from "recoil";
 import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
+import SkeletonListItem from "../SkeletonListItem";
 
 function PromptList() {
+  const [isLoading, setIsLoading] = useState(true);
   const { fetchPromptList } = useChattingRoomHooks();
 
   useEffect(() => {
+    setIsLoading(true);
     fetchPromptList();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -50,8 +56,15 @@ function PromptList() {
           </button>
         ))}
       </div>
-      <div className={styles.promptListContainer}>
-        {filteredPrompts.slice().reverse().map((prompt, index) => (
+      {isLoading ? ( // 로딩 중일 때
+        <div className={styles.promptListContainer}>
+          {Array.from({ length: filteredPrompts.length || 5 }).map((_, index) => (
+            <SkeletonListItem key={index} />
+          ))}
+        </div>
+      ) : filteredPrompts.length > 0 ? (
+        <div className={styles.promptListContainer}>
+          {filteredPrompts.slice().reverse().map((prompt, index) => (
           <PromptListItem
             key={index}
             emoji={prompt.emoji}
@@ -59,8 +72,11 @@ function PromptList() {
             name={prompt.promptTitle}
             prompt={prompt}
           />
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p>프롬프트가 없습니다.</p>
+      )}
     </div>
   );
 }

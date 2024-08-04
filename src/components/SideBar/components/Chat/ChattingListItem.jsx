@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ReactComponent as TrashIcon } from "../../../../assets/images/trashIcon.svg";
 import styles from "./ChattingListItme.module.css";
 import EmojiPcikerButton from "../../../common/EmojiPickerButton";
 import CustomIconButton from "../../../common/CustomIconButton";
 import { H5 } from "../../../../styles/font-styles";
 import DeleteChattingModal from "./Modal/DeleteChattingRoomModal";
+
 function ChattingListItem(props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
