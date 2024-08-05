@@ -1,30 +1,28 @@
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { H5, B4 } from "../../../styles/font-styles";
-import { availableCategoriesState } from "../../../recoil/prompt/promptRecoilState";
+import { categoryColorsState, availableCategoriesState } from "../../../recoil/prompt/promptRecoilState";
 import styles from "./CreateBlockModal.module.css";
-import { categoryColorsState } from "../../../recoil/prompt/promptRecoilState";
 import { usePromptHook } from "../../../api/prompt/prompt";
 import ModalContainer from "../../common/ModalContainer";
 import ModalButton from "../../common/ModalButton";
 
-const CreateBlockModal = ({ isOpen, onClose }) => {
+const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
   const categories = useRecoilValue(availableCategoriesState);
   const categoryColors = useRecoilValue(categoryColorsState);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [blockValue, setBlockValue] = useState("");
   const [blockDescription, setBlockDescription] = useState("");
   const { makeBlock } = usePromptHook();
-
   if (!isOpen) return null;
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     makeBlock(blockValue, blockDescription, selectedCategory, "TASK/RESEARCH");
+    onBlockCreated();
     setBlockValue("");
     setBlockDescription("");
     onClose();
@@ -47,7 +45,7 @@ const CreateBlockModal = ({ isOpen, onClose }) => {
                   backgroundColor:
                     category === selectedCategory
                       ? categoryColors[category]
-                      : "var(--color-gray4",
+                      : "var(--color-gray4)",
                   transform:
                     category === selectedCategory
                       ? "Scale(1.3)"

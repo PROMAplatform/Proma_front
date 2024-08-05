@@ -139,7 +139,7 @@ const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory}) 
         onClick={handleButtonClick}
       />
       {showMenu && <MenuContainer />}
-      {isShareModalOpen && prompt && (
+      {prompt && (
         <SharePromptModal
           isOpen={isShareModalOpen}
           onClose={() => setIsShareModalOpen(false)}
@@ -149,7 +149,7 @@ const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory}) 
           initialCategory={promptCategory}
         />
       )}
-      {isDeleteModalOpen && prompt && (
+      {prompt && (
         <DeletePromptModal
           isOpen={isDeleteModalOpen}
           onClose={() => setIsDeleteModalOpen(false)}
@@ -157,7 +157,7 @@ const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory}) 
           promptTitle={promptTitle}
         />
       )}
-      {isEditModalOpen && prompt && (
+      {prompt && (
         <EditPromptInfoModal
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}

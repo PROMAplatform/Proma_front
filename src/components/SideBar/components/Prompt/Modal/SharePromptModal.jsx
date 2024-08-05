@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
-import styles from "./EditPromptInfoModal.module.css";
-import { H5, B4 } from "../../../../../styles/font-styles";
+import styles from "./PromptInfoModal.module.css";
+import { H5, B5 } from "../../../../../styles/font-styles";
+import PromptDetail from "../../../../common/Prompt/PromptDetail";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
 
@@ -27,6 +28,7 @@ function SharePromptModal({
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 공유하기" onSubmit={handleShareClick}>
+      <div className={styles.promptDetailContainer}><PromptDetail promptId={promptId}/></div>
       <div>
         <div>{promptPreview}</div>
       </div>
@@ -64,9 +66,9 @@ function SharePromptModal({
                   category === promptCategory ? styles.active : styles.none
                 }`}
               >
-                <B4 color={category === promptCategory ? "white" : "gray5"}>
+                <B5 color={category === promptCategory ? "white" : "gray5"}>
                   {category}
-                </B4>
+                </B5>
               </li>
             ))}
           </ul>

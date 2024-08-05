@@ -4,7 +4,7 @@ import EmojiPickerButton from "../../../common/EmojiPickerButton";
 import MoreButton from "./MoreButton";
 import { H5 } from "../../../../styles/font-styles";
 
-function PromptListItem({emoji, promptId, name, prompt}) {
+function PromptListItem({emoji, prompt}) {
   function handlePromptClick() {
     console.log("Prompt 전환");
   }
@@ -14,14 +14,14 @@ function PromptListItem({emoji, promptId, name, prompt}) {
       <div className={styles.IconNName}>
         <EmojiPickerButton
           isPromptEmoji={true}
-          promptId={promptId}
+          promptId={prompt.promptId}
           emoji={emoji}
         />
-        <H5 color="gray8">{name}</H5>
+        <H5 color="gray8">{prompt.promptTitle}</H5>
       </div>
       <MoreButton
-        promptId={promptId}
-        promptTitle={name}
+        promptId={prompt.promptId}
+        promptTitle={prompt.promptTitle}
         promptDescription={prompt.promptDescription}
         promptCategory={prompt.promptCategory}
       />

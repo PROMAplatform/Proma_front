@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SavePromptModal.module.css";
-import { H5, B4, B3 } from "../../../styles/font-styles";
+import { H5, B5, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
 import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
 import { useRecoilState } from "recoil";
@@ -37,7 +37,7 @@ const SavePromptModal = ({
       promptDescription,
       promptPreview,
       promptCategory,
-      promptMethod,
+      "Task/Research",
       listPromptAtom,
     );
 
@@ -50,6 +50,7 @@ const SavePromptModal = ({
       listPromptAtom,
     });
     // 여기서 일반적으로 이 데이터를 백엔드로 보내거나 상태 관리 시스템에 저장합니다
+
     navigate("/");
     onClose();
   };
@@ -93,9 +94,9 @@ const SavePromptModal = ({
                   category === promptCategory ? styles.active : styles.none
                 }`}
               >
-                <B4 color={category === promptCategory ? "white" : "gray5"}>
+                <B5 color={category === promptCategory ? "white" : "gray5"}>
                   {category}
-                </B4>
+                </B5>
               </li>
             ))}
           </ul>

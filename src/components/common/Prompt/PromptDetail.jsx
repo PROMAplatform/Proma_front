@@ -35,7 +35,7 @@ const PromptDetail = ({ promptId }) => {
       blockCategory: "화자",
       blockDescription: "너는 선생님이야",
       blockId: 1,
-      blockValue: "선생님",
+      blockValue: "선생님 와라랄라라랄",
     },
     {
       blockCategory: "청자",

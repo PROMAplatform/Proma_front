@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
-import styles from "./EditPromptInfoModal.module.css";
-import { H5, B4, B3 } from "../../../../../styles/font-styles";
+import styles from "./PromptInfoModal.module.css";
+import { H5, B5 } from "../../../../../styles/font-styles";
 import { useSetRecoilState } from "recoil";
 import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
 import ModalContainer from "../../../../common/ModalContainer";
@@ -99,9 +99,9 @@ function EditPromptInfoModal({
                   category === promptCategory ? styles.active : styles.none
                 }`}
               >
-                <B4 color={category === promptCategory ? "white" : "gray5"}>
+                <B5 color={category === promptCategory ? "white" : "gray5"}>
                   {category}
-                </B4>
+                </B5>
               </li>
             ))}
           </ul>

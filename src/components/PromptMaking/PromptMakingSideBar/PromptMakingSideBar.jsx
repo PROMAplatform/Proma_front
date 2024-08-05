@@ -33,8 +33,12 @@ const PromptMakingSidebar = () => {
     return categoryColors[activeCategory] || "purple";
   };
 
-  useEffect(() => {
+  const handleBlockCreated = () => {
     fetchBlocks(promptMethod);
+  };
+
+  useEffect(() => {
+    handleBlockCreated();
     console.log("blocks 불러오기");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -115,6 +119,7 @@ const PromptMakingSidebar = () => {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           categories={categories}
+          onBlockCreated={handleBlockCreated}
         />
       </div>
     </div>
