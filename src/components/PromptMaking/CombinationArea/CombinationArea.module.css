@@ -74,6 +74,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.block {
+  display: flex;
+  align-items: center;
   position: relative;
   left: -11px;
 }

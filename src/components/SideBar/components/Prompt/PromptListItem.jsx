@@ -24,7 +24,6 @@ function PromptListItem({emoji, promptId, name, prompt}) {
         promptTitle={name}
         promptDescription={prompt.promptDescription}
         promptCategory={prompt.promptCategory}
-        promptPreview={prompt.promptPreview}
       />
     </div>
   );

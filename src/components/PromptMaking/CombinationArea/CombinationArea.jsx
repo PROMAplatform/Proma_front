@@ -79,6 +79,7 @@ const CombinationArea = () => {
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
+                              className={styles.block}
                             >
                               <PromptValueBlock
                                 color={categoryColors[category]}

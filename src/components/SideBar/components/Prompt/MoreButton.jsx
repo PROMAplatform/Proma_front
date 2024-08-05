@@ -55,7 +55,7 @@ const Icon = styled.img`
   width: 18px;
 `;
 
-const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory, promptPreview}) => {
+const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const buttonRef = useRef(null);
@@ -147,7 +147,6 @@ const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory, p
           initialTitle={promptTitle}
           initialDescription={promptDescription}
           initialCategory={promptCategory}
-          promptPreview={promptPreview}
         />
       )}
       {isDeleteModalOpen && prompt && (
@@ -166,7 +165,6 @@ const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory, p
           initialTitle={promptTitle}
           initialDescription={promptDescription}
           initialCategory={promptCategory}
-          promptPreview={promptPreview}
         />
       )}
     </IconContainer>

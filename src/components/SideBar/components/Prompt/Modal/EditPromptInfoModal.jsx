@@ -5,6 +5,7 @@ import { useSetRecoilState } from "recoil";
 import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
+import PromptDetail from "../../../../common/Prompt/PromptDetail";
 import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술"];
@@ -15,8 +16,7 @@ function EditPromptInfoModal({
   promptId,
   initialTitle,
   initialDescription,
-  initialCategory,
-  promptPreview
+  initialCategory
 }) {
   const [promptTitle, setPromptTitle] = useState(initialTitle);
   const [promptDescription, setPromptDescription] = useState(initialDescription);
@@ -64,9 +64,7 @@ function EditPromptInfoModal({
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 정보 수정하기" onSubmit={handleEditClick}>
-      <div>
-        <div>{promptPreview}</div>
-      </div>
+      <div className={styles.promptDetailContainer}><PromptDetail promptId={promptId}/></div>
       <div className={styles.formGroup}>
         <label htmlFor="promptTitle">
           <H5>프롬프트 제목</H5>
