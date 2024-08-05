@@ -37,7 +37,7 @@ const SavePromptModal = ({
       promptDescription,
       promptPreview,
       promptCategory,
-      "Task/Research",
+      promptMethod,
       listPromptAtom,
     );
 
