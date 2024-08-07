@@ -1,28 +1,52 @@
 import { useEffect } from "react";
-import { shortCutState } from "../../recoil/util/utilRecoilState";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  currentPromptState,
+  promptListState,
+} from "../../recoil/prompt/promptRecoilState";
 
 function useGlobalShortcuts() {
-  const [shortCutAtom, setShortCutAtom] = useRecoilState(shortCutState);
+  const promptList = useRecoilValue(promptListState);
+  const setCurrentPrompt = useSetRecoilState(currentPromptState);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      const isCmdOrCtrl = event.metaKey || event.ctrlKey;
-      // cmd (macOS) 또는 ctrl
+      const ctrlOrCmd = event.ctrlKey || event.metaKey;
+      const isShift = event.shiftKey;
 
-      // Cmd/Ctrl + Shift + A
-      if (isCmdOrCtrl && event.shiftKey && event.key === "A") {
-        setShortCutAtom((prevValue) => ({
-          ...prevValue,
-          value1: "changed1",
-        }));
-      }
-      // Cmd/Ctrl + Shift + B
-      if (isCmdOrCtrl && event.shiftKey && event.key === "B") {
-        setShortCutAtom((prevValue) => ({
-          ...prevValue,
-          value2: "changed2",
-        }));
+      if (ctrlOrCmd && isShift) {
+        switch (event.key) {
+          case "1":
+            console.log("Alt/Option + Shift + 1");
+            if (promptList[0]) {
+              setCurrentPrompt({
+                id: promptList[0].promptId,
+                name: promptList[0].promptTitle,
+              });
+            }
+            break;
+          case "2":
+            console.log("Alt/Option + Shift + 2");
+            if (promptList[1]) {
+              setCurrentPrompt({
+                id: promptList[1].promptId,
+                name: promptList[1].promptTitle,
+              });
+            }
+            break;
+          case "3":
+            console.log("Alt/Option + Shift + 3");
+            if (promptList[2]) {
+              setCurrentPrompt({
+                id: promptList[2].promptId,
+                name: promptList[2].promptTitle,
+              });
+            }
+            break;
+          default:
+            return; // 다른 키 조합은 무시
+        }
+        event.preventDefault(); // 브라우저 기본 동작 방지
       }
     };
 
@@ -31,9 +55,7 @@ function useGlobalShortcuts() {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [setShortCutAtom]);
-
-  return shortCutAtom;
+  }, [promptList, setCurrentPrompt]);
 }
 
 export default useGlobalShortcuts;

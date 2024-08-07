@@ -4,7 +4,7 @@ import styles from "./SavePromptModal.module.css";
 import { H5, B5, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
 import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 import { usePromptHook } from "../../../api/prompt/prompt";
 import ModalContainer from "../../common/ModalContainer";
@@ -21,7 +21,8 @@ const SavePromptModal = ({
   const [promptTitle, setPromptTitle] = useState("");
   const [promptDescription, setPromptDescription] = useState("");
   const [promptCategory, setPromptCategory] = useState("IT");
-  const promptMethod = useRecoilState(promptMethodState);
+  const promptMethod = useRecoilValue(promptMethodState);
+
   const { savePrompt } = usePromptHook();
 
   if (!isOpen) return null;
@@ -38,7 +39,7 @@ const SavePromptModal = ({
       promptPreview,
       promptCategory,
       promptMethod,
-      listPromptAtom,
+      listPromptAtom
     );
 
     console.log({

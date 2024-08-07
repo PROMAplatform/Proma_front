@@ -9,8 +9,10 @@ import KakaoAfterLogin from "./components/Login/KakaoLoginAfter";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import "./styles/global.css";
+import useGlobalShortcuts from "./hooks/common/useGlobalShortCut";
 
 function App() {
+  useGlobalShortcuts();
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
