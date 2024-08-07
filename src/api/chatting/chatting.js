@@ -2,7 +2,6 @@ import { useSetRecoilState } from "recoil";
 import {
   chattingRoomListState,
   currentRoomIdState,
-  messageState,
 } from "../../recoil/chatting/chattingRecoilState";
 import { sendRequest } from "../request";
 import { aiChatInstance, chattingInstance } from "../instance";
@@ -12,7 +11,6 @@ import { promptListState } from "../../recoil/prompt/promptRecoilState";
 
 export const useChattingRoomHooks = () => {
   const setChattingRoomList = useSetRecoilState(chattingRoomListState);
-  const setMessages = useSetRecoilState(messageState);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
   const setPromptList = useSetRecoilState(promptListState);
   const mockUserId = "?userId=1";
@@ -32,26 +30,26 @@ export const useChattingRoomHooks = () => {
   // ];
 
   // 임의의 채팅 메시지 데이터
-  const mockChattingList = [
-    {
-      messageId: 1,
-      promptId: 1,
-      chatroomId: 1,
-      messageQuestion: "Hello?",
-      messageAnswer: "Hi there!",
-      messageFile: [],
-      messageCreateAt: new Date().toISOString(),
-    },
-    {
-      messageId: 2,
-      promptId: 1,
-      chatroomId: 1,
-      messageQuestion: "Hi?",
-      messageAnswer: "Hi there!",
-      messageFile: [],
-      messageCreateAt: new Date().toISOString(),
-    },
-  ];
+  // const mockChattingList = [
+  //   {
+  //     messageId: 1,
+  //     promptId: 1,
+  //     chatroomId: 1,
+  //     messageQuestion: "Hello?",
+  //     messageAnswer: "Hi there!",
+  //     messageFile: [],
+  //     messageCreateAt: new Date().toISOString(),
+  //   },
+  //   {
+  //     messageId: 2,
+  //     promptId: 1,
+  //     chatroomId: 1,
+  //     messageQuestion: "Hi?",
+  //     messageAnswer: "Hi there!",
+  //     messageFile: [],
+  //     messageCreateAt: new Date().toISOString(),
+  //   },
+  // ];
 
   //채팅방 리스트 가져오기
   //TODO- mock에서 실제 데이터로 수정해야함.

@@ -12,7 +12,6 @@ function useGlobalShortcuts() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       const ctrlOrCmd = event.ctrlKey || event.metaKey;
-      const isAltOrOption = event.altKey;
       const isShift = event.shiftKey;
 
       if (ctrlOrCmd && isShift) {
