@@ -1,12 +1,8 @@
 .active {
-    border-radius: 10px;
-    border: 1px solid #543FD6;
-    background-color: #543FD6;
-
-    color: #FFF;
+    color: #543FD6;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 800;
     line-height: normal;
 }
 
