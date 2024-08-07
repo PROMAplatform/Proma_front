@@ -55,7 +55,7 @@ const Icon = styled.img`
   width: 18px;
 `;
 
-const MoreButton = ({promptId, promptTitle, promptDescription, promptCategory, listPromptAtom}) => {
+const MoreButton = ({promptId}) => {
   const [showMenu, setShowMenu] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const buttonRef = useRef(null);

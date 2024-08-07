@@ -23,7 +23,8 @@ function DeletePromptModal({
   const promptList = useRecoilValue(promptListState);
   const setPromptList = useSetRecoilState(promptListState);
   const prompt = promptList.find(p => p.promptId === promptId);
-  const { emoji, promptTitle, promptDescription, promptCategory, listPromptAtom } = prompt;
+  
+  const { promptTitle, promptDescription, promptCategory, listPromptAtom } = prompt;
 
   const { deletePrompt } = useChattingRoomHooks();
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ReactComponent as TrashIcon } from "../../../../assets/images/trashIcon.svg";
 import styles from "./ChattingListItme.module.css";
 import EmojiPcikerButton from "../../../common/EmojiPickerButton";

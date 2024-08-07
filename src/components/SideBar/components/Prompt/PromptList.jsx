@@ -69,7 +69,8 @@ function PromptList() {
           <PromptListItem
             key={index}
             emoji={prompt.emoji}
-            prompt={prompt}
+            promptId={prompt.promptId}
+            name={prompt.promptTitle}
           />
           ))}
         </div>

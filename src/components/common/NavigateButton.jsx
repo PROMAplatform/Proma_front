@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   box-sizing: border-box;
-  padding: 5px 20px;
+  padding: 8px 20px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
