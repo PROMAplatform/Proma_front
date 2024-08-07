@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PromptModal.module.css";
 import { H5, B5, B6 } from "../../../../../styles/font-styles";
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import editIcon from "../../../../../assets/images/editIcon.svg";
 import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
 import ModalContainer from "../../../../common/ModalContainer";
@@ -19,9 +19,8 @@ function EditPromptInfoModal({
 }) {
   const navigate = useNavigate();
   const promptList = useRecoilValue(promptListState);
-  const setPromptList = useSetRecoilState(promptListState);
   const prompt = promptList.find(p => p.promptId === promptId);
-  const { emoji, promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
+  const { promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
 
   // 모달 내부에서 사용할 상태 변수 추가
   const [promptTitle, setPromptTitle] = useState(initialTitle);

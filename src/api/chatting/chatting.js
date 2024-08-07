@@ -203,10 +203,7 @@ export const useChattingRoomHooks = () => {
     await sendRequest(
       chattingInstance, 
       "patch", `/prompt/block/${promptId}${mockUserId}`,
-      {
-        promptId,
         listPromptAtom,
-      }
     );
     setPromptList((oldPromptList) => 
       oldPromptList.map(prompt => {

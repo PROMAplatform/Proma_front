@@ -16,7 +16,8 @@ function SharePromptModal({
 }) {
   const promptList = useRecoilValue(promptListState);
   const prompt = promptList.find(p => p.promptId === promptId);
-  const { emoji, promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
+
+  const { promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
 
   // 모달 내부에서 사용할 상태 변수 추가
   const [promptTitle, setPromptTitle] = useState(initialTitle);

@@ -1,64 +1,85 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./SavePromptModal.module.css";
 import { H5, B5, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
-import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
+import { promptMethodState, promptListState } from "../../../recoil/prompt/promptRecoilState";
 import { useRecoilValue } from "recoil";
-import exitIcon from "../../../assets/images/exitIcon.svg";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 import { usePromptHook } from "../../../api/prompt/prompt";
+import { useChattingRoomHooks } from "../../../api/chatting/chatting";
 import ModalContainer from "../../common/ModalContainer";
 
-const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술"];
+const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
 const SavePromptModal = ({
   isOpen,
   onClose,
   combinations,
   refinedPromptParts,
+  promptId
 }) => {
   const navigate = useNavigate();
-  const [promptTitle, setPromptTitle] = useState("");
-  const [promptDescription, setPromptDescription] = useState("");
-  const [promptCategory, setPromptCategory] = useState("IT");
+  const promptList = useRecoilValue(promptListState);
+  const prompt = promptList.find(p => p.promptId === promptId) || {};
+  const [promptTitle, setPromptTitle] = useState(prompt.promptTitle || "");
+  const [promptDescription, setPromptDescription] = useState(prompt.promptDescription || "");
+  const [promptCategory, setPromptCategory] = useState(prompt.promptCategory || "IT");
   const promptMethod = useRecoilValue(promptMethodState);
 
   const { savePrompt } = usePromptHook();
+  const { patchPromptBlock } = useChattingRoomHooks();
 
-  if (!isOpen) return null;
+  if(!isOpen) return null;
 
   const handleSave = () => {
-    const promptPreview = Object.values(refinedPromptParts).join(" ");
-    const listPromptAtom = Object.values(combinations)
-      .filter(Boolean)
-      .map((value, index) => ({ blockId: value }));
+    if(prompt) {
+      const listPromptAtom = Object.entries(combinations)
+        .filter(([category, blockId]) => blockId)
+        .map(([category, blockId]) => ({
+        blockId: Number(blockId)
+      }));
+      console.log("listPromptAtom:", listPromptAtom);
+      patchPromptBlock(promptId, listPromptAtom);
 
-    savePrompt(
-      promptTitle,
-      promptDescription,
-      promptPreview,
-      promptCategory,
-      promptMethod,
-      listPromptAtom
-    );
+    } else {
+      const promptPreview = Object.values(refinedPromptParts).join(" ");
+      const listPromptAtom = Object.values(combinations)
+        .filter(Boolean)
+        .map((value, index) => ({ blockId: value }));
 
-    console.log({
-      promptTitle,
-      promptDescription,
-      promptPreview,
-      promptCategory,
-      promptMethod,
-      listPromptAtom,
-    });
-    // 여기서 일반적으로 이 데이터를 백엔드로 보내거나 상태 관리 시스템에 저장합니다
+      savePrompt(
+        promptTitle,
+        promptDescription,
+        promptPreview,
+        promptCategory,
+        promptMethod,
+        listPromptAtom
+      );
 
+      console.log({
+        promptTitle,
+        promptDescription,
+        promptPreview,
+        promptCategory,
+        promptMethod,
+        listPromptAtom,
+      });
+      // 여기서 일반적으로 이 데이터를 백엔드로 보내거나 상태 관리 시스템에 저장합니다
+    }
     navigate("/");
     onClose();
   };
 
+  let title = "";
+  if(prompt) {
+    title = "프롬프트 블록 수정하기";
+  } else {
+    title = "프롬프트 저장";
+  }
+
   return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 저장" onSubmit={handleSave} children>  
+    <ModalContainer isOpen={isOpen} onClose={onClose} title={title} onSubmit={handleSave} children>  
       <div>
         <RefinedPromptText />
       </div>
@@ -70,6 +91,7 @@ const SavePromptModal = ({
           placeholder="프롬프트 제목"
           value={promptTitle}
           onChange={(e) => setPromptTitle(e.target.value)}
+          disabled={!!promptId} // promptId가 존재할 경우 비활성화
         />
       </div>
       <div className={styles.formGroup}>
@@ -80,6 +102,7 @@ const SavePromptModal = ({
           placeholder="프롬프트 설명"
           value={promptDescription}
           onChange={(e) => setPromptDescription(e.target.value)}
+          disabled={!!promptId} // promptId가 존재할 경우 비활성화
         />
       </div>
       <div className={styles.formGroup}>
@@ -91,7 +114,7 @@ const SavePromptModal = ({
             {allCategories.map((category) => (
               <li
                 key={category}
-                onClick={(e) => setPromptCategory(category)}
+                onClick={(e) => !promptId && setPromptCategory(category)} // promptId가 없을 때만 변경 가능
                 className={`${styles.option} ${
                   category === promptCategory ? styles.active : styles.none
                 }`}

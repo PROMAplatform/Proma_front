@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PromptCategoryBlock from "./PromptCategoryBlock";
 import PromptValueBlock from "./PromptValueBlock";
 import styled from "styled-components";
