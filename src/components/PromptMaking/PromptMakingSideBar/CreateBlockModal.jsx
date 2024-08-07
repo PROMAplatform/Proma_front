@@ -13,19 +13,21 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [blockValue, setBlockValue] = useState("");
   const [blockDescription, setBlockDescription] = useState("");
-  const { makeBlock } = usePromptHook();
+  const { makeBlock, fetchBlocks } = usePromptHook();
   if (!isOpen) return null;
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
 
-  const handleSubmit = () => {
-    makeBlock(blockValue, blockDescription, selectedCategory, "TASK/RESEARCH");
+  const handleSubmit = async () => {
+    await makeBlock(blockValue, blockDescription, selectedCategory, "TASK/RESEARCH");
+    fetchBlocks("TASK/RESEARCH");
     onBlockCreated();
     setBlockValue("");
     setBlockDescription("");
     onClose();
+    
   };
 
   return (

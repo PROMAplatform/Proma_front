@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./PromptListItem.module.css";
 import EmojiPickerButton from "../../../common/EmojiPickerButton";
 import MoreButton from "./MoreButton";
+import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { H5 } from "../../../../styles/font-styles";
 
 function PromptListItem({emoji, prompt}) {
@@ -24,6 +25,7 @@ function PromptListItem({emoji, prompt}) {
         promptTitle={prompt.promptTitle}
         promptDescription={prompt.promptDescription}
         promptCategory={prompt.promptCategory}
+        listPromptAtom={prompt.listPromptAtom}
       />
     </div>
   );

@@ -49,7 +49,7 @@ function SideBar() {
           <AddButton text="새 프롬프트 추가하기" onClick={() => setIsPromptModalOpen(true)}/>
         </div>
       )}
-      {isChattingModalOpen && <ModalContainer title="새 채팅 추가하기" isOpen={isChattingModalOpen} onClose={closeChattingModal} onSubmit={handleAddChattingRoom}>
+      <ModalContainer title="새 채팅 추가하기" isOpen={isChattingModalOpen} onClose={closeChattingModal} onSubmit={handleAddChattingRoom}>
         <div className={styles.formGroup}>
           <label htmlFor="roomTitle">
             <H5>채팅방 이름</H5>
@@ -61,8 +61,8 @@ function SideBar() {
           />
         </div>
         <ModalButton title="추가하기" type="submit" variant="primary"/>
-      </ModalContainer>}
-      {isPromptModalOpen && <CreatePromptModal isOpen={isPromptModalOpen} onClose={closePromptModal}/>}
+      </ModalContainer>
+      <CreatePromptModal isOpen={isPromptModalOpen} onClose={closePromptModal}/>
     </div>
   );
 }

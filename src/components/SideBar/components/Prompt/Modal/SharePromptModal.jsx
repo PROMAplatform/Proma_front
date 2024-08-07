@@ -1,21 +1,24 @@
-import React, {useState, useEffect} from "react";
-import styles from "./PromptInfoModal.module.css";
+import React, {useState} from "react";
+import styles from "./PromptModal.module.css";
 import { H5, B5 } from "../../../../../styles/font-styles";
 import PromptDetail from "../../../../common/Prompt/PromptDetail";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
+import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
+import { useRecoilValue } from "recoil";
 
-const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술"];
+const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
 function SharePromptModal({
   isOpen,
   onClose,
   promptId,
-  initialTitle,
-  initialDescription,
-  initialCategory,
-  promptPreview
 }) {
+  const promptList = useRecoilValue(promptListState);
+  const prompt = promptList.find(p => p.promptId === promptId);
+  const { emoji, promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
+
+  // 모달 내부에서 사용할 상태 변수 추가
   const [promptTitle, setPromptTitle] = useState(initialTitle);
   const [promptDescription, setPromptDescription] = useState(initialDescription);
   const [promptCategory, setPromptCategory] = useState(initialCategory);
@@ -28,9 +31,8 @@ function SharePromptModal({
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 공유하기" onSubmit={handleShareClick}>
-      <div className={styles.promptDetailContainer}><PromptDetail promptId={promptId}/></div>
-      <div>
-        <div>{promptPreview}</div>
+      <div className={styles.promptDetailContainer}>
+        <PromptDetail listPromptAtom={listPromptAtom}/>
       </div>
       <div className={styles.formGroup}>
         <label htmlFor="promptTitle">

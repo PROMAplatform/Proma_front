@@ -258,6 +258,7 @@ export const useChattingRoomHooks = () => {
     );
   };
 
+  // 프롬프트 정보 수정
   const patchPromptInfo = async (
     promptId,
     promptTitle,
@@ -274,6 +275,37 @@ export const useChattingRoomHooks = () => {
         promptDescription,
         promptCategory,
       }
+    );
+    setPromptList((oldPromptList) => 
+      oldPromptList.map(prompt => {
+        if (prompt.promptId === promptId) {
+          return { ...prompt, promptTitle, promptDescription, promptCategory };
+        }
+        return prompt;
+      })
+    );
+  };
+
+  // 프롬프트 블록 수정
+  const patchPromptBlock = async (
+    promptId,
+    listPromptAtom,
+  ) => {
+    await sendRequest(
+      chattingInstance, 
+      "patch", `/prompt/block/${promptId}${mockUserId}`,
+      {
+        promptId,
+        listPromptAtom,
+      }
+    );
+    setPromptList((oldPromptList) => 
+      oldPromptList.map(prompt => {
+        if (prompt.promptId === promptId) {
+          return { ...prompt, listPromptAtom }; 
+        }
+        return prompt;
+      })
     );
   };
 
@@ -310,6 +342,7 @@ export const useChattingRoomHooks = () => {
     patchPromptEmoji,
     patchPrompt,
     patchPromptInfo,
+    patchPromptBlock,
     fetchChattingMessages,
     saveChattingMessage,
   };

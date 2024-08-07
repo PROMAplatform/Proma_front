@@ -2,28 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
-import { B3 } from "../../../../../styles/font-styles";
-import { useSetRecoilState } from "recoil";
+import { H5, B5 } from "../../../../../styles/font-styles";
+import { useSetRecoilState, useRecoilValue } from "recoil";
 import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
 import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
+import PromptDetail from "../../../../common/Prompt/PromptDetail";
 
-const ButtonContainer = styled.div`
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 10px;
-  > * {
-    margin: 0 !important;
-  }
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 `;
 
 function DeletePromptModal({
   isOpen, 
   onClose, 
   promptId, 
-  promptTitle
 }) {
+  const promptList = useRecoilValue(promptListState);
   const setPromptList = useSetRecoilState(promptListState);
+  const prompt = promptList.find(p => p.promptId === promptId);
+  const { emoji, promptTitle, promptDescription, promptCategory, listPromptAtom } = prompt;
+
   const { deletePrompt } = useChattingRoomHooks();
 
   if (!isOpen) return null;
@@ -37,13 +38,17 @@ function DeletePromptModal({
   };
 
   return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트를 삭제하시겠습니까?" onSubmit={handleDeleteClick} exitButton={false}>
-      <B3>[{promptTitle}] 프롬프트가 완전히 지워집니다.</B3>
-      <ButtonContainer>
-        <ModalButton title="취소" variant="secondary" size="small" onClick={onClose}/>
-        <ModalButton title="삭제" variant="primary" size="small" type="submit"/>
-      </ButtonContainer>
-     
+    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트를 삭제하시겠습니까?" onSubmit={handleDeleteClick}>
+      <ContentContainer>
+        <PromptDetail listPromptAtom={listPromptAtom}/>
+        <H5>프롬프트 제목</H5>
+        <B5>{promptTitle}</B5>
+        <H5>프롬프트 카테고리</H5>
+        <B5>{promptCategory}</B5>
+        <H5>프롬프트 설명</H5>
+        <B5>{promptDescription}</B5>
+      </ContentContainer>
+      <ModalButton title="삭제하기" variant="primary" type="submit"/>
     </ModalContainer>
   );
 }

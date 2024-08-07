@@ -18,7 +18,7 @@ function PromptList() {
     }, 1000); 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   // 더미로 우선은 하고 나중에 전부 recoil로 수정할 것
   const promptList = useRecoilValue(promptListState);
   // 나중에 이 부분은 consts 라는 폴더에서 관리할 것임.
@@ -30,6 +30,7 @@ function PromptList() {
     "건강",
     "교육",
     "예술",
+    "기타",
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("전체"); // 단일 선택
