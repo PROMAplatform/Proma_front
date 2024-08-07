@@ -5,7 +5,7 @@ import {
   messageState,
 } from "../../recoil/chatting/chattingRecoilState";
 import { sendRequest } from "../request";
-import { chattingInstance } from "../instance";
+import { aiChatInstance, chattingInstance } from "../instance";
 import { promptListState } from "../../recoil/prompt/promptRecoilState";
 
 // import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
@@ -34,112 +34,24 @@ export const useChattingRoomHooks = () => {
   // 임의의 채팅 메시지 데이터
   const mockChattingList = [
     {
-      chat_id: 1,
-      prompt: "",
-      message_question: "Hello?",
-      message_answer: "Hi there!",
-      message_file: [],
-      message_create_at: new Date().toISOString(),
+      messageId: 1,
+      promptId: 1,
+      chatroomId: 1,
+      messageQuestion: "Hello?",
+      messageAnswer: "Hi there!",
+      messageFile: [],
+      messageCreateAt: new Date().toISOString(),
     },
     {
-      chat_id: 2,
-      prompt: "",
-      message_question: "How are you?",
-      message_answer: "I'm fine, thank you.",
-      message_file: [],
-      message_create_at: new Date().toISOString(),
+      messageId: 2,
+      promptId: 1,
+      chatroomId: 1,
+      messageQuestion: "Hi?",
+      messageAnswer: "Hi there!",
+      messageFile: [],
+      messageCreateAt: new Date().toISOString(),
     },
   ];
-
-  // const mockPromptList = [
-  //   {
-  //     promptId: 1,
-  //     promptMethod: "Task/Research",
-  //     promptTitle: "프롬포트 제목1",
-  //     promptDescription: "프롬포트 설명1",
-  //     promptCategory: "IT",
-  //     emoji: "🏎",
-  //     promptPreview: "ai로 보낼 다듬어진 미리보기",
-  //     listPromptAtom: [
-  //       {
-  //         blockId: "1",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //       {
-  //         blockId: "2",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //       {
-  //         blockId: "3",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     promptId: 2,
-  //     promptMethod: "Task/Research",
-  //     promptTitle: "프롬포트 제목2",
-  //     promptDescription: "프롬포트 설명1",
-  //     promptCategory: "IT",
-  //     emoji: "🏎",
-  //     promptPreview: "ai로 보낼 다듬어진 미리보기",
-  //     listPromptAtom: [
-  //       {
-  //         blockId: "1",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //       {
-  //         blockId: "2",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //       {
-  //         blockId: "3",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     promptId: 3,
-  //     promptMethod: "Task/Research",
-  //     promptTitle: "프롬포트 제목3",
-  //     promptDescription: "프롬포트 설명3",
-  //     promptCategory: "IT",
-  //     emoji: "🏎",
-  //     promptPreview: "ai로 보낼 다듬어진 미리보기",
-  //     listPromptAtom: [
-  //       {
-  //         blockId: "1",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //       {
-  //         blockId: "2",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //       {
-  //         blockId: "3",
-  //         blockValue: "선생님",
-  //         blockDescription: "착하고 뭐하고 뭐한 선생님",
-  //         blockCategory: "화자",
-  //       },
-  //     ],
-  //   },
-  // ];
 
   //채팅방 리스트 가져오기
   //TODO- mock에서 실제 데이터로 수정해야함.
@@ -167,7 +79,6 @@ export const useChattingRoomHooks = () => {
     //   if (response.data.success) {
     //     setMessages(response.data.responseDto.selectChat);
     //   }
-    setMessages(mockChattingList);
   };
   //채팅방 생성
   const createChattingRoom = async (roomTitle, emoji) => {
@@ -177,14 +88,14 @@ export const useChattingRoomHooks = () => {
         "post",
         `/sidebar/room/save${mockUserId}`,
         {
-          roomTitle: "roomTitle",
-          emoji: "🏎",
+          roomTitle: roomTitle,
+          emoji: emoji,
         }
       );
       if (response.data.success) {
-        //TODO- 내가 방금 방으로 방을 이동하는 로직 추가
+        //TODO- 내가 방금 만든 방으로 방을 이동하는 로직 추가
         console.log("성공");
-        setCurrentRoomId();
+        setCurrentRoomId(response.data.responseDto.roomId);
       }
     } catch (error) {
       console.error("Failed to create chatting room:", error);
@@ -257,6 +168,22 @@ export const useChattingRoomHooks = () => {
     await sendRequest(chattingInstance, "get", `/${chatroomId}${mockUserId}`);
   };
 
+  const fetchChattingAnswer = async (
+    promptId,
+    messageQuestion,
+    fileType,
+    messageFile
+  ) => {
+    const response = await sendRequest(aiChatInstance, "post", `/question`, {
+      promptId: promptId,
+      messageQuestion,
+      fileType,
+      messageFile,
+    });
+
+    return response;
+  };
+
   const saveChattingMessage = async (
     chatroomId,
     prompt_id,
@@ -286,6 +213,7 @@ export const useChattingRoomHooks = () => {
     patchPromptEmoji,
     patchPrompt,
     fetchChattingMessages,
+    fetchChattingAnswer,
     saveChattingMessage,
   };
 };
