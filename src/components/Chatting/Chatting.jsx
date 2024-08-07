@@ -4,7 +4,7 @@ import { messageState } from "../../recoil/chatting/chattingRecoilState";
 import { useRecoilValue } from "recoil";
 import ChattingMain from "./components/ChattingMain";
 import ChattingMessages from "./components/Messages/ChattingMessages";
-import ChattingInput from "./components/Input/ChattingInput";
+import ChattingInput from "./components/ChattingInput/ChattingInput";
 
 function Chatting() {
   const messages = useRecoilValue(messageState);
