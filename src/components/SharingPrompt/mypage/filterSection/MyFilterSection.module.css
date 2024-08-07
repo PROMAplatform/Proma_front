@@ -1,0 +1,44 @@
+.backGround {
+    width: 80vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleSection {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 70vw;
+
+    margin-top: 20vh;
+}
+
+.title {
+    color: #000;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.buttonSection {
+    display: flex;
+    padding: 1vw;
+    justify-content: right;
+
+    margin-top: auto;
+}
+
+.lineSection {
+    width : 100%;
+}
+
+.line {
+    height: 2px;
+    background: #543FD6;
+    margin-bottom: 2vh;
+}

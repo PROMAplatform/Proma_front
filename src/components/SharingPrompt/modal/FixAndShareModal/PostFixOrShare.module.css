@@ -8,20 +8,61 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1101;
+    z-index: 1105;
     overflow: hidden;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    justify-items: left;
 
-    width: 40vw;
-    height: 80vh;
+    padding: 2vw;
+
+    width: 30vw;
+    height: 70vh;
     border-radius: 20px;
     background: #FFF;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
-    z-index: 1102;
+    z-index: 1106;
+}
+
+.topSection {
+    display: flex;
+    justify-content: center;
+}
+
+.blockSection {
+    margin-top: 4vh;
+    width: 15vw;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titleSection {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 5vh;
+}
+
+.inputTextBox {
+    margin-top: 1vh;
+
+    border: none;
+    border-radius: 10px;
+    background: #F4F4F4;
+
+    padding: 0.5vw;
+
+    color: #393939;
+
+    /* b3 */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 .categoryContainer {

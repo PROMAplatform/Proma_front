@@ -1,14 +1,15 @@
 import React from "react";
-import styles from "./myPage.module.css";
-import MyFilterSection from "../components/sharingPrompt/mypage/filterSection/MyFilterSection";
-import SharePromptList from "../components/sharingPrompt/Prompt/SharePromptList";
+import MyFilterSection from "../components/SharingPrompt/mypage/filterSection/MyFilterSection";
+import SharePromptList from "../components/SharingPrompt/Prompt/SharePromptList";
+import PageBar from "../components/PageBar/PageBar";
 
 function MyPage() {
     return(
-        <div className={styles.backGround}>
+        <>
             <MyFilterSection/>
             <SharePromptList/>
-        </div>
+            <PageBar/>
+        </>
     );
 }
 
