@@ -69,6 +69,13 @@
     line-height: normal;
 }
 
+.descriptionSection {
+    margin-top: 6vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
 .explainSection {
     display: flex;
     flex-direction: column;
@@ -78,12 +85,34 @@
     height: 20vh;
 }
 
-.likeSection {
+.backExplainSection {
     display: flex;
+    flex-direction: column;
     justify-items: center;
     align-items: center;
+    gap: 1vh;
 
-    margin: 2vh 2vw 2vh auto;
+    height: 16vh;
+    width: 16vw;
+
+    border-radius: 15px;
+    border: 0.424px solid #5A5A5A;
+    background: var(--white, #FFF);
+
+    padding: 2vh;
+}
+
+.userSection {
+    width: 80%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.likeSection {
+    display: flex;
+    align-items: center;
 }
 
 .likeText {

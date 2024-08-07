@@ -1,12 +1,14 @@
 .topSection {
     display: flex;
     justify-content: space-between;
+    text-align: center;
     margin-bottom: 5vh;
 }
 
 .likeSection {
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 .likeButton {

@@ -1,15 +1,6 @@
-.title {
+.searchBarSection {
     margin-top: 15vh;
 
-    color: #000;
-    text-align: center;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.searchBarSection {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -25,7 +16,7 @@
     height: 3vh;
     margin: 3vh;
     border-radius: 100px;
-    border: 1px solid #F4F4F4;
+    border: 1px solid #000000;
     background: #FFF;
     box-shadow: 0 0.5vw 1vh 0 rgba(242, 242, 242, 0.88);
 
@@ -37,6 +28,9 @@
 }
 
 .buttonSection {
+    margin-right: auto;
+    margin-left: auto;
+
     display: flex;
     width: 65vw;
     padding: 1vw;

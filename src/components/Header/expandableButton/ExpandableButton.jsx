@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./ExpandableButton.module.css";
 import { Link } from "react-router-dom";
 import {useRecoilState} from "recoil";
 import {myPageState} from "../../../recoil/community/myPageRecoilState";
+import {communityPromptListPageState} from "../../../recoil/community/communityRecoilState";
 
 function ExpandableButton({ buttonText }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [,setIsMyPageState] = useRecoilState(myPageState);
+    const [,setCurrentPage] = useRecoilState(communityPromptListPageState);
 
     const handleMouseEnter = () => {
         setIsExpanded(true);
@@ -16,8 +18,14 @@ function ExpandableButton({ buttonText }) {
         setIsExpanded(false);
     };
 
+    useEffect(() => {
+        const storedValue = localStorage.getItem('myPageState');
+        setIsMyPageState(storedValue);
+    });
+
     const handleClick = (type) => {
         setIsMyPageState(type);
+        setCurrentPage(0);
     };
 
     return (
@@ -26,9 +34,9 @@ function ExpandableButton({ buttonText }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <button className={styles.button}>
+            <div className={styles.button}>
                 {buttonText}
-            </button>
+            </div>
             <div className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ''}`}>
                 <Link to={`/mypage`} onClick={() => handleClick("like")}>좋아요</Link>
                 <Link to={`/mypage`} onClick={() => handleClick("write")}>작성한글</Link>
