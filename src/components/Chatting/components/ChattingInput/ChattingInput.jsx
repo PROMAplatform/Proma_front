@@ -13,29 +13,20 @@ import submitButtonIcon from "../../../../assets/images/submitButtonIcon.svg";
 import Preview from "./FilePreview";
 import PromptPreview from "../Prompt/PromptPreview";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting.js";
-
-const generateMockResponse = (question) => {
-  const responses = [
-    `## 답변\n\n당신의 질문 "${question}"에 대한 답변입니다:\n\n- 첫 번째 포인트\n- 두 번째 포인트\n- 세 번째 포인트\n\n자세한 내용은 다음과 같습니다:\n\n1. 상세 설명 1\n2. 상세 설명 2\n3. 상세 설명 3\n\n\`\`\`\n코드 예시가 필요한 경우 여기에 작성합니다.\n\`\`\``,
-    `### 답변\n\n${question}에 대해 다음과 같이 생각합니다:\n\n1. 주요 관점\n2. 부가 설명\n3. 결론\n\n> 중요한 인용구나 강조하고 싶은 내용을 여기에 작성합니다.`,
-    `# 답변\n\n## 1. 개요\n${question}에 대한 간단한 개요입니다.\n\n## 2. 주요 논점\n- 논점 1\n- 논점 2\n- 논점 3\n\n## 3. 결론\n최종적인 의견을 여기에 작성합니다.\n\n---\n\n추가 참고 사항이 있다면 여기에 작성합니다.`,
-  ];
-
-  return responses[Math.floor(Math.random() * responses.length)];
-};
+import { currentPromptState } from "../../../../recoil/prompt/promptRecoilState";
 
 function ChattingInput() {
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
-  const [setMessages] = useRecoilState(messageState);
+  const setMessages = useSetRecoilState(messageState);
   const currentRoomId = useRecoilValue(currentRoomIdState);
-  const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
   const input = useInput("");
   const isFirst = useRecoilValue(isFirstState);
   const setIsFirst = useSetRecoilState(isFirstState);
   const fileInputRef = useRef(null);
   const textareaRef = useRef(null);
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const { createChattingRoom } = useChattingRoomHooks();
+  const { fetchChattingAnswer, createChattingRoom } = useChattingRoomHooks();
+  const currentPrompt = useRecoilValue(currentPromptState);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,35 +39,37 @@ function ChattingInput() {
     try {
       // 이 부분 chattingAPI로 분리 예정
       if (isFirst) {
-        const newRoomId = await createChattingRoom(1);
-        setCurrentRoomId(newRoomId);
+        await createChattingRoom(input.value, "💡");
         setIsFirst(false);
       }
-      const mockResponse = generateMockResponse(input.value);
+      // const mockResponse = generateMockResponse(input.value);
 
       const newMessage = {
-        chat_id: Date.now(),
-        prompt: "",
-        message_question: input.value,
-        message_file: selectedFiles,
-        message_create_at: new Date().toISOString(),
-        room_id: currentRoomId,
+        messageId: Date.now(),
+        promptId: "",
+        messageQuestion: input.value,
+        messageFile: selectedFiles,
+        messageCreateAt: new Date().toISOString(),
+        chatroomId: currentRoomId,
       };
-
       setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-      await new Promise((resolve) =>
-        setTimeout(resolve, Math.random() * 2000 + 1000)
+      //TODO- pdf, image 처리에 관한 로직 좀 더 추가해야할 듯
+      const response = await fetchChattingAnswer(
+        currentPrompt.id,
+        input.value,
+        "",
+        ""
       );
-
-      const answerMessage = {
-        chat_id: Date.now() + 1,
-        message_answer: mockResponse,
-        message_create_at: new Date().toISOString(),
-        room_id: currentRoomId,
+      console.log(response);
+      const messageAnswer = {
+        messageId: Date.now() + 1,
+        messageAnswer: response.data.responseDto.messageAnswer,
+        messageCreateAt: new Date().toISOString(),
+        chatroomId: currentRoomId,
       };
 
-      setMessages((prevMessages) => [...prevMessages, answerMessage]);
+      setMessages((prevMessages) => [...prevMessages, messageAnswer]);
 
       input.reset();
       setSelectedFiles([]); // 파일 초기화

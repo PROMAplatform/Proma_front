@@ -4,9 +4,15 @@ import EmojiPickerButton from "../../../common/EmojiPickerButton";
 import MoreButton from "./MoreButton";
 import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { H5 } from "../../../../styles/font-styles";
+import { useSetRecoilState } from "recoil";
+import { currentPromptState } from "../../../../recoil/prompt/promptRecoilState";
 
-function PromptListItem({emoji, prompt}) {
+function PromptListItem(props) {
+  const setCurrentPrompt = useSetRecoilState(currentPromptState);
+
   function handlePromptClick() {
+    setCurrentPrompt({ id: props.promptId, name: props.name });
+    console.log(props.promptId);
     console.log("Prompt 전환");
   }
 
