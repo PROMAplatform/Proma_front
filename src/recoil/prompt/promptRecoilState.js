@@ -11,7 +11,10 @@ export const promptMethodState = atom({
   key: "promptMethodState",
   default: "Task/Research", // 기본 타입 설정
 });
-
+export const currentPromptState = atom({
+  key: "currentPromptState",
+  default: {},
+});
 const initialBlocks = {
   화자: [
     {
