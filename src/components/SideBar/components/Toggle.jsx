@@ -6,7 +6,7 @@ function Toggle({ isChatting, setIsChatting }) {
   return (
     <div className={styles.container}>
       <div className={styles.toggleContainer}>
-      <H4>PROMA prompt</H4>
+      {isChatting ? <H4>PROMA 채팅</H4> :  <H4>PROMA 프롬프트</H4> }
       <label className={styles.toggleSwitch}>
         <input
           className={styles.checkBox}
