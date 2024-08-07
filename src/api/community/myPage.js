@@ -16,18 +16,17 @@ export const useMyPageHooks = () => {
             const params = {
                 userId: 1,
                 category:selectedCategory,
-                search: "",
                 page: currentPage,
                 size: 9,
             };
 
             // sortOrder에 따라 정렬 기준 추가
             if (sortOrder === "latest") {
-                params.latest = "desc";
+                //params.latest = "desc";
                 params.like = "";
             } else if (sortOrder === "like") {
                 params.like = "desc";
-                params.latest = "";
+                //params.latest = "";
             }
 
             const response = await sendRequest(communityIntstance, "get", "/my-like",{ params });
@@ -56,18 +55,17 @@ export const useMyPageHooks = () => {
             const params = {
                 userId: 1,
                 category:selectedCategory,
-                search: "",
                 page: currentPage,
                 size: 9,
             };
 
             // sortOrder에 따라 정렬 기준 추가
             if (sortOrder === "latest") {
-                params.latest = "desc";
+                //params.latest = "desc";
                 params.like = "";
             } else if (sortOrder === "like") {
                 params.like = "desc";
-                params.latest = "";
+                //params.latest = "";
             }
 
             const response = await sendRequest(communityIntstance, "get", "/my-distribute",{ params });

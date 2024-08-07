@@ -27,9 +27,10 @@ function CategoryButton({selectCategory, setSelectCategory}) {
         : allCategories.filter(category => category !== "전체");
 
     useEffect(() => {
-        console.log(filteredCategories); // 디버깅용
+        console.log(filteredCategories);
         setSelectCategory(selectedCategory);
-    }, [selectedCategory, modalState, setSelectedCategory, filteredCategories]); // 필요한 의존성 추가
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedCategory, modalState, setSelectedCategory, filteredCategories]);
 
     return (
         <div>

@@ -4,7 +4,6 @@ import ComPromptListItem from "./ComPromptListItem";
 import {useRecoilValue} from "recoil";
 import {communityPromptListState, modalStackState} from "../../../recoil/community/communityRecoilState";
 import EmptyPromptListItem from "./components/EmptyPromptListItem";
-import modalStack from "../modal/ModalStack";
 
 function SharePromptList() {
     const postList = useRecoilValue(communityPromptListState);
