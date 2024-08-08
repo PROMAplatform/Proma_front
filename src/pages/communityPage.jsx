@@ -1,15 +1,15 @@
 import React from "react";
-import SharePromptList from "../components/sharingPrompt/Prompt/SharePromptList";
-import styles from "./communityPage.module.css";
-import FilterSection from "../components/sharingPrompt/community/FilterSection";
-
+import SharePromptList from "../components/SharingPrompt/Prompt/SharePromptList";
+import FilterSection from "../components/SharingPrompt/community/FilterSection";
+import PageBar from "../components/PageBar/PageBar";
 
 function CommunityPage() {
     return(
-        <div className={styles.backGround}>
+        <>
             <FilterSection/>
             <SharePromptList/>
-        </div>
+            <PageBar/>
+        </>
     );
 }
 

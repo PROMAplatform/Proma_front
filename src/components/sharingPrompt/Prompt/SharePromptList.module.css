@@ -1,8 +1,0 @@
-.promptContainer {
-    width: 70vw;
-    margin-top: 2vh;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2vw;
-    justify-content: space-between;
-}

@@ -1,0 +1,13 @@
+.active {
+    color: #543FD6;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.stateButton {
+    display: flex;
+    gap: 1vw;
+    cursor: pointer;
+}

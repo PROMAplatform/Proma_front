@@ -1,0 +1,42 @@
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin: auto;
+
+    width: 80%;
+    height: 25vh;
+
+    overflow: auto;
+}
+
+.listContainer::-webkit-scrollbar {
+    width: 10px;
+}
+.listContainer::-webkit-scrollbar-thumb {
+    background-color: #543FD6;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.listContainer::-webkit-scrollbar-track {
+    background-color: rgba(84, 63, 214, 0.5);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+}
+
+.shareButton {
+    display: inline-flex;
+    height: 52px;
+    padding: 16px 70px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    border-radius: 30.612px;
+    border: 1px solid #543FD6;
+    background: #543FD6;
+
+    cursor: pointer;
+}

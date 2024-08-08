@@ -10,6 +10,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme";
 import "./styles/global.css";
 import useGlobalShortcuts from "./hooks/common/useGlobalShortCut";
+import ModalStack from "./components/SharingPrompt/modal/ModalStack";
 
 function App() {
   useGlobalShortcuts();
@@ -29,6 +30,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
         </Routes>
       </BrowserRouter>
+      <ModalStack/>
     </ThemeProvider>
   );
 }
