@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PromptModal.module.css";
 import { H5, B5, B6 } from "../../../../../styles/font-styles";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import editIcon from "../../../../../assets/images/editIcon.svg";
-import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
+import { promptListState, promptMethodState } from "../../../../../recoil/prompt/promptRecoilState";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
 import PromptDetail from "../../../../common/Prompt/PromptDetail";
@@ -21,7 +21,7 @@ function EditPromptInfoModal({
   const promptList = useRecoilValue(promptListState);
   const prompt = promptList.find(p => p.promptId === promptId);
   const { promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
-
+  const setPromptMethod = useSetRecoilState(promptMethodState);
   // 모달 내부에서 사용할 상태 변수 추가
   const [promptTitle, setPromptTitle] = useState(initialTitle);
   const [promptDescription, setPromptDescription] = useState(initialDescription);
@@ -49,6 +49,7 @@ function EditPromptInfoModal({
   };
 
   const handleBlockEditClick = () => {
+    setPromptMethod(prompt.promptMethod);
     navigate("/promptMaking", { state: { promptId } }); // promptId를 state에 담아 navigate
   };
 
