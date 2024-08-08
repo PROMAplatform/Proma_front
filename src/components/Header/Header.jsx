@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from "./Header.module.css";
 import {Link} from "react-router-dom";
 import { ReactComponent as Logo2 } from "../../assets/images/comlogo2.svg";
@@ -9,12 +9,18 @@ import {myPageState} from "../../recoil/community/myPageRecoilState";
 import {communityPromptListPageState} from "../../recoil/community/communityRecoilState";
 
 function Header(){
+    const setMyPageState = useSetRecoilState(myPageState);
+    const setCurrentPage = useSetRecoilState(communityPromptListPageState);
+
     const useResetMyPageState = () => {
-        const setMyPageState = useSetRecoilState(myPageState);
-        const setCurrentPage = useSetRecoilState(communityPromptListPageState);
         setMyPageState(""); // 초기값으로 설정
         setCurrentPage(0);
     }
+
+    useEffect(() => {
+        const storedValue = localStorage.getItem('myPageState');
+        setMyPageState(storedValue);
+    });
 
     return(
         <div className={styles.headerContainer}>
