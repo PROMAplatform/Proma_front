@@ -11,11 +11,11 @@ import {
   categoryColorsState,
   blockDetailsState,
   categoryBlockShapesState,
-  promptMethodState,
 } from "../../../recoil/prompt/promptRecoilState";
 import logo from "../../../assets/logos/promaLogoSmall.svg";
 import CreateBlockModal from "./CreateBlockModal";
 import { usePromptHook } from "../../../api/prompt/prompt";
+import { getLocalPromptMethod } from "../../../util/localStorage";
 
 const PromptMakingSidebar = () => {
   const [activeCategory, setActiveCategory] =
@@ -26,7 +26,7 @@ const PromptMakingSidebar = () => {
   const categoryBlockShapes = useRecoilValue(categoryBlockShapesState);
   const blockDetails = useRecoilValue(blockDetailsState);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const promptMethod =  useRecoilValue(promptMethodState);
+  const localPromptMethod = getLocalPromptMethod();
   const { fetchBlocks } = usePromptHook();
 
   const getActiveColor = () => {
@@ -34,7 +34,7 @@ const PromptMakingSidebar = () => {
   };
 
   const handleBlockCreated = () => {
-    fetchBlocks(promptMethod);
+    fetchBlocks(localPromptMethod);
   };
 
   useEffect(() => {

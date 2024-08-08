@@ -9,6 +9,7 @@ import freeIcon from "../../../assets/images/freeIcon.svg";
 import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
 import { useSetRecoilState } from "recoil";
 import { useChattingRoomHooks } from "../../../api/chatting/chatting";
+import { setLocalPromptMethod } from "../../../util/localStorage";
 
 function ChattingMain() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ function ChattingMain() {
   const { getChattingRoomList } = useChattingRoomHooks();
   const handlePromptCreateClick = (type) => {
     setPromptMethod(type);
+    setLocalPromptMethod(type);
     navigate(`/promptMaking/`);
   };
 
