@@ -7,53 +7,8 @@ import shareIcon from "../../../../assets/images/shareIcon.svg";
 import EditPromptInfoModal from "./Modal/EditPromptInfoModal";
 import DeletePromptModal from "./Modal/DeletePromptModal";
 import SharePromptModal from "./Modal/SharePromptModal";
-import styled from "styled-components";
+import styles from "./MoreButton.module.css";
 import { B6 } from "../../../../styles/font-styles";
-
-const IconContainer = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px; 
-  position: absolute;
-  background-color: var(--white);
-  border-radius: 13px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
-  z-index: 1000;
-  top: ${({ position }) => position.top}px;
-  left: ${({ position }) => position.left}px;
-  box-sizing: border-box;
-  padding: 8px;
-`;
-
-const MenuButtonComtainer = styled.div`
-  width: auto;
-  height: auto;
-  border-radius: 5px;
-  padding: 10px 15px;
-  &:hover {
-    background-color: var(--color-gray2);
-  }
-`;
-
-const Menu = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  white-space: nowrap;
-`;
-
-const Icon = styled.img`
-  width: 18px;
-`;
 
 const MoreButton = ({promptId}) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -113,27 +68,31 @@ const MoreButton = ({promptId}) => {
 
   function MenuComponent({icon, title, onClick}) {
     return (
-      <MenuButtonComtainer onClick={onClick}>
-        <Menu>
-          <Icon src={icon} alt="icon" />
+      <div className={styles.menuButtonContainer} onClick={onClick}>
+        <div className={styles.menu}>
+          <img className={styles.icon} src={icon} alt="icon" />
           <B6 color="gray6">{title}</B6>
-        </Menu>
-      </MenuButtonComtainer>
+        </div>
+      </div>
     );
   }
   
   function MenuContainer() {
     return (
-      <Container ref={menuRef} position={menuPosition}>
+      <div
+        ref={menuRef}
+        style={{ top: menuPosition.top, left: menuPosition.left }}
+        className={styles.menuContainer}
+      >
         <MenuComponent icon={editIcon} title="수정하기" onClick={handleEditClick}/>
         <MenuComponent icon={trashIcon} title="삭제하기" onClick={handleDeleteClick}/>
         <MenuComponent icon={shareIcon} title="공유하기" onClick={handleShareClick}/>
-      </Container>
+      </div>
     )
   }
 
   return (
-    <IconContainer ref={buttonRef}>
+    <div className={styles.iconContainer} ref={buttonRef}>
       <CustomIconButton 
         icon={MoreIcon}
         onClick={handleButtonClick}
@@ -160,7 +119,7 @@ const MoreButton = ({promptId}) => {
           promptId={promptId}
         />
       )}
-    </IconContainer>
+    </div>
   );
 }
 

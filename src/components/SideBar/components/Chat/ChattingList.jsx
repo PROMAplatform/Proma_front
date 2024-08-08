@@ -16,12 +16,13 @@ function ChattingList() {
   const { getChattingRoomList, getChattingList } = useChattingRoomHooks();
 
   useEffect(() => {
-    setIsLoading(true);
-    getChattingRoomList();
-
-    setTimeout(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      await getChattingRoomList();
       setIsLoading(false);
-    }, 1000); 
+    };
+
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

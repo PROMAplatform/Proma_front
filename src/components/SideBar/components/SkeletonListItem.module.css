@@ -1,0 +1,60 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 5px;
+  background-color: var(--white);
+  padding: 20px;
+}
+
+.iconNName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.emojiPickerButton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-gray2);
+}
+
+.title {
+  width: 100px;
+  height: 22px;
+  border-radius: 5px;
+  background-color: var(--color-gray2);
+}
+
+.menuButton {
+  width: 20px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--color-gray2);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -300px 0;
+  }
+  100% {
+    background-position: 300px 0;
+  }
+}
+  
+.skeleton {
+  background-color: var(--color-gray2);
+  background-image: linear-gradient(
+    45deg,
+    var(--color-gray2) 0px,
+    var(--color-gray3) 50px,
+    var(--color-gray2) 100px
+  );
+  background-size: 300px 100%;
+  animation: shimmer 3s infinite linear;
+}

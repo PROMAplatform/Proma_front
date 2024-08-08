@@ -11,11 +11,13 @@ function PromptList() {
   const { fetchPromptList } = useChattingRoomHooks();
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchPromptList();
-    setTimeout(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      await fetchPromptList();
       setIsLoading(false);
-    }, 1000); 
+    };
+
+    fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
