@@ -62,13 +62,14 @@ export const usePromptHook = () => {
         "var(--block-red)",
         "var(--block-orange)",
         "var(--block-green)",
+        "var(--block-blue)"
       ];
       acc[category] = predefinedColors[index % predefinedColors.length];
       return acc;
     }, {});
     console.log("colors: ", colors);
     // 블록 모양 정의
-    const predefinedShapes = [1, 2, 3, 4, 5, 6];
+    const predefinedShapes = [1, 2, 3, 4, 5, 6, 7];
 
     // 블록 모양 정의
     const shapes = categories.reduce((acc, category, index) => {

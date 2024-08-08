@@ -82,6 +82,9 @@ const SvgBlock = ({ color, category, variant, size = "large" }) => {
         return `M23 0C10.2975 0 0 10.2975 0 23C0 35.7025 10.2975 46 23 46H${width}V33H${
           width - 11
         }V13H${width}V0H23Z`;
+      case 7:
+        return `M23 0C10.2975 0 0 10.2975 0 23C0 35.7025 10.2975 46 23 46H${width}V32.5263H${width - 5.5}L${width - 11} 23L${width - 5.5} 13.4737H${width}V0H23Z`;
+
       default:
         return "";
     }
