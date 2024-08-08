@@ -67,13 +67,13 @@ function PromptList() {
         </div>
       ) : filteredPrompts.length > 0 ? (
         <div className={styles.promptListContainer}>
-          {filteredPrompts.slice().reverse().map((prompt, index) => (
-          <PromptListItem
-            key={index}
-            emoji={prompt.emoji}
-            promptId={prompt.promptId}
-            name={prompt.promptTitle}
-          />
+          {filteredPrompts.slice().map((prompt, index) => (
+            <PromptListItem
+              key={index}
+              emoji={prompt.emoji}
+              promptId={prompt.promptId}
+              name={prompt.promptTitle}
+            />
           ))}
         </div>
       ) : (
