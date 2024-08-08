@@ -34,7 +34,7 @@ const PromptDetail = ({ listPromptAtom }) => {
   return (
     <Conatiner>
       {listPromptAtom.map((block) => (
-        <BlockContainer key={block.blockId}>
+        <BlockContainer key={`${block.blockId}-${block.blockCategory}`}>
           <PromptCategoryBlock 
             color={categoryColors[block.blockCategory]} 
             variant={categoryBlockShapes[block.blockCategory]} 

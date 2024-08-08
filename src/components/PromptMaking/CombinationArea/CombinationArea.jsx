@@ -43,8 +43,8 @@ const CombinationArea = ({promptId}) => {
         });
         setCombinations(newCombinations);
       }
-    }
-  }, [promptId]);
+    } 
+  }, [promptId, promptList, blockDetails, setCombinations]);
 
   return (
     <div className={styles.container}>
@@ -93,7 +93,7 @@ const CombinationArea = ({promptId}) => {
                           const block = blockDetails[combinations[category]];
                           if (!block) return null;
                           return (
-                            <div
+                            <div 
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
@@ -105,6 +105,7 @@ const CombinationArea = ({promptId}) => {
                                 variant={categoryBlockShapes[category]}
                                 size="large"
                               />
+                              {/* <div>{block.blockValue}</div> */}
                             </div>
                           );
                         }}

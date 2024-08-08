@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./SavePromptModal.module.css";
 import { H5, B5, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
-import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
+import { promptMethodState, promptListState } from "../../../recoil/prompt/promptRecoilState";
 import { useRecoilValue } from "recoil";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 import { usePromptHook } from "../../../api/prompt/prompt";
@@ -20,6 +20,8 @@ const SavePromptModal = ({
   promptId
 }) => {
   const navigate = useNavigate();
+  const promptList = useRecoilValue(promptListState);
+  const prompt = promptList.find(p => p.promptId === promptId);
   const [promptTitle, setPromptTitle] = useState("");
   const [promptDescription, setPromptDescription] = useState("");
   const [promptCategory, setPromptCategory] = useState("IT");
@@ -27,6 +29,19 @@ const SavePromptModal = ({
 
   const { savePrompt } = usePromptHook();
   const { patchPromptBlock } = useChattingRoomHooks();
+
+  useEffect(() => {
+    if (prompt) {
+      setPromptTitle(prompt.promptTitle || "");
+      setPromptDescription(prompt.promptDescription || "");
+      setPromptCategory(prompt.promptCategory || "IT");
+    } else {
+      // Reset state if no prompt is found
+      setPromptTitle("");
+      setPromptDescription("");
+      setPromptCategory("IT");
+    }
+  }, [prompt])
 
   if(!isOpen) return null;
 
