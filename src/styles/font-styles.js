@@ -24,7 +24,7 @@ export const H2 = styled.p`
 `;
 
 export const H3 = styled.p`
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 800;
   font-family: "Inter", sans-serif;
   color: ${({ theme, color }) => (color ? theme.colors[color] : "black")};

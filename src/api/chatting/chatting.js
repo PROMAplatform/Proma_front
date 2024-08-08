@@ -135,7 +135,11 @@ export const useChattingRoomHooks = () => {
       "delete",
       `/sidebar/prompt/${promptId}${mockUserId}`
     );
+    setPromptList((oldPromptList) => 
+      oldPromptList.filter(prompt => prompt.promptId !== promptId)
+    );
   };
+  
   const patchPromptEmoji = async (promptId, emoji) => {
     await sendRequest(
       chattingInstance,
@@ -162,6 +166,55 @@ export const useChattingRoomHooks = () => {
       }
     );
   };
+
+  // 프롬프트 정보 수정
+  const patchPromptInfo = async (
+    promptId,
+    promptTitle,
+    promptDescription,
+    promptCategory
+  ) => {
+    await sendRequest(
+      chattingInstance,
+      "patch",
+      `/sidebar/prompt/${promptId}${mockUserId}`,
+      {
+        promptId,
+        promptTitle,
+        promptDescription,
+        promptCategory,
+      }
+    );
+    setPromptList((oldPromptList) => 
+      oldPromptList.map(prompt => {
+        if (prompt.promptId === promptId) {
+          return { ...prompt, promptTitle, promptDescription, promptCategory };
+        }
+        return prompt;
+      })
+    );
+  };
+
+  // 프롬프트 블록 수정
+  const patchPromptBlock = async (
+    promptId,
+    listPromptAtom,
+  ) => {
+    await sendRequest(
+      chattingInstance, 
+      "patch", `/prompt/block/${promptId}${mockUserId}`,
+        listPromptAtom,
+    );
+    setPromptList((oldPromptList) => 
+      oldPromptList.map(prompt => {
+        if (prompt.promptId === promptId) {
+          return { ...prompt, listPromptAtom }; 
+        }
+        return prompt;
+      })
+    );
+  };
+
   const fetchChattingMessages = async (chatroomId) => {
     await sendRequest(chattingInstance, "get", `/${chatroomId}${mockUserId}`);
   };
@@ -210,6 +263,8 @@ export const useChattingRoomHooks = () => {
     deletePrompt,
     patchPromptEmoji,
     patchPrompt,
+    patchPromptInfo,
+    patchPromptBlock,
     fetchChattingMessages,
     fetchChattingAnswer,
     saveChattingMessage,

@@ -8,6 +8,7 @@ const theme = {
       blockRed: '#f83600',
       blockOrange: '#feb702',
       blockGreen: '#1ccf4e',
+      blockBlue: '#40ABF8',
       white: '#ffffff',
       black: '#000000',
       gray1: "#f7f7f7",

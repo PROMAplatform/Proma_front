@@ -1,30 +1,28 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
-import { B2, B4, B6 } from "../../../styles/font-styles";
+import { B2, B3, B4 } from "../../../styles/font-styles";
 
 const sizeMap = {
   small: {
     scale: 0.6,
-    fontSize: B6,
+    fontStyle: B4,
   },
   medium: {
     scale: 0.8,
-    fontSize: B4,
+    fontStyle: B3,
   },
   large: {
     scale: 1,
-    fontSize: B2,
+    fontStyle: B2,
   },
 };
 
 const SvgContainer = styled.svg`
-  height: 46px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  transform: scale(${({ size }) => sizeMap[size].scale});
+  display: inline-block;
+  vertical-align: middle;
   transform-origin: left;
   width: ${({ width }) => width}px;
+  height: ${({ height }) => height}px;
 `;
 
 const TextContainer = styled.div`
@@ -32,12 +30,16 @@ const TextContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
   white-space: nowrap;
 `;
 
-const SvgContentBlock = ({ color, variant, value, size = "medium" }) => {
+const SvgContentBlock = ({ color, variant, value, size = "large" }) => {
   const textRef = useRef(null);
   const [textWidth, setTextWidth] = useState(0); // 기본 너비 설정
+
+  const scale = sizeMap[size].scale;
+  const height = 46; // 스케일에 맞춰 높이를 조정
 
   useLayoutEffect(() => {
     if (textRef.current) {
@@ -46,7 +48,7 @@ const SvgContentBlock = ({ color, variant, value, size = "medium" }) => {
     }
   }, [value]);
 
-  const FontStyle = sizeMap[size].fontSize;
+  const FontStyle = sizeMap[size].fontStyle;
 
   const getPath = (variant, width) => {
     switch (variant) {
@@ -68,9 +70,9 @@ const SvgContentBlock = ({ color, variant, value, size = "medium" }) => {
   };
 
   return (
-    <SvgContainer size={size} width={textWidth} viewBox={`0 0 ${textWidth} 46`}>
+    <SvgContainer size={size} width={textWidth * scale} height={height * scale} viewBox={`0 0 ${textWidth} ${height}`}>
       <path fillRule="evenodd" clipRule="evenodd" d={getPath(variant, textWidth)} fill={color} />
-      <foreignObject x="0" y="0" width={textWidth} height="46">
+      <foreignObject x="0" y="0" width={textWidth} height="100%">
         <TextContainer>
           <FontStyle color="white" ref={textRef}>{value}</FontStyle>
         </TextContainer>

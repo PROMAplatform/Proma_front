@@ -9,7 +9,7 @@
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10) inset;
   position: relative;
   box-sizing: border-box;
-  min-height: 600px;
+  min-height: 700px;
 }
 
 .title {
@@ -74,6 +74,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.block {
+  display: flex;
+  align-items: center;
   position: relative;
   left: -11px;
 }

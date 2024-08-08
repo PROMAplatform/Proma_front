@@ -1,0 +1,90 @@
+.container {
+  position: relative;
+  width: 1000px;
+  margin: 20px auto;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+}
+
+.block1 {
+    position: absolute;
+    z-index: 10;
+    width: 188.349px;
+    height: 202.784px;
+    transform: rotate(12.881deg);
+    flex-shrink: 0;
+    top: 180px;
+    left: 25%;
+}
+
+.block2 {
+    position: absolute;
+    z-index: 9;
+    width: 159.473px;
+    height: 171.981px;
+    transform: rotate(7.51deg);
+    flex-shrink: 0;
+    top: 190px;
+    right: 25%;
+}
+
+.block3 {
+    position: absolute;
+    z-index: 8;
+    width: 139.717px;
+    height: 150.425px;
+    transform: rotate(-17.368deg);
+    flex-shrink: 0;
+    top: 100px;
+    right: 42%;
+}
+
+.block4 {
+    position: absolute;
+    z-index: 7;
+    width: 80.548px;
+    height: 86.721px;
+    transform: rotate(145.524deg);
+    flex-shrink: 0;
+    top: 120px;
+    left: 30%;
+}
+
+.block5 {
+    position: absolute;
+    z-index: 6;
+    width: 68.119px;
+    height: 73.743px;
+    transform: rotate(-8.463deg);
+    flex-shrink: 0;
+    top: 280px;
+    left: 45%;
+}
+
+.block6 {
+    position: absolute;
+    z-index: 5;
+    width: 68.868px;
+    height: 74.147px;
+    transform: rotate(113.816deg);
+    flex-shrink: 0;
+    top: 70px;
+    right: 35%;
+}
+
+.block7 {
+    position: absolute;
+    z-index: 4;
+    width: 46.924px;
+    height: 50.771px;
+    transform: rotate(-124.414deg);
+    flex-shrink: 0;
+    top: 30px;
+    left: 40%;
+}
+
+.shadow {
+    position: absolute;
+    bottom: 0px;
+}

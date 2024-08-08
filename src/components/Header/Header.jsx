@@ -23,7 +23,7 @@ function Header(){
                 <Logo2/>
             </div>
             <div className={styles.navContainer}>
-                <div>소개</div>
+                <div><Link to={"/about"}>소개</Link></div>
                 <div><Link to={"/community"} onClick={useResetMyPageState}>커뮤니티</Link></div>
                 <div><Link to={"/"}>채팅</Link></div>
                 <ExpandableButton buttonText="마이페이지"/>

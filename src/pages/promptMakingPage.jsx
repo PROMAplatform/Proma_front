@@ -1,13 +1,15 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { DragDropContext } from "react-beautiful-dnd";
 import styles from "./promptMakingPage.module.css";
-
 import CombinationArea from "../components/PromptMaking/CombinationArea/CombinationArea";
 import { SnackbarProvider } from "notistack";
 import PromptMakingSidebar from "../components/PromptMaking/PromptMakingSideBar/PromptMakingSideBar";
 import { usePromptMaking } from "../hooks/promptHook/usePromptMaking";
 
 const PromptMakingPage = () => {
+  const location = useLocation();
+  const promptId = location.state?.promptId; 
   const { onDragEnd } = usePromptMaking();
 
   return (
@@ -16,7 +18,7 @@ const PromptMakingPage = () => {
         <div className={styles.app}>
           <PromptMakingSidebar />
           <div className={styles.areaContainer}>
-            <CombinationArea />
+            <CombinationArea promptId={promptId}/>
           </div>
         </div>
       </DragDropContext>

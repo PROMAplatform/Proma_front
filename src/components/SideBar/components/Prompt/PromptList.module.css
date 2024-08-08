@@ -3,20 +3,28 @@
 }
 .categoryContainer {
   display: flex;
-  justify-content: center;
-  padding: 6px;
+  justify-content: flex-start;
+  padding: 10px;
   gap: 10px;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
 }
-  
+
+.categoryContainer::-webkit-scrollbar {
+  display: none;
+}
+
   .categoryButton {
     padding: 5px 10px;
-    border: 1px solid var(--color-gray4);
+    border: 1.5px solid var(--color-gray4);
     background-color: #fff;
     cursor: pointer;
     border-radius: 6px;
     padding: 5px 10px;
     color: var(--color-gray6);
     white-space: nowrap;
+    font-size: 16px;
   }
   
   .active {

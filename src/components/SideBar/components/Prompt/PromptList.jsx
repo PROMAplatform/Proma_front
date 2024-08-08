@@ -4,15 +4,21 @@ import styles from "./PromptList.module.css";
 import { useRecoilValue } from "recoil";
 import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
+import SkeletonListItem from "../SkeletonListItem";
 
 function PromptList() {
+  const [isLoading, setIsLoading] = useState(true);
   const { fetchPromptList } = useChattingRoomHooks();
 
   useEffect(() => {
+    setIsLoading(true);
     fetchPromptList();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  
   // 더미로 우선은 하고 나중에 전부 recoil로 수정할 것
   const promptList = useRecoilValue(promptListState);
   // 나중에 이 부분은 consts 라는 폴더에서 관리할 것임.
@@ -24,6 +30,7 @@ function PromptList() {
     "건강",
     "교육",
     "예술",
+    "기타",
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("전체"); // 단일 선택
@@ -50,16 +57,26 @@ function PromptList() {
           </button>
         ))}
       </div>
-      <div className={styles.promptListContainer}>
-        {filteredPrompts.map((prompt, index) => (
+      {isLoading ? ( // 로딩 중일 때
+        <div className={styles.promptListContainer}>
+          {Array.from({ length: filteredPrompts.length || 5 }).map((_, index) => (
+            <SkeletonListItem key={index} />
+          ))}
+        </div>
+      ) : filteredPrompts.length > 0 ? (
+        <div className={styles.promptListContainer}>
+          {filteredPrompts.slice().reverse().map((prompt, index) => (
           <PromptListItem
             key={index}
             emoji={prompt.emoji}
             promptId={prompt.promptId}
             name={prompt.promptTitle}
           />
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p>프롬프트가 없습니다.</p>
+      )}
     </div>
   );
 }

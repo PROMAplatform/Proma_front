@@ -30,9 +30,11 @@ function CustomIconButton({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
+        width: "18px",
+        height: "18px",
         cursor: "pointer",
         color: iconColor,
-        margin: "15px"
+        margin: "5px"
       }}
     />
   );

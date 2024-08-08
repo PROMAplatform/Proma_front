@@ -16,7 +16,7 @@ function useModal(isOpen, onClose) {
         setIsModalOpen(isOpen);
     }, [isOpen]);
 
-    return { isModalOpen, handleOverlayClick };
+    return { isModalOpen, setIsModalOpen, handleOverlayClick };
 }
 
 export default useModal;

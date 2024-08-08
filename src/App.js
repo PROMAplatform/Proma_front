@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PromptMakingPage from "./pages/promptMakingPage";
 import MainPage from "./pages/mainPage";
+import AboutPage from "./pages/aboutPage";
 import CommunityPage from "./pages/communityPage";
 import Header from "./components/Header/Header";
 import MyPage from "./pages/myPage";
@@ -25,6 +26,7 @@ function App() {
             element={<KakaoAfterLogin />}
           />
           <Route path="/promptMaking" element={<PromptMakingPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

@@ -5,16 +5,23 @@ import Toggle from "./components/Toggle";
 import PromptList from "./components/Prompt/PromptList";
 import AddButton from "./components/AddButton";
 import promaLogoSmall from "../../assets/logos/promaLogoSmall.svg";
+import CreatePromptModal from "./components/Prompt/Modal/CreatePromptModal";
 import { useChattingRoomHooks } from "../../api/chatting/chatting";
 
 function SideBar() {
   const [isChatting, setIsChatting] = useState(false);
-  const { createChattingRoom } = useChattingRoomHooks();
+  const [isPromptModalOpen, setIsPromptModalOpen] = useState(false);
+  const { createChattingRoom, getChattingRoomList } = useChattingRoomHooks();
   // const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
 
   const handleAddChattingRoom = async () => {
     await createChattingRoom();
+    await getChattingRoomList(); // 새로운 채팅방 목록
   };
+
+  const closePromptModal = () => {
+    setIsPromptModalOpen(false);
+  }
 
   return (
     <div className={styles.container}>
@@ -30,9 +37,10 @@ function SideBar() {
       ) : (
         <div className={styles.listContainer}>
           <PromptList />
-          <AddButton text="새 프롬프트 추가하기" />
+          <AddButton text="새 프롬프트 추가하기" onClick={() => setIsPromptModalOpen(true)}/>
         </div>
       )}
+      <CreatePromptModal isOpen={isPromptModalOpen} onClose={closePromptModal}/>
     </div>
   );
 }

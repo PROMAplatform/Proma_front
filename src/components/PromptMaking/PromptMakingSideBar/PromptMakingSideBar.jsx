@@ -3,7 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import styles from "./PromptMakingSidebar.module.css";
 import { H4, B5 } from "../../../styles/font-styles";
-import PromptValueBlock from "../components/PromptValueBlock";
+import PromptValueBlock from "../../common/Prompt/PromptValueBlock";
 import {
   activeBlocksState,
   activeCategoryState,
@@ -33,8 +33,12 @@ const PromptMakingSidebar = () => {
     return categoryColors[activeCategory] || "purple";
   };
 
-  useEffect(() => {
+  const handleBlockCreated = () => {
     fetchBlocks(promptMethod);
+  };
+
+  useEffect(() => {
+    handleBlockCreated();
     console.log("blocks 불러오기");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -115,6 +119,7 @@ const PromptMakingSidebar = () => {
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           categories={categories}
+          onBlockCreated={handleBlockCreated}
         />
       </div>
     </div>
