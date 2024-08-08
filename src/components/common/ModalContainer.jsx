@@ -2,7 +2,7 @@ import React from "react";
 import useModal from "../../hooks/useModal";
 import styled from "styled-components";
 import CustomIconButton from "./CustomIconButton";
-import { ReactComponent as ExitIcon} from "../../assets/images/exitIcon.svg";
+import { ReactComponent as ExitIcon } from "../../assets/images/exitIcon.svg";
 import { H3 } from "../../styles/font-styles";
 
 const ModalOverlay = styled.div`
@@ -44,15 +44,28 @@ const ExitIconContainer = styled.div`
   right: 30px;
   margin: 0;
   padding: 0;
-  display: ${({ visibility }) => (visibility ? "block" : "none")}; 
+  display: ${({ visibility }) => (visibility ? "block" : "none")};
 `;
 
-function ModalContainer({isOpen, onClose, title, onSubmit, children, exitButton = true}) {
-  const { isModalOpen, setIsModalOpen, handleOverlayClick } = useModal(isOpen, onClose);
+function ModalContainer({
+  isOpen,
+  onClose,
+  title,
+  onSubmit,
+  children,
+  exitButton = true,
+}) {
+  const { isModalOpen, setIsModalOpen, handleOverlayClick } = useModal(
+    isOpen,
+    onClose
+  );
   if (!isModalOpen) return null;
 
   const closeModal = () => {
     setIsModalOpen(false);
+    if (onClose) {
+      onClose();
+    }
   };
 
   const handleSubmit = (event) => {
@@ -69,9 +82,7 @@ function ModalContainer({isOpen, onClose, title, onSubmit, children, exitButton 
         <ExitIconContainer visibility={exitButton}>
           <CustomIconButton icon={ExitIcon} onClick={closeModal} />
         </ExitIconContainer>
-        <FormContainer onSubmit={handleSubmit}>
-          {children}
-        </FormContainer>
+        <FormContainer onSubmit={handleSubmit}>{children}</FormContainer>
       </Container>
     </ModalOverlay>
   );

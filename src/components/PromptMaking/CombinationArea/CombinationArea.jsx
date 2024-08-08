@@ -15,11 +15,11 @@ import {
   availableCategoriesState,
   categoryBlockShapesState,
   promptMethodState,
-  promptListState
+  promptListState,
 } from "../../../recoil/prompt/promptRecoilState";
 import SavePromptModal from "./SavePromptModal";
 
-const CombinationArea = ({promptId}) => {
+const CombinationArea = ({ promptId }) => {
   const [combinations, setCombinations] = useRecoilState(combinationsState);
   const promptMethod = useRecoilValue(promptMethodState);
   const categoryColors = useRecoilValue(categoryColorsState);
@@ -33,17 +33,17 @@ const CombinationArea = ({promptId}) => {
   const closeModal = () => setIsModalOpen(false);
 
   useEffect(() => {
-    const prompt = promptList.find(p => p.promptId === promptId);
+    const prompt = promptList.find((p) => p.promptId === promptId);
     if (prompt) {
       const { listPromptAtom } = prompt;
       if (Array.isArray(listPromptAtom)) {
         const newCombinations = {};
-        listPromptAtom.forEach(block => {
+        listPromptAtom.forEach((block) => {
           newCombinations[block.blockCategory] = block.blockId;
         });
         setCombinations(newCombinations);
       }
-    } 
+    }
   }, [promptId, promptList, blockDetails, setCombinations]);
 
   return (
@@ -93,7 +93,7 @@ const CombinationArea = ({promptId}) => {
                           const block = blockDetails[combinations[category]];
                           if (!block) return null;
                           return (
-                            <div 
+                            <div
                               ref={provided.innerRef}
                               {...provided.draggableProps}
                               {...provided.dragHandleProps}
