@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styles from "./CreatePromptModal.module.css";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
 import PromptMethodButton from "../PromptMethodButton";
@@ -10,24 +10,6 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { promptMethodState } from "../../../../../recoil/prompt/promptRecoilState";
 import { H5 } from "../../../../../styles/font-styles";
-
-const TypeContainer = styled.div`
-  display: inline-flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: stretch;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-`;
 
 function CreatePromptModal({isOpen, onClose}) {
   const navigate = useNavigate();
@@ -50,9 +32,9 @@ function CreatePromptModal({isOpen, onClose}) {
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose} title="새 프롬프트 추가하기" onSubmit={handleCreateClick}>
-      <Container>
+      <div className={styles.container}>
       <H5>프롬프트의 타입을 선택하세요</H5>
-      <TypeContainer>
+      <div className={styles.typeContainer}>
         <PromptMethodButton
           type="Character"
           icon={characterIcon}
@@ -71,8 +53,8 @@ function CreatePromptModal({isOpen, onClose}) {
           isSelected={selectedMethod === "Free"}
           onClick={() => handleMethodClick("Free")}
         />
-      </TypeContainer>
-      </Container>
+      </div>
+      </div>
       <ModalButton title="선택 완료" variant="primary" size="medium" onClick={handleCreateClick}/>
     </ModalContainer>
   );
