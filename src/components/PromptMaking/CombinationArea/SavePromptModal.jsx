@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./SavePromptModal.module.css";
 import { H5, B5, B3 } from "../../../styles/font-styles";
 import ModalButton from "../../common/ModalButton";
-import { promptMethodState, promptListState } from "../../../recoil/prompt/promptRecoilState";
+import { promptMethodState, promptListState, blockDetailsState } from "../../../recoil/prompt/promptRecoilState";
 import { useRecoilValue } from "recoil";
 import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 import { usePromptHook } from "../../../api/prompt/prompt";
@@ -21,6 +21,7 @@ const SavePromptModal = ({
 }) => {
   const navigate = useNavigate();
   const promptList = useRecoilValue(promptListState);
+  const blockDetails = useRecoilValue(blockDetailsState);
   const prompt = promptList.find(p => p.promptId === promptId);
   const [promptTitle, setPromptTitle] = useState("");
   const [promptDescription, setPromptDescription] = useState("");
@@ -50,7 +51,9 @@ const SavePromptModal = ({
       const listPromptAtom = Object.entries(combinations)
         .filter(([category, blockId]) => blockId)
         .map(([category, blockId]) => ({
-        blockId: Number(blockId)
+          blockId: Number(blockId),
+          blockCategory: category,
+          blockValue: blockDetails[blockId].blockValue
       }));
       console.log("listPromptAtom:", listPromptAtom);
       patchPromptBlock(promptId, listPromptAtom);

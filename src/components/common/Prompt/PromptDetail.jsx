@@ -2,8 +2,6 @@ import React from "react";
 import PromptCategoryBlock from "./PromptCategoryBlock";
 import PromptValueBlock from "./PromptValueBlock";
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { categoryBlockShapesState } from "../../../recoil/prompt/promptRecoilState";
 
 const Conatiner = styled.div`
   display: flex;
@@ -24,7 +22,6 @@ const ValueBlockContainer = styled.div`
 `;
 
 const PromptDetail = ({ listPromptAtom }) => {
-  const categoryBlockShapesArray = useRecoilValue(categoryBlockShapesState);
   const predefinedColors = [
     "var(--block-main-color)",
     "var(--block-purple)",
@@ -32,8 +29,10 @@ const PromptDetail = ({ listPromptAtom }) => {
     "var(--block-red)",
     "var(--block-orange)",
     "var(--block-green)",
-    "var(--blokc-blue)"
+    "var(--block-blue)"
   ];
+
+  const predefinedBlockShapes = [1, 2, 3, 4, 5, 6, 7];
 
   const categoryStyles = {};
   const categories = [...new Set(listPromptAtom.map(block => block.blockCategory))];
@@ -41,7 +40,7 @@ const PromptDetail = ({ listPromptAtom }) => {
   categories.forEach((category, index) => {
     categoryStyles[category] = {
       color: predefinedColors[index % predefinedColors.length],
-      shape: categoryBlockShapesArray[index % categoryBlockShapesArray.length][1]
+      shape: predefinedBlockShapes[index % predefinedBlockShapes.length]
     };
   });
 

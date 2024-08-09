@@ -64,6 +64,8 @@ const SvgContentBlock = ({ color, variant, value, size = "large" }) => {
         return `M${width - 23} 0H11V13H0V33H11V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       case 6:
         return `M${width - 23} 0H11V13H0V33H11V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
+      case 7:
+        return `M${width - 23} 0H11V13.4737H5.5L0 23L5.5 32.5263H11V46H${width - 23}C${width - 10.2975} 46 ${width} 35.7025 ${width} 23C${width} 10.2975 ${width - 10.2975} 0 ${width - 23} 0Z`;
       default:
         return "";
     }

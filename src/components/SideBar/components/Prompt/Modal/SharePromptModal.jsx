@@ -6,6 +6,7 @@ import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
 import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
 import { useRecoilValue } from "recoil";
+import { useCommunityHooks } from "../../../../../api/community/community";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
@@ -15,6 +16,7 @@ function SharePromptModal({
   promptId,
 }) {
   const promptList = useRecoilValue(promptListState);
+  const { sharePrompt } = useCommunityHooks();
   const prompt = promptList.find(p => p.promptId === promptId);
 
   const { promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
@@ -27,6 +29,12 @@ function SharePromptModal({
   if (!isOpen) return null;
 
   const handleShareClick = () => {
+    const data = {
+      title: promptTitle,
+      description: promptDescription,
+      category: promptCategory,
+    };
+    sharePrompt(promptId, data);
     onClose();
   };
 

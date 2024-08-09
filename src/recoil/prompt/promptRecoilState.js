@@ -139,10 +139,11 @@ const predefinedColors = [
   "var(--block-red)",
   "var(--block-orange)",
   "var(--block-green)",
+  "var(--block-blue)"
 ];
 
 // 블록 모양 정의
-const predefinedShapes = [1, 2, 3, 4, 5, 6];
+const predefinedShapes = [1, 2, 3, 4, 5, 6, 7];
 
 // 카테고리별 색상
 export const categoryColorsState = atom({
