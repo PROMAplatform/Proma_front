@@ -1,3 +1,11 @@
+.buttonLocation {
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
 .buttonSection {
     display: flex;
+    width: 30vw;
 }

@@ -1,8 +1,14 @@
 import React from 'react';
 import styles from './DeletePromptModal.module.css';
+import {useSetRecoilState} from "recoil";
+import {stateChange} from "../../../../recoil/community/communityRecoilState";
+import {B3, H3} from "../../../../styles/font-styles";
+import ModalButton from "../../../common/ModalButton";
 
-function DeletePromptModal({close, onDelete}) {
+function DeletePromptModal({close, onDelete, post}) {
+    const setStateChange = useSetRecoilState(stateChange);
     function handleDeleteButton() {
+        setStateChange(prevValue => prevValue + 1);
         onDelete();
         close();
     }
@@ -14,11 +20,11 @@ function DeletePromptModal({close, onDelete}) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.container}>
-                <div>프로젝트 게시글을 삭제하시겠습니까?</div>
-                <div>[프롬프트 이름] 프롬프트가 커뮤니티에서 삭제됩니다. 내 프롬프트에서 ...</div>
-                <div>
-                    <button onClick={handleClose}>취소</button>
-                    <button onClick={handleDeleteButton}>삭제</button>
+                <H3>게시글을 삭제하시겠습니까?</H3>
+                <B3>[{post.postTitle}] 게시글이 커뮤니티에서 삭제됩니다.</B3>
+                <div className={styles.buttonSection}>
+                    <ModalButton title={"취소"} variant={'secondary'} size={'small'} onClick={handleClose}/>
+                    <ModalButton title={"삭제"} variant={'primary'} size={'small'} onClick={handleDeleteButton}/>
                 </div>
             </div>
         </div>

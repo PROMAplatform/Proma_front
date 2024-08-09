@@ -30,9 +30,20 @@
 }
 
 .topSection {
-    display: flex;
-    margin-left: auto;
-    gap: 2vw;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.modalTitle {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.closeButton {
+    grid-column: 3;
+    justify-self: end;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .explainContainer {

@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import styles from "./TopSection.module.css";
 import {ReactComponent as LikeImg} from "../../../../../assets/images/likeImg.svg";
 import {ReactComponent as LikeTrue} from "../../../../../assets/images/heartTrue.svg";
+import {ReactComponent as ExitIcon} from "../../../../../assets/images/exitIcon.svg";
 import {useCommunityHooks} from "../../../../../api/community/community";
 import {useSetRecoilState} from "recoil";
 import {stateChange} from "../../../../../recoil/community/communityRecoilState";
+import {methodImage} from "../../../util/methodImage";
+import {B4, B6, H3} from "../../../../../styles/font-styles";
 
 function TopSection({post, onClose}) {
     const setStateChange = useSetRecoilState(stateChange);
@@ -24,31 +27,40 @@ function TopSection({post, onClose}) {
             setLocalLikeCount(prevValue => prevValue + 1);
         }
 
-        setStateChange(prevValue => prevValue + 1);
         console.log("좋아요 버튼 : ", post.postId);
+    }
+
+    function handleCloseClick() {
+        setStateChange(prevValue => prevValue + 1);
+        onClose();
     }
 
     return (
         <div>
             <div className={styles.topSection}>
-                <div>
+                <div className={styles.methodSection}>
+                    <img src={methodImage[post.promptMethod]} alt={post.promptMethod}/>
                     {post.promptMethod}
                 </div>
                 <div className={styles.likeSection}>
                     <div>
-                        {post.postTitle}
+                        <H3>{post.postTitle}</H3>
                     </div>
                     <div>
-                        by {post.userName}
+                        <B4>by {post.userName}</B4>
                     </div>
-                    <div className={styles.likeButton}>
-                        {localLikeCount}
-                        {localLikeState === true ? <LikeTrue onClick={handleClickLike}/>
-                        : <LikeImg onClick={handleClickLike}/>}
+                    <div className={styles.likeButtonSection}>
+                        <div className={styles.likeButton}>
+                            {localLikeState === true ? <LikeTrue onClick={handleClickLike}/>
+                                : <LikeImg onClick={handleClickLike}/>}
+                            <B6>{localLikeCount}</B6>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <button onClick={onClose}>닫기</button>
+                <div className={styles.closeSection}>
+                    <div className={styles.closeButton}>
+                        <ExitIcon onClick={handleCloseClick}/>
+                    </div>
                 </div>
             </div>
         </div>
