@@ -13,11 +13,12 @@ const defaultAIInstance = axios.create({
     baseURL: BASE_AI_URL,
 });
 // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
-applyInterceptors(defaultInstance);
 
 //규진
 const promptInstance = axios.create(defaultInstance.defaults);
 promptInstance.defaults.baseURL += "/prompt";
+
+applyInterceptors(promptInstance);
 
 //규진
 const aiChatInstance = axios.create(defaultAIInstance.defaults);
@@ -26,6 +27,8 @@ aiChatInstance.defaults.baseURL += "/llm";
 //규진, 정선
 const chattingInstance = axios.create(defaultInstance.defaults);
 chattingInstance.defaults.baseURL += "/chatting";
+
+applyInterceptors(chattingInstance);
 
 //동현
 const communityIntstance = axios.create(defaultInstance.defaults);
