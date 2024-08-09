@@ -20,7 +20,11 @@ function ChattingListItem(props) {
         <H5>{props.chatRoomTitle}</H5>
       </div>
       <CustomIconButton icon={TrashIcon} onClick={() => setIsModalOpen(true)} />
-      <DeleteChattingModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} roomId={props.roomId} />
+      <DeleteChattingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        roomId={props.roomId}
+      />
     </div>
   );
 }

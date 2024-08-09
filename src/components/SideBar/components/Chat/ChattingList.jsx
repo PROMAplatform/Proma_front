@@ -3,6 +3,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   chattingRoomListState,
   currentRoomIdState,
+  isFirstState,
 } from "../../../../recoil/chatting/chattingRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import ChattingListItem from "./ChattingListItem";
@@ -12,6 +13,7 @@ import styles from "./ChattingList.module.css";
 function ChattingList() {
   const [isLoading, setIsLoading] = useState(true);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
+  const setIsFirst = useSetRecoilState(isFirstState);
   const roomList = useRecoilValue(chattingRoomListState);
   const { getChattingRoomList, getChattingList } = useChattingRoomHooks();
 
@@ -27,8 +29,9 @@ function ChattingList() {
   }, []);
 
   const handleRoomClick = async (roomId) => {
-    setCurrentRoomId(roomId);
-    await getChattingList(roomId, 1);
+    await getChattingList(roomId);
+    await setCurrentRoomId(roomId);
+    await setIsFirst(false);
   };
 
   return (
@@ -44,15 +47,18 @@ function ChattingList() {
       ) : roomList.length > 0 ? (
         <div className={styles.scrollContainer}>
           <div className={styles.chattingListContainer}>
-            {roomList.slice().reverse().map((room) => (
-              <ChattingListItem
-                key={room.roomId}
-                roomId={room.roomId}
-                emoji={room.emoji}
-                chatRoomTitle={room.chatRoomTitle}
-                onClick={() => handleRoomClick(room.roomId)}
-              />
-            ))}
+            {roomList
+              .slice()
+              .reverse()
+              .map((room) => (
+                <ChattingListItem
+                  key={room.roomId}
+                  roomId={room.roomId}
+                  emoji={room.emoji}
+                  chatRoomTitle={room.chatRoomTitle}
+                  onClick={() => handleRoomClick(room.roomId)}
+                />
+              ))}
           </div>
         </div>
       ) : (
