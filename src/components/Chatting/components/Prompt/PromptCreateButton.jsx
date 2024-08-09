@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./PromptCreateButton.module.css";
 import promptMakingIcon from "../../../../assets/images/promptMakingIcon.svg";
 import { H4, H5 } from "../../../../styles/font-styles";
+import { t } from "i18next";
 
 function PromptCreateButton({ icon, type, onClick }) {
     return (
@@ -14,7 +15,7 @@ function PromptCreateButton({ icon, type, onClick }) {
                 />
                 <H4>{type}</H4>
                 <div className={styles.contentContainer}>
-                    <H5>만들러 가기</H5>
+                    <H5>{t(`main.toGo`)}</H5>
                     <img
                         src={promptMakingIcon}
                         alt="make prompt"

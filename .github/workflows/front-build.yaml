@@ -31,6 +31,16 @@ jobs:
             ${{ runner.os }}-node-
       - name: 라이브러리 설치 및 업데이트
         run: npm install
+
+      - name: 환경 변수 설정
+        run: |
+          echo "REACT_APP_BACKEND_SERVER_URL=${{ secrets.REACT_APP_BACKEND_SERVER_URL }}" >> .env
+          echo "REACT_APP_AI_SERVER_URL=${{ secrets.REACT_APP_AI_SERVER_URL }}" >> .env
+          echo "REACT_APP_REGION=${{ secrets.REACT_APP_REGION }}" >> .env
+          echo "REACT_APP_ACCESS_KEY_ID=${{ secrets.REACT_APP_ACCESS_KEY_ID }}" >> .env
+          echo "REACT_APP_SECRET_ACCESS_KEY=${{ secrets.REACT_APP_SECRET_ACCESS_KEY }}" >> .env
+          echo "REACT_APP_BUCKET_NAME=${{ secrets.REACT_APP_BUCKET_NAME }}" >> .env
+      
       - name: react 빌드
         run: npm run build
       - name: AWS 인증

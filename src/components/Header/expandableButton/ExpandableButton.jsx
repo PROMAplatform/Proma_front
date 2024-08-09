@@ -1,15 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "./ExpandableButton.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { myPageState } from "../../../recoil/community/myPageRecoilState";
 import { communityPromptListPageState } from "../../../recoil/community/communityRecoilState";
+import { t } from "i18next";
 
 function ExpandableButton({ buttonText }) {
+    const navigate = useNavigate();
     const [isExpanded, setIsExpanded] = useState(false);
     const [, setIsMyPageState] = useRecoilState(myPageState);
     const [, setCurrentPage] = useRecoilState(communityPromptListPageState);
-
+    const userName = localStorage.getItem("userName");
     const handleMouseEnter = () => {
         setIsExpanded(true);
     };
@@ -26,7 +28,15 @@ function ExpandableButton({ buttonText }) {
         setIsMyPageState(type);
         setCurrentPage(0);
     };
-
+    const handleLogout = () => {
+        localStorage.clear("accessToken");
+        localStorage.clear("refreshToken");
+        localStorage.clear("userName");
+        navigate("/login");
+    };
+    const handleLogin = () => {
+        navigate("/login");
+    };
     return (
         <>
             <div
@@ -34,15 +44,26 @@ function ExpandableButton({ buttonText }) {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <div className={styles.button}>
-                    {buttonText}
-                </div>
+                <div className={styles.button}>{buttonText}</div>
                 <div
                     onMouseLeave={handleMouseLeaveExpanding}
-                    className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ''}`}
+                    className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ""}`}
                 >
-                    <Link to={`/mypage`} onClick={() => handleClick("like")}>좋아요</Link>
-                    <Link to={`/mypage`} onClick={() => handleClick("write")}>작성한글</Link>
+                    <Link to={`/mypage`} onClick={() => handleClick("like")}>
+                        {t(`header.isLike`)}
+                    </Link>
+                    <Link to={`/mypage`} onClick={() => handleClick("write")}>
+                        {t(`header.writtenByYou`)}
+                    </Link>
+                    {userName ? (
+                        <p onClick={handleLogout} style={{ color: "red" }}>
+                            {t(`header.logout`)}
+                        </p>
+                    ) : (
+                        <p onClick={handleLogin} style={{ color: "blue" }}>
+                            로그인
+                        </p>
+                    )}
                 </div>
             </div>
         </>

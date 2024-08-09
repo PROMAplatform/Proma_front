@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./SortButton.module.css";
+import { t } from "i18next";
 
 function SortButton({ setSortOrder }) {
     const [selectedState, setSelectedState] = useState("latest");
@@ -19,14 +20,14 @@ function SortButton({ setSortOrder }) {
                     className={selectedState === "latest" ? styles.active : ""}
                     onClick={() => handleStateClick("latest")}
                 >
-                    최신순
+                    {t(`community.up-to-date`)}
                 </div>
                 <div>|</div>
                 <div
                     className={selectedState === "like" ? styles.active : ""}
                     onClick={() => handleStateClick("like")}
                 >
-                    좋아요순
+                    {t(`community.up-to-like`)}
                 </div>
             </div>
         </div>

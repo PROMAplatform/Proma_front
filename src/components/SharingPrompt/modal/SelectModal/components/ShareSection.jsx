@@ -13,6 +13,7 @@ import {
     stateChange,
 } from "../../../../../recoil/community/communityRecoilState";
 import { useCommunityHooks } from "../../../../../api/community/community";
+import { t } from "i18next";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -25,7 +26,7 @@ function ShareSection({ onClose }) {
     const setStateChange = useSetRecoilState(stateChange);
     const currentPage = useRecoilValue(communityPromptListPageState);
     const modalStack = useModalStack();
-    const {sharePrompt, getPromptDetail} = useCommunityHooks();
+    const { sharePrompt, getPromptDetail } = useCommunityHooks();
 
     const handleShareModal = () => {
         if (selectedIndex === null) {
@@ -99,7 +100,7 @@ function ShareSection({ onClose }) {
                 anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             >
                 <Alert onClose={handleSnackbarClose} severity="warning">
-                    공유할 프롬프트를 선택해주세요.
+                    {t(`community.chooseToShare`)}
                 </Alert>
             </Snackbar>
             <div>
@@ -107,7 +108,7 @@ function ShareSection({ onClose }) {
                     className={styles.shareButton}
                     onClick={handleShareModal}
                 >
-                    <H5 color="white">공유하기</H5>
+                    <H5 color="white"> {t(`community.share`)}</H5>
                 </button>
             </div>
         </>

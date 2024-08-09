@@ -9,6 +9,7 @@ import DeletePromptModal from "./Modal/DeletePromptModal";
 import SharePromptModal from "./Modal/SharePromptModal";
 import styles from "./MoreButton.module.css";
 import { B6 } from "../../../../styles/font-styles";
+import { t } from "i18next";
 
 const MoreButton = ({ promptId }) => {
     const [showMenu, setShowMenu] = useState(false);
@@ -86,17 +87,17 @@ const MoreButton = ({ promptId }) => {
             >
                 <MenuComponent
                     icon={editIcon}
-                    title="수정하기"
+                    title={t(`sideBar.patch`)}
                     onClick={handleEditClick}
                 />
                 <MenuComponent
                     icon={trashIcon}
-                    title="삭제하기"
+                    title={t(`sideBar.delete`)}
                     onClick={handleDeleteClick}
                 />
                 <MenuComponent
                     icon={shareIcon}
-                    title="공유하기"
+                    title={t(`sideBar.share`)}
                     onClick={handleShareClick}
                 />
             </div>

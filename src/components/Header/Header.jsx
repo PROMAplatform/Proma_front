@@ -7,28 +7,72 @@ import ExpandableButton from "./expandableButton/ExpandableButton";
 import { useSetRecoilState } from "recoil";
 import { myPageState } from "../../recoil/community/myPageRecoilState";
 import { communityPromptListPageState } from "../../recoil/community/communityRecoilState";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 function Header() {
     const setMyPageState = useSetRecoilState(myPageState);
     const setCurrentPage = useSetRecoilState(communityPromptListPageState);
-
+    const userName = localStorage.getItem("userName");
     const useResetMyPageState = () => {
         setMyPageState(""); // 초기값으로 설정
         setCurrentPage(0);
     };
+    const { i18n } = useTranslation();
+    let language = localStorage.getItem("language") || "en"; // 기본값을 'en'으로 설정
 
-    return(
+    const languageStyle = (lng) => ({
+        color: language === lng ? "red" : "inherit",
+        cursor: "pointer",
+    });
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng).then(() => {
+            // 언어 변경이 완료된 후 페이지 새로고침
+            window.location.reload();
+        });
+    };
+
+    return (
         <div className={styles.headerContainer}>
             <div className={styles.logoContainer}>
-                <Logo1/>
-                <Logo2/>
+                <Logo1 />
+                <Logo2 />
             </div>
             <div className={styles.navContainer}>
-                <div className={styles.buttonClick}><Link to={"/about"}>소개</Link></div>
-                <div className={styles.buttonClick}><Link to={"/community"} onClick={useResetMyPageState}>커뮤니티</Link></div>
-                <div className={styles.buttonClick}><Link to={"/"}>채팅</Link></div>
+                <p
+                    style={languageStyle("ko")}
+                    onClick={() => changeLanguage("ko")}
+                >
+                    한국어
+                </p>
+                <p> / </p>
+                <p
+                    style={languageStyle("en")}
+                    onClick={() => changeLanguage("en")}
+                >
+                    English
+                </p>
+
+                {userName ? (
+                    <p>
+                        {userName}
+                        {t(`header.welcomeComment`)}
+                    </p>
+                ) : null}
                 <div className={styles.buttonClick}>
-                    <ExpandableButton buttonText="마이페이지"/>
+                    <Link to={"/about"}> {t(`header.introduce`)}</Link>
+                </div>
+                <div className={styles.buttonClick}>
+                    <Link to={"/community"} onClick={useResetMyPageState}>
+                        {t(`header.community`)}
+                    </Link>
+                </div>
+                <div className={styles.buttonClick}>
+                    <Link to={"/"}>{t(`header.chatting`)}</Link>
+                </div>
+                <div className={styles.buttonClick}>
+                    <ExpandableButton buttonText={t(`header.mypage`)} />
                 </div>
             </div>
         </div>

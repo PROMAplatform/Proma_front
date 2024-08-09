@@ -11,6 +11,7 @@ import {
     stateChange,
 } from "../../../recoil/community/communityRecoilState";
 import { useRecoilValue } from "recoil";
+import { t } from "i18next";
 
 function FilterSection() {
     const [selectCategory, setSelectCategory] = useState("전체"); // 단일 선택
@@ -82,7 +83,7 @@ function FilterSection() {
                 <input
                     className={styles.searchBar}
                     type="text"
-                    placeholder={"검색"}
+                    placeholder={t(`community.search`)}
                     value={searchQuery}
                     onChange={handleSearchInputChange}
                     onKeyDown={handleSearchKeyDown}
@@ -97,7 +98,7 @@ function FilterSection() {
                         onClick={handleListModal}
                     >
                         <WriteIcon />
-                        작성하기
+                        {t(`community.write`)}
                     </button>
                 </div>
             </div>

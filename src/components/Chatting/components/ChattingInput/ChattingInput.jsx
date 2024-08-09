@@ -15,6 +15,7 @@ import PromptPreview from "../Prompt/PromptPreview";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting.js";
 import { currentPromptState } from "../../../../recoil/prompt/promptRecoilState";
 import { uploadS3 } from "../../../../util/s3Upload";
+import { t } from "i18next";
 
 function ChattingInput() {
     const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
@@ -160,7 +161,7 @@ function ChattingInput() {
                         value={input.value}
                         onChange={input.onChange}
                         onKeyDown={handleKeyDown}
-                        placeholder="질문을 입력하세요."
+                        placeholder={t(`input.inputDefault`)}
                         className={styles.textInput}
                         ref={textareaRef}
                         rows={1}

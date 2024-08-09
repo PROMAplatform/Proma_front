@@ -13,6 +13,7 @@ import RefinedPromptText from "../FinalPromptArea/RefinedPromptText";
 import { usePromptHook } from "../../../api/prompt/prompt";
 import { useChattingRoomHooks } from "../../../api/chatting/chatting";
 import ModalContainer from "../../common/ModalContainer";
+import { t } from "i18next";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
@@ -62,10 +63,10 @@ const SavePromptModal = ({
             console.log("listPromptAtom:", listPromptAtom);
             patchPromptBlock(promptId, listPromptAtom);
             patchPromptInfo(
-              promptId,
-              promptTitle,
-              promptDescription,
-              promptCategory,
+                promptId,
+                promptTitle,
+                promptDescription,
+                promptCategory,
             );
         } else {
             const promptPreview = Object.values(refinedPromptParts).join(" ");
@@ -98,9 +99,9 @@ const SavePromptModal = ({
 
     let title = "";
     if (prompt) {
-        title = "프롬프트 블록 수정하기";
+        title = t(`promptMaking.promptPatch`);
     } else {
-        title = "프롬프트 저장";
+        title = t(`promptMaking.promptSave`);
     }
 
     return (
@@ -116,10 +117,10 @@ const SavePromptModal = ({
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptTitle">
-                    <H5>프롬프트 제목</H5>
+                    <H5>{t(`promptMaking.promptTitle`)}</H5>
                 </label>
                 <input
-                    placeholder="프롬프트 제목"
+                    placeholder={t(`promptMaking.promptTitle`)}
                     value={promptTitle}
                     onChange={(e) => setPromptTitle(e.target.value)}
                     disabled={!!promptId} // promptId가 존재할 경우 비활성화
@@ -127,10 +128,10 @@ const SavePromptModal = ({
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptDescription">
-                    <H5>프롬프트 설명</H5>
+                    <H5>{t(`promptMaking.promptDescription`)}</H5>
                 </label>
                 <input
-                    placeholder="프롬프트 설명"
+                    placeholder={t(`promptMaking.promptDescription`)}
                     value={promptDescription}
                     onChange={(e) => setPromptDescription(e.target.value)}
                     disabled={!!promptId} // promptId가 존재할 경우 비활성화
@@ -138,7 +139,7 @@ const SavePromptModal = ({
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="category">
-                    <H5>프롬프트 카테고리</H5>
+                    <H5>{t(`promptMaking.promptCategory`)}</H5>
                 </label>
                 <div className={styles.select}>
                     <ul className={styles.options}>
@@ -170,7 +171,7 @@ const SavePromptModal = ({
             </div>
             <div className={styles.formGroup}>
                 <label>
-                    <H5>프롬프트 타입</H5>
+                    <H5>{t(`promptMaking.promptType`)}</H5>
                 </label>
                 <B3 color="black">{promptMethod} type</B3>
             </div>

@@ -11,6 +11,7 @@ import { usePromptHook } from "../../../api/prompt/prompt";
 import ModalContainer from "../../common/ModalContainer";
 import ModalButton from "../../common/ModalButton";
 import { getLocalPromptMethod } from "../../../util/localStorage";
+import { t } from "i18next";
 
 const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
     const categories = useRecoilValue(availableCategoriesState);
@@ -46,13 +47,13 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
         <ModalContainer
             isOpen={isOpen}
             onClose={onClose}
-            title="새 블록 만들기"
-            button="블록 만들기"
+            title={t(`promptMaking.newBlock`)}
+            button={t(`promptMaking.blockMake`)}
             onSubmit={handleSubmit}
         >
             <div className={styles.formGroup}>
                 <label htmlFor="category">
-                    <H5>블록 카테고리</H5>
+                    <H5>{t(`promptMaking.blockCategory`)}</H5>
                 </label>
                 <div className={styles.select}>
                     <ul className={styles.options}>
@@ -80,32 +81,36 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="blockTitle">
-                    <H5>블록 제목</H5>
+                    <H5>{t(`promptMaking.blockTitle`)}</H5>
                 </label>
                 <input
                     id="blockTitle"
                     type="text"
                     value={blockValue}
                     onChange={(e) => setBlockValue(e.target.value)}
-                    placeholder="블록 제목을 입력하세요"
+                    placeholder={t(`promptMaking.blockTitlePlaceHolder`)}
                     className={styles.input}
                     required
                 />
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="blockDescription">
-                    <H5>블록 설명</H5>
+                    <H5>{t(`promptMaking.blockDescription`)}</H5>
                 </label>
                 <textarea
                     id="blockDescription"
                     value={blockDescription}
                     onChange={(e) => setBlockDescription(e.target.value)}
-                    placeholder="블록 설명을 입력하세요"
+                    placeholder={t(`promptMaking.blockDescriptionPlaceHolder`)}
                     className={styles.blockDescription}
                     required
                 />
             </div>
-            <ModalButton title="블록 만들기" variant="primary" type="submit" />
+            <ModalButton
+                title={t(`promptMaking.blockMake`)}
+                variant="primary"
+                type="submit"
+            />
         </ModalContainer>
     );
 };

@@ -9,6 +9,7 @@ import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import ChattingListItem from "./ChattingListItem";
 import SkeletonListItem from "../SkeletonListItem";
 import styles from "./ChattingList.module.css";
+import { t } from "i18next";
 
 function ChattingList() {
     const [isLoading, setIsLoading] = useState(true);
@@ -64,7 +65,7 @@ function ChattingList() {
                     </div>
                 </div>
             ) : (
-                <p>채팅방이 없습니다.</p>
+                <p>{t(`sideBar.emptyChatting`)}</p>
             )}
         </div>
     );

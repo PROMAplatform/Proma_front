@@ -7,6 +7,7 @@ import AddButton from "./components/AddButton";
 import promaLogoSmall from "../../assets/logos/promaLogoSmall.svg";
 import CreatePromptModal from "./components/Prompt/Modal/CreatePromptModal";
 import { useChattingRoomHooks } from "../../api/chatting/chatting";
+import { t } from "i18next";
 
 function SideBar() {
     const [isChatting, setIsChatting] = useState(false);
@@ -31,14 +32,14 @@ function SideBar() {
                 <div className={styles.listContainer}>
                     <ChattingList />
                     <div onClick={handleAddChattingRoom}>
-                        <AddButton text="새 채팅 추가하기" />
+                        <AddButton text={t(`sideBar.addNewChatting`)} />
                     </div>
                 </div>
             ) : (
                 <div className={styles.listContainer}>
                     <PromptList />
                     <AddButton
-                        text="새 프롬프트 추가하기"
+                        text={t(`sideBar.addNewPrompt`)}
                         onClick={() => setIsPromptModalOpen(true)}
                     />
                 </div>

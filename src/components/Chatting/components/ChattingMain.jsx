@@ -10,11 +10,13 @@ import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
 import { useSetRecoilState } from "recoil";
 import { useChattingRoomHooks } from "../../../api/chatting/chatting";
 import { setLocalPromptMethod } from "../../../util/localStorage";
+import { t } from "i18next";
 
 function ChattingMain() {
     const navigate = useNavigate();
     const setPromptMethod = useSetRecoilState(promptMethodState);
     const { getChattingRoomList } = useChattingRoomHooks();
+    const userName = localStorage.getItem("userName");
     const handlePromptCreateClick = (type) => {
         setPromptMethod(type);
         setLocalPromptMethod(type);
@@ -27,7 +29,14 @@ function ChattingMain() {
     }, []);
     return (
         <div className={styles.container}>
-            <H1 color="purpleGradient">나만의 프롬프트 만들기</H1>
+            {userName ? (
+                <H1 color="purpleGradient">
+                    {userName}
+                    {t(`main.makeYourOwnPrompt`)}
+                </H1>
+            ) : (
+                <H1 color="purpleGradient">나만의 프롬프트 만들기</H1>
+            )}
             <div className={styles.typeContainer}>
                 <PromptCreateButton
                     type="Character"

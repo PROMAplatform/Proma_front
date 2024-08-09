@@ -13,7 +13,7 @@ export const promptMethodState = atom({
 });
 export const currentPromptState = atom({
     key: "currentPromptState",
-    default: {},
+    default: null,
 });
 const initialBlocks = {
     화자: [
