@@ -3,6 +3,7 @@ import styles from "./PromptPreview.module.css";
 import blockIcon from "../../../../assets/images/blockIcon.svg";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentPromptState } from "../../../../recoil/prompt/promptRecoilState";
+import { t } from "i18next";
 
 function PromptPreview() {
     const currentPrompt = useRecoilValue(currentPromptState);
@@ -18,13 +19,14 @@ function PromptPreview() {
             {currentPrompt ? (
                 <>
                     <p className={[styles.text, "b6"].join(" ")}>
-                        '{currentPrompt.name}' 프롬프트 적용중
+                        '{currentPrompt.name}'{" "}
+                        {t(`input.currentPromptIntroduce`)}
                     </p>
                     <button onClick={onDeleteHandler}> X </button>
                 </>
             ) : (
                 <p className={[styles.text, "b6"].join(" ")}>
-                    질문하기 전, 사용하실 프롬프트를 클릭하세요!
+                    {t(`main.promptClickIntend`)}
                 </p>
             )}
         </div>

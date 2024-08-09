@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { promptMethodState } from "../../../../../recoil/prompt/promptRecoilState";
 import { H5 } from "../../../../../styles/font-styles";
+import { t } from "i18next";
 
 function CreatePromptModal({ isOpen, onClose }) {
     const navigate = useNavigate();
@@ -34,11 +35,11 @@ function CreatePromptModal({ isOpen, onClose }) {
         <ModalContainer
             isOpen={isOpen}
             onClose={onClose}
-            title="새 프롬프트 추가하기"
+            title={t(`sideBar.addNewPrompt`)}
             onSubmit={handleCreateClick}
         >
             <div className={styles.container}>
-                <H5>프롬프트의 타입을 선택하세요</H5>
+                <H5>{t(`sideBar.choosePromptType`)}</H5>
                 <div className={styles.typeContainer}>
                     <PromptMethodButton
                         type="Character"
@@ -61,7 +62,7 @@ function CreatePromptModal({ isOpen, onClose }) {
                 </div>
             </div>
             <ModalButton
-                title="선택 완료"
+                title={t(`sideBar.endChoose`)}
                 variant="primary"
                 size="medium"
                 onClick={handleCreateClick}

@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./MyFilterSection.module.css";
 import SortButton from "../../components/FilterComponents/SortButton";
 import CategoryButton from "../../components/FilterComponents/CategoryButton";
@@ -9,6 +9,7 @@ import {
     communityPromptListPageState,
     stateChange,
 } from "../../../../recoil/community/communityRecoilState";
+import { t } from "i18next";
 
 function MyFilterSection() {
     const [isMyPageState] = useRecoilState(myPageState);
@@ -21,7 +22,10 @@ function MyFilterSection() {
     const [selectCategory, setSelectCategory] = useState("전체");
     const [sortOrder, setSortOrder] = useState("latest");
 
-    const categoryParam = useMemo(() => (selectCategory === "전체" ? null : selectCategory), [selectCategory]);
+    const categoryParam = useMemo(
+        () => (selectCategory === "전체" ? null : selectCategory),
+        [selectCategory],
+    );
 
     useEffect(() => {
         if (isMyPageState === "like") {
@@ -47,9 +51,13 @@ function MyFilterSection() {
                 </div>
 
                 {isMyPageState === "like" ? (
-                    <h1 className={styles.title}>내가 좋아요한 게시글</h1>
+                    <h1 className={styles.title}>
+                        {t(`community.my-liked-post`)}
+                    </h1>
                 ) : (
-                    <h1 className={styles.title}>내가 작성한 게시글</h1>
+                    <h1 className={styles.title}>
+                        {t(`community.my-writed-post`)}
+                    </h1>
                 )}
             </div>
             <div className={styles.lineSection}>

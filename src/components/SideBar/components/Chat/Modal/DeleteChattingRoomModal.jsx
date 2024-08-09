@@ -6,6 +6,7 @@ import { B3 } from "../../../../../styles/font-styles";
 import { useSetRecoilState } from "recoil";
 import { chattingRoomListState } from "../../../../../recoil/chatting/chattingRecoilState";
 import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
+import { t } from "i18next";
 
 const ButtonContainer = styled.div`
     display: inline-flex;
@@ -35,20 +36,20 @@ function DeleteChattingModal({ isOpen, onClose, roomId }) {
         <ModalContainer
             isOpen={isOpen}
             onClose={onClose}
-            title="채팅방을 삭제하시겠습니까?"
+            title={t(`sideBar.deleteChattingRoom`)}
             onSubmit={handleDeleteClick}
             exitButton={false}
         >
-            <B3>해당 채팅방의 기록이 완전히 삭제됩니다.</B3>
+            <B3>{t(`sideBar.deleteChattingRoomHistory`)}</B3>
             <ButtonContainer>
                 <ModalButton
-                    title="취소"
+                    title={t(`sideBar.cancel`)}
                     variant="secondary"
                     size="small"
                     onClick={onClose}
                 />
                 <ModalButton
-                    title="삭제"
+                    title={t(`sideBar.delete`)}
                     variant="primary"
                     size="small"
                     type="submit"

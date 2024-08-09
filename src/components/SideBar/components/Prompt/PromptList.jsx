@@ -5,6 +5,7 @@ import { useRecoilValue } from "recoil";
 import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import SkeletonListItem from "../SkeletonListItem";
+import { t } from "i18next";
 
 function PromptList() {
     const [isLoading, setIsLoading] = useState(true);
@@ -79,7 +80,7 @@ function PromptList() {
                     ))}
                 </div>
             ) : (
-                <p>프롬프트가 없습니다.</p>
+                <p>{t(`sideBar.emptyPrompt`)}</p>
             )}
         </div>
     );

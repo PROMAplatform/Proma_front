@@ -7,6 +7,8 @@ import ExpandableButton from "./expandableButton/ExpandableButton";
 import { useSetRecoilState } from "recoil";
 import { myPageState } from "../../recoil/community/myPageRecoilState";
 import { communityPromptListPageState } from "../../recoil/community/communityRecoilState";
+import { t } from "i18next";
+import { useTranslation } from "react-i18next";
 
 function Header() {
     const setMyPageState = useSetRecoilState(myPageState);
@@ -16,6 +18,20 @@ function Header() {
         setMyPageState(""); // 초기값으로 설정
         setCurrentPage(0);
     };
+    const { i18n } = useTranslation();
+    let language = localStorage.getItem("language") || "en"; // 기본값을 'en'으로 설정
+
+    const languageStyle = (lng) => ({
+        color: language === lng ? "red" : "inherit",
+        cursor: "pointer",
+    });
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng).then(() => {
+            // 언어 변경이 완료된 후 페이지 새로고침
+            window.location.reload();
+        });
+    };
 
     return (
         <div className={styles.headerContainer}>
@@ -24,20 +40,39 @@ function Header() {
                 <Logo2 />
             </div>
             <div className={styles.navContainer}>
-                {userName ? <p>{userName} 님 반값습니다!</p> : null}
+                <p
+                    style={languageStyle("ko")}
+                    onClick={() => changeLanguage("ko")}
+                >
+                    한국어
+                </p>
+                <p> / </p>
+                <p
+                    style={languageStyle("en")}
+                    onClick={() => changeLanguage("en")}
+                >
+                    English
+                </p>
+
+                {userName ? (
+                    <p>
+                        {userName}
+                        {t(`header.welcomeComment`)}
+                    </p>
+                ) : null}
                 <div className={styles.buttonClick}>
-                    <Link to={"/about"}>소개</Link>
+                    <Link to={"/about"}> {t(`header.introduce`)}</Link>
                 </div>
                 <div className={styles.buttonClick}>
                     <Link to={"/community"} onClick={useResetMyPageState}>
-                        커뮤니티
+                        {t(`header.community`)}
                     </Link>
                 </div>
                 <div className={styles.buttonClick}>
-                    <Link to={"/"}>채팅</Link>
+                    <Link to={"/"}>{t(`header.chatting`)}</Link>
                 </div>
                 <div className={styles.buttonClick}>
-                    <ExpandableButton buttonText="마이페이지" />
+                    <ExpandableButton buttonText={t(`header.mypage`)} />
                 </div>
             </div>
         </div>

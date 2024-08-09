@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { myPageState } from "../../../recoil/community/myPageRecoilState";
 import { communityPromptListPageState } from "../../../recoil/community/communityRecoilState";
+import { t } from "i18next";
 
 function ExpandableButton({ buttonText }) {
     const navigate = useNavigate();
@@ -49,14 +50,14 @@ function ExpandableButton({ buttonText }) {
                     className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ""}`}
                 >
                     <Link to={`/mypage`} onClick={() => handleClick("like")}>
-                        좋아요
+                        {t(`header.isLike`)}
                     </Link>
                     <Link to={`/mypage`} onClick={() => handleClick("write")}>
-                        작성한글
+                        {t(`header.writtenByYou`)}
                     </Link>
                     {userName ? (
                         <p onClick={handleLogout} style={{ color: "red" }}>
-                            로그아웃
+                            {t(`header.logout`)}
                         </p>
                     ) : (
                         <p onClick={handleLogin} style={{ color: "blue" }}>

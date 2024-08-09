@@ -18,6 +18,7 @@ import {
     promptListState,
 } from "../../../recoil/prompt/promptRecoilState";
 import SavePromptModal from "./SavePromptModal";
+import { t } from "i18next";
 
 const CombinationArea = ({ promptId }) => {
     const [combinations, setCombinations] = useRecoilState(combinationsState);
@@ -60,9 +61,8 @@ const CombinationArea = ({ promptId }) => {
             </div>
             <div className={styles.combinationArea}>
                 <H2 color="gray3" className={styles.dropYourBlocks}>
-                    이 곳에 블록을 끌어넣어보아요!
+                    {t(`promptMaking.intendDragging`)}
                     <hr style={{ visibility: "hidden" }} />
-                    Drop your blocks!
                 </H2>
                 <div className={styles.categoryList}>
                     {categories.map((category) => (
