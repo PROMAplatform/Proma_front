@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styles from "./Header.module.css";
 import {Link} from "react-router-dom";
 import { ReactComponent as Logo2 } from "../../assets/images/comlogo2.svg";
@@ -17,11 +17,6 @@ function Header(){
         setCurrentPage(0);
     }
 
-    useEffect(() => {
-        const storedValue = localStorage.getItem('myPageState');
-        setMyPageState(storedValue);
-    });
-
     return(
         <div className={styles.headerContainer}>
             <div className={styles.logoContainer}>
@@ -29,10 +24,12 @@ function Header(){
                 <Logo2/>
             </div>
             <div className={styles.navContainer}>
-                <div><Link to={"/about"}>소개</Link></div>
-                <div><Link to={"/community"} onClick={useResetMyPageState}>커뮤니티</Link></div>
-                <div><Link to={"/"}>채팅</Link></div>
-                <ExpandableButton buttonText="마이페이지"/>
+                <div className={styles.buttonClick}><Link to={"/about"}>소개</Link></div>
+                <div className={styles.buttonClick}><Link to={"/community"} onClick={useResetMyPageState}>커뮤니티</Link></div>
+                <div className={styles.buttonClick}><Link to={"/"}>채팅</Link></div>
+                <div className={styles.buttonClick}>
+                    <ExpandableButton buttonText="마이페이지"/>
+                </div>
             </div>
         </div>
     );
