@@ -7,26 +7,29 @@ import { H5 } from "../../../../styles/font-styles";
 import DeleteChattingModal from "./Modal/DeleteChattingRoomModal";
 
 function ChattingListItem(props) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
-    <div className={styles.container} onClick={props.onClick}>
-      <div className={styles.IconNName}>
-        <EmojiPcikerButton
-          isPromptEmoji={false}
-          roomId={props.roomId}
-          emoji={props.emoji}
-        />
-        <H5>{props.chatRoomTitle}</H5>
-      </div>
-      <CustomIconButton icon={TrashIcon} onClick={() => setIsModalOpen(true)} />
-      <DeleteChattingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        roomId={props.roomId}
-      />
-    </div>
-  );
+    return (
+        <div className={styles.container} onClick={props.onClick}>
+            <div className={styles.IconNName}>
+                <EmojiPcikerButton
+                    isPromptEmoji={false}
+                    roomId={props.roomId}
+                    emoji={props.emoji}
+                />
+                <H5>{props.chatRoomTitle}</H5>
+            </div>
+            <CustomIconButton
+                icon={TrashIcon}
+                onClick={() => setIsModalOpen(true)}
+            />
+            <DeleteChattingModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                roomId={props.roomId}
+            />
+        </div>
+    );
 }
 
 export default ChattingListItem;

@@ -43,7 +43,7 @@
 }
 
 .typeText {
-    color: #5A5A5A;
+    color: #5a5a5a;
     text-align: center;
     font-size: 0.8vw;
     font-style: normal;
@@ -60,9 +60,9 @@
     height: 3vh;
     padding: 0 0.7vw 0 0.7vw;
     border-radius: 0.3vw;
-    background: #543FD6;
+    background: #543fd6;
 
-    color: #FFF;
+    color: #fff;
     font-size: 1vw;
     font-style: normal;
     font-weight: 600;
@@ -96,8 +96,8 @@
     width: 16vw;
 
     border-radius: 15px;
-    border: 0.424px solid #5A5A5A;
-    background: var(--white, #FFF);
+    border: 0.424px solid #5a5a5a;
+    background: var(--white, #fff);
 
     padding: 2vh;
 }

@@ -4,21 +4,21 @@ import { ReactComponent as TypeIcon } from "../../../assets/images/typeIcon.svg"
 import { ReactComponent as LikeButton } from "../../../assets/images/likeButton.svg";
 import { ReactComponent as LikeTrue } from "../../../assets/images/heartTrue.svg";
 import PromptDetailModal from "../modal/DetailModal/PromptDetailModal";
-import {useModalStack} from "../../../hooks/useModalStack";
-import {B6, B7, H5} from "../../../styles/font-styles";
-import {useCommunityHooks} from "../../../api/community/community";
+import { useModalStack } from "../../../hooks/useModalStack";
+import { B6, B7, H5 } from "../../../styles/font-styles";
+import { useCommunityHooks } from "../../../api/community/community";
 
-function ComPromptListItem({post}) {
+function ComPromptListItem({ post }) {
     const modalStack = useModalStack();
-    const {getCommunityPromptDetail} = useCommunityHooks();
+    const { getCommunityPromptDetail } = useCommunityHooks();
 
     const handleDetailModal = () => {
         getCommunityPromptDetail(post.postId);
 
         modalStack.push({
-            key: 'promptDetailModal',
+            key: "promptDetailModal",
             Component: PromptDetailModal,
-            componentProps: { post : post },
+            componentProps: { post: post },
             backdropTransparent: true,
         });
     };
@@ -27,7 +27,10 @@ function ComPromptListItem({post}) {
         <>
             <div className={styles.wrapper}>
                 <div className={styles.card}>
-                    <div className={styles.containerFront} onClick={handleDetailModal}>
+                    <div
+                        className={styles.containerFront}
+                        onClick={handleDetailModal}
+                    >
                         <div className={styles.typeSection}>
                             <TypeIcon />
                             <div className={styles.typeText}>
@@ -44,19 +47,24 @@ function ComPromptListItem({post}) {
                             </div>
                         </div>
                         <div className={styles.userSection}>
-                            <div>
-                                {post.userName}
-                            </div>
+                            <div>{post.userName}</div>
                             <div className={styles.likeSection}>
                                 <div className={styles.likeText}>
                                     {post.likeCount}
                                 </div>
-                                {post.likeState === true ? <LikeTrue/> :<LikeButton />}
+                                {post.likeState === true ? (
+                                    <LikeTrue />
+                                ) : (
+                                    <LikeButton />
+                                )}
                             </div>
                         </div>
                     </div>
 
-                    <div className={styles.containerBack} onClick={handleDetailModal}>
+                    <div
+                        className={styles.containerBack}
+                        onClick={handleDetailModal}
+                    >
                         <div className={styles.typeSection}>
                             <TypeIcon />
                             <div className={styles.typeText}>
@@ -68,21 +76,22 @@ function ComPromptListItem({post}) {
                             <B6>{post.promptPreview}</B6>
                         </div>
                         <div className={styles.userSection}>
-                            <div>
-                                {post.userName}
-                            </div>
+                            <div>{post.userName}</div>
                             <div className={styles.likeSection}>
                                 <div className={styles.likeText}>
                                     {post.likeCount}
                                 </div>
-                                {post.likeState === true ? <LikeTrue/> :<LikeButton />}
+                                {post.likeState === true ? (
+                                    <LikeTrue />
+                                ) : (
+                                    <LikeButton />
+                                )}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </>
-
     );
 }
 

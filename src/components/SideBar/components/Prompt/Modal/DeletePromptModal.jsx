@@ -8,43 +8,47 @@ import { promptListState } from "../../../../../recoil/prompt/promptRecoilState"
 import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
 import PromptDetail from "../../../../common/Prompt/PromptDetail";
 
-function DeletePromptModal({
-  isOpen, 
-  onClose, 
-  promptId, 
-}) {
-  const promptList = useRecoilValue(promptListState);
-  const setPromptList = useSetRecoilState(promptListState);
-  const prompt = promptList.find(p => p.promptId === promptId);
-  
-  const { promptTitle, promptDescription, promptCategory, listPromptAtom } = prompt;
+function DeletePromptModal({ isOpen, onClose, promptId }) {
+    const promptList = useRecoilValue(promptListState);
+    const setPromptList = useSetRecoilState(promptListState);
+    const prompt = promptList.find((p) => p.promptId === promptId);
 
-  const { deletePrompt } = useChattingRoomHooks();
+    const { promptTitle, promptDescription, promptCategory, listPromptAtom } =
+        prompt;
 
-  if (!isOpen) return null;
+    const { deletePrompt } = useChattingRoomHooks();
 
-  const handleDeleteClick = () => {
-    deletePrompt(promptId);
-    setPromptList((oldPromptList) => {
-      return oldPromptList.filter((prompt) => prompt.promptId !== promptId);
-    });
-    onClose();
-  };
+    if (!isOpen) return null;
 
-  return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트를 삭제하시겠습니까?" onSubmit={handleDeleteClick}>
-      <div className={styles.contentContainer}>
-        <PromptDetail listPromptAtom={listPromptAtom}/>
-        <H5>프롬프트 제목</H5>
-        <B5>{promptTitle}</B5>
-        <H5>프롬프트 카테고리</H5>
-        <B5>{promptCategory}</B5>
-        <H5>프롬프트 설명</H5>
-        <B5>{promptDescription}</B5>
-      </div>
-      <ModalButton title="삭제하기" variant="primary" type="submit"/>
-    </ModalContainer>
-  );
+    const handleDeleteClick = () => {
+        deletePrompt(promptId);
+        setPromptList((oldPromptList) => {
+            return oldPromptList.filter(
+                (prompt) => prompt.promptId !== promptId,
+            );
+        });
+        onClose();
+    };
+
+    return (
+        <ModalContainer
+            isOpen={isOpen}
+            onClose={onClose}
+            title="프롬프트를 삭제하시겠습니까?"
+            onSubmit={handleDeleteClick}
+        >
+            <div className={styles.contentContainer}>
+                <PromptDetail listPromptAtom={listPromptAtom} />
+                <H5>프롬프트 제목</H5>
+                <B5>{promptTitle}</B5>
+                <H5>프롬프트 카테고리</H5>
+                <B5>{promptCategory}</B5>
+                <H5>프롬프트 설명</H5>
+                <B5>{promptDescription}</B5>
+            </div>
+            <ModalButton title="삭제하기" variant="primary" type="submit" />
+        </ModalContainer>
+    );
 }
 
 export default DeletePromptModal;

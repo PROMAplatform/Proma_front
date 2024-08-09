@@ -1,6 +1,6 @@
-import React from 'react';
-import styles from './PromptListName.module.css';
-import {ReactComponent as WritePromptListIcon} from "../../../../../assets/images/writePromptListIcon.svg";
+import React from "react";
+import styles from "./PromptListName.module.css";
+import { ReactComponent as WritePromptListIcon } from "../../../../../assets/images/writePromptListIcon.svg";
 
 function PromptListName({ name, isSelected, onSelect }) {
     return (
@@ -9,9 +9,7 @@ function PromptListName({ name, isSelected, onSelect }) {
             onClick={onSelect}
         >
             <WritePromptListIcon />
-            <div className={styles.titleContainer}>
-                {name}
-            </div>
+            <div className={styles.titleContainer}>{name}</div>
         </button>
     );
 }

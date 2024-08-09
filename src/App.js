@@ -13,26 +13,29 @@ import useGlobalShortcuts from "./hooks/common/useGlobalShortCut";
 import ModalStack from "./components/SharingPrompt/modal/ModalStack";
 
 function App() {
-  useGlobalShortcuts();
-  return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/community" element={<CommunityPage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route
-            path="/api/v1/auth/customers/kakao"
-            element={<KakaoAfterLogin />}
-          />
-          <Route path="/promptMaking" element={<PromptMakingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-        </Routes>
-      </BrowserRouter>
-      <ModalStack/>
-    </ThemeProvider>
-  );
+    useGlobalShortcuts();
+    return (
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<MainPage />} />
+                    <Route path="/community" element={<CommunityPage />} />
+                    <Route path="/mypage" element={<MyPage />} />
+                    <Route
+                        path="/api/v1/auth/customers/kakao"
+                        element={<KakaoAfterLogin />}
+                    />
+                    <Route
+                        path="/promptMaking"
+                        element={<PromptMakingPage />}
+                    />
+                    <Route path="/about" element={<AboutPage />} />
+                </Routes>
+            </BrowserRouter>
+            <ModalStack />
+        </ThemeProvider>
+    );
 }
 
 export default App;

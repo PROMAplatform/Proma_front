@@ -4,7 +4,6 @@ import styles from "./mainPage.module.css";
 import Chatting from "../components/Chatting/Chatting";
 
 function MainPage() {
-
   return (
     <div className={styles.container}>
       <SideBar />

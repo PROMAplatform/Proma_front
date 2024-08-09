@@ -1,29 +1,29 @@
 .iconContainer {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .menuContainer {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px; 
-  position: absolute;
-  background-color: var(--white);
-  border-radius: 13px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
-  z-index: 1000;
-  box-sizing: border-box;
-  padding: 5px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    position: absolute;
+    background-color: var(--white);
+    border-radius: 13px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 .menuButtonContainer {
-  width: auto;
-  height: auto;
-  border-radius: 8px;
-  padding: 10px 15px;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    padding: 10px 15px;
 }
 
 .menuButtonContainer:hover {
@@ -31,13 +31,13 @@
 }
 
 .menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    white-space: nowrap;
 }
 
 .icon {
-  width: 18px;
+    width: 18px;
 }

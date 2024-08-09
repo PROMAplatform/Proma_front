@@ -1,13 +1,16 @@
-import React from 'react';
-import styles from './PromptDetailModal.module.css'
+import React from "react";
+import styles from "./PromptDetailModal.module.css";
 import MakeBlockPreview from "../components/MakeBlockPreview";
 import ButtonSection from "./components/ButtonSection";
 import TopSection from "./components/TopSection";
-import {B3, H4} from "../../../../styles/font-styles";
-import {useRecoilValue} from "recoil";
-import {communityPromptDetailState, isLoadingCommunityState} from "../../../../recoil/community/communityRecoilState";
+import { B3, H4 } from "../../../../styles/font-styles";
+import { useRecoilValue } from "recoil";
+import {
+    communityPromptDetailState,
+    isLoadingCommunityState,
+} from "../../../../recoil/community/communityRecoilState";
 
-function PromptDetailModal({close, post}) {
+function PromptDetailModal({ close, post }) {
     const promptBlock = useRecoilValue(communityPromptDetailState);
     const isLoading = useRecoilValue(isLoadingCommunityState);
 
@@ -19,15 +22,18 @@ function PromptDetailModal({close, post}) {
     };
 
     return (
-        <div className={styles.modalOverlay} >
+        <div className={styles.modalOverlay}>
             <div className={styles.container}>
-                <TopSection post={post} onClose={handleClose}/>
+                <TopSection post={post} onClose={handleClose} />
                 <div className={styles.blockSection}>
                     {isLoading ? (
                         <div>Loading...</div>
                     ) : promptBlock ? (
                         promptBlock.map((block) => (
-                            <MakeBlockPreview key={block.blockId} props={block} />
+                            <MakeBlockPreview
+                                key={block.blockId}
+                                props={block}
+                            />
                         ))
                     ) : (
                         <div>데이터가 없습니다.</div>
@@ -45,7 +51,7 @@ function PromptDetailModal({close, post}) {
                     <H4>프롬프트 미리보기</H4>
                     <B3>{post.promptPreview}</B3>
                 </div>
-                <ButtonSection onClose={handleClose} postId={post.postId}/>
+                <ButtonSection onClose={handleClose} postId={post.postId} />
             </div>
         </div>
     );

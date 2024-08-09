@@ -6,11 +6,11 @@ const BASE_URL = process.env.REACT_APP_BACKEND_SERVER_URL;
 const BASE_AI_URL = process.env.REACT_APP_AI_SERVER_URL;
 // 우리 서버의 기본 주소
 const defaultInstance = axios.create({
-  baseURL: BASE_URL,
+    baseURL: BASE_URL,
 });
 
 const defaultAIInstance = axios.create({
-  baseURL: BASE_AI_URL,
+    baseURL: BASE_AI_URL,
 });
 // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
 applyInterceptors(defaultInstance);
@@ -38,9 +38,9 @@ communityIntstance.defaults.baseURL += "/community";
 // applyInterceptors(authInstance);
 
 export {
-  defaultInstance,
-  promptInstance,
-  aiChatInstance,
-  chattingInstance,
-  communityIntstance,
+    defaultInstance,
+    promptInstance,
+    aiChatInstance,
+    chattingInstance,
+    communityIntstance,
 };

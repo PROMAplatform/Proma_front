@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import styles from "./PostFixOrShare.module.css";
 import MakeBlockPreview from "../components/MakeBlockPreview";
 import CategoryButton from "../../components/FilterComponents/CategoryButton";
-import {H3, H4} from "../../../../styles/font-styles";
+import { H3, H4 } from "../../../../styles/font-styles";
 
-function PostFixOrShare({close, onApi, state}) {
-
+function PostFixOrShare({ close, onApi, state }) {
     //recoil상태로 불러올 데이터
     const promptExample = {
         pomptId: 1,
@@ -18,17 +17,19 @@ function PostFixOrShare({close, onApi, state}) {
             {
                 blockId: 1,
                 blockTitle: "선생님",
-                blockCategory: "화자"
+                blockCategory: "화자",
             },
             {
                 blockId: 2,
                 blockTitle: "박민기222",
-                blockCategory: "청자"
+                blockCategory: "청자",
             },
-        ]
+        ],
     };
 
-    const [selectCategory, setSelectCategory] = useState(promptExample.promptCategory);
+    const [selectCategory, setSelectCategory] = useState(
+        promptExample.promptCategory,
+    );
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
 
@@ -44,7 +45,7 @@ function PostFixOrShare({close, onApi, state}) {
         const data = {
             title: title || promptExample.promptTitle,
             description: description || promptExample.promptDescription,
-            category: selectCategory
+            category: selectCategory,
         };
         onApi(data);
         close();
@@ -54,15 +55,18 @@ function PostFixOrShare({close, onApi, state}) {
         <div className={styles.modalOverlay}>
             <div className={styles.container}>
                 <div className={styles.topSection}>
-                    {state === "fix" ? <H3>게시글 정보 수정하기</H3>
-                        : <H3>프롬프트 공유하기</H3>
-                    }
+                    {state === "fix" ? (
+                        <H3>게시글 정보 수정하기</H3>
+                    ) : (
+                        <H3>프롬프트 공유하기</H3>
+                    )}
                     <button onClick={close}>닫기</button>
                 </div>
 
                 <div className={styles.blockSection}>
                     {promptExample.selectPromptAtom.map((block) => (
-                        <MakeBlockPreview key={block.blockId} props={block}/>))}
+                        <MakeBlockPreview key={block.blockId} props={block} />
+                    ))}
                 </div>
                 <div className={styles.titleSection}>
                     <H4>게시글제목</H4>
@@ -86,12 +90,17 @@ function PostFixOrShare({close, onApi, state}) {
                 </div>
                 <div className={styles.titleSection}>
                     <H4>프롬프트 카테고리</H4>
-                    <CategoryButton selectCategory={selectCategory} setSelectCategory={setSelectCategory}/>
+                    <CategoryButton
+                        selectCategory={selectCategory}
+                        setSelectCategory={setSelectCategory}
+                    />
                 </div>
                 <div>
-                    {state === "fix" ? <button onClick={handleButton}>수정하기</button>
-                        : <button onClick={handleButton}>공유하기</button>
-                    }
+                    {state === "fix" ? (
+                        <button onClick={handleButton}>수정하기</button>
+                    ) : (
+                        <button onClick={handleButton}>공유하기</button>
+                    )}
                 </div>
             </div>
         </div>

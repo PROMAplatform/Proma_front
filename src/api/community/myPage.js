@@ -1,21 +1,27 @@
-import {useSetRecoilState} from "recoil";
-import {createUrl, sendRequest} from "../request";
-import {communityIntstance} from "../instance";
+import { useSetRecoilState } from "recoil";
+import { createUrl, sendRequest } from "../request";
+import { communityIntstance } from "../instance";
 import {
     communityPromptListPageState,
-    communityPromptListState
+    communityPromptListState,
 } from "../../recoil/community/communityRecoilState";
 
 export const useMyPageHooks = () => {
     const setCommunityPromptList = useSetRecoilState(communityPromptListState);
-    const setCommunityPromptListPage = useSetRecoilState(communityPromptListPageState);
+    const setCommunityPromptListPage = useSetRecoilState(
+        communityPromptListPageState,
+    );
 
     //좋아요 한 게시글 리스트
-    const getLikePromptList = async (selectedCategory, sortOrder, currentPage) => {
+    const getLikePromptList = async (
+        selectedCategory,
+        sortOrder,
+        currentPage,
+    ) => {
         try {
             const params = {
                 userId: 1,
-                category:selectedCategory,
+                category: selectedCategory,
                 page: currentPage,
                 size: 9,
             };
@@ -29,7 +35,12 @@ export const useMyPageHooks = () => {
                 //params.latest = "";
             }
 
-            const response = await sendRequest(communityIntstance, "get", "/my-like",{ params });
+            const response = await sendRequest(
+                communityIntstance,
+                "get",
+                "/my-like",
+                { params },
+            );
 
             const { responseDto } = response.data;
             const { selectPrompt, pageInfo } = responseDto;
@@ -50,11 +61,15 @@ export const useMyPageHooks = () => {
     };
 
     //작성 한 게시글 리스트
-    const getWritePromptList = async (selectedCategory, sortOrder, currentPage) => {
+    const getWritePromptList = async (
+        selectedCategory,
+        sortOrder,
+        currentPage,
+    ) => {
         try {
             const params = {
                 userId: 1,
-                category:selectedCategory,
+                category: selectedCategory,
                 page: currentPage,
                 size: 9,
             };
@@ -68,7 +83,12 @@ export const useMyPageHooks = () => {
                 //params.latest = "";
             }
 
-            const response = await sendRequest(communityIntstance, "get", "/my-distribute",{ params });
+            const response = await sendRequest(
+                communityIntstance,
+                "get",
+                "/my-distribute",
+                { params },
+            );
 
             const { responseDto } = response.data;
             const { selectPrompt, pageInfo } = responseDto;
@@ -92,7 +112,7 @@ export const useMyPageHooks = () => {
         try {
             const params = {
                 userId: 1,
-            }
+            };
 
             const url = createUrl(`/my-distribute/patch/${postId}`, params);
 
@@ -101,13 +121,14 @@ export const useMyPageHooks = () => {
                 "patch",
                 url,
                 {
-                    "postTitle" : data.title,
-                    "postDescription" : data.description,
-                    "postCategory" : data.category,
-                });
+                    postTitle: data.title,
+                    postDescription: data.description,
+                    postCategory: data.category,
+                },
+            );
 
             return response.data.responseDto;
-        }catch (error) {
+        } catch (error) {
             console.error("Error:", error);
         }
     };
@@ -116,11 +137,15 @@ export const useMyPageHooks = () => {
         try {
             const params = {
                 userId: 1,
-            }
+            };
 
             const url = createUrl(`/my-distribute/delete/${postId}`, params);
 
-            const response = await sendRequest(communityIntstance, "delete", url);
+            const response = await sendRequest(
+                communityIntstance,
+                "delete",
+                url,
+            );
 
             return response.data.responseDto;
         } catch (error) {
@@ -132,11 +157,10 @@ export const useMyPageHooks = () => {
 
     //ToDo - user out
 
-
     return {
         getLikePromptList,
         getWritePromptList,
         fixSharePost,
         deleteSharePost,
     };
-}
+};

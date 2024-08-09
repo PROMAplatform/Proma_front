@@ -1,31 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import styles from "./ShareSection.module.css";
 import PromptListName from "./PromptListName";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import PostFixOrShare from "../../FixAndShareModal/PostFixOrShare";
-import {H5} from "../../../../../styles/font-styles";
-import {useModalStack} from "../../../../../hooks/useModalStack";
-import {useRecoilValue, useSetRecoilState} from "recoil";
+import { H5 } from "../../../../../styles/font-styles";
+import { useModalStack } from "../../../../../hooks/useModalStack";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
     communityPromptListPageState,
     makePromptListState,
-    stateChange
+    stateChange,
 } from "../../../../../recoil/community/communityRecoilState";
-import {useCommunityHooks} from "../../../../../api/community/community";
+import { useCommunityHooks } from "../../../../../api/community/community";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function ShareSection({onClose}) {
+function ShareSection({ onClose }) {
     const promas = useRecoilValue(makePromptListState);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const setStateChange = useSetRecoilState(stateChange);
     const currentPage = useRecoilValue(communityPromptListPageState);
     const modalStack = useModalStack();
-    const {sharePrompt} = useCommunityHooks();
+    const { sharePrompt } = useCommunityHooks();
 
     const handleShareModal = () => {
         if (selectedIndex === null) {
@@ -35,11 +35,11 @@ function ShareSection({onClose}) {
             const selectedPromptId = promas[selectedIndex].promptId;
 
             modalStack.push({
-                key: 'promptShareModal',
+                key: "promptShareModal",
                 Component: PostFixOrShare,
                 componentProps: {
                     onApi: (data) => handleWrite(data, selectedPromptId),
-                    state:"share"
+                    state: "share",
                 },
                 backdropTransparent: true,
             });
@@ -53,23 +53,23 @@ function ShareSection({onClose}) {
 
     const handleWrite = (data, promptId) => {
         sharePrompt(promptId, data);
-        setStateChange(prevValue => prevValue + 1);
+        setStateChange((prevValue) => prevValue + 1);
 
-        console.log({modalStack});
+        console.log({ modalStack });
         console.log(currentPage);
 
         console.log({
-            "postTitle" : data.title,
-            "postDescription" : data.description,
-            "postCategory" : data.category,
-            "promptId" : promptId,
+            postTitle: data.title,
+            postDescription: data.description,
+            postCategory: data.category,
+            promptId: promptId,
         });
 
         onClose();
     };
 
     const handleSnackbarClose = (event, reason) => {
-        if (reason === 'clickaway') {
+        if (reason === "clickaway") {
             return;
         }
         setSnackbarOpen(false);
@@ -87,7 +87,7 @@ function ShareSection({onClose}) {
                             onSelect={() => handlePromptSelect(index)}
                         />
                     ))
-                ):(
+                ) : (
                     <div>Loading...</div>
                 )}
             </div>
@@ -95,15 +95,16 @@ function ShareSection({onClose}) {
                 open={snackbarOpen}
                 autoHideDuration={3000}
                 onClose={handleSnackbarClose}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
             >
                 <Alert onClose={handleSnackbarClose} severity="warning">
                     공유할 프롬프트를 선택해주세요.
                 </Alert>
             </Snackbar>
             <div>
-                <button className={styles.shareButton}
-                        onClick={handleShareModal}
+                <button
+                    className={styles.shareButton}
+                    onClick={handleShareModal}
                 >
                     <H5 color="white">공유하기</H5>
                 </button>
