@@ -26,26 +26,26 @@
 }
 
 .input {
-  box-sizing: border-box;
-  background-color: var(--color-gray2);
-  border: none;
-  padding: 15px 18px;
-  border-radius: 8px;
-  font-size: 16px;
-  outline: none;
-  caret-color: var(--block-main-color);
+    box-sizing: border-box;
+    background-color: var(--color-gray2);
+    border: none;
+    padding: 15px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    caret-color: var(--block-main-color);
 }
 
 .blockDescription {
-  box-sizing: border-box;
-  background-color: var(--color-gray2);
-  padding: 15px 18px;
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  outline: none;
-  height: 100px;
-  resize: vertical;
-  caret-color: var(--block-main-color);
+    box-sizing: border-box;
+    background-color: var(--color-gray2);
+    padding: 15px 18px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    height: 100px;
+    resize: vertical;
+    caret-color: var(--block-main-color);
 }
