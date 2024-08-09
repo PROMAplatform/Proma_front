@@ -88,6 +88,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
                     value={blockValue}
                     onChange={(e) => setBlockValue(e.target.value)}
                     placeholder="블록 제목을 입력하세요"
+                    className={styles.input}
                     required
                 />
             </div>
@@ -100,6 +101,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
                     value={blockDescription}
                     onChange={(e) => setBlockDescription(e.target.value)}
                     placeholder="블록 설명을 입력하세요"
+                    className={styles.blockDescription}
                     required
                 />
             </div>

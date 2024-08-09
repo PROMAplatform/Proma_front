@@ -33,7 +33,7 @@ const SavePromptModal = ({
     const promptMethod = useRecoilValue(promptMethodState);
 
     const { savePrompt } = usePromptHook();
-    const { patchPromptBlock } = useChattingRoomHooks();
+    const { patchPromptBlock, patchPromptInfo } = useChattingRoomHooks();
 
     useEffect(() => {
         if (prompt) {
@@ -61,6 +61,12 @@ const SavePromptModal = ({
                 }));
             console.log("listPromptAtom:", listPromptAtom);
             patchPromptBlock(promptId, listPromptAtom);
+            patchPromptInfo(
+              promptId,
+              promptTitle,
+              promptDescription,
+              promptCategory,
+            );
         } else {
             const promptPreview = Object.values(refinedPromptParts).join(" ");
             const listPromptAtom = Object.values(combinations)

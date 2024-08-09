@@ -25,7 +25,7 @@
     transition: background-color 0.2s;
 }
 
-input {
+.input {
     box-sizing: border-box;
     background-color: var(--color-gray2);
     border: none;
@@ -36,7 +36,7 @@ input {
     caret-color: var(--block-main-color);
 }
 
-textarea {
+.blockDescription {
     box-sizing: border-box;
     background-color: var(--color-gray2);
     padding: 15px 18px;

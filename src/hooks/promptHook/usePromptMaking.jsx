@@ -1,15 +1,27 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { enqueueSnackbar } from "notistack";
 import {
     activeBlocksState,
     combinationsState,
     blockDetailsState,
 } from "../../recoil/prompt/promptRecoilState";
+import { useEffect } from "react";
 
 export const usePromptMaking = () => {
     const [combinations, setCombinations] = useRecoilState(combinationsState);
-    const setActiveBlocks = useSetRecoilState(activeBlocksState);
+    const [activeBlocks, setActiveBlocks] = useRecoilState(activeBlocksState);
     const blockDetails = useRecoilValue(blockDetailsState);
+
+    useEffect(() => {
+        const newActiveBlocks = { ...activeBlocks };
+        for (const category in newActiveBlocks) {
+            newActiveBlocks[category] = newActiveBlocks[category]?.filter(
+                (blockId) => combinations[category] !== blockId
+            );
+        }
+        setActiveBlocks(newActiveBlocks);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [combinations]);
 
     const onDragEnd = (result) => {
         const { source, destination, draggableId } = result;
