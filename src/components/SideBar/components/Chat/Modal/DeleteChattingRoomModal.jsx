@@ -17,14 +17,9 @@ const ButtonContainer = styled.div`
   }
 `;
 
-function DeleteChattingModal({
-  isOpen, 
-  onClose, 
-  roomId
-}) {
+function DeleteChattingModal({ isOpen, onClose, roomId }) {
   const setChattingRoomList = useSetRecoilState(chattingRoomListState);
   const { deleteChattingRoom } = useChattingRoomHooks();
-
 
   if (!isOpen) return null;
 
@@ -37,13 +32,28 @@ function DeleteChattingModal({
   };
 
   return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} title="채팅방을 삭제하시겠습니까?" onSubmit={handleDeleteClick} exitButton={false}>
+    <ModalContainer
+      isOpen={isOpen}
+      onClose={onClose}
+      title="채팅방을 삭제하시겠습니까?"
+      onSubmit={handleDeleteClick}
+      exitButton={false}
+    >
       <B3>해당 채팅방의 기록이 완전히 삭제됩니다.</B3>
       <ButtonContainer>
-        <ModalButton title="취소" variant="secondary" size="small" onClick={onClose}/>
-        <ModalButton title="삭제" variant="primary" size="small" type="submit"/>
+        <ModalButton
+          title="취소"
+          variant="secondary"
+          size="small"
+          onClick={onClose}
+        />
+        <ModalButton
+          title="삭제"
+          variant="primary"
+          size="small"
+          type="submit"
+        />
       </ButtonContainer>
-     
     </ModalContainer>
   );
 }

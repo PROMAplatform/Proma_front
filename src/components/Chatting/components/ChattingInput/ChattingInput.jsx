@@ -14,65 +14,73 @@ import Preview from "./FilePreview";
 import PromptPreview from "../Prompt/PromptPreview";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting.js";
 import { currentPromptState } from "../../../../recoil/prompt/promptRecoilState";
+import { uploadS3 } from "../../../../util/s3Upload";
 
 function ChattingInput() {
   const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
   const setMessages = useSetRecoilState(messageState);
-  const currentRoomId = useRecoilValue(currentRoomIdState);
+  const [currentRoomId, setCurrentRoomId] = useRecoilState(currentRoomIdState);
   const input = useInput("");
-  const isFirst = useRecoilValue(isFirstState);
-  const setIsFirst = useSetRecoilState(isFirstState);
+  const [isFirst, setIsFirst] = useRecoilState(isFirstState);
   const fileInputRef = useRef(null);
   const textareaRef = useRef(null);
-  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
   const { fetchChattingAnswer, createChattingRoom } = useChattingRoomHooks();
   const currentPrompt = useRecoilValue(currentPromptState);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!input.value.trim() && selectedFiles.length === 0) {
+    if (!input.value.trim() && !selectedFile) {
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // 이 부분 chattingAPI로 분리 예정
+      let roomId = currentRoomId;
       if (isFirst) {
-        await createChattingRoom(input.value, "💡");
+        roomId = await createChattingRoom(input.value, "💡");
+        setCurrentRoomId(roomId);
         setIsFirst(false);
       }
-      // const mockResponse = generateMockResponse(input.value);
 
       const newMessage = {
         messageId: Date.now(),
-        promptId: "",
+        promptId: currentPrompt.id,
         messageQuestion: input.value,
-        messageFile: selectedFiles,
+        messageFile: selectedFile,
         messageCreateAt: new Date().toISOString(),
-        chatroomId: currentRoomId,
+        chatroomId: roomId,
       };
       setMessages((prevMessages) => [...prevMessages, newMessage]);
 
-      //TODO- pdf, image 처리에 관한 로직 좀 더 추가해야할 듯
-      const response = await fetchChattingAnswer(
+      console.log(
         currentPrompt.id,
         input.value,
-        "",
-        ""
+        roomId,
+        selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",
+        selectedFile ? selectedFile.url : ""
       );
-      console.log(response);
+
+      const chattingResponse = await fetchChattingAnswer(
+        currentPrompt.id,
+        input.value,
+        roomId,
+        selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",
+        selectedFile ? selectedFile.url : ""
+      );
+
       const messageAnswer = {
         messageId: Date.now() + 1,
-        messageAnswer: response.data.responseDto.messageAnswer,
+        messageAnswer: chattingResponse.data.responseDto.messageAnswer,
         messageCreateAt: new Date().toISOString(),
-        chatroomId: currentRoomId,
+        chatroomId: roomId,
       };
 
       setMessages((prevMessages) => [...prevMessages, messageAnswer]);
 
       input.reset();
-      setSelectedFiles([]); // 파일 초기화
+      setSelectedFile(undefined); // 파일 초기화
     } catch (error) {
       console.error("Error sending message:", error);
     } finally {
@@ -86,25 +94,21 @@ function ChattingInput() {
     }
   };
 
-  const onSelectFile = (e) => {
-    const files = e.target.files;
-    const fileUrls = [];
-
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        const fileUrl = {
-          url: reader.result,
+  const onSelectFile = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const s3Url = await uploadS3(file);
+        const fileInfo = {
+          url: s3Url,
           name: file.name,
-          isImage: file.type && file.type.startsWith("image/"),
+          isImage: file.type.startsWith("image/"),
+          type: file.type.startsWith("image/") ? "Image" : "PDF",
         };
-        fileUrls.push(fileUrl);
-        if (fileUrls.length === files.length) {
-          setSelectedFiles((prevFiles) => [...prevFiles, ...fileUrls]);
-        }
-      };
+        setSelectedFile(fileInfo);
+      } catch (error) {
+        console.error("파일 업로드 실패:", error);
+      }
     }
   };
 
@@ -132,8 +136,8 @@ function ChattingInput() {
       <form onSubmit={handleSubmit} className={styles.inputContainer}>
         <div className={styles.filePreviewContainer}>
           <Preview
-            selectedFiles={selectedFiles}
-            setSelectedFiles={setSelectedFiles}
+            selectedFile={selectedFile}
+            setSelectedFile={setSelectedFile}
           />
         </div>
         <div className={styles.input}>

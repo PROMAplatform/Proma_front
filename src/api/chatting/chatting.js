@@ -2,6 +2,7 @@ import { useSetRecoilState } from "recoil";
 import {
   chattingRoomListState,
   currentRoomIdState,
+  messageState,
 } from "../../recoil/chatting/chattingRecoilState";
 import { sendRequest } from "../request";
 import { aiChatInstance, chattingInstance } from "../instance";
@@ -13,6 +14,7 @@ export const useChattingRoomHooks = () => {
   const setChattingRoomList = useSetRecoilState(chattingRoomListState);
   const setCurrentRoomId = useSetRecoilState(currentRoomIdState);
   const setPromptList = useSetRecoilState(promptListState);
+  const setMessages = useSetRecoilState(messageState);
   const mockUserId = "?userId=1";
   // const mockChattingRoomList = [
   //   {
@@ -53,11 +55,12 @@ export const useChattingRoomHooks = () => {
 
   //채팅방 리스트 가져오기
   //TODO- mock에서 실제 데이터로 수정해야함.
-  const getChattingRoomList = async () => {
+  const getChattingRoomList = async (roomId) => {
     const response = await sendRequest(
       chattingInstance,
       "get",
-      `/sidebar/room/list${mockUserId}`
+      `/sidebar/room/list${mockUserId}`,
+      roomId
     );
     if (response.data.success) {
       await setChattingRoomList(response.data.responseDto.selectChatroom);
@@ -65,18 +68,15 @@ export const useChattingRoomHooks = () => {
   };
 
   //TODO- mock에서 실제 데이터로 수정해야함.
-  const getChattingList = async (roomId, userId) => {
-    //   const response = await sendRequest(
-    //     chattingInstance,
-    //     "post",
-    //     `/list/${roomId}`,
-    //     {
-    //       memberId: userId,
-    //     }
-    //   );
-    //   if (response.data.success) {
-    //     setMessages(response.data.responseDto.selectChat);
-    //   }
+  const getChattingList = async (roomId) => {
+    const response = await sendRequest(
+      chattingInstance,
+      "get",
+      `/${roomId}${mockUserId}`
+    );
+    if (response.data.success) {
+      setMessages(response.data.responseDto.selectChatting);
+    }
   };
   //채팅방 생성
   const createChattingRoom = async (roomTitle, emoji) => {
@@ -94,6 +94,8 @@ export const useChattingRoomHooks = () => {
         //TODO- 내가 방금 만든 방으로 방을 이동하는 로직 추가
         console.log("성공");
         setCurrentRoomId(response.data.responseDto.roomId);
+        console.log(response.data.responseDto.roomId);
+        return response.data.responseDto.roomId;
       }
     } catch (error) {
       console.error("Failed to create chatting room:", error);
@@ -135,11 +137,11 @@ export const useChattingRoomHooks = () => {
       "delete",
       `/sidebar/prompt/${promptId}${mockUserId}`
     );
-    setPromptList((oldPromptList) => 
-      oldPromptList.filter(prompt => prompt.promptId !== promptId)
+    setPromptList((oldPromptList) =>
+      oldPromptList.filter((prompt) => prompt.promptId !== promptId)
     );
   };
-  
+
   const patchPromptEmoji = async (promptId, emoji) => {
     await sendRequest(
       chattingInstance,
@@ -185,8 +187,8 @@ export const useChattingRoomHooks = () => {
         promptCategory,
       }
     );
-    setPromptList((oldPromptList) => 
-      oldPromptList.map(prompt => {
+    setPromptList((oldPromptList) =>
+      oldPromptList.map((prompt) => {
         if (prompt.promptId === promptId) {
           return { ...prompt, promptTitle, promptDescription, promptCategory };
         }
@@ -196,19 +198,17 @@ export const useChattingRoomHooks = () => {
   };
 
   // 프롬프트 블록 수정
-  const patchPromptBlock = async (
-    promptId,
-    listPromptAtom,
-  ) => {
+  const patchPromptBlock = async (promptId, listPromptAtom) => {
     await sendRequest(
-      chattingInstance, 
-      "patch", `/prompt/block/${promptId}${mockUserId}`,
-        listPromptAtom,
+      chattingInstance,
+      "patch",
+      `/prompt/block/${promptId}${mockUserId}`,
+      listPromptAtom
     );
-    setPromptList((oldPromptList) => 
-      oldPromptList.map(prompt => {
+    setPromptList((oldPromptList) =>
+      oldPromptList.map((prompt) => {
         if (prompt.promptId === promptId) {
-          return { ...prompt, listPromptAtom }; 
+          return { ...prompt, listPromptAtom };
         }
         return prompt;
       })
@@ -222,12 +222,14 @@ export const useChattingRoomHooks = () => {
   const fetchChattingAnswer = async (
     promptId,
     messageQuestion,
+    chatroomId,
     fileType,
     messageFile
   ) => {
     const response = await sendRequest(aiChatInstance, "post", `/question`, {
       promptId: promptId,
       messageQuestion,
+      chatroomId,
       fileType,
       messageFile,
     });
