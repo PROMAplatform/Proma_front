@@ -20,6 +20,7 @@ export const usePromptMaking = () => {
             );
         }
         setActiveBlocks(newActiveBlocks);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [combinations]);
 
     const onDragEnd = (result) => {
@@ -97,20 +98,10 @@ export const usePromptMaking = () => {
             [category]: null,
         }));
 
-        // setActiveBlocks((prev) => ({
-        //     ...prev,
-        //     [category]: [...prev[category], blockId],
-        // }));
-        setActiveBlocks((prev) => {
-            const newBlocks = { ...prev };
-            
-            // 이미 해당 카테고리에 블록이 존재하는지 확인
-            if (!newBlocks[category].includes(blockId)) {
-                newBlocks[category] = [...newBlocks[category], blockId];
-            }
-
-            return newBlocks;
-        });
+        setActiveBlocks((prev) => ({
+            ...prev,
+            [category]: [...prev[category], blockId],
+        }));
     };
 
     const handleWithinCombinationArea = (
