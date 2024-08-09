@@ -1,43 +1,44 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./PromptModal.module.css";
 import { H5, B5, B6 } from "../../../../../styles/font-styles";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import editIcon from "../../../../../assets/images/editIcon.svg";
-import { promptListState, promptMethodState } from "../../../../../recoil/prompt/promptRecoilState";
+import {
+  promptListState,
+  promptMethodState,
+} from "../../../../../recoil/prompt/promptRecoilState";
 import ModalContainer from "../../../../common/ModalContainer";
 import ModalButton from "../../../../common/ModalButton";
 import PromptDetail from "../../../../common/Prompt/PromptDetail";
 import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
+import { setLocalPromptMethod } from "../../../../../util/localStorage";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
-function EditPromptInfoModal({
-  isOpen,
-  onClose,
-  promptId,
-}) {
+function EditPromptInfoModal({ isOpen, onClose, promptId }) {
   const navigate = useNavigate();
   const promptList = useRecoilValue(promptListState);
-  const prompt = promptList.find(p => p.promptId === promptId);
-  const { promptTitle: initialTitle, promptDescription: initialDescription, promptCategory: initialCategory, listPromptAtom } = prompt;
+  const prompt = promptList.find((p) => p.promptId === promptId);
+  const {
+    promptTitle: initialTitle,
+    promptDescription: initialDescription,
+    promptCategory: initialCategory,
+    listPromptAtom,
+  } = prompt;
   const setPromptMethod = useSetRecoilState(promptMethodState);
   // 모달 내부에서 사용할 상태 변수 추가
   const [promptTitle, setPromptTitle] = useState(initialTitle);
-  const [promptDescription, setPromptDescription] = useState(initialDescription);
-  const [promptCategory, setPromptCategory] = useState(initialCategory)
+  const [promptDescription, setPromptDescription] =
+    useState(initialDescription);
+  const [promptCategory, setPromptCategory] = useState(initialCategory);
 
   const { patchPromptInfo } = useChattingRoomHooks();
 
   if (!isOpen) return null;
 
   const handleEditClick = () => {
-    patchPromptInfo(
-      promptId,
-      promptTitle,
-      promptDescription,
-      promptCategory,
-    );
+    patchPromptInfo(promptId, promptTitle, promptDescription, promptCategory);
 
     console.log({
       promptTitle,
@@ -49,16 +50,25 @@ function EditPromptInfoModal({
   };
 
   const handleBlockEditClick = () => {
+    setLocalPromptMethod(prompt.promptMethod);
     setPromptMethod(prompt.promptMethod);
     navigate("/promptMaking", { state: { promptId } }); // promptId를 state에 담아 navigate
   };
 
   return (
-    <ModalContainer isOpen={isOpen} onClose={onClose} title="프롬프트 정보 수정하기" onSubmit={handleEditClick}>
+    <ModalContainer
+      isOpen={isOpen}
+      onClose={onClose}
+      title="프롬프트 정보 수정하기"
+      onSubmit={handleEditClick}
+    >
       <div className={styles.promptDetailContainer}>
-        <PromptDetail listPromptAtom={listPromptAtom}/>
-        <div className={styles.promptBlockEditButton} onClick={handleBlockEditClick}>
-          <img src={editIcon} alt="edit icon"/>
+        <PromptDetail listPromptAtom={listPromptAtom} />
+        <div
+          className={styles.promptBlockEditButton}
+          onClick={handleBlockEditClick}
+        >
+          <img src={editIcon} alt="edit icon" />
           <B6 color="gray6">블록 수정하기</B6>
         </div>
       </div>
@@ -104,7 +114,7 @@ function EditPromptInfoModal({
           </ul>
         </div>
       </div>
-      <ModalButton title="저장하기" variant="primary" type="submit"/>
+      <ModalButton title="저장하기" variant="primary" type="submit" />
     </ModalContainer>
   );
 }
