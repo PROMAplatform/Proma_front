@@ -1,8 +1,8 @@
 .resultContent {
-  background-color: white;
-  padding: 15px;
-  border-radius: 8px;
-  min-height: 100px;
-  height: auto;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 100px;
+    height: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }

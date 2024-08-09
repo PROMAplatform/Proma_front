@@ -8,22 +8,22 @@ import PromptMakingSidebar from "../components/PromptMaking/PromptMakingSideBar/
 import { usePromptMaking } from "../hooks/promptHook/usePromptMaking";
 
 const PromptMakingPage = () => {
-  const location = useLocation();
-  const promptId = location.state?.promptId; 
-  const { onDragEnd } = usePromptMaking();
+    const location = useLocation();
+    const promptId = location.state?.promptId;
+    const { onDragEnd } = usePromptMaking();
 
-  return (
-    <SnackbarProvider maxSnack={3}>
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className={styles.app}>
-          <PromptMakingSidebar/>
-          <div className={styles.areaContainer}>
-            <CombinationArea promptId={promptId}/>
-          </div>
-        </div>
-      </DragDropContext>
-    </SnackbarProvider>
-  );
+    return (
+        <SnackbarProvider maxSnack={3}>
+            <DragDropContext onDragEnd={onDragEnd}>
+                <div className={styles.app}>
+                    <PromptMakingSidebar />
+                    <div className={styles.areaContainer}>
+                        <CombinationArea promptId={promptId} />
+                    </div>
+                </div>
+            </DragDropContext>
+        </SnackbarProvider>
+    );
 };
 
 export default PromptMakingPage;

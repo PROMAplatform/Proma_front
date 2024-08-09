@@ -19,7 +19,7 @@
 .filePreviewContainer {
     display: flex;
     flex-wrap: wrap;
-  }
+}
 
 .input {
     display: flex;

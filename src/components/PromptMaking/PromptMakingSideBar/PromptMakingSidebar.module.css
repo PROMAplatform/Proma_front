@@ -1,103 +1,103 @@
 .container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 100;
-  width: 390px;
-  height: 100%;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
-  background-color: var(--color-gray1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    width: 390px;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+    background-color: var(--color-gray1);
 }
 
 .promptTitle {
-  width: 90%;
-  align-items: flex-start;
-  margin: 10px 0;
+    width: 90%;
+    align-items: flex-start;
+    margin: 10px 0;
 }
 
-.container .promaLogo{
-  margin: 20px;
-  width: 145px;
+.container .promaLogo {
+    margin: 20px;
+    width: 145px;
 }
 
 .sidebar {
-  display: flex;
-  width: 90%;
-  height: auto;
-  background-color: var(--white);
-  border-radius: 15px;
-  overflow: hidden;
+    display: flex;
+    width: 90%;
+    height: auto;
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .categories {
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  padding: 25px 0;
-  background-color: var(--white);
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 25px 0;
+    background-color: var(--white);
 }
 
 .category {
-  padding: 15px 10px;
-  padding-right: 10px;
-  border-top-right-radius: 50px;
-  border-bottom-right-radius: 50px;
-  cursor: pointer;
-  text-orientation: upright;
-  transition: all 0.3s;
-  font-size: 14px;
-  background-color: var(--category-color);
-  white-space: nowrap;
-  z-index: 10;
+    padding: 15px 10px;
+    padding-right: 10px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    cursor: pointer;
+    text-orientation: upright;
+    transition: all 0.3s;
+    font-size: 14px;
+    background-color: var(--category-color);
+    white-space: nowrap;
+    z-index: 10;
 }
 
 .category.active {
-  margin-right: -15px;
-  padding-right: 25px;
-  padding-left: 25px;
+    margin-right: -15px;
+    padding-right: 25px;
+    padding-left: 25px;
 }
 
 .blocksContainer {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  background-color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color: #fff;
 }
 
 .blocks {
-  overflow-y: auto;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  gap: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .block {
-  cursor: move;
-  opacity: 0.9;
-  transition: opacity 0.3s;
+    cursor: move;
+    opacity: 0.9;
+    transition: opacity 0.3s;
 }
 
 .block:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .addButton {
-  width: auto;
-  padding: 8px 30px;
-  background-color: var(--white);
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.20);
-  cursor: pointer;
-  margin: 10px;
-  align-self: center;
+    width: auto;
+    padding: 8px 30px;
+    background-color: var(--white);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    margin: 10px;
+    align-self: center;
 }
 
 .addButton:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }

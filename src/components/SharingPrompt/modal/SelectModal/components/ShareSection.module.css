@@ -14,7 +14,7 @@
     width: 10px;
 }
 .listContainer::-webkit-scrollbar-thumb {
-    background-color: #543FD6;
+    background-color: #543fd6;
     border-radius: 10px;
     background-clip: padding-box;
     border: 2px solid transparent;
@@ -35,8 +35,8 @@
     flex-shrink: 0;
 
     border-radius: 30.612px;
-    border: 1px solid #543FD6;
-    background: #543FD6;
+    border: 1px solid #543fd6;
+    background: #543fd6;
 
     cursor: pointer;
 }

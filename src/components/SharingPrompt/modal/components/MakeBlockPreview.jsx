@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './MakeBlockPreview.module.css';
+import React from "react";
+import styles from "./MakeBlockPreview.module.css";
 
-function MakeBlockPreview({props}) {
+function MakeBlockPreview({ props }) {
     const categoryStyles = {
         화자: styles.speakerCategory,
         청자: styles.listenerCategory,
@@ -13,14 +13,12 @@ function MakeBlockPreview({props}) {
 
     return (
         <div className={styles.blockSection}>
-            { props.blockCategory && (
-                <div className={ `${categoryStyles[props.blockCategory]}`}>
-                        {props.blockCategory}
+            {props.blockCategory && (
+                <div className={`${categoryStyles[props.blockCategory]}`}>
+                    {props.blockCategory}
                 </div>
             )}
-            <div className={styles.titleSection}>
-                {props.blockTitle}
-            </div>
+            <div className={styles.titleSection}>{props.blockTitle}</div>
         </div>
     );
 }

@@ -4,13 +4,13 @@ import SharePromptList from "../components/SharingPrompt/Prompt/SharePromptList"
 import PageBar from "../components/PageBar/PageBar";
 
 function MyPage() {
-    return(
-        <>
-            <MyFilterSection/>
-            <SharePromptList/>
-            <PageBar/>
-        </>
-    );
+  return (
+    <>
+      <MyFilterSection />
+      <SharePromptList />
+      <PageBar />
+    </>
+  );
 }
 
 export default MyPage;

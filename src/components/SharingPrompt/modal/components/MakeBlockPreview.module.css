@@ -4,7 +4,7 @@
 
 .categorieSection {
     display: flex;
-    background-color: #543FD6;
+    background-color: #543fd6;
 }
 
 .speakerCategory {
@@ -39,5 +39,5 @@
 
 .titleSection {
     display: flex;
-    background-color: #5A5A5A;
+    background-color: #5a5a5a;
 }

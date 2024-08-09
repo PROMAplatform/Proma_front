@@ -6,7 +6,7 @@
 }
 
 .promptCreateButton:hover {
-    box-shadow: 0px 0px 10px 0px rgba(84, 63, 214, 0.30);
+    box-shadow: 0px 0px 10px 0px rgba(84, 63, 214, 0.3);
     transform: scale(1.1);
     transition: 0.2s;
 }
@@ -17,7 +17,7 @@
 
 .promptCreateButton {
     background-color: var(--color-gray1);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
     border-radius: 50px;
     display: flex;
     padding: 25px 15px;
@@ -39,4 +39,3 @@
     align-items: center;
     gap: 5px;
 }
-

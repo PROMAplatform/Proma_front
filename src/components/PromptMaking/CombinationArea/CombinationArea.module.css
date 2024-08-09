@@ -1,84 +1,84 @@
 .container {
-  margin: 30px;
-  box-sizing: border-box;
+    margin: 30px;
+    box-sizing: border-box;
 }
 .combinationArea {
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.10) inset;
-  position: relative;
-  box-sizing: border-box;
-  min-height: 700px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+    box-sizing: border-box;
+    min-height: 700px;
 }
 
 .title {
-  gap: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin: 0 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10px;
 }
 
 .saveButton {
-  background-color: var(--logo-purple1);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: none;
-  padding: 8px 15px;
-  padding-bottom: 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  display: flex;
+    background-color: var(--logo-purple1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border: none;
+    padding: 8px 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    display: flex;
 }
 
 .saveButton:hover {
-  background-color: var(--logo-purple2);
-  transition: 0.3s;
+    background-color: var(--logo-purple2);
+    transition: 0.3s;
 }
 
 .saveIcon {
-  width: 20px;
+    width: 20px;
 }
 
 .dropYourBlocks {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .categoryList {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  position: relative;
-  margin: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    margin: 25px;
 }
 
 .categoryItem {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
 }
 
 .categoryValue {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .block {
-  display: flex;
-  align-items: center;
-  position: relative;
-  left: -11px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: -11px;
 }

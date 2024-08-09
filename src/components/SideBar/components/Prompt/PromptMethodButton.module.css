@@ -1,14 +1,14 @@
 .container {
-  width: 25%;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px;
-  border-radius: 30px;
-  background-color: var(--color-gray1);
-  transition: 0.2s;
+    width: 25%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: var(--color-gray1);
+    transition: 0.2s;
 }
 
 .containerSelected {
@@ -20,5 +20,5 @@
 }
 
 .icon {
-  width: 30px;
+    width: 30px;
 }

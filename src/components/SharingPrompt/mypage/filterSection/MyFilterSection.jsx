@@ -1,17 +1,22 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./MyFilterSection.module.css";
 import SortButton from "../../components/FilterComponents/SortButton";
 import CategoryButton from "../../components/FilterComponents/CategoryButton";
-import {useRecoilState, useRecoilValue} from "recoil";
-import {myPageState} from "../../../../recoil/community/myPageRecoilState";
-import {useMyPageHooks} from "../../../../api/community/myPage";
-import {communityPromptListPageState, stateChange} from "../../../../recoil/community/communityRecoilState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { myPageState } from "../../../../recoil/community/myPageRecoilState";
+import { useMyPageHooks } from "../../../../api/community/myPage";
+import {
+    communityPromptListPageState,
+    stateChange,
+} from "../../../../recoil/community/communityRecoilState";
 
 function MyFilterSection() {
     const [isMyPageState] = useRecoilState(myPageState);
     const isStateChange = useRecoilValue(stateChange);
-    const {currentPage} = useRecoilValue(communityPromptListPageState) ?? {currentPage: 0};
-    const {getLikePromptList, getWritePromptList} = useMyPageHooks();
+    const { currentPage } = useRecoilValue(communityPromptListPageState) ?? {
+        currentPage: 0,
+    };
+    const { getLikePromptList, getWritePromptList } = useMyPageHooks();
 
     const [selectCategory, setSelectCategory] = useState("전체");
     const [sortOrder, setSortOrder] = useState("최신순");
@@ -34,23 +39,23 @@ function MyFilterSection() {
         },
     });
 
-    return(
+    return (
         <div className={styles.backGround}>
             <div className={styles.titleSection}>
                 <div className={styles.buttonSection}>
-                    <SortButton setSortOrder={setSortOrder}/>
+                    <SortButton setSortOrder={setSortOrder} />
                 </div>
 
                 {isMyPageState === "like" ? (
                     <h1 className={styles.title}>내가 좋아요한 게시글</h1>
-                ):(
+                ) : (
                     <h1 className={styles.title}>내가 작성한 게시글</h1>
                 )}
             </div>
             <div className={styles.lineSection}>
-                <hr className={styles.line}/>
+                <hr className={styles.line} />
             </div>
-            <CategoryButton setSelectCategory={setSelectCategory}/>
+            <CategoryButton setSelectCategory={setSelectCategory} />
         </div>
     );
 }

@@ -2,144 +2,144 @@ import { atom, selector } from "recoil";
 
 // 타입별 카테고리 옵션
 const categoryOptions = {
-  task: ["화자", "청자", "지시", "형식", "필수", "제외"],
-  character: ["역할", "성격", "배경", "규칙"],
+    task: ["화자", "청자", "지시", "형식", "필수", "제외"],
+    character: ["역할", "성격", "배경", "규칙"],
 };
 
 // 활성 타입 상태
 export const promptMethodState = atom({
-  key: "promptMethodState",
-  default: "Task/Research", // 기본 타입 설정
+    key: "promptMethodState",
+    default: "Task/Research", // 기본 타입 설정
 });
 export const currentPromptState = atom({
-  key: "currentPromptState",
-  default: {},
+    key: "currentPromptState",
+    default: {},
 });
 const initialBlocks = {
-  화자: [
-    {
-      blockId: 1,
-      blockValue: "선생님",
-      blockDescription: "당신은 친절하고 지식이 풍부한 선생님입니다.",
-    },
-    {
-      blockId: 2,
-      blockValue: "학생",
-      blockDescription: "당신은 호기심 많고 열심히 공부하는 학생입니다.",
-    },
-  ],
-  청자: [
-    {
-      blockId: 3,
-      blockValue: "에세이",
-      blockDescription: "주제에 대해 자유롭게 서술하는 형식입니다.",
-    },
-    {
-      blockId: 4,
-      blockValue: "보고서",
-      blockDescription: "구조화된 형식으로 정보를 전달합니다.",
-    },
-  ],
-  지시: [
-    {
-      blockId: 5,
-      blockValue: "설명하세요",
-      blockDescription: "주제에 대해 상세히 설명해주세요.",
-    },
-    {
-      blockId: 6,
-      blockValue: "비교하세요",
-      blockDescription: "두 가지 이상의 대상을 비교해주세요.",
-    },
-  ],
-  형식: [
-    {
-      blockId: 7,
-      blockValue: "최신 연구",
-      blockDescription: "최근의 연구 결과를 참고하세요.",
-    },
-    {
-      blockId: 8,
-      blockValue: "역사적 사실",
-      blockDescription: "관련된 역사적 사실을 고려하세요.",
-    },
-  ],
-  필수: [
-    {
-      blockId: 9,
-      blockValue: "키워드 포함",
-      blockDescription: "반드시 특정 키워드를 포함해야 합니다.",
-    },
-    {
-      blockId: 10,
-      blockValue: "예시 제시",
-      blockDescription: "설명에 구체적인 예시를 포함해야 합니다.",
-    },
-  ],
-  제외: [
-    {
-      blockId: 11,
-      blockValue: "비속어",
-      blockDescription: "비속어 사용을 피해주세요.",
-    },
-    {
-      blockId: 12,
-      blockValue: "편견적 표현",
-      blockDescription: "편견이 드러나는 표현을 사용하지 마세요.",
-    },
-  ],
+    화자: [
+        {
+            blockId: 1,
+            blockValue: "선생님",
+            blockDescription: "당신은 친절하고 지식이 풍부한 선생님입니다.",
+        },
+        {
+            blockId: 2,
+            blockValue: "학생",
+            blockDescription: "당신은 호기심 많고 열심히 공부하는 학생입니다.",
+        },
+    ],
+    청자: [
+        {
+            blockId: 3,
+            blockValue: "에세이",
+            blockDescription: "주제에 대해 자유롭게 서술하는 형식입니다.",
+        },
+        {
+            blockId: 4,
+            blockValue: "보고서",
+            blockDescription: "구조화된 형식으로 정보를 전달합니다.",
+        },
+    ],
+    지시: [
+        {
+            blockId: 5,
+            blockValue: "설명하세요",
+            blockDescription: "주제에 대해 상세히 설명해주세요.",
+        },
+        {
+            blockId: 6,
+            blockValue: "비교하세요",
+            blockDescription: "두 가지 이상의 대상을 비교해주세요.",
+        },
+    ],
+    형식: [
+        {
+            blockId: 7,
+            blockValue: "최신 연구",
+            blockDescription: "최근의 연구 결과를 참고하세요.",
+        },
+        {
+            blockId: 8,
+            blockValue: "역사적 사실",
+            blockDescription: "관련된 역사적 사실을 고려하세요.",
+        },
+    ],
+    필수: [
+        {
+            blockId: 9,
+            blockValue: "키워드 포함",
+            blockDescription: "반드시 특정 키워드를 포함해야 합니다.",
+        },
+        {
+            blockId: 10,
+            blockValue: "예시 제시",
+            blockDescription: "설명에 구체적인 예시를 포함해야 합니다.",
+        },
+    ],
+    제외: [
+        {
+            blockId: 11,
+            blockValue: "비속어",
+            blockDescription: "비속어 사용을 피해주세요.",
+        },
+        {
+            blockId: 12,
+            blockValue: "편견적 표현",
+            blockDescription: "편견이 드러나는 표현을 사용하지 마세요.",
+        },
+    ],
 };
 
 //프롬프트 리스트
 export const promptListState = atom({
-  key: "promptListState",
-  default: [],
+    key: "promptListState",
+    default: [],
 });
 
 // 사용 가능한 모든 카테고리 목록
 export const availableCategoriesState = atom({
-  key: "availableCategoriesState",
-  default: categoryOptions["task"],
+    key: "availableCategoriesState",
+    default: categoryOptions["task"],
 });
 
 // 활성 카테고리
 export const activeCategoryState = atom({
-  key: "activeCategoryState",
-  default: selector({
-    key: "availableCategoriesDefault",
-    get: ({ get }) => {
-      const categories = get(availableCategoriesState);
-      return categories.length > 0 ? categories[0] : null;
-    },
-  }),
+    key: "activeCategoryState",
+    default: selector({
+        key: "availableCategoriesDefault",
+        get: ({ get }) => {
+            const categories = get(availableCategoriesState);
+            return categories.length > 0 ? categories[0] : null;
+        },
+    }),
 });
 
 // 각 카테고리별 블록 ID
 export const activeBlocksState = atom({
-  key: "activeBlocksState",
-  default: Object.fromEntries(
-    Object.keys(initialBlocks).map((category) => [
-      category,
-      initialBlocks[category].map((block) => block.blockId),
-    ])
-  ),
+    key: "activeBlocksState",
+    default: Object.fromEntries(
+        Object.keys(initialBlocks).map((category) => [
+            category,
+            initialBlocks[category].map((block) => block.blockId),
+        ]),
+    ),
 });
 
 // 선택된 조합
 export const combinationsState = atom({
-  key: "combinationsState",
-  default: {},
+    key: "combinationsState",
+    default: {},
 });
 
 // 색상 정의
 const predefinedColors = [
-  "var(--block-main-color)",
-  "var(--block-purple)",
-  "var(--block-pink)",
-  "var(--block-red)",
-  "var(--block-orange)",
-  "var(--block-green)",
-  "var(--block-blue)"
+    "var(--block-main-color)",
+    "var(--block-purple)",
+    "var(--block-pink)",
+    "var(--block-red)",
+    "var(--block-orange)",
+    "var(--block-green)",
+    "var(--block-blue)",
 ];
 
 // 블록 모양 정의
@@ -147,62 +147,62 @@ const predefinedShapes = [1, 2, 3, 4, 5, 6, 7];
 
 // 카테고리별 색상
 export const categoryColorsState = atom({
-  key: "categoryColorsState",
-  default: {
-    화자: predefinedColors[0],
-    청자: predefinedColors[1],
-    지시: predefinedColors[2],
-    형식: predefinedColors[3],
-    필수: predefinedColors[4],
-    제외: predefinedColors[5],
-  },
+    key: "categoryColorsState",
+    default: {
+        화자: predefinedColors[0],
+        청자: predefinedColors[1],
+        지시: predefinedColors[2],
+        형식: predefinedColors[3],
+        필수: predefinedColors[4],
+        제외: predefinedColors[5],
+    },
 });
 
 // 카테고리별 블록 모양
 export const categoryBlockShapesState = atom({
-  key: "categoryBlockShapesState",
-  default: selector({
-    key: "activeCategoryDefault",
-    get: ({ get }) => {
-      const categories = get(availableCategoriesState);
-      return categories.map((category, index) => [
-        category,
-        predefinedShapes[index % predefinedShapes.length],
-      ]);
-    },
-  }),
+    key: "categoryBlockShapesState",
+    default: selector({
+        key: "activeCategoryDefault",
+        get: ({ get }) => {
+            const categories = get(availableCategoriesState);
+            return categories.map((category, index) => [
+                category,
+                predefinedShapes[index % predefinedShapes.length],
+            ]);
+        },
+    }),
 });
 
 // 블록 세부 정보
 export const blockDetailsState = atom({
-  key: "blockDetailsState",
-  default: Object.fromEntries(
-    Object.values(initialBlocks)
-      .flat()
-      .map((block) => [block.blockId, block])
-  ),
+    key: "blockDetailsState",
+    default: Object.fromEntries(
+        Object.values(initialBlocks)
+            .flat()
+            .map((block) => [block.blockId, block]),
+    ),
 });
 
 // 정제된 프롬프트 부분
 export const refinedPromptPartsState = selector({
-  key: "refinedPromptPartsState",
-  get: ({ get }) => {
-    const combinations = get(combinationsState);
-    const categories = get(availableCategoriesState);
-    const blockDetails = get(blockDetailsState);
+    key: "refinedPromptPartsState",
+    get: ({ get }) => {
+        const combinations = get(combinationsState);
+        const categories = get(availableCategoriesState);
+        const blockDetails = get(blockDetailsState);
 
-    const promptParts = {};
-    categories.forEach((category) => {
-      if (combinations[category]) {
-        const block = blockDetails[combinations[category]];
-        promptParts[category] = block ? block.blockDescription : "";
-      } else {
-        promptParts[category] = "";
-      }
-    });
+        const promptParts = {};
+        categories.forEach((category) => {
+            if (combinations[category]) {
+                const block = blockDetails[combinations[category]];
+                promptParts[category] = block ? block.blockDescription : "";
+            } else {
+                promptParts[category] = "";
+            }
+        });
 
-    return promptParts;
-  },
+        return promptParts;
+    },
 });
 
 // // 각종 상태 초기화 함수

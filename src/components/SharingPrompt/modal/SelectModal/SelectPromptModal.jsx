@@ -1,9 +1,9 @@
-import React from 'react';
-import styles from './SelectPromptModal.module.css'
+import React from "react";
+import styles from "./SelectPromptModal.module.css";
 import ShareSection from "./components/ShareSection";
-import {B4, H3} from "../../../../styles/font-styles";
+import { B4, H3 } from "../../../../styles/font-styles";
 
-function SelectPromptModal({close}) {
+function SelectPromptModal({ close }) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.container}>
@@ -15,7 +15,7 @@ function SelectPromptModal({close}) {
                     <B4>공유할 프롬프트를 선택하세요.</B4>
                 </div>
                 <div className={styles.listSection}>
-                    <ShareSection onClose={close}/>
+                    <ShareSection onClose={close} />
                 </div>
             </div>
         </div>

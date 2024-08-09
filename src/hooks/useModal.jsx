@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useCallback, useState } from "react";
 
 function useModal(isOpen, onClose) {
     const [isModalOpen, setIsModalOpen] = useState(isOpen);
@@ -9,7 +9,7 @@ function useModal(isOpen, onClose) {
                 onClose();
             }
         },
-        [onClose]
+        [onClose],
     );
 
     useEffect(() => {

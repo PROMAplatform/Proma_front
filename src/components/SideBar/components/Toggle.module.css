@@ -24,7 +24,9 @@
     right: 0;
     bottom: 0;
     background-color: var(--color-gray5);
-    transition: background-color 0.2s, transform 0.2s; 
+    transition:
+        background-color 0.2s,
+        transform 0.2s;
     border-radius: 30px;
 }
 .toggleSlider:before {

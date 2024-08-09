@@ -17,10 +17,10 @@
     margin: 3vh;
     border-radius: 100px;
     border: 1px solid #000000;
-    background: #FFF;
+    background: #fff;
     box-shadow: 0 0.5vw 1vh 0 rgba(242, 242, 242, 0.88);
 
-    color: #5A5A5A;
+    color: #5a5a5a;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -51,10 +51,10 @@
     cursor: pointer;
 
     border-radius: 20px;
-    border: 1.5px solid #5A5A5A;
-    background: #FFF;
+    border: 1.5px solid #5a5a5a;
+    background: #fff;
 
-    color: #5A5A5A;
+    color: #5a5a5a;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;

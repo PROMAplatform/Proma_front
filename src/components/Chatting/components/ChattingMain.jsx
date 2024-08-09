@@ -9,41 +9,43 @@ import freeIcon from "../../../assets/images/freeIcon.svg";
 import { promptMethodState } from "../../../recoil/prompt/promptRecoilState";
 import { useSetRecoilState } from "recoil";
 import { useChattingRoomHooks } from "../../../api/chatting/chatting";
+import { setLocalPromptMethod } from "../../../util/localStorage";
 
 function ChattingMain() {
-  const navigate = useNavigate();
-  const setPromptMethod = useSetRecoilState(promptMethodState);
-  const { getChattingRoomList } = useChattingRoomHooks();
-  const handlePromptCreateClick = (type) => {
-    setPromptMethod(type);
-    navigate(`/promptMaking/`);
-  };
+    const navigate = useNavigate();
+    const setPromptMethod = useSetRecoilState(promptMethodState);
+    const { getChattingRoomList } = useChattingRoomHooks();
+    const handlePromptCreateClick = (type) => {
+        setPromptMethod(type);
+        setLocalPromptMethod(type);
+        navigate(`/promptMaking/`);
+    };
 
-  useEffect(() => {
-    getChattingRoomList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return (
-    <div className={styles.container}>
-      <H1 color="purpleGradient">나만의 프롬프트 만들기</H1>
-      <div className={styles.typeContainer}>
-        <PromptCreateButton
-          type="Character"
-          icon={characterIcon}
-          onClick={() => handlePromptCreateClick("Character")}
-        />
-        <PromptCreateButton
-          type="Task/Research"
-          icon={taskIcon}
-          onClick={() => handlePromptCreateClick("Task/Research")}
-        />
-        <PromptCreateButton
-          type="Free"
-          icon={freeIcon}
-          onClick={() => handlePromptCreateClick("Free")}
-        />
-      </div>
-    </div>
-  );
+    useEffect(() => {
+        getChattingRoomList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    return (
+        <div className={styles.container}>
+            <H1 color="purpleGradient">나만의 프롬프트 만들기</H1>
+            <div className={styles.typeContainer}>
+                <PromptCreateButton
+                    type="Character"
+                    icon={characterIcon}
+                    onClick={() => handlePromptCreateClick("Character")}
+                />
+                <PromptCreateButton
+                    type="Task/Research"
+                    icon={taskIcon}
+                    onClick={() => handlePromptCreateClick("Task/Research")}
+                />
+                <PromptCreateButton
+                    type="Free"
+                    icon={freeIcon}
+                    onClick={() => handlePromptCreateClick("Free")}
+                />
+            </div>
+        </div>
+    );
 }
 export default ChattingMain;

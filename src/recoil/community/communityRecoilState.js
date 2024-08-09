@@ -1,6 +1,5 @@
 // recoilState.js
-import {atom} from "recoil";
-
+import { atom } from "recoil";
 
 export const communityPromptListState = atom({
     key: "communityPromptListState",
@@ -10,11 +9,11 @@ export const communityPromptListState = atom({
 export const communityPromptListPageState = atom({
     key: "communityPromptListPageState",
     default: {
-        currentPage : 0,
-        totalPages : 0,
-        pageSize : 0,
-        totalItems : 0,
-        currentItems : 0,
+        currentPage: 0,
+        totalPages: 0,
+        pageSize: 0,
+        totalItems: 0,
+        currentItems: 0,
     },
 });
 
@@ -34,16 +33,16 @@ export const makePromptDetailState = atom({
 });
 
 export const modalStackState = atom({
-    key: 'modalStackState',
+    key: "modalStackState",
     default: [],
 });
 
 export const isLoadingCommunityState = atom({
-   key: 'isLoadingCommunity',
-   default: false,
+    key: "isLoadingCommunity",
+    default: false,
 });
 
 export const stateChange = atom({
-   key : 'stateChange',
-   default: 0,
+    key: "stateChange",
+    default: 0,
 });

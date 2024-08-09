@@ -1,17 +1,17 @@
 .typeContainer {
-  display: inline-flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: stretch;
-  justify-content: space-between;
-  width: 100%;
-  margin: 0 auto;
+    display: inline-flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import styles from "./SortButton.module.css";
 
-function SortButton({setSortOrder}) {
+function SortButton({ setSortOrder }) {
     const [selectedState, setSelectedState] = useState("latest");
 
     const handleStateClick = (state) => {

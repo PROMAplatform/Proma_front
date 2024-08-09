@@ -34,11 +34,11 @@
 }
 
 .lineSection {
-    width : 100%;
+    width: 100%;
 }
 
 .line {
     height: 2px;
-    background: #543FD6;
+    background: #543fd6;
     margin-bottom: 2vh;
 }

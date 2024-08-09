@@ -4,8 +4,8 @@
     align-items: center;
 
     border-radius: 0.5vw;
-    background: #F7F7F7;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.10);
+    background: #f7f7f7;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
 
     margin: 1vh;
 }
@@ -16,12 +16,12 @@
     align-items: center;
 
     border-radius: 0.5vw;
-    background: #E1E2FF;
-    box-shadow: 0px 0px 5px 0px rgba(84, 63, 214, 0.30);
+    background: #e1e2ff;
+    box-shadow: 0px 0px 5px 0px rgba(84, 63, 214, 0.3);
 }
 
 .titleContainer {
-    color: #5A5A5A;
+    color: #5a5a5a;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;

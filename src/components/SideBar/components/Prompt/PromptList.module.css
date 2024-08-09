@@ -1,21 +1,21 @@
 .container {
-  width: 100%;
+    width: 100%;
 }
 .categoryContainer {
-  display: flex;
-  justify-content: flex-start;
-  padding: 10px;
-  gap: 10px;
-  overflow-x: scroll;
-  -ms-overflow-style: none; /* 인터넷 익스플로러 */
-  scrollbar-width: none; /* 파이어폭스 */
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
 }
 
 .categoryContainer::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
-  .categoryButton {
+.categoryButton {
     padding: 5px 10px;
     border: 1.5px solid var(--color-gray4);
     background-color: #fff;
@@ -25,20 +25,20 @@
     color: var(--color-gray6);
     white-space: nowrap;
     font-size: 16px;
-  }
-  
-  .active {
+}
+
+.active {
     background-color: var(--block-main-color); /* 선택된 버튼 배경색 */
     color: var(--white);
     border: 1px solid var(--block-main-color);
     transition: 0.2s;
-  }
-  
-  .promptListContainer {
+}
+
+.promptListContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 10px;
-  }
+}
