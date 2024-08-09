@@ -1,37 +1,44 @@
-import React, { useState } from "react";
+import React, {useState} from 'react';
 import styles from "./PostFixOrShare.module.css";
 import MakeBlockPreview from "../components/MakeBlockPreview";
 import CategoryButton from "../../components/FilterComponents/CategoryButton";
-import { H3, H4 } from "../../../../styles/font-styles";
+import {H3, H4} from "../../../../styles/font-styles";
+import ModalButton from "../../../common/ModalButton";
+import {useRecoilValue, useSetRecoilState} from "recoil";
+import {makePromptDetailState, stateChange} from "../../../../recoil/community/communityRecoilState";
+import {isLoadingState} from "../../../../recoil/chatting/chattingRecoilState";
+import {categoryBlockShapesState} from "../../../../recoil/prompt/promptRecoilState";
+import {ReactComponent as ExitIcon} from "../../../../assets/images/exitIcon.svg";
 
-function PostFixOrShare({ close, onApi, state }) {
-    //recoil상태로 불러올 데이터
-    const promptExample = {
-        pomptId: 1,
-        promptType: "Task",
-        promptTitle: "test1",
-        promptCategory: "글쓰기",
-        promptDescription: "프롬포트 설명",
-        promptPreview: "프롬포트 미리보기",
-        selectPromptAtom: [
-            {
-                blockId: 1,
-                blockTitle: "선생님",
-                blockCategory: "화자",
-            },
-            {
-                blockId: 2,
-                blockTitle: "박민기222",
-                blockCategory: "청자",
-            },
-        ],
-    };
-
-    const [selectCategory, setSelectCategory] = useState(
-        promptExample.promptCategory,
-    );
+function PostFixOrShare({close, onApi, state}) {
+    const promptExample = useRecoilValue(makePromptDetailState);
+    const setStateChange = useSetRecoilState(stateChange);
+    const isLoading = useRecoilValue(isLoadingState);
+    const [selectCategory, setSelectCategory] = useState(promptExample.promptCategory);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
+    const categoryBlockShapesArray = useRecoilValue(categoryBlockShapesState);
+    const predefinedColors = [
+        "var(--block-main-color)",
+        "var(--block-purple)",
+        "var(--block-pink)",
+        "var(--block-red)",
+        "var(--block-orange)",
+        "var(--block-green)",
+        "var(--blokc-blue)"
+    ];
+
+    const categoryStyles = {};
+    const categories = [...new Set(promptExample.listPromptAtom.map(block => block.blockCategory))];
+
+    categories.forEach((category, index) => {
+        categoryStyles[category] = {
+            color: predefinedColors[index % predefinedColors.length],
+            shape: categoryBlockShapesArray[index % categoryBlockShapesArray.length][1]
+        };
+    });
+
+    console.log(promptExample.listPromptAtom);
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
@@ -47,6 +54,7 @@ function PostFixOrShare({ close, onApi, state }) {
             description: description || promptExample.promptDescription,
             category: selectCategory,
         };
+        setStateChange(prevValue => prevValue + 1);
         onApi(data);
         close();
     }
@@ -55,21 +63,32 @@ function PostFixOrShare({ close, onApi, state }) {
         <div className={styles.modalOverlay}>
             <div className={styles.container}>
                 <div className={styles.topSection}>
-                    {state === "fix" ? (
-                        <H3>게시글 정보 수정하기</H3>
-                    ) : (
-                        <H3>프롬프트 공유하기</H3>
-                    )}
-                    <button onClick={close}>닫기</button>
+                    <div className={styles.modalTitle}>
+                        {state === "fix" ? <H3>게시글 정보 수정하기</H3>
+                            : <H3>프롬프트 공유하기</H3>
+                        }
+                    </div>
+                    <div className={styles.closeButton}>
+                        <ExitIcon onClick={close}/>
+                    </div>
                 </div>
 
-                <div className={styles.blockSection}>
-                    {promptExample.selectPromptAtom.map((block) => (
-                        <MakeBlockPreview key={block.blockId} props={block} />
-                    ))}
-                </div>
+                {isLoading ? (
+                    <div>Loading...</div>
+                ) : (
+                    <>
+                        <div className={styles.blockSection}>
+                            {promptExample.listPromptAtom ? (
+                                promptExample.listPromptAtom.map((block) => <MakeBlockPreview categoryStyles={categoryStyles} block={block} key={block.blockId} size={"small"}/>)
+                            ) : (
+                                <>데이터가 없습니다.</>
+                            )}
+                        </div>
+                    </>
+                )}
+
                 <div className={styles.titleSection}>
-                    <H4>게시글제목</H4>
+                    <H4>게시글 제목</H4>
                     <input
                         type="text"
                         className={styles.inputTextBox}
@@ -82,7 +101,7 @@ function PostFixOrShare({ close, onApi, state }) {
                     <H4>프롬프트 설명</H4>
                     <input
                         type="text"
-                        className={styles.inputTextBox}
+                        className={styles.inputTextBoxEx}
                         placeholder={promptExample.promptDescription}
                         value={description}
                         onChange={handleDescriptionChange}
@@ -95,12 +114,10 @@ function PostFixOrShare({ close, onApi, state }) {
                         setSelectCategory={setSelectCategory}
                     />
                 </div>
-                <div>
-                    {state === "fix" ? (
-                        <button onClick={handleButton}>수정하기</button>
-                    ) : (
-                        <button onClick={handleButton}>공유하기</button>
-                    )}
+                <div className={styles.buttonSection}>
+                    {state === "fix" ? <ModalButton title={"수정하기"} variant={'primary'} onClick={handleButton}/>
+                        : <ModalButton title={"공유하기"} variant={'primary'} onClick={handleButton}/>
+                    }
                 </div>
             </div>
         </div>

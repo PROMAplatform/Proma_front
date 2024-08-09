@@ -1,28 +1,33 @@
 .container {
+    position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: stretch;
+
+    height: 100%;
 }
 
 .button {
-    /* 버튼 스타일 (고정 크기 유지) */
-    width: 5vw; /* 컨테이너 너비에 맞춰 버튼 너비 설정 */
-    /* 필요한 버튼 스타일 추가 */
+    width: 5vw;
 }
 
 .expandableSection {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 97px;
     height: 0;
     overflow: hidden;
-    transition: height 0.3s ease-in-out;
+    transition: height 0.2s ease-in-out;
+    z-index: 1;
 }
 
 .expanded {
     display: flex;
-    width: 97px;
-    height: 64px;
-    padding: 1vh 0px;
+    height: 10vh;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-shrink: 0;
 

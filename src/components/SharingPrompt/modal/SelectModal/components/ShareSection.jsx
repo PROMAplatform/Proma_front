@@ -25,14 +25,15 @@ function ShareSection({ onClose }) {
     const setStateChange = useSetRecoilState(stateChange);
     const currentPage = useRecoilValue(communityPromptListPageState);
     const modalStack = useModalStack();
-    const { sharePrompt } = useCommunityHooks();
+    const {sharePrompt, getPromptDetail} = useCommunityHooks();
 
     const handleShareModal = () => {
         if (selectedIndex === null) {
             setSnackbarOpen(true); // Snackbar 열기
         } else {
-            //prompt 상세보기(홍규진꺼) 받아와서 넣기
             const selectedPromptId = promas[selectedIndex].promptId;
+
+            getPromptDetail(selectedPromptId);
 
             modalStack.push({
                 key: "promptShareModal",

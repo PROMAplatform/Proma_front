@@ -4,13 +4,13 @@ import { communityIntstance } from "../instance";
 import {
     communityPromptListPageState,
     communityPromptListState,
+    isLoadingCommunityState
 } from "../../recoil/community/communityRecoilState";
 
 export const useMyPageHooks = () => {
     const setCommunityPromptList = useSetRecoilState(communityPromptListState);
-    const setCommunityPromptListPage = useSetRecoilState(
-        communityPromptListPageState,
-    );
+    const setCommunityPromptListPage = useSetRecoilState(communityPromptListPageState);
+    const setIsLoadingcommunity = useSetRecoilState(isLoadingCommunityState);
 
     //좋아요 한 게시글 리스트
     const getLikePromptList = async (
@@ -18,6 +18,7 @@ export const useMyPageHooks = () => {
         sortOrder,
         currentPage,
     ) => {
+        setIsLoadingcommunity(true);
         try {
             const params = {
                 userId: 1,
@@ -57,6 +58,8 @@ export const useMyPageHooks = () => {
             setCommunityPromptList([]);
             setCommunityPromptListPage(null);
             console.error("Error:", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
@@ -66,6 +69,7 @@ export const useMyPageHooks = () => {
         sortOrder,
         currentPage,
     ) => {
+        setIsLoadingcommunity(true);
         try {
             const params = {
                 userId: 1,
@@ -105,10 +109,13 @@ export const useMyPageHooks = () => {
             setCommunityPromptList([]);
             setCommunityPromptListPage(null);
             console.error("Error:", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
     const fixSharePost = async (postId, data) => {
+        setIsLoadingcommunity(true);
         try {
             const params = {
                 userId: 1,
@@ -130,10 +137,13 @@ export const useMyPageHooks = () => {
             return response.data.responseDto;
         } catch (error) {
             console.error("Error:", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
     const deleteSharePost = async (postId) => {
+        setIsLoadingcommunity(true);
         try {
             const params = {
                 userId: 1,
@@ -150,6 +160,8 @@ export const useMyPageHooks = () => {
             return response.data.responseDto;
         } catch (error) {
             console.error("Error:", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 

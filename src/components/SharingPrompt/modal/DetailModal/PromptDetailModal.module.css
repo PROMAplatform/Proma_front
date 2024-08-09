@@ -18,7 +18,7 @@
 
     padding: 2vw;
 
-    width: 40vw;
+    width: 50vw;
     height: 80vh;
     border-radius: 20px;
     background: #fff;
@@ -26,9 +26,29 @@
     z-index: 1102;
 }
 
+.textSection {
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.categorySection {
+
+}
+
+.explainSection {
+
+}
+
+.previewSection {
+
+}
+
 .blockSection {
     display: flex;
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
+    height: 30vh;
 }
