@@ -79,8 +79,7 @@ function PostFixOrShare({close, onApi, state}) {
                     <>
                         <div className={styles.blockSection}>
                             {promptExample.listPromptAtom ? (
-                                promptExample.listPromptAtom.
-                                map((block) => <MakeBlockPreview categoryStyles={categoryStyles} block={block} key={block.blockId} size={"small"}/>)
+                                promptExample.listPromptAtom.map((block) => <MakeBlockPreview categoryStyles={categoryStyles} block={block} key={block.blockId} size={"small"}/>)
                             ) : (
                                 <>데이터가 없습니다.</>
                             )}
