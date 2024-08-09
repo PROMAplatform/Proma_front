@@ -24,7 +24,7 @@
 .input {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
     gap: 10px;
 }
 
@@ -32,8 +32,10 @@
     display: none;
 }
 
-.fileLabel {
-    display: inline-block;
+.fileLable {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     left: 100px;
     flex-shrink: 0;
@@ -48,6 +50,9 @@
     white-space: pre-wrap;
     word-break: break-word;
     resize: none;
+    margin: 0px;
+    padding: 0px;
+    max-height: 300px;
 }
 
 .textInput::placeholder {

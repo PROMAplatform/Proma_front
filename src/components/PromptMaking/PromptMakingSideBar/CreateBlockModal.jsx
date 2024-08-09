@@ -68,6 +68,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
           id="blockTitle"
           type="text"
           value={blockValue}
+          className={styles.input}
           onChange={(e) => setBlockValue(e.target.value)}
           placeholder="블록 제목을 입력하세요"
           required
@@ -80,6 +81,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
         <textarea
           id="blockDescription"
           value={blockDescription}
+          className={styles.blockDescription}
           onChange={(e) => setBlockDescription(e.target.value)}
           placeholder="블록 설명을 입력하세요"
           required

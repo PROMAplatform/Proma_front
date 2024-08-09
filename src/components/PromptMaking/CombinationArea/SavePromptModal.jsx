@@ -29,7 +29,7 @@ const SavePromptModal = ({
   const promptMethod = useRecoilValue(promptMethodState);
 
   const { savePrompt } = usePromptHook();
-  const { patchPromptBlock } = useChattingRoomHooks();
+  const { patchPromptBlock, patchPromptInfo } = useChattingRoomHooks();
 
   useEffect(() => {
     if (prompt) {
@@ -55,8 +55,13 @@ const SavePromptModal = ({
           blockCategory: category,
           blockValue: blockDetails[blockId].blockValue
       }));
-      console.log("listPromptAtom:", listPromptAtom);
       patchPromptBlock(promptId, listPromptAtom);
+      patchPromptInfo(
+        promptId,
+        promptTitle,
+        promptDescription,
+        promptCategory,
+      );
 
     } else {
       const promptPreview = Object.values(refinedPromptParts).join(" ");
@@ -107,7 +112,6 @@ const SavePromptModal = ({
           placeholder="프롬프트 제목"
           value={promptTitle}
           onChange={(e) => setPromptTitle(e.target.value)}
-          disabled={!!promptId} // promptId가 존재할 경우 비활성화
         />
       </div>
       <div className={styles.formGroup}>
@@ -118,7 +122,6 @@ const SavePromptModal = ({
           placeholder="프롬프트 설명"
           value={promptDescription}
           onChange={(e) => setPromptDescription(e.target.value)}
-          disabled={!!promptId} // promptId가 존재할 경우 비활성화
         />
       </div>
       <div className={styles.formGroup}>
@@ -130,7 +133,7 @@ const SavePromptModal = ({
             {allCategories.map((category) => (
               <li
                 key={category}
-                onClick={(e) => !promptId && setPromptCategory(category)} // promptId가 없을 때만 변경 가능
+                onClick={(e) => setPromptCategory(category)}
                 className={`${styles.option} ${
                   category === promptCategory ? styles.active : styles.none
                 }`}
