@@ -202,25 +202,51 @@ export const useChattingRoomHooks = () => {
         );
     };
 
-  // 프롬프트 블록 수정
-  const patchPromptBlock = async (
-    promptId,
-    listPromptAtom,
-  ) => {
-    await sendRequest(
-      chattingInstance, 
-      "patch", `/prompt/block/${promptId}${mockUserId}`,
-        listPromptAtom,
-    );
-    setPromptList((oldPromptList) => 
-      oldPromptList.map(prompt => {
-        if (prompt.promptId === promptId) {
-          return { ...prompt, listPromptAtom }; 
-        }
-        return prompt;
-      })
-    );
-  };
+    // 프롬프트 블록 수정
+    const patchPromptBlock = async (promptId, listPromptAtom) => {
+        await sendRequest(
+            chattingInstance,
+            "patch",
+            `/prompt/block/${promptId}${mockUserId}`,
+            listPromptAtom,
+        );
+        setPromptList((oldPromptList) =>
+            oldPromptList.map((prompt) => {
+                if (prompt.promptId === promptId) {
+                    return { ...prompt, listPromptAtom };
+                }
+                return prompt;
+            }),
+        );
+    };
+
+    const fetchChattingMessages = async (chatroomId) => {
+        await sendRequest(
+            chattingInstance,
+            "get",
+            `/${chatroomId}${mockUserId}`,
+        );
+    };
+
+    const fetchChattingAnswer = async (
+        promptId,
+        messageQuestion,
+        chatroomId,
+        fileType,
+        messageFile,
+    ) => {
+        const response = await sendRequest(
+            aiChatInstance,
+            "post",
+            `/question`,
+            {
+                promptId: promptId,
+                messageQuestion,
+                chatroomId,
+                fileType,
+                messageFile,
+            },
+        );
 
         return response;
     };
@@ -264,3 +290,4 @@ export const useChattingRoomHooks = () => {
         fetchChattingAnswer,
         saveChattingMessage,
     };
+};
