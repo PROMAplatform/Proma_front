@@ -20,7 +20,7 @@
     padding: 2vw;
 
     width: 30vw;
-    height: 70vh;
+    height: 80vh;
     border-radius: 20px;
     background: #fff;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
@@ -28,27 +28,48 @@
 }
 
 .topSection {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.modalTitle {
+    grid-column: 2;
+    justify-self: center;
+}
+
+.closeButton {
+    grid-column: 3;
+    justify-self: end;
+    width: fit-content;
+    cursor: pointer;
 }
 
 .blockSection {
     margin-top: 4vh;
     width: 15vw;
+    height: 25vh;
 
-    margin-left: auto;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+
+    margin-left: 10vw;
     margin-right: auto;
 }
 
 .titleSection {
     display: flex;
     flex-direction: column;
+}
 
-    margin-top: 5vh;
+.buttonSection {
+    display: flex;
+    justify-items: center;
 }
 
 .inputTextBox {
     margin-top: 1vh;
+    margin-bottom: 1vh;
 
     border: none;
     border-radius: 10px;
@@ -63,6 +84,26 @@
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+}
+
+.inputTextBoxEx {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    height: 20vh;
+
+    border: none;
+    border-radius: 10px;
+    background: #F4F4F4;
+
+    padding: 0.5vw;
+
+    color: #393939;
+
+    /* b3 */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
 }
 
 .categoryContainer {
