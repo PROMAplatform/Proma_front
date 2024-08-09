@@ -1,0 +1,79 @@
+{
+    "header": {
+        "mypage": "My Page",
+        "logout": "Log Out",
+        "login": "Log In",
+        "language": "Language Settings",
+        "introduce": "About",
+        "community": "Community",
+        "chatting": "Chatting",
+        "isLike": "Likes",
+        "writtenByYou": "Your Posts",
+        "welcomeComment": " welcome!"
+    },
+    "sideBar": {
+        "prompt": "Prompts",
+        "chatting": "Chattings",
+        "addNewChatting": "Add new chatting",
+        "addNewPrompt": "Add new prompt",
+        "choosePromptType": "Choose prompt type!",
+        "endChoose": "Choose",
+        "emptyPrompt": "Your promptList is empty.",
+        "emptyChatting": "Your chatting is empty",
+        "deleteChattingRoom": "Are you sure you want to delete the chat room?",
+        "deleteChattingRoomHistory": "Your chat room's history will be completely deleted.",
+        "cancel": "Cancel",
+        "patch": "Patch",
+        "delete": "Delete",
+        "share": "Share"
+    },
+    "main": {
+        "makeYourOwnPrompt": "'s Own Prompt Creation",
+        "promptClickIntend": "Before asking any questions, click on the prompt you want to apply!",
+        "toGo": "Create Now!"
+    },
+    "input": {
+        "inputDefault": "Enter your question",
+        "currentPromptIntroduce": "prompt is applied"
+    },
+    "promptMaking": {
+        "promptPreView": "Prompt Preview",
+        "trimPrompt": "Refine Prompt",
+        "intendDragging": "Drag and drop blocks here!",
+        "promptSave": "Save Prompt",
+        "promptPatch": "Patch Prompt",
+        "promptTitle": "Prompt Title",
+        "promptDescription": "Prompt Description",
+        "promptCategory": "Prompt Category",
+        "promptType": "Prompt Type",
+        "newBlock": "Make new block",
+        "blockMake": "Make block",
+        "blockCategory": "Block Category",
+        "blockTitle": "Block Title",
+        "blockTitlePlaceHolder": "Write your block's Title",
+        "blockDescription": "Block Description",
+        "blockDescriptionPlaceHolder": "Write your block's description"
+    },
+    "introduce": {
+        "introduceOne": "Prompt Engineering for Everyone",
+        "introduceTwo": "Communicate with AI quickly and easily using block-style prompts"
+    },
+    "community": {
+        "all": "All",
+        "game": "Games",
+        "writting": "Writing",
+        "health": "Health",
+        "education": "Education",
+        "art": "Art",
+        "etc": "Other",
+        "search": "Search",
+        "up-to-date": "Latest",
+        "up-to-like": "Most Liked",
+        "write": "Create Post",
+        "my-liked-post": "Posts you Liked",
+        "my-writed-post": "Your Posts",
+        "promptMadeByMe": "My prompt list",
+        "chooseToShare": "Choose prompt to share!",
+        "share": "Share"
+    }
+}

@@ -1,0 +1,77 @@
+{
+    "header": {
+        "mypage": "마이페이지",
+        "logout": "로그아웃",
+        "login": "로그인",
+        "language": "언어 설정",
+        "introduce": "소개",
+        "community": "커뮤니티",
+        "chatting": "채팅",
+        "isLike": "좋아요",
+        "writtenByYou": "작성한 글",
+        "welcomeComment": "님 반갑습니다!"
+    },
+    "sideBar": {
+        "prompt": "프롬프트",
+        "chatting": "채팅",
+        "addNewChatting": "새 채팅 추가하기",
+        "addNewPrompt": "새 프롬프트 추가하기",
+        "choosePromptType": "프롬프트 타입을 선택하세요",
+        "endChoose": "선택 완료",
+        "emptyPrompt": "프롬프트가 없습니다.",
+        "emptyChatting": "채팅이 없습니다.",
+        "deleteChattingRoom": "채팅방을 삭제하시겠습니까?",
+        "deleteChattingRoomHistory": "해당 채팅방의 기록이 완전히 삭제됩니다.",
+        "cancel": "취소하기",
+        "patch": "수정하기",
+        "delete": "삭제하기",
+        "share": "공유하기"
+    },
+    "main": {
+        "makeYourOwnPrompt": "님의 프롬프트 만들기",
+        "promptClickIntend": "질문하기 전, 사용하실 프롬프트를 클릭하세요!",
+        "toGo": "만들러 가기"
+    },
+    "input": {
+        "inputDefault": "질문을 입력하세요."
+    },
+    "promptMaking": {
+        "promptPreView": "프롬프트 미리보기",
+        "trimPrompt": "프롬프트 다듬기",
+        "intendDragging": "이 곳에 블록을 끌어넣어보아요!",
+        "promptSave": "프롬프트 저장",
+        "promptPatch": "프롬프트 수정",
+        "promptTitle": "프롬프트 제목",
+        "promptDescription": "프롬프트 설명",
+        "promptCategory": "프롬프트 카테고리",
+        "promptType": "프롬프트 유형",
+        "blockMake": "블록 만들기",
+        "blockCategory": "블록 카테고리",
+        "blockTitle": "블록 제목",
+        "blockTitlePlaceHolder": "블록의 제목을 입력하세요",
+        "blockDescription": "블록 설명",
+        "blockDescriptionPlaceHolder": "블록의 설명을 입력하세요"
+    },
+    "introduce": {
+        "introduceOne": "모두를 위한 프롬프트 엔지니어링",
+        "introduceTwo": "블록형 프롬프트로 쉽고 빠르게 AI와 소통하세요"
+    },
+    "community": {
+        "all": "전체",
+        "game": "게임",
+        "writting": "글쓰기",
+        "health": "건강",
+        "education": "교육",
+        "art": "예술",
+        "etc": "기타",
+        "search": "검색",
+        "up-to-date": "최신순",
+        "up-to-like": "좋아요순",
+        "write": "작성하기",
+        "my-liked-post": "내가 좋아요 한 글",
+        "my-writed-post": "내가 작성한 글",
+        "promptMadeByMe": "내 프롬프트 리스트",
+        "chooseToShare": "공유할 프롬프트를 선택하세요!",
+        "share": "공유하기"
+    }
+}

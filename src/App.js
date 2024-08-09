@@ -12,6 +12,7 @@ import useGlobalShortcuts from "./hooks/common/useGlobalShortCut";
 import ModalStack from "./components/SharingPrompt/modal/ModalStack";
 import SocialLoginPageAfter from "./components/Login/socialLoginPageAfter";
 import SocialLoginPage from "./pages/socialLoginPage";
+import "../src/locales/i18n";
 
 function App() {
     useGlobalShortcuts();
