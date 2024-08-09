@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import styles from "./MyFilterSection.module.css";
 import SortButton from "../../components/FilterComponents/SortButton";
 import CategoryButton from "../../components/FilterComponents/CategoryButton";
@@ -14,11 +14,11 @@ function MyFilterSection() {
     const {getLikePromptList, getWritePromptList} = useMyPageHooks();
 
     const [selectCategory, setSelectCategory] = useState("전체");
-    const [sortOrder, setSortOrder] = useState("최신순");
+    const [sortOrder, setSortOrder] = useState("latest");
+
+    const categoryParam = useMemo(() => (selectCategory === "전체" ? null : selectCategory), [selectCategory]);
 
     useEffect(() => {
-        let categoryParam = selectCategory === "전체" ? null : selectCategory;
-
         if (isMyPageState === "like") {
             getLikePromptList(categoryParam, sortOrder, currentPage);
         } else {

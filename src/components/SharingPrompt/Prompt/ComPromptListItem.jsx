@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./ComPromptListItem.module.css";
-import { ReactComponent as TypeIcon } from "../../../assets/images/typeIcon.svg";
 import { ReactComponent as LikeButton } from "../../../assets/images/likeButton.svg";
 import { ReactComponent as LikeTrue } from "../../../assets/images/heartTrue.svg";
 import PromptDetailModal from "../modal/DetailModal/PromptDetailModal";
 import {useModalStack} from "../../../hooks/useModalStack";
 import {B6, B7, H5} from "../../../styles/font-styles";
 import {useCommunityHooks} from "../../../api/community/community";
+import {methodImage} from "../util/methodImage";
 
 function ComPromptListItem({post}) {
     const modalStack = useModalStack();
@@ -29,7 +29,7 @@ function ComPromptListItem({post}) {
                 <div className={styles.card}>
                     <div className={styles.containerFront} onClick={handleDetailModal}>
                         <div className={styles.typeSection}>
-                            <TypeIcon />
+                            <img src={methodImage[post.promptMethod]} alt={post.promptMethod}/>
                             <div className={styles.typeText}>
                                 {post.promptMethod}
                             </div>
@@ -58,7 +58,7 @@ function ComPromptListItem({post}) {
 
                     <div className={styles.containerBack} onClick={handleDetailModal}>
                         <div className={styles.typeSection}>
-                            <TypeIcon />
+                            <img src={methodImage[post.promptMethod]} alt={post.promptMethod}/>
                             <div className={styles.typeText}>
                                 {post.promptMethod}
                             </div>
