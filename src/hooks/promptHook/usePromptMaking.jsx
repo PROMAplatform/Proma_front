@@ -1,15 +1,26 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { enqueueSnackbar } from "notistack";
 import {
     activeBlocksState,
     combinationsState,
     blockDetailsState,
 } from "../../recoil/prompt/promptRecoilState";
+import { useEffect } from "react";
 
 export const usePromptMaking = () => {
     const [combinations, setCombinations] = useRecoilState(combinationsState);
-    const setActiveBlocks = useSetRecoilState(activeBlocksState);
+    const [activeBlocks, setActiveBlocks] = useRecoilState(activeBlocksState);
     const blockDetails = useRecoilValue(blockDetailsState);
+
+    useEffect(() => {
+        const newActiveBlocks = { ...activeBlocks };
+        for (const category in newActiveBlocks) {
+            newActiveBlocks[category] = newActiveBlocks[category]?.filter(
+                (blockId) => combinations[category] !== blockId
+            );
+        }
+        setActiveBlocks(newActiveBlocks);
+    }, [combinations]);
 
     const onDragEnd = (result) => {
         const { source, destination, draggableId } = result;
@@ -86,10 +97,20 @@ export const usePromptMaking = () => {
             [category]: null,
         }));
 
-        setActiveBlocks((prev) => ({
-            ...prev,
-            [category]: [...prev[category], blockId],
-        }));
+        // setActiveBlocks((prev) => ({
+        //     ...prev,
+        //     [category]: [...prev[category], blockId],
+        // }));
+        setActiveBlocks((prev) => {
+            const newBlocks = { ...prev };
+            
+            // 이미 해당 카테고리에 블록이 존재하는지 확인
+            if (!newBlocks[category].includes(blockId)) {
+                newBlocks[category] = [...newBlocks[category], blockId];
+            }
+
+            return newBlocks;
+        });
     };
 
     const handleWithinCombinationArea = (
