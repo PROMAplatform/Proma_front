@@ -32,8 +32,8 @@ const SavePromptModal = ({
     const [promptCategory, setPromptCategory] = useState("IT");
     const promptMethod = useRecoilValue(promptMethodState);
 
-  const { savePrompt } = usePromptHook();
-  const { patchPromptBlock, patchPromptInfo } = useChattingRoomHooks();
+    const { savePrompt } = usePromptHook();
+    const { patchPromptBlock, patchPromptInfo } = useChattingRoomHooks();
 
     useEffect(() => {
         if (prompt) {
