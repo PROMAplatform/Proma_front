@@ -30,7 +30,15 @@ export const makePromptListState = atom({
 
 export const makePromptDetailState = atom({
     key: "makePromptDetailState",
-    default: {},
+    default: {
+        pomptId: 0,
+        promptMethod: '',
+        promptTitle: '',
+        promptCategory: '',
+        promptDescription: '',
+        promptPreview: '',
+        listPromptAtom: [],
+    },
 });
 
 export const modalStackState = atom({
