@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.container .logo {
+    width: 200px;
+    margin-bottom: 20px;
+}
+.container img {
+    width: 35%;
+}
+.container .login:hover {
+    transform: scale(1.1); /* 호버 시 약간 확대 효과 */
+}
