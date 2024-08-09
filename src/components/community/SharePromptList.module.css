@@ -1,0 +1,95 @@
+.backGround {
+    width: 80vw;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin-top: 15vh;
+
+    color: #000;
+    text-align: center;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.searchBar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+    padding: 1vh;
+    width: 45vw;
+    height: 3vh;
+    margin: 3vh;
+    border-radius: 100px;
+    border: 1px solid #F4F4F4;
+    background: #FFF;
+    box-shadow: 0 0.5vw 1vh 0 rgba(242, 242, 242, 0.88);
+
+    color: #5A5A5A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.categoryContainer {
+    display: flex;
+    gap: 10px;
+    margin: 1vh;
+}
+
+.categoryButton {
+    border-radius: 10px;
+    border: 1px solid #5A5A5A;
+    padding: 5px 10px;
+    background-color: #fff;
+    cursor: pointer;
+
+    color: #5A5A5A;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.active {
+    border-radius: 10px;
+    border: 1px solid #543FD6;
+    background-color: #543FD6;
+
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.filterButton {
+    display: inline-flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.promptContainer {
+    width: 70vw;
+    margin-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw;
+    justify-content: space-between;
+}
