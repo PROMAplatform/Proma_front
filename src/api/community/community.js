@@ -12,14 +12,10 @@ import {
 
 export const useCommunityHooks = () => {
     const setCommunityPromptList = useSetRecoilState(communityPromptListState);
-    const setCommunityPromptDetail = useSetRecoilState(
-        communityPromptDetailState,
-    );
+    const setCommunityPromptDetail = useSetRecoilState(communityPromptDetailState);
     const setMakePromptList = useSetRecoilState(makePromptListState);
     const setMakePromptDetail = useSetRecoilState(makePromptDetailState);
-    const setCommunityPromptListPage = useSetRecoilState(
-        communityPromptListPageState,
-    );
+    const setCommunityPromptListPage = useSetRecoilState(communityPromptListPageState);
     const setIsLoadingcommunity = useSetRecoilState(isLoadingCommunityState);
 
     //공유된 프롬프트 리스트 조회
@@ -113,7 +109,7 @@ export const useCommunityHooks = () => {
             const response = await sendRequest(
                 communityIntstance,
                 "get",
-                `/detail/${postId}`,
+                `/block/${postId}`,
             );
             setCommunityPromptDetail(
                 response.data.responseDto.selectPromptAtom,
@@ -146,6 +142,7 @@ export const useCommunityHooks = () => {
 
     //공유된 프롬프트 좋아요 버튼
     const likePost = async (postId) => {
+        setIsLoadingcommunity(true);
         try {
             const params = {
                 userId: 1,
@@ -157,11 +154,14 @@ export const useCommunityHooks = () => {
             return response.data.responseDto;
         } catch (error) {
             console.error("error : ", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
     //내가 작성한 프롬프트 리스트 id, title
     const getMakePromptList = async () => {
+        setIsLoadingcommunity(true);
         try {
             const response = await sendRequest(
                 communityIntstance,
@@ -177,26 +177,44 @@ export const useCommunityHooks = () => {
             setMakePromptList(response.data.responseDto.promptList);
         } catch (error) {
             console.error("error : ", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
     //내 프롬프트 상세조회
     //ToDo - 홍규진이 만든거로 대체
     const getPromptDetail = async (promptId) => {
+        setIsLoadingcommunity(true);
         try {
             const response = await sendRequest(
                 communityIntstance,
                 "get",
                 `/detail/${promptId}`,
-            );
-            setMakePromptDetail(response.data.responseDto);
+                {
+                    params: {
+                        userId: 1,
+                    }
+                });
+            setMakePromptDetail({
+                pomptId: response.data.responseDto.promptId,
+                promptMethod: response.data.responseDto.promptMethod,
+                promptTitle: response.data.responseDto.promptTitle,
+                promptCategory: response.data.responseDto.promptCategory,
+                promptDescription: response.data.responseDto.promptDescription,
+                promptPreview: response.data.responseDto.promptPreview,
+                listPromptAtom: response.data.responseDto.listPromptAtom,
+            });
         } catch (error) {
             console.error("Error:", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
     //프롬프트 공유
     const sharePrompt = async (promptId, data) => {
+        setIsLoadingcommunity(true);
         try {
             const params = {
                 userId: 1,
@@ -217,6 +235,8 @@ export const useCommunityHooks = () => {
             return response.data.responseDto;
         } catch (error) {
             console.log("error : ", error);
+        } finally {
+            setIsLoadingcommunity(false);
         }
     };
 
