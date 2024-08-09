@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState} from "react";
 import styles from "./ExpandableButton.module.css";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
@@ -18,10 +18,9 @@ function ExpandableButton({ buttonText }) {
         setIsExpanded(false);
     };
 
-    useEffect(() => {
-        const storedValue = localStorage.getItem("myPageState");
-        setIsMyPageState(storedValue);
-    });
+    const handleMouseLeaveExpanding = () => {
+        setIsExpanded(false);
+    };
 
     const handleClick = (type) => {
         setIsMyPageState(type);
@@ -29,23 +28,24 @@ function ExpandableButton({ buttonText }) {
     };
 
     return (
-        <div
-            className={styles.container}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            <div className={styles.button}>{buttonText}</div>
+        <>
             <div
-                className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ""}`}
+                className={styles.container}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
-                <Link to={`/mypage`} onClick={() => handleClick("like")}>
-                    좋아요
-                </Link>
-                <Link to={`/mypage`} onClick={() => handleClick("write")}>
-                    작성한글
-                </Link>
+                <div className={styles.button}>
+                    {buttonText}
+                </div>
+                <div
+                    onMouseLeave={handleMouseLeaveExpanding}
+                    className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ''}`}
+                >
+                    <Link to={`/mypage`} onClick={() => handleClick("like")}>좋아요</Link>
+                    <Link to={`/mypage`} onClick={() => handleClick("write")}>작성한글</Link>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
