@@ -33,6 +33,7 @@ const handleSocialAuth = async (search, socialProvider) => {
                             accessToken: response.data.responseDto.accessToken,
                             refreshToken:
                                 response.data.responseDto.refreshToken,
+                            userName: response.data.responseDto.userName,
                         },
                     },
                     "*",

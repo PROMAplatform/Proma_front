@@ -11,24 +11,33 @@ import { communityPromptListPageState } from "../../recoil/community/communityRe
 function Header() {
     const setMyPageState = useSetRecoilState(myPageState);
     const setCurrentPage = useSetRecoilState(communityPromptListPageState);
-
+    const userName = localStorage.getItem("userName");
     const useResetMyPageState = () => {
         setMyPageState(""); // 초기값으로 설정
         setCurrentPage(0);
     };
 
-    return(
+    return (
         <div className={styles.headerContainer}>
             <div className={styles.logoContainer}>
-                <Logo1/>
-                <Logo2/>
+                <Logo1 />
+                <Logo2 />
             </div>
             <div className={styles.navContainer}>
-                <div className={styles.buttonClick}><Link to={"/about"}>소개</Link></div>
-                <div className={styles.buttonClick}><Link to={"/community"} onClick={useResetMyPageState}>커뮤니티</Link></div>
-                <div className={styles.buttonClick}><Link to={"/"}>채팅</Link></div>
+                {userName ? <p>{userName} 님 반값습니다!</p> : null}
                 <div className={styles.buttonClick}>
-                    <ExpandableButton buttonText="마이페이지"/>
+                    <Link to={"/about"}>소개</Link>
+                </div>
+                <div className={styles.buttonClick}>
+                    <Link to={"/community"} onClick={useResetMyPageState}>
+                        커뮤니티
+                    </Link>
+                </div>
+                <div className={styles.buttonClick}>
+                    <Link to={"/"}>채팅</Link>
+                </div>
+                <div className={styles.buttonClick}>
+                    <ExpandableButton buttonText="마이페이지" />
                 </div>
             </div>
         </div>

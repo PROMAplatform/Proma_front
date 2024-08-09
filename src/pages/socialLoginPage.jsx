@@ -6,11 +6,16 @@ import kakaoSocialLogin from "../assets/images/kakaoSocialLogin.png";
 import googleSocialLogin from "../assets/images/googleSocialLogin.png";
 import naverSocialLogin from "../assets/images/naverSocialLogin.png";
 import styles from "./socialLoginPage.module.css";
+import { SnackbarProvider, enqueueSnackbar } from "notistack";
+
 function SocialLoginPage() {
     const navigate = useNavigate();
     const defaultURL = process.env.REACT_APP_BACKEND_SERVER_URL;
 
     useEffect(() => {
+        enqueueSnackbar("☺️ 로그인 후에 추가기능 이용 가능합니다! ");
+        enqueueSnackbar("😋 1초만에 소셜 로그인으로 이용가능합니다! ");
+
         const handleMessage = (event) => {
             if (event.data.type === "SOCIAL_LOGIN_SUCCESS") {
                 // 토큰 저장
@@ -22,6 +27,7 @@ function SocialLoginPage() {
                     "refreshToken",
                     event.data.data.refreshToken,
                 );
+                localStorage.setItem("userName", event.data.data.userName);
 
                 // 메인 페이지로 이동
                 navigate("/");
@@ -32,7 +38,6 @@ function SocialLoginPage() {
         };
 
         window.addEventListener("message", handleMessage);
-
         return () => {
             window.removeEventListener("message", handleMessage);
         };
@@ -52,29 +57,35 @@ function SocialLoginPage() {
     };
 
     return (
-        <div className={styles.container}>
-            <img className={styles.logo} alt="로그인 로고" src={loginLogo} />
-            <img alt="소셜 로그인" src={socialLoginLogo} />
-            <img
-                className={styles.login}
-                alt="구글 로그인"
-                src={googleSocialLogin}
-                onClick={() => handleSocialLogin("google")}
-            />
-            <img
-                className={styles.login}
-                alt="카카오 로그인"
-                src={kakaoSocialLogin}
-                onClick={() => handleSocialLogin("kakao")}
-            />
+        <SnackbarProvider maxSnack={3}>
+            <div className={styles.container}>
+                <img
+                    className={styles.logo}
+                    alt="로그인 로고"
+                    src={loginLogo}
+                />
+                <img alt="소셜 로그인" src={socialLoginLogo} />
+                <img
+                    className={styles.login}
+                    alt="구글 로그인"
+                    src={googleSocialLogin}
+                    onClick={() => handleSocialLogin("google")}
+                />
+                <img
+                    className={styles.login}
+                    alt="카카오 로그인"
+                    src={kakaoSocialLogin}
+                    onClick={() => handleSocialLogin("kakao")}
+                />
 
-            <img
-                className={styles.login}
-                alt="네이버 로그인"
-                src={naverSocialLogin}
-                onClick={() => handleSocialLogin("naver")}
-            />
-        </div>
+                <img
+                    className={styles.login}
+                    alt="네이버 로그인"
+                    src={naverSocialLogin}
+                    onClick={() => handleSocialLogin("naver")}
+                />
+            </div>
+        </SnackbarProvider>
     );
 }
 

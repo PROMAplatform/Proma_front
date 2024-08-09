@@ -42,6 +42,9 @@ export const applyInterceptors = (instance) => {
                 config.headers["Authorization"] = `Bearer ${token}`;
             } else {
                 window.location.href = `/login`;
+                // enqueueSnackbar(
+                //     `☺️1초 만에 로그인 가능하게 만들어뒀어요!`,
+                // );
             }
             return config;
         },
