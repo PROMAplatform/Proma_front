@@ -5,6 +5,8 @@ import { useRecoilValue } from "recoil";
 import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import SkeletonListItem from "../SkeletonListItem";
+import blockIcon from "../../../../assets/images/blockIcon.svg";
+import { B4 } from "../../../../styles/font-styles";
 import { t } from "i18next";
 
 function PromptList() {
@@ -81,7 +83,10 @@ function PromptList() {
                         ))}
                     </div>
                 ) : (
-                    <p>{t(`sideBar.emptyPrompt`)}</p>
+                    <div className={styles.empty}>
+                        <img src={blockIcon}/>
+                        <B4 color="gray6">{t(`sideBar.emptyPrompt`)}</B4>
+                    </div>
                 )}
             </div>
         </div>

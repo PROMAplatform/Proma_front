@@ -24,3 +24,15 @@
     padding: 10px;
     width: 95%;
 }
+
+.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+}
+
+.empty img {
+    width: 35px;
+}

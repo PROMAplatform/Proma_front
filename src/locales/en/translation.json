@@ -19,7 +19,7 @@
         "choosePromptType": "Choose prompt type!",
         "endChoose": "Choose",
         "emptyPrompt": "Your promptList is empty.",
-        "emptyChatting": "Your chatting is empty",
+        "emptyChatting": "Your chatting is empty.",
         "deleteChattingRoom": "Are you sure you want to delete the chat room?",
         "deleteChattingRoomHistory": "Your chat room's history will be completely deleted.",
         "cancel": "Cancel",

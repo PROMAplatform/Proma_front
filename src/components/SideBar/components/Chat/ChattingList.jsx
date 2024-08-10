@@ -9,6 +9,8 @@ import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import ChattingListItem from "./ChattingListItem";
 import SkeletonListItem from "../SkeletonListItem";
 import styles from "./ChattingList.module.css";
+import emptyChattingList from "../../../../assets/images/emptyChattingList.svg";
+import { B4 } from "../../../../styles/font-styles";
 import { t } from "i18next";
 
 function ChattingList() {
@@ -65,7 +67,10 @@ function ChattingList() {
                     </div>
                 </div>
             ) : (
-                <p>{t(`sideBar.emptyChatting`)}</p>
+                <div className={styles.empty}>
+                    <img src={emptyChattingList}/>
+                    <B4 color="gray6">{t(`sideBar.emptyChatting`)}</B4>
+                </div>
             )}
         </div>
     );
