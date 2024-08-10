@@ -35,11 +35,13 @@ export const createUrl = (path, params = {}) => {
 
 // 인터셉터 적용
 export const applyInterceptors = (instance) => {
+    const language = localStorage.getItem("language");
     instance.interceptors.request.use(
         async (config) => {
             const token = await getAuthToken();
             if (token) {
                 config.headers["Authorization"] = `Bearer ${token}`;
+                config.headers["Accept-Language"] = `${language}`;
             } else {
                 window.location.href = `/login`;
                 // enqueueSnackbar(
