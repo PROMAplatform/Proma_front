@@ -54,7 +54,6 @@ export const useChattingRoomHooks = () => {
     // ];
 
     //채팅방 리스트 가져오기
-    //TODO- mock에서 실제 데이터로 수정해야함.
     const getChattingRoomList = async (roomId) => {
         const response = await sendRequest(
             chattingInstance,
@@ -67,7 +66,6 @@ export const useChattingRoomHooks = () => {
         }
     };
 
-    //TODO- mock에서 실제 데이터로 수정해야함.
     const getChattingList = async (roomId) => {
         const response = await sendRequest(
             chattingInstance,
@@ -91,7 +89,6 @@ export const useChattingRoomHooks = () => {
                 },
             );
             if (response.data.success) {
-                //TODO- 내가 방금 만든 방으로 방을 이동하는 로직 추가
                 console.log("성공");
                 setCurrentRoomId(response.data.responseDto.roomId);
                 console.log(response.data.responseDto.roomId);
