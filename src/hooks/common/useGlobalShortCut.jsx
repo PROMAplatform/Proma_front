@@ -12,7 +12,7 @@ function useGlobalShortcuts() {
     useEffect(() => {
         const handleKeyDown = (event) => {
             // Windows와 Mac 모두에서 작동하도록 수정
-            const isModifierKey = event.ctrlKey || event.metaKey;
+            const isModifierKey = event.altKey || event.metaKey;
             const isShift = event.shiftKey;
 
             if (isModifierKey && isShift) {
