@@ -11,7 +11,6 @@ function ExpandableButton({buttonText}) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [, setIsMyPageState] = useRecoilState(myPageState);
     const [, setCurrentPage] = useRecoilState(communityPromptListPageState);
-    const userName = localStorage.getItem("userName");
     const handleMouseEnter = () => {
         setIsExpanded(true);
     };
