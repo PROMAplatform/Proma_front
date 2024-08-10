@@ -13,16 +13,19 @@ const RefinedPromptText = () => {
     const combinedText = Object.entries(refinedPromptParts)
         .filter(([category, text]) => text)
         .map(([category, text]) => (
-            <span
-                key={category}
-                style={{
-                    borderBottom: `2px solid ${categoryColors[category]}`,
-                    lineHeight: "150%",
-                    wordBreak: "break-all",
-                }}
-            >
-                {text}
-            </span>
+            <>
+                <p
+                    key={category}
+                    style={{
+                        display: "block",
+                        borderBottom: `2px solid ${categoryColors[category]}`,
+                        lineHeight: "150%",
+                        wordBreak: "break-all",
+                    }}
+                >
+                    {category} : {text}
+                </p>
+            </>
         ));
 
     return (

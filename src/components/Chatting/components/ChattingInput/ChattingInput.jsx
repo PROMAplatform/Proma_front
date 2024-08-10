@@ -48,7 +48,7 @@ function ChattingInput() {
 
             const newMessage = {
                 messageId: Date.now(),
-                promptId: currentPrompt.id,
+                promptId: currentPrompt ? currentPrompt.id : null,
                 messageQuestion: input.value,
                 messageFile: selectedFile,
                 messageCreateAt: new Date().toISOString(),
@@ -57,7 +57,7 @@ function ChattingInput() {
             setMessages((prevMessages) => [...prevMessages, newMessage]);
 
             console.log(
-                currentPrompt.id,
+                currentPrompt ? currentPrompt.id : null,
                 input.value,
                 roomId,
                 selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",
@@ -65,7 +65,7 @@ function ChattingInput() {
             );
 
             const chattingResponse = await fetchChattingAnswer(
-                currentPrompt.id,
+                currentPrompt ? currentPrompt.id : null,
                 input.value,
                 roomId,
                 selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",

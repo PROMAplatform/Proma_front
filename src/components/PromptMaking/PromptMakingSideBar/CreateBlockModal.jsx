@@ -4,7 +4,6 @@ import { H5, B4 } from "../../../styles/font-styles";
 import {
     categoryColorsState,
     availableCategoriesState,
-    promptMethodState,
 } from "../../../recoil/prompt/promptRecoilState";
 import styles from "./CreateBlockModal.module.css";
 import { usePromptHook } from "../../../api/prompt/prompt";
@@ -16,7 +15,6 @@ import { t } from "i18next";
 const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
     const categories = useRecoilValue(availableCategoriesState);
     const categoryColors = useRecoilValue(categoryColorsState);
-    const promptMethod = useRecoilValue(promptMethodState);
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
     const [blockValue, setBlockValue] = useState("");
     const [blockDescription, setBlockDescription] = useState("");
@@ -34,7 +32,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
             blockValue,
             blockDescription,
             selectedCategory,
-            promptMethod,
+            localPromptMethod,
         );
         fetchBlocks(localPromptMethod);
         onBlockCreated();
