@@ -4,8 +4,12 @@ import ShareSection from "./components/ShareSection";
 import { ReactComponent as ExitIcon } from "../../../../assets/images/exitIcon.svg";
 import { B4, H3 } from "../../../../styles/font-styles";
 import { t } from "i18next";
+import {useRecoilValue} from "recoil";
+import {makePromptListState} from "../../../../recoil/community/communityRecoilState";
 
 function SelectPromptModal({ close }) {
+    const promas = useRecoilValue(makePromptListState);
+
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.container}>
@@ -18,7 +22,11 @@ function SelectPromptModal({ close }) {
                     </div>
                 </div>
                 <div className={styles.explainContainer}>
-                    <B4>{t(`community.chooseToShare`)}</B4>
+                    {promas.length ? (
+                        <B4>{t(`community.chooseToShare`)}</B4>
+                    ):(
+                        ""
+                    )}
                 </div>
                 <div className={styles.listSection}>
                     <ShareSection onClose={close} />

@@ -6,12 +6,11 @@ import TopSection from "./components/TopSection";
 import {B3, H4} from "../../../../styles/font-styles";
 import {useRecoilValue} from "recoil";
 import {communityPromptDetailState, isLoadingCommunityState} from "../../../../recoil/community/communityRecoilState";
-import {categoryBlockShapesState} from "../../../../recoil/prompt/promptRecoilState";
 
 function PromptDetailModal({ close, post }) {
     const promptBlock = useRecoilValue(communityPromptDetailState);
     const isLoading = useRecoilValue(isLoadingCommunityState);
-    const categoryBlockShapesArray = useRecoilValue(categoryBlockShapesState);
+
     const predefinedColors = [
         "var(--block-main-color)",
         "var(--block-purple)",
@@ -22,18 +21,19 @@ function PromptDetailModal({ close, post }) {
         "var(--blokc-blue)"
     ];
 
+    const predefinedBlockShapes = [1, 2, 3, 4, 5, 6, 7];
+
     const categoryStyles = {};
-    const categories = [...new Set(promptBlock.map(block => block.blockCategory))];
+    const categories = [
+        ...new Set(promptBlock.map((block) => block.blockCategory)),
+    ];
 
     categories.forEach((category, index) => {
         categoryStyles[category] = {
             color: predefinedColors[index % predefinedColors.length],
-            shape: categoryBlockShapesArray[index % categoryBlockShapesArray.length][1]
+            shape: predefinedBlockShapes[index % predefinedBlockShapes.length],
         };
     });
-
-    console.log(promptBlock);
-    console.log(categoryStyles);
 
     const handleClose = () => {
         console.log("닫기");
