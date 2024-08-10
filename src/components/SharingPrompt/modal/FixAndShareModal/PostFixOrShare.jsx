@@ -8,6 +8,7 @@ import {useRecoilValue, useSetRecoilState} from "recoil";
 import {makePromptDetailState, stateChange} from "../../../../recoil/community/communityRecoilState";
 import {isLoadingState} from "../../../../recoil/chatting/chattingRecoilState";
 import {ReactComponent as ExitIcon} from "../../../../assets/images/exitIcon.svg";
+import {t} from "i18next";
 
 function PostFixOrShare({close, onApi, state}) {
     const promptExample = useRecoilValue(makePromptDetailState);
@@ -64,8 +65,8 @@ function PostFixOrShare({close, onApi, state}) {
             <div className={styles.container}>
                 <div className={styles.topSection}>
                     <div className={styles.modalTitle}>
-                        {state === "fix" ? <H3>게시글 정보 수정하기</H3>
-                            : <H3>프롬프트 공유하기</H3>
+                        {state === "fix" ? <H3>{t(`community.postFix`)}</H3>
+                            : <H3>{t(`community.promptShare`)}</H3>
                         }
                     </div>
                     <div className={styles.closeButton}>
@@ -89,7 +90,7 @@ function PostFixOrShare({close, onApi, state}) {
                 )}
 
                 <div className={styles.titleSection}>
-                    <H4>게시글 제목</H4>
+                    <H4>{t(`community.postTitle`)}</H4>
                     <input
                         type="text"
                         className={styles.inputTextBox}
@@ -99,7 +100,7 @@ function PostFixOrShare({close, onApi, state}) {
                     />
                 </div>
                 <div className={styles.titleSection}>
-                    <H4>프롬프트 설명</H4>
+                    <H4>{t(`community.postDescription`)}</H4>
                     <input
                         type="text"
                         className={styles.inputTextBoxEx}
@@ -109,15 +110,15 @@ function PostFixOrShare({close, onApi, state}) {
                     />
                 </div>
                 <div className={styles.titleSection}>
-                    <H4>프롬프트 카테고리</H4>
+                    <H4>{t(`community.postCategory`)}</H4>
                     <CategoryButton
                         selectCategory={selectCategory}
                         setSelectCategory={setSelectCategory}
                     />
                 </div>
                 <div className={styles.buttonSection}>
-                    {state === "fix" ? <ModalButton title={"수정하기"} variant={'primary'} onClick={handleButton}/>
-                        : <ModalButton title={"공유하기"} variant={'primary'} onClick={handleButton}/>
+                    {state === "fix" ? <ModalButton title={t(`sideBar.patch`)} variant={'primary'} onClick={handleButton}/>
+                        : <ModalButton title={t(`community.share`)} variant={'primary'} onClick={handleButton}/>
                     }
                 </div>
             </div>
