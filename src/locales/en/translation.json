@@ -74,6 +74,7 @@
         "my-writed-post": "Your Posts",
         "promptMadeByMe": "My prompt list",
         "chooseToShare": "Choose prompt to share!",
-        "share": "Share"
+        "share": "Share",
+        "notToShare" : "There are no prompts to share."
     }
 }

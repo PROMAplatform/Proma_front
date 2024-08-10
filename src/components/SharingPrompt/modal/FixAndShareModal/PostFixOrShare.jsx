@@ -7,7 +7,6 @@ import ModalButton from "../../../common/ModalButton";
 import {useRecoilValue, useSetRecoilState} from "recoil";
 import {makePromptDetailState, stateChange} from "../../../../recoil/community/communityRecoilState";
 import {isLoadingState} from "../../../../recoil/chatting/chattingRecoilState";
-import {categoryBlockShapesState} from "../../../../recoil/prompt/promptRecoilState";
 import {ReactComponent as ExitIcon} from "../../../../assets/images/exitIcon.svg";
 
 function PostFixOrShare({close, onApi, state}) {
@@ -17,7 +16,6 @@ function PostFixOrShare({close, onApi, state}) {
     const [selectCategory, setSelectCategory] = useState(promptExample.promptCategory);
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
-    const categoryBlockShapesArray = useRecoilValue(categoryBlockShapesState);
     const predefinedColors = [
         "var(--block-main-color)",
         "var(--block-purple)",
@@ -28,17 +26,19 @@ function PostFixOrShare({close, onApi, state}) {
         "var(--blokc-blue)"
     ];
 
+    const predefinedBlockShapes = [1, 2, 3, 4, 5, 6, 7];
+
     const categoryStyles = {};
-    const categories = [...new Set(promptExample.listPromptAtom.map(block => block.blockCategory))];
+    const categories = [
+        ...new Set(promptExample.listPromptAtom.map((block) => block.blockCategory)),
+    ];
 
     categories.forEach((category, index) => {
         categoryStyles[category] = {
             color: predefinedColors[index % predefinedColors.length],
-            shape: categoryBlockShapesArray[index % categoryBlockShapesArray.length][1]
+            shape: predefinedBlockShapes[index % predefinedBlockShapes.length],
         };
     });
-
-    console.log(promptExample.listPromptAtom);
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
@@ -79,7 +79,8 @@ function PostFixOrShare({close, onApi, state}) {
                     <>
                         <div className={styles.blockSection}>
                             {promptExample.listPromptAtom ? (
-                                promptExample.listPromptAtom.map((block) => <MakeBlockPreview categoryStyles={categoryStyles} block={block} key={block.blockId} size={"small"}/>)
+                                promptExample.listPromptAtom.map((block) => <MakeBlockPreview
+                                    categoryStyles={categoryStyles} block={block} key={block.blockId} size={"small"}/>)
                             ) : (
                                 <>데이터가 없습니다.</>
                             )}
