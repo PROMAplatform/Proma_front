@@ -9,6 +9,7 @@ import freeIcon from "../../../../../assets/images/freeIcon.svg";
 import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { promptMethodState } from "../../../../../recoil/prompt/promptRecoilState";
+import { setLocalPromptMethod } from "../../../../../util/localStorage";
 import { H5 } from "../../../../../styles/font-styles";
 import { t } from "i18next";
 
@@ -22,6 +23,7 @@ function CreatePromptModal({ isOpen, onClose }) {
     const handleCreateClick = () => {
         if (selectedMethod) {
             setPromptMethod(selectedMethod);
+            setLocalPromptMethod(selectedMethod);
             navigate(`/promptMaking/`);
             onClose();
         }
