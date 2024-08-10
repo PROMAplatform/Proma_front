@@ -61,7 +61,7 @@ function Header() {
                     </p>
                 ) : null}
                 <div className={styles.buttonClick}>
-                    <Link to={"/about"}> {t(`header.introduce`)}</Link>
+                    <Link to={"/"}> {t(`header.introduce`)}</Link>
                 </div>
                 <div className={styles.buttonClick}>
                     <Link to={"/community"} onClick={useResetMyPageState}>
@@ -69,7 +69,7 @@ function Header() {
                     </Link>
                 </div>
                 <div className={styles.buttonClick}>
-                    <Link to={"/"}>{t(`header.chatting`)}</Link>
+                    <Link to={"/main"}>{t(`header.chatting`)}</Link>
                 </div>
                 <div className={styles.buttonClick}>
                     <ExpandableButton buttonText={t(`header.mypage`)} />
