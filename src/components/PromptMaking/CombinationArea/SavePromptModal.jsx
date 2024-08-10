@@ -34,7 +34,8 @@ const SavePromptModal = ({
     const promptMethod = useRecoilValue(promptMethodState);
 
     const { savePrompt } = usePromptHook();
-    const { patchPromptBlock, patchPromptInfo } = useChattingRoomHooks();
+    const { fetchPromptList, patchPromptBlock, patchPromptInfo } =
+        useChattingRoomHooks();
 
     useEffect(() => {
         if (prompt) {
@@ -94,6 +95,7 @@ const SavePromptModal = ({
             // 여기서 일반적으로 이 데이터를 백엔드로 보내거나 상태 관리 시스템에 저장합니다
         }
         navigate("/");
+        fetchPromptList();
         onClose();
     };
 
