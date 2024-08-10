@@ -12,12 +12,12 @@ import { t } from "i18next";
 function SideBar() {
     const [isChatting, setIsChatting] = useState(false);
     const [isPromptModalOpen, setIsPromptModalOpen] = useState(false);
-    const { createChattingRoom, getChattingRoomList } = useChattingRoomHooks();
+    const { getChattingRoomList } = useChattingRoomHooks();
     // const [searchQuery, setSearchQuery] = useState(""); // 검색어 상태 추가
 
     const handleAddChattingRoom = async () => {
-        await createChattingRoom();
         await getChattingRoomList(); // 새로운 채팅방 목록
+        window.location.reload(); // 페이지 새로고침
     };
 
     const closePromptModal = () => {

@@ -15,7 +15,7 @@ function AboutPage() {
     };
 
     const moveToChatting = () => {
-        navigate("/");
+        navigate("/main");
     };
 
     const defaultOptions = {

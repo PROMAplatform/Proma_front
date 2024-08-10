@@ -21,7 +21,7 @@ function App() {
             <BrowserRouter>
                 <Header />
                 <Routes>
-                    <Route path="/" element={<MainPage />} />
+                    <Route path="/" element={<AboutPage />} />
                     <Route path="/community" element={<CommunityPage />} />
                     <Route path="/mypage" element={<MyPage />} />
 
@@ -29,7 +29,7 @@ function App() {
                         path="/promptMaking"
                         element={<PromptMakingPage />}
                     />
-                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/main" element={<MainPage />} />
                     <Route path="/login" element={<SocialLoginPage />} />
                     <Route
                         path="/api/v1/auth/user/:provider"
