@@ -13,6 +13,7 @@ import ModalButton from "../../../../common/ModalButton";
 import PromptDetail from "../../../../common/Prompt/PromptDetail";
 import { useChattingRoomHooks } from "../../../../../api/chatting/chatting";
 import { setLocalPromptMethod } from "../../../../../util/localStorage";
+import {t} from "i18next";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
@@ -64,7 +65,7 @@ function EditPromptInfoModal({ isOpen, onClose, promptId }) {
         <ModalContainer
             isOpen={isOpen}
             onClose={onClose}
-            title="프롬프트 정보 수정하기"
+            title={t(`sideBar.promptPatch`)}
             onSubmit={handleEditClick}
         >
             <div className={styles.promptDetailContainer}>
@@ -74,12 +75,12 @@ function EditPromptInfoModal({ isOpen, onClose, promptId }) {
                     onClick={handleBlockEditClick}
                 >
                     <img src={editIcon} alt="edit icon" />
-                    <B6 color="gray6">블록 수정하기</B6>
+                    <B6 color="gray6">{t(`sideBar.blockPatch`)}</B6>
                 </div>
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptTitle">
-                    <H5>프롬프트 제목</H5>
+                    <H5>{t(`promptMaking.promptTitle`)}</H5>
                 </label>
                 <input
                     placeholder="프롬프트 제목"
@@ -89,7 +90,7 @@ function EditPromptInfoModal({ isOpen, onClose, promptId }) {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptDescription">
-                    <H5>프롬프트 설명</H5>
+                    <H5>{t(`promptMaking.promptDescription`)}</H5>
                 </label>
                 <input
                     placeholder="프롬프트 설명"
@@ -99,7 +100,7 @@ function EditPromptInfoModal({ isOpen, onClose, promptId }) {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="category">
-                    <H5>프롬프트 카테고리</H5>
+                    <H5>{t(`promptMaking.promptCategory`)}</H5>
                 </label>
                 <div className={styles.select}>
                     <ul className={styles.options}>
@@ -127,7 +128,7 @@ function EditPromptInfoModal({ isOpen, onClose, promptId }) {
                     </ul>
                 </div>
             </div>
-            <ModalButton title="저장하기" variant="primary" type="submit" />
+            <ModalButton title={t(`sideBar.patch`)} variant="primary" type="submit" />
         </ModalContainer>
     );
 }

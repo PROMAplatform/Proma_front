@@ -7,6 +7,7 @@ import ModalButton from "../../../../common/ModalButton";
 import { promptListState } from "../../../../../recoil/prompt/promptRecoilState";
 import { useRecoilValue } from "recoil";
 import { useCommunityHooks } from "../../../../../api/community/community";
+import { t } from "i18next";
 
 const allCategories = ["IT", "게임", "글쓰기", "건강", "교육", "예술", "기타"];
 
@@ -44,7 +45,7 @@ function SharePromptModal({ isOpen, onClose, promptId }) {
         <ModalContainer
             isOpen={isOpen}
             onClose={onClose}
-            title="프롬프트 공유하기"
+            title={t(`community.promptShare`)}
             onSubmit={handleShareClick}
         >
             <div className={styles.promptDetailContainer}>
@@ -52,7 +53,7 @@ function SharePromptModal({ isOpen, onClose, promptId }) {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptTitle">
-                    <H5>게시글 제목</H5>
+                    <H5>{t(`community.postTitle`)}</H5>
                 </label>
                 <input
                     placeholder="프롬프트 제목"
@@ -62,7 +63,7 @@ function SharePromptModal({ isOpen, onClose, promptId }) {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptDescription">
-                    <H5>게시글 설명</H5>
+                    <H5>{t(`community.postDescription`)}</H5>
                 </label>
                 <input
                     placeholder="프롬프트 설명"
@@ -72,7 +73,7 @@ function SharePromptModal({ isOpen, onClose, promptId }) {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="category">
-                    <H5>프롬프트 카테고리</H5>
+                    <H5>{t(`community.postCategory`)}</H5>
                 </label>
                 <div className={styles.select}>
                     <ul className={styles.options}>
@@ -100,7 +101,7 @@ function SharePromptModal({ isOpen, onClose, promptId }) {
                     </ul>
                 </div>
             </div>
-            <ModalButton title="공유하기" variant="primary" type="submit" />
+            <ModalButton title={t(`sideBar.share`)} variant="primary" type="submit" />
         </ModalContainer>
     );
 }

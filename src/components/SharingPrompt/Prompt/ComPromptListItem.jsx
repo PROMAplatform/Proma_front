@@ -7,6 +7,7 @@ import {useModalStack} from "../../../hooks/useModalStack";
 import {B6, B7, H5} from "../../../styles/font-styles";
 import {useCommunityHooks} from "../../../api/community/community";
 import {methodImage} from "../util/methodImage";
+import {t} from "i18next";
 
 function ComPromptListItem({ post }) {
     const modalStack = useModalStack();
@@ -72,7 +73,7 @@ function ComPromptListItem({ post }) {
                             </div>
                         </div>
                         <div className={styles.backExplainSection}>
-                            <H5>프롬프트 미리보기</H5>
+                            <H5>{t(`promptMaking.promptPreView`)}</H5>
                             <B6>{post.promptPreview}</B6>
                         </div>
                         <div className={styles.userSection}>
