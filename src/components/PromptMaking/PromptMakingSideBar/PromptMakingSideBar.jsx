@@ -16,6 +16,7 @@ import logo from "../../../assets/logos/promaLogoSmall.svg";
 import CreateBlockModal from "./CreateBlockModal";
 import { usePromptHook } from "../../../api/prompt/prompt";
 import { getLocalPromptMethod } from "../../../util/localStorage";
+import { t } from "i18next";
 
 const PromptMakingSidebar = () => {
     const [activeCategory, setActiveCategory] =
@@ -128,7 +129,9 @@ const PromptMakingSidebar = () => {
                         className={styles.addButton}
                         onClick={() => setIsModalOpen(true)}
                     >
-                        <B5 color="blockMainColor">블록 만들기</B5>
+                        <B5 color="blockMainColor">
+                            {t(`promptMaking.blockMake`)}
+                        </B5>
                     </button>
                 </div>
                 <CreateBlockModal

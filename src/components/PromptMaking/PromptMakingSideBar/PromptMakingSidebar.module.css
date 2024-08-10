@@ -47,6 +47,7 @@
     border-bottom-right-radius: 50px;
     cursor: pointer;
     text-orientation: upright;
+    word-break: break-word; /* 긴 단어를 줄바꿈 */
     transition: all 0.3s;
     font-size: 14px;
     background-color: var(--category-color);
