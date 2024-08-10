@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { ReactComponent as Logo2 } from "../../assets/images/comlogo2.svg";
 import { ReactComponent as Logo1 } from "../../assets/images/comlogo1.svg";
 import ExpandableButton from "./expandableButton/ExpandableButton";
@@ -14,6 +14,8 @@ function Header() {
     const setMyPageState = useSetRecoilState(myPageState);
     const setCurrentPage = useSetRecoilState(communityPromptListPageState);
     const userName = localStorage.getItem("userName");
+    const navigate = useNavigate();
+
     const useResetMyPageState = () => {
         setMyPageState(""); // 초기값으로 설정
         setCurrentPage(0);
@@ -31,6 +33,10 @@ function Header() {
             // 언어 변경이 완료된 후 페이지 새로고침
             window.location.reload();
         });
+    };
+
+    const handleLogin = () => {
+        navigate("/login");
     };
 
     return (
@@ -71,9 +77,15 @@ function Header() {
                 <div className={styles.buttonClick}>
                     <Link to={"/main"}>{t(`header.chatting`)}</Link>
                 </div>
-                <div className={styles.buttonClick}>
-                    <ExpandableButton buttonText={t(`header.mypage`)} />
-                </div>
+                {userName ? (
+                    <div className={styles.buttonClick}>
+                        <ExpandableButton buttonText={t(`header.mypage`)} />
+                    </div>
+                ) : (
+                    <p onClick={handleLogin} style={{ color: "blue" , cursor: "pointer"}}>
+                        로그인
+                    </p>
+                )}
             </div>
         </div>
     );

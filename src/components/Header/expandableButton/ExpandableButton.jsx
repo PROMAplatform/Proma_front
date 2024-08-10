@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styles from "./ExpandableButton.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { myPageState } from "../../../recoil/community/myPageRecoilState";
-import { communityPromptListPageState } from "../../../recoil/community/communityRecoilState";
-import { t } from "i18next";
+import {Link, useNavigate} from "react-router-dom";
+import {useRecoilState} from "recoil";
+import {myPageState} from "../../../recoil/community/myPageRecoilState";
+import {communityPromptListPageState} from "../../../recoil/community/communityRecoilState";
+import {t} from "i18next";
 
-function ExpandableButton({ buttonText }) {
+function ExpandableButton({buttonText}) {
     const navigate = useNavigate();
     const [isExpanded, setIsExpanded] = useState(false);
     const [, setIsMyPageState] = useRecoilState(myPageState);
@@ -34,9 +34,7 @@ function ExpandableButton({ buttonText }) {
         localStorage.clear("userName");
         navigate("/login");
     };
-    const handleLogin = () => {
-        navigate("/login");
-    };
+
     return (
         <>
             <div
@@ -55,15 +53,9 @@ function ExpandableButton({ buttonText }) {
                     <Link to={`/mypage`} onClick={() => handleClick("write")}>
                         {t(`header.writtenByYou`)}
                     </Link>
-                    {userName ? (
-                        <p onClick={handleLogout} style={{ color: "red" }}>
-                            {t(`header.logout`)}
-                        </p>
-                    ) : (
-                        <p onClick={handleLogin} style={{ color: "blue" }}>
-                            로그인
-                        </p>
-                    )}
+                    <p onClick={handleLogout} style={{color: "red"}}>
+                        {t(`header.logout`)}
+                    </p>
                 </div>
             </div>
         </>

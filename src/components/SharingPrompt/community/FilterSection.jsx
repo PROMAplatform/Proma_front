@@ -12,26 +12,33 @@ import {
 } from "../../../recoil/community/communityRecoilState";
 import { useRecoilValue } from "recoil";
 import { t } from "i18next";
+import {useNavigate} from "react-router-dom";
 
 function FilterSection() {
     const [selectCategory, setSelectCategory] = useState("전체"); // 단일 선택
     const [sortOrder, setSortOrder] = useState("latest");
     const [searchQuery, setSearchQuery] = useState("");
     const modalStack = useModalStack();
+    const navigate = useNavigate();
     const isStateChange = useRecoilValue(stateChange);
     const { currentPage } = useRecoilValue(communityPromptListPageState) ?? {
         currentPage: 0,
     };
-    const { getCommunityPromptList, getMakePromptList } = useCommunityHooks();
+    const { getCommunityPreviewPromptList, getCommunityPromptList, getMakePromptList } = useCommunityHooks();
+    const userName = localStorage.getItem("userName");
 
     const handleListModal = () => {
-        getMakePromptList();
-        modalStack.push({
-            key: "promptListModal",
-            Component: SelectPromptModal,
-            componentProps: {},
-            backdropTransparent: true,
-        });
+        if (userName) {
+            getMakePromptList();
+            modalStack.push({
+                key: "promptListModal",
+                Component: SelectPromptModal,
+                componentProps: {},
+                backdropTransparent: true,
+            });
+        } else {
+            navigate("/login");
+        }
     };
 
     const handleSearchInputChange = (e) => {
@@ -44,12 +51,21 @@ function FilterSection() {
             let categoryParam =
                 selectCategory === "전체" ? null : selectCategory;
 
-            getCommunityPromptList(
-                categoryParam,
-                sortOrder,
-                searchQuery,
-                currentPage,
-            );
+            if (userName === null) {
+                getCommunityPreviewPromptList(
+                    categoryParam,
+                    sortOrder,
+                    searchQuery,
+                    currentPage,
+                );
+            } else {
+                getCommunityPromptList(
+                    categoryParam,
+                    sortOrder,
+                    searchQuery,
+                    currentPage,
+                );
+            }
         }
     };
 
@@ -58,12 +74,21 @@ function FilterSection() {
             let categoryParam =
                 selectCategory === "전체" ? null : selectCategory;
 
-            getCommunityPromptList(
-                categoryParam,
-                sortOrder,
-                searchQuery,
-                currentPage,
-            );
+            if (userName === null) {
+                getCommunityPreviewPromptList(
+                    categoryParam,
+                    sortOrder,
+                    searchQuery,
+                    currentPage,
+                );
+            } else {
+                getCommunityPromptList(
+                    categoryParam,
+                    sortOrder,
+                    searchQuery,
+                    currentPage,
+                );
+            }
         }, 300);
 
         return () => clearTimeout(delayDebounceFn);
