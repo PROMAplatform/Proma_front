@@ -15,10 +15,6 @@ function ExpandableButton({buttonText}) {
         setIsExpanded(true);
     };
 
-    const handleMouseLeave = () => {
-        setIsExpanded(false);
-    };
-
     const handleMouseLeaveExpanding = () => {
         setIsExpanded(false);
     };
@@ -39,7 +35,6 @@ function ExpandableButton({buttonText}) {
             <div
                 className={styles.container}
                 onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
             >
                 <div className={styles.button}>{buttonText}</div>
                 <div
