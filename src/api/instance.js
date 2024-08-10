@@ -23,7 +23,7 @@ applyInterceptors(promptInstance);
 //규진
 const aiChatInstance = axios.create(defaultAIInstance.defaults);
 aiChatInstance.defaults.baseURL += "/llm";
-
+applyInterceptors(aiChatInstance);
 //규진, 정선
 const chattingInstance = axios.create(defaultInstance.defaults);
 chattingInstance.defaults.baseURL += "/chatting";
