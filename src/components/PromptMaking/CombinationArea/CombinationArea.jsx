@@ -51,7 +51,11 @@ const CombinationArea = ({ promptId }) => {
         <div className={styles.container}>
             <div className={styles.title}>
                 <H5 color="gray5">{promptMethod} PROMA</H5>
-                <button onClick={openModal} className={styles.saveButton}>
+                <button
+                    onClick={openModal}
+                    className={styles.saveButton}
+                    data-tour="saveButton"
+                >
                     <img
                         src={saveButtonIcon}
                         className={styles.saveIcon}
@@ -59,7 +63,7 @@ const CombinationArea = ({ promptId }) => {
                     />
                 </button>
             </div>
-            <div className={styles.combinationArea}>
+            <div className={styles.combinationArea} data-tour="combinationArea">
                 <H2 color="gray3" className={styles.dropYourBlocks}>
                     {t(`promptMaking.intendDragging`)}
                     <hr style={{ visibility: "hidden" }} />

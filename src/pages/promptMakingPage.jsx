@@ -6,6 +6,7 @@ import CombinationArea from "../components/PromptMaking/CombinationArea/Combinat
 import { SnackbarProvider } from "notistack";
 import PromptMakingSidebar from "../components/PromptMaking/PromptMakingSideBar/PromptMakingSideBar";
 import { usePromptMaking } from "../hooks/promptHook/usePromptMaking";
+import PromptMakingTour from "./PromptMakingTour";
 
 const PromptMakingPage = () => {
     const location = useLocation();
@@ -16,6 +17,7 @@ const PromptMakingPage = () => {
         <SnackbarProvider maxSnack={3}>
             <DragDropContext onDragEnd={onDragEnd}>
                 <div className={styles.app}>
+                    <PromptMakingTour />
                     <PromptMakingSidebar />
                     <div className={styles.areaContainer}>
                         <CombinationArea promptId={promptId} />
