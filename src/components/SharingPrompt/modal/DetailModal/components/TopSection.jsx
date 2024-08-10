@@ -8,25 +8,31 @@ import {useSetRecoilState} from "recoil";
 import {stateChange} from "../../../../../recoil/community/communityRecoilState";
 import {methodImage} from "../../../util/methodImage";
 import {B4, B6, H3} from "../../../../../styles/font-styles";
+import {useNavigate} from "react-router-dom";
 
 function TopSection({ post, onClose }) {
     const setStateChange = useSetRecoilState(stateChange);
     const [localLikeState, setLocalLikeState] = useState(post.likeState);
     const [localLikeCount, setLocalLikeCount] = useState(post.likeCount);
     const { likePost } = useCommunityHooks();
+    const userName = localStorage.getItem("userName");
+    const navigate = useNavigate();
 
     function handleClickLike() {
-        likePost(post.postId);
+        if (userName) {
+            likePost(post.postId);
 
-        if (localLikeState === true) {
-            setLocalLikeState(false);
-            setLocalLikeCount((prevValue) => prevValue - 1);
+            if (localLikeState === true) {
+                setLocalLikeState(false);
+                setLocalLikeCount((prevValue) => prevValue - 1);
+            } else {
+                setLocalLikeState(true);
+                setLocalLikeCount((prevValue) => prevValue + 1);
+            }
         } else {
-            setLocalLikeState(true);
-            setLocalLikeCount((prevValue) => prevValue + 1);
+            navigate("/login");
+            onClose();
         }
-
-        console.log("좋아요 버튼 : ", post.postId);
     }
 
     function handleCloseClick() {

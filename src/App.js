@@ -36,8 +36,8 @@ function App() {
                         element={<SocialLoginPageAfter />}
                     />
                 </Routes>
+                <ModalStack />
             </BrowserRouter>
-            <ModalStack />
         </ThemeProvider>
     );
 }

@@ -9,19 +9,22 @@ import {useCommunityHooks} from "../../../../../api/community/community";
 import {useMyPageHooks} from "../../../../../api/community/myPage";
 import {stateChange} from "../../../../../recoil/community/communityRecoilState";
 import ModalButton from "../../../../common/ModalButton";
+import {useNavigate} from "react-router-dom";
 
 function ButtonSection({post, onClose}) {
     const isMyPageState = useRecoilValue(myPageState);
-    const [,setStateChange] = useRecoilState(stateChange);
+    const [, setStateChange] = useRecoilState(stateChange);
     const modalStack = useModalStack();
-    const { scrapPrompt } = useCommunityHooks();
-    const { deleteSharePost, fixSharePost } = useMyPageHooks();
+    const {scrapPrompt} = useCommunityHooks();
+    const {deleteSharePost, fixSharePost} = useMyPageHooks();
+    const userName = localStorage.getItem("userName");
+    const navigate = useNavigate();
 
     const handleDeleteModal = () => {
         modalStack.push({
             key: "promptDeleteModal",
             Component: DeletePromptModal,
-            componentProps: { onDelete : handleDelete, post : post },
+            componentProps: {onDelete: handleDelete, post: post},
             backdropTransparent: true,
         });
     };
@@ -30,17 +33,22 @@ function ButtonSection({post, onClose}) {
         modalStack.push({
             key: "promptFixOrShareModal",
             Component: PostFixOrShare,
-            componentProps: { onApi: handleFix, state: "fix" },
+            componentProps: {onApi: handleFix, state: "fix"},
             backdropTransparent: true,
         });
     };
 
     function handleScrap() {
-        scrapPrompt(post.postId);
-        setStateChange(prevValue => prevValue + 1);
+        if (userName) {
+            scrapPrompt(post.postId);
+            setStateChange(prevValue => prevValue + 1);
 
-        onClose();
-        console.log("프로젝트 게시글 스크랩 : ", post.postId);
+            onClose();
+            console.log("프로젝트 게시글 스크랩 : ", post.postId);
+        } else {
+            navigate("/login");
+            onClose();
+        }
     }
 
     function handleDelete() {
@@ -67,7 +75,7 @@ function ButtonSection({post, onClose}) {
 
     return (
         <div className={styles.buttonLocation}>
-            {isMyPageState === "write" &&
+            {(isMyPageState === "write" && userName)&&
                 <div className={styles.buttonSection}>
                     <ModalButton title={"수정하기"} variant={'primary'} onClick={handleEditModal}/>
                     <ModalButton title={"삭제하기"} variant={'secondary'} onClick={handleDeleteModal}/>
