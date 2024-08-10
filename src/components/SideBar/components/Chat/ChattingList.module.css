@@ -2,6 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
 }
 
 .scrollContainer {
@@ -10,7 +11,8 @@
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .chattingListContainer {

@@ -60,28 +60,30 @@ function PromptList() {
                     </button>
                 ))}
             </div>
-            {isLoading ? ( // 로딩 중일 때
-                <div className={styles.promptListContainer}>
-                    {Array.from({ length: filteredPrompts.length || 5 }).map(
-                        (_, index) => (
-                            <SkeletonListItem key={index} />
-                        ),
-                    )}
-                </div>
-            ) : filteredPrompts.length > 0 ? (
-                <div className={styles.promptListContainer}>
-                    {filteredPrompts.slice().map((prompt, index) => (
-                        <PromptListItem
-                            key={index}
-                            emoji={prompt.emoji}
-                            promptId={prompt.promptId}
-                            name={prompt.promptTitle}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <p>{t(`sideBar.emptyPrompt`)}</p>
-            )}
+            <div className={styles.promptListWrapper}>
+                {isLoading ? ( // 로딩 중일 때
+                    <div className={styles.promptListContainer}>
+                        {Array.from({ length: filteredPrompts.length || 5 }).map(
+                            (_, index) => (
+                                <SkeletonListItem key={index} />
+                            ),
+                        )}
+                    </div>
+                ) : filteredPrompts.length > 0 ? (
+                    <div className={styles.promptListContainer}>
+                        {filteredPrompts.slice().map((prompt, index) => (
+                            <PromptListItem
+                                key={index}
+                                emoji={prompt.emoji}
+                                promptId={prompt.promptId}
+                                name={prompt.promptTitle}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <p>{t(`sideBar.emptyPrompt`)}</p>
+                )}
+            </div>
         </div>
     );
 }
