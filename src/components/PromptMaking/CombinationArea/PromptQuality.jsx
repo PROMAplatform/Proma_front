@@ -39,20 +39,20 @@ const PromptQuality = ({ quality, total }) => {
 
     switch (quality) {
         case 0:
-            comment = "프롬프트가 아직 없어요! 드래그 앤 드랍을 통해 프롬프트를 만들어보아요!";
+            comment = t(`quality.noPromptYet`); 
             break;
         case total: 
-            comment = "100% !! 완벽한 프롬프트가 완성되었어요!";
+            comment = t(`quality.perfectPrompt`); 
             break;
         default:
-            comment = `${completionPercentage}% 점점 좋은 프롬프트가 완성되고 있어요!`;
+            comment = t(`quality.progressingPrompt`, { percentage: completionPercentage }); 
     }
   
     return (
         <div>
             <div className={styles.qualityContainer}>
                 {QualityComponent && <QualityComponent className={styles.qualityComponent} />}
-                <H6>{t(`comment`)}</H6>
+                <H6>{comment}</H6>
             </div>
         </div>
     );

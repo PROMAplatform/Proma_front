@@ -80,5 +80,10 @@
         "chooseToShare": "Choose prompt to share!",
         "share": "Share",
         "notToShare" : "There are no prompts to share."
+    },
+    "quality": {
+        "noPromptYet": "No prompts yet! Create one by dragging and dropping blocks.",
+        "perfectPrompt": "100%! You've crafted a perfect prompt!",
+        "progressingPrompt": "{{percentage}}% You're on your way to a great prompt!"
     }
 }
