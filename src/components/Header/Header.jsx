@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Header.module.css";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo2 } from "../../assets/images/comlogo2.svg";
 import { ReactComponent as Logo1 } from "../../assets/images/comlogo1.svg";
 import ExpandableButton from "./expandableButton/ExpandableButton";
@@ -38,10 +38,12 @@ function Header() {
     const handleLogin = () => {
         navigate("/login");
     };
-
+    const handleLogoClick = () => {
+        navigate("/");
+    };
     return (
         <div className={styles.headerContainer}>
-            <div className={styles.logoContainer}>
+            <div className={styles.logoContainer} onClick={handleLogoClick}>
                 <Logo1 />
                 <Logo2 />
             </div>
@@ -82,8 +84,11 @@ function Header() {
                         <ExpandableButton buttonText={t(`header.mypage`)} />
                     </div>
                 ) : (
-                    <p onClick={handleLogin} style={{ color: "blue" , cursor: "pointer"}}>
-                        로그인
+                    <p
+                        onClick={handleLogin}
+                        style={{ color: "blue", cursor: "pointer" }}
+                    >
+                        {t(`header.login`)}
                     </p>
                 )}
             </div>

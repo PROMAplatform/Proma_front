@@ -27,7 +27,8 @@ function ChattingInput() {
     const fileInputRef = useRef(null);
     const textareaRef = useRef(null);
     const [selectedFile, setSelectedFile] = useState();
-    const { fetchChattingAnswer, createChattingRoom } = useChattingRoomHooks();
+    const { getChattingRoomList, fetchChattingAnswer, createChattingRoom } =
+        useChattingRoomHooks();
     const currentPrompt = useRecoilValue(currentPromptState);
 
     const handleSubmit = async (e) => {
@@ -42,13 +43,14 @@ function ChattingInput() {
             let roomId = currentRoomId;
             if (isFirst) {
                 roomId = await createChattingRoom(input.value, "💡");
+                getChattingRoomList();
                 setCurrentRoomId(roomId);
                 setIsFirst(false);
             }
 
             const newMessage = {
                 messageId: Date.now(),
-                promptId: currentPrompt.id,
+                promptId: currentPrompt ? currentPrompt.id : null,
                 messageQuestion: input.value,
                 messageFile: selectedFile,
                 messageCreateAt: new Date().toISOString(),
@@ -57,7 +59,7 @@ function ChattingInput() {
             setMessages((prevMessages) => [...prevMessages, newMessage]);
 
             console.log(
-                currentPrompt.id,
+                currentPrompt ? currentPrompt.id : null,
                 input.value,
                 roomId,
                 selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",
@@ -65,7 +67,7 @@ function ChattingInput() {
             );
 
             const chattingResponse = await fetchChattingAnswer(
-                currentPrompt.id,
+                currentPrompt ? currentPrompt.id : null,
                 input.value,
                 roomId,
                 selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",
