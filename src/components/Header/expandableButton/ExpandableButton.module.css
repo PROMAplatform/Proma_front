@@ -20,7 +20,7 @@
     height: 0;
     overflow: hidden;
     transition: height 0.2s ease-in-out;
-    z-index: 1;
+    z-index: 5;
 }
 
 .expanded {

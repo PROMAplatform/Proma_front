@@ -47,9 +47,11 @@ function ExpandableButton({buttonText}) {
                     <Link to={`/mypage`} onClick={() => handleClick("write")}>
                         {t(`header.writtenByYou`)}
                     </Link>
-                    <p onClick={handleLogout} style={{color: "red"}}>
-                        {t(`header.logout`)}
-                    </p>
+
+                        <p onClick={handleLogout} style={{color: "red", cursor: "pointer", margin: 0}}>
+                            {t(`header.logout`)}
+                        </p>
+
                 </div>
             </div>
         </>
