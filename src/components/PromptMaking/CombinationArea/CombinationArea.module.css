@@ -3,13 +3,13 @@
     box-sizing: border-box;
 }
 .combinationArea {
-    padding: 20px;
+    padding: 12px;
     background-color: #f5f5f5;
     border-radius: 10px;
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1) inset;
     position: relative;
     box-sizing: border-box;
-    min-height: 600px;
+    min-height: 550px;
 }
 
 .title {
