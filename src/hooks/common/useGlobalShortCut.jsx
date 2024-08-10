@@ -11,49 +11,35 @@ function useGlobalShortcuts() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            const ctrlOrCmd = event.ctrlKey || event.metaKey;
+            const isModifierKey = event.ctrlKey || event.metaKey;
             const isShift = event.shiftKey;
-
-            if (ctrlOrCmd && isShift) {
-                switch (event.key) {
-                    case "1":
-                        console.log("Alt/Option + Shift + 1");
-                        if (promptList[0]) {
+            console.log(event.code);
+            if (isModifierKey && isShift) {
+                switch (event.code) {
+                    case "Digit1":
+                    case "Digit2":
+                    case "Digit3":
+                        const index = parseInt(event.code.slice(-1)) - 1;
+                        console.log(`Ctrl/Cmd + Shift + ${index + 1}`);
+                        if (promptList[index]) {
                             setCurrentPrompt({
-                                id: promptList[0].promptId,
-                                name: promptList[0].promptTitle,
+                                id: promptList[index].promptId,
+                                name: promptList[index].promptTitle,
                             });
                         }
-                        break;
-                    case "2":
-                        console.log("Alt/Option + Shift + 2");
-                        if (promptList[1]) {
-                            setCurrentPrompt({
-                                id: promptList[1].promptId,
-                                name: promptList[1].promptTitle,
-                            });
-                        }
-                        break;
-                    case "3":
-                        console.log("Alt/Option + Shift + 3");
-                        if (promptList[2]) {
-                            setCurrentPrompt({
-                                id: promptList[2].promptId,
-                                name: promptList[2].promptTitle,
-                            });
-                        }
+                        event.preventDefault(); // 브라우저 기본 동작 방지
                         break;
                     default:
                         return; // 다른 키 조합은 무시
                 }
-                event.preventDefault(); // 브라우저 기본 동작 방지
             }
         };
 
-        window.addEventListener("keydown", handleKeyDown);
+        // 이벤트 리스너를 문서 레벨에 추가
+        document.addEventListener("keydown", handleKeyDown, true);
 
         return () => {
-            window.removeEventListener("keydown", handleKeyDown);
+            document.removeEventListener("keydown", handleKeyDown, true);
         };
     }, [promptList, setCurrentPrompt]);
 }

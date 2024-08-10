@@ -27,7 +27,8 @@ function ChattingInput() {
     const fileInputRef = useRef(null);
     const textareaRef = useRef(null);
     const [selectedFile, setSelectedFile] = useState();
-    const { fetchChattingAnswer, createChattingRoom } = useChattingRoomHooks();
+    const { getChattingRoomList, fetchChattingAnswer, createChattingRoom } =
+        useChattingRoomHooks();
     const currentPrompt = useRecoilValue(currentPromptState);
 
     const handleSubmit = async (e) => {
@@ -42,6 +43,7 @@ function ChattingInput() {
             let roomId = currentRoomId;
             if (isFirst) {
                 roomId = await createChattingRoom(input.value, "💡");
+                getChattingRoomList();
                 setCurrentRoomId(roomId);
                 setIsFirst(false);
             }

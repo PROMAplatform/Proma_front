@@ -6,6 +6,7 @@ import {
     blockDetailsState,
 } from "../../recoil/prompt/promptRecoilState";
 import { useEffect } from "react";
+import { t } from "i18next";
 
 export const usePromptMaking = () => {
     const [combinations, setCombinations] = useRecoilState(combinationsState);
@@ -16,7 +17,7 @@ export const usePromptMaking = () => {
         const newActiveBlocks = { ...activeBlocks };
         for (const category in newActiveBlocks) {
             newActiveBlocks[category] = newActiveBlocks[category]?.filter(
-                (blockId) => combinations[category] !== blockId
+                (blockId) => combinations[category] !== blockId,
             );
         }
         setActiveBlocks(newActiveBlocks);
@@ -71,7 +72,7 @@ export const usePromptMaking = () => {
     ) => {
         if (category !== blockCategory) {
             enqueueSnackbar(
-                `🚀 카테고리가 일치하지 않습니다! ${blockCategory} 블럭에 넣어주세요!`,
+                `${t(`promptMaking.userPromptError`)} ${blockCategory} ${t(`promptMaking.userPromptError2`)}`,
             );
             return;
         }
@@ -111,7 +112,7 @@ export const usePromptMaking = () => {
     ) => {
         if (sourceCategory !== destinationCategory) {
             enqueueSnackbar(
-                `🚀 카테고리 간 이동은 불가능합니다! ${sourceCategory}에서 ${destinationCategory}로 이동할 수 없습니다.`,
+                `${t(`promptMaking.userPromptError3`)} ${sourceCategory}${t(`promptMaking.userPromptError4`)} ${destinationCategory}`,
             );
             return;
         }

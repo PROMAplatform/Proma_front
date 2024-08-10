@@ -80,7 +80,7 @@ function ShareSection({ onClose }) {
     return (
         <>
             <div className={styles.listContainer}>
-                {Array.isArray(promas) ? (
+                {promas.length ? (
                     promas.map((proma, index) => (
                         <PromptListName
                             key={proma.promptId}
@@ -90,7 +90,9 @@ function ShareSection({ onClose }) {
                         />
                     ))
                 ) : (
-                    <div>Loading...</div>
+                    <>
+                        {t(`community.notToShare`)}
+                    </>
                 )}
             </div>
             <Snackbar
