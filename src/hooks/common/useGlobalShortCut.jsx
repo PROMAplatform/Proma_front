@@ -14,7 +14,7 @@ function useGlobalShortcuts() {
             // Windows와 Mac 모두에서 작동하도록 수정
             const isModifierKey = event.altKey || event.metaKey;
             const isShift = event.shiftKey;
-
+            console.log(event.key);
             if (isModifierKey && isShift) {
                 switch (event.key) {
                     case "1":
