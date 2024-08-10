@@ -26,3 +26,7 @@
 .refreshButton:hover {
     box-shadow: 0px 0px 5px 0px rgba(84, 63, 214, 0.4);
 }
+
+.title {
+    margin: 0 auto;
+}

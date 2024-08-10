@@ -11,7 +11,9 @@ const FinalPromptArea = () => {
     }
     return (
         <div className={styles.resultArea}>
-            <H4>{t(`promptMaking.promptPreView`)}</H4>
+            <div className={styles.title}>
+                <H4>{t(`promptMaking.promptPreView`)}</H4>
+            </div>
             <RefinedPromptText />
             <button className={styles.refreshButton} onClick={handlePromptTrim}>
                 <H7>{t(`promptMaking.trimPrompt`)}</H7>
