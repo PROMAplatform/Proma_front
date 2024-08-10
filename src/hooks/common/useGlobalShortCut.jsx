@@ -11,17 +11,16 @@ function useGlobalShortcuts() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            // Windows와 Mac 모두에서 작동하도록 수정
-            const isModifierKey = event.altKey || event.metaKey;
+            const isModifierKey = event.ctrlKey || event.metaKey;
             const isShift = event.shiftKey;
-            console.log(event.key);
+            console.log(event.code);
             if (isModifierKey && isShift) {
-                switch (event.key) {
-                    case "1":
-                    case "2":
-                    case "3":
-                        const index = parseInt(event.key) - 1;
-                        console.log(`Ctrl/Cmd + Shift + ${event.key}`);
+                switch (event.code) {
+                    case "Digit1":
+                    case "Digit2":
+                    case "Digit3":
+                        const index = parseInt(event.code.slice(-1)) - 1;
+                        console.log(`Ctrl/Cmd + Shift + ${index + 1}`);
                         if (promptList[index]) {
                             setCurrentPrompt({
                                 id: promptList[index].promptId,
