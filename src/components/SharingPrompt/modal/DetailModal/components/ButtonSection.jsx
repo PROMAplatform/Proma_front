@@ -10,6 +10,7 @@ import {useMyPageHooks} from "../../../../../api/community/myPage";
 import {stateChange} from "../../../../../recoil/community/communityRecoilState";
 import ModalButton from "../../../../common/ModalButton";
 import {useNavigate} from "react-router-dom";
+import {t} from "i18next";
 
 function ButtonSection({post, onClose}) {
     const isMyPageState = useRecoilValue(myPageState);
@@ -77,12 +78,12 @@ function ButtonSection({post, onClose}) {
         <div className={styles.buttonLocation}>
             {(isMyPageState === "write" && userName)&&
                 <div className={styles.buttonSection}>
-                    <ModalButton title={"수정하기"} variant={'primary'} onClick={handleEditModal}/>
-                    <ModalButton title={"삭제하기"} variant={'secondary'} onClick={handleDeleteModal}/>
+                    <ModalButton title={t(`sideBar.patch`)} variant={'primary'} onClick={handleEditModal}/>
+                    <ModalButton title={t(`sideBar.delete`)} variant={'secondary'} onClick={handleDeleteModal}/>
                 </div>
             }
             {(isMyPageState === "" || isMyPageState === "like") &&
-                <ModalButton title={"스크랩하기"} variant={'primary'} onClick={handleScrap}/>
+                <ModalButton title={t(`community.promptScrap`)} variant={'primary'} onClick={handleScrap}/>
             }
         </div>
     );

@@ -6,6 +6,7 @@ import TopSection from "./components/TopSection";
 import {B3, H4} from "../../../../styles/font-styles";
 import {useRecoilValue} from "recoil";
 import {communityPromptDetailState, isLoadingCommunityState} from "../../../../recoil/community/communityRecoilState";
+import {t} from "i18next";
 
 function PromptDetailModal({ close, post }) {
     const promptBlock = useRecoilValue(communityPromptDetailState);
@@ -57,15 +58,15 @@ function PromptDetailModal({ close, post }) {
                 </div>
                 <div className={styles.textSection}>
                     <div className={styles.categorySection}>
-                        <H4>게시글 카테고리</H4>
+                        <H4>{t(`community.postCategory`)}</H4>
                         <B3>{post.postCategory}</B3>
                     </div>
                     <div className={styles.explainSection}>
-                        <H4>프롬프트 설명</H4>
+                        <H4>{t(`community.postDescription`)}</H4>
                         <B3>{post.postDescription}</B3>
                     </div>
                     <div className={styles.previewSection}>
-                        <H4>프롬프트 미리보기</H4>
+                        <H4>{t(`promptMaking.promptPreView`)}</H4>
                         <B3>{post.promptPreview}</B3>
                     </div>
                 </div>

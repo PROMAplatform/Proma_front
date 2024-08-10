@@ -4,6 +4,7 @@ import {useSetRecoilState} from "recoil";
 import {stateChange} from "../../../../recoil/community/communityRecoilState";
 import {B3, H3} from "../../../../styles/font-styles";
 import ModalButton from "../../../common/ModalButton";
+import {t} from "i18next";
 
 function DeletePromptModal({close, onDelete, post}) {
     const setStateChange = useSetRecoilState(stateChange);
@@ -20,11 +21,11 @@ function DeletePromptModal({close, onDelete, post}) {
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.container}>
-                <H3>게시글을 삭제하시겠습니까?</H3>
-                <B3>[{post.postTitle}] 게시글이 커뮤니티에서 삭제됩니다.</B3>
+                <H3>{t(`community.deleteMent`)}</H3>
+                <B3>[{post.postTitle}] {t(`community.deleteText`)}</B3>
                 <div className={styles.buttonSection}>
-                    <ModalButton title={"취소"} variant={'secondary'} size={'small'} onClick={handleClose}/>
-                    <ModalButton title={"삭제"} variant={'primary'} size={'small'} onClick={handleDeleteButton}/>
+                    <ModalButton title={t(`community.cancel`)} variant={'secondary'} size={'small'} onClick={handleClose}/>
+                    <ModalButton title={t(`sideBar.delete`)} variant={'primary'} size={'small'} onClick={handleDeleteButton}/>
                 </div>
             </div>
         </div>

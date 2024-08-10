@@ -21,7 +21,10 @@
         "emptyPrompt": "Your promptList is empty.",
         "emptyChatting": "Your chatting is empty.",
         "deleteChattingRoom": "Are you sure you want to delete the chat room?",
+        "deletePrompt": "Are you sure you want to delete the prompt?",
         "deleteChattingRoomHistory": "Your chat room's history will be completely deleted.",
+        "promptPatch": "Patch prompt",
+        "blockPatch": "Patch block",
         "cancel": "Cancel",
         "patch": "Patch",
         "delete": "Delete",
@@ -79,7 +82,16 @@
         "promptMadeByMe": "My prompt list",
         "chooseToShare": "Choose prompt to share!",
         "share": "Share",
-        "notToShare" : "There are no prompts to share."
+        "notToShare" : "There are no prompts to share.",
+        "postCategory": "Post Category",
+        "postDescription": "Post Description",
+        "postTitle": "Post Title",
+        "promptShare": "Prompt Share",
+        "postFix": "Patch Post",
+        "promptScrap": "Scrap Prompt",
+        "cancel": "Cancel",
+        "deleteText": " The post will be removed from the community.",
+        "deleteMent": "Are you sure you want to delete this post?"
     },
     "quality": {
         "noPromptYet": "No prompts yet! Create one by dragging and dropping blocks.",

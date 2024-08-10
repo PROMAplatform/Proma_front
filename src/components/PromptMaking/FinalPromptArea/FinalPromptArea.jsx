@@ -13,7 +13,7 @@ const FinalPromptArea = () => {
     // // }
 
     return (
-        <div className={styles.resultArea}>
+        <div className={styles.resultArea} data-tour="promptPreview">
             <div className={styles.title}>
                 <H4>{t(`promptMaking.promptPreView`)}</H4>
             </div>

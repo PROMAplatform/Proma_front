@@ -1,7 +1,6 @@
 // 공통 요청 처리기
 // 인증 토큰을 가져오는 함수 (여기서는 예시로 localStorage를 사용)
 
-//TODO- 로그인 시에 promaToken이라고 저장하는 logic 필요
 export const getAuthToken = () => localStorage.getItem("accessToken");
 
 export const sendRequest = async (instance, method, url, data = {}) => {
