@@ -7,14 +7,15 @@ import PostFixOrShare from "../../FixAndShareModal/PostFixOrShare";
 import {useModalStack} from "../../../../../hooks/useModalStack";
 import {useCommunityHooks} from "../../../../../api/community/community";
 import {useMyPageHooks} from "../../../../../api/community/myPage";
-import {stateChange} from "../../../../../recoil/community/communityRecoilState";
+import {makePromptDetailState, stateChange} from "../../../../../recoil/community/communityRecoilState";
 import ModalButton from "../../../../common/ModalButton";
 import {useNavigate} from "react-router-dom";
 import {t} from "i18next";
 
-function ButtonSection({post, onClose}) {
+function ButtonSection({post, block, onClose}) {
     const isMyPageState = useRecoilValue(myPageState);
     const [, setStateChange] = useRecoilState(stateChange);
+    const [,setMakePromptDetailState] = useRecoilState(makePromptDetailState);
     const modalStack = useModalStack();
     const {scrapPrompt} = useCommunityHooks();
     const {deleteSharePost, fixSharePost} = useMyPageHooks();
@@ -31,6 +32,16 @@ function ButtonSection({post, onClose}) {
     };
 
     const handleEditModal = () => {
+        setMakePromptDetailState({
+            postId: post.postId,
+            promptMethod: post.promptMethod,
+            promptTitle: post.postTitle,
+            promptCategory: post.postCategory,
+            promptDescription: post.postDescription,
+            promptPreview: post.promptPreview,
+            listPromptAtom: block
+        });
+
         modalStack.push({
             key: "promptFixOrShareModal",
             Component: PostFixOrShare,
