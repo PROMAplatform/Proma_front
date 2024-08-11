@@ -70,7 +70,7 @@ function PromptDetailModal({ close, post }) {
                         <B3>{post.promptPreview}</B3>
                     </div>
                 </div>
-                <ButtonSection onClose={handleClose} post={post}/>
+                <ButtonSection onClose={handleClose} post={post} block={promptBlock}/>
             </div>
         </div>
     );
