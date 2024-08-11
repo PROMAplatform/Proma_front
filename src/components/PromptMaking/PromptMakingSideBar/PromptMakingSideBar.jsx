@@ -55,7 +55,7 @@ const PromptMakingSidebar = () => {
                 <H4>PROMA prompt</H4>
             </div>
             <div className={styles.sidebar}>
-                <div className={styles.categories}>
+                <div className={styles.categories} data-tour="categories">
                     {categories.map((category) => (
                         <div
                             key={category}
@@ -73,7 +73,7 @@ const PromptMakingSidebar = () => {
                     ))}
                 </div>
                 <div
-                    className={styles.blocksContainer}
+                    className={`${styles.blocksContainer} ${styles.tourTarget}`}
                     style={{ "--active-color": getActiveColor() }}
                 >
                     <Droppable droppableId="sidebar">
@@ -82,6 +82,7 @@ const PromptMakingSidebar = () => {
                                 {...provided.droppableProps}
                                 ref={provided.innerRef}
                                 className={styles.blocks}
+                                data-tour="blocks"
                             >
                                 {activeBlocks[activeCategory]?.map(
                                     (blockId, index) => {
