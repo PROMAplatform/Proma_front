@@ -62,7 +62,7 @@ function PromptList() {
                     </button>
                 ))}
             </div>
-            <div className={styles.promptListWrapper}>
+            <div className={styles.promptListWrapper} data-tour="promptList">
                 {isLoading ? ( // 로딩 중일 때
                     <div className={styles.promptListContainer}>
                         {Array.from({ length: filteredPrompts.length || 5 }).map(

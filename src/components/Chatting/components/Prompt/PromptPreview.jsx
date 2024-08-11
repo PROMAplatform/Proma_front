@@ -12,7 +12,7 @@ function PromptPreview() {
         setCurrentPrompt(null);
     }
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-tour="currentPrompt">
             <div className={styles.iconContainer}>
                 <img src={blockIcon} alt="block" />
             </div>

@@ -97,5 +97,20 @@
         "noPromptYet": "No prompts yet! Create one by dragging and dropping blocks.",
         "perfectPrompt": "100%! You've crafted a perfect prompt!",
         "progressingPrompt": "{{percentage}}% You're on your way to a great prompt!"
+    },
+    "tour": {
+        "promptMakingTour": {
+            "step1": "Select a category in the sidebar to see available blocks.",
+            "step2": "Drag blocks from here to the combination area on the right.",
+            "step3": "Drop the dragged blocks into the matching category in the combination area.",
+            "step4": "See how your prompt is built as you arrange the blocks!",
+            "step5": "Once you're done arranging the blocks, click here to save your prompt."
+        },
+        "mainTour": {
+            "step1": "Toggle between the prompt list and chat list using this button.",
+            "step2": "See the prompts you've created in this list! Click on a prompt to apply it.",
+            "step3": "You can easily apply prompts with the shortcut [cmd/control + shift + 1]!",
+            "step4": "After applying a prompt, try chatting!"
+        }
     }
 }

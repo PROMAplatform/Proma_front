@@ -179,7 +179,7 @@ function ChattingInput() {
     return (
         <div className={styles.container}>
             <PromptPreview />
-            <form onSubmit={handleSubmit} className={styles.inputContainer}>
+            <form onSubmit={handleSubmit} className={styles.inputContainer} data-tour="chattingInput">
                 <div className={styles.filePreviewContainer}>
                     <Preview
                         selectedFile={selectedFile}
