@@ -128,7 +128,6 @@ const SavePromptModal = ({
                     placeholder={t(`promptMaking.promptTitle`)}
                     value={promptTitle}
                     onChange={(e) => setPromptTitle(e.target.value)}
-                    disabled={!!promptId} // promptId가 존재할 경우 비활성화
                 />
             </div>
             <div className={styles.formGroup}>
@@ -139,7 +138,6 @@ const SavePromptModal = ({
                     placeholder={t(`promptMaking.promptDescription`)}
                     value={promptDescription}
                     onChange={(e) => setPromptDescription(e.target.value)}
-                    disabled={!!promptId} // promptId가 존재할 경우 비활성화
                 />
             </div>
             <div className={styles.formGroup}>
@@ -151,9 +149,7 @@ const SavePromptModal = ({
                         {allCategories.map((category) => (
                             <li
                                 key={category}
-                                onClick={(e) =>
-                                    !promptId && setPromptCategory(category)
-                                } // promptId가 없을 때만 변경 가능
+                                onClick={(e) => setPromptCategory(category)} 
                                 className={`${styles.option} ${
                                     category === promptCategory
                                         ? styles.active

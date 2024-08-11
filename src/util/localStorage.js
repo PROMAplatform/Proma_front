@@ -11,7 +11,7 @@ export const getTourFinished = () => {
     const tourFinished = localStorage.getItem("tourFinished");
     if (tourFinished === 'false') {
         return false;
-    } else if (tourFinished === 'true'){
+    } else {
         return true;
     }
 }
