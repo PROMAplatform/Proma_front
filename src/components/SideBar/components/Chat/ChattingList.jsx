@@ -68,7 +68,7 @@ function ChattingList() {
                 </div>
             ) : (
                 <div className={styles.empty}>
-                    <img src={emptyChattingList}/>
+                    <img src={emptyChattingList} alt="empty"/>
                     <B4 color="gray6">{t(`sideBar.emptyChatting`)}</B4>
                 </div>
             )}

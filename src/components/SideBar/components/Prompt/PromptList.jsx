@@ -84,7 +84,7 @@ function PromptList() {
                     </div>
                 ) : (
                     <div className={styles.empty}>
-                        <img src={blockIcon}/>
+                        <img src={blockIcon} alt="empty"/>
                         <B4 color="gray6">{t(`sideBar.emptyPrompt`)}</B4>
                     </div>
                 )}

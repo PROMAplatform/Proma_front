@@ -59,18 +59,8 @@ const PromptQuality = ({ quality, total }) => {
 };
 
 function calculateCompletionPercentage(quality, total) {
-    switch (total) {
-        case 1:
-            return [0, 100][quality] || 0;
-        case 4:
-            return [0, 24, 48, 72, 100][quality] || 0; 
-        case 6:
-            return [0, 17, 33, 50, 67, 83, 100][quality] || 0; 
-        case 7:
-            return [0, 14, 29, 43, 57, 71, 86, 100][quality] || 0; 
-        default:
-            return 0;
-    }
+    const percentagePerStep = 100 / total;
+    return Math.round(quality * percentagePerStep);
 }
   
 

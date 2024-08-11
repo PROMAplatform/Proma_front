@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Joyride, { STATUS } from "react-joyride";
+import { getIsFirstVisited } from "../util/localStorage";
 
 const PromptMakingTour = () => {
     const [runTour, setRunTour] = useState(true);
@@ -43,6 +44,8 @@ const PromptMakingTour = () => {
             setRunTour(false);
         }
     };
+    
+    if (!getIsFirstVisited) return null;
 
     return (
         <Joyride
@@ -53,13 +56,32 @@ const PromptMakingTour = () => {
             showProgress
             styles={{
                 options: {
-                    arrowColor: "#e3ffeb",
-                    backgroundColor: "#e3ffeb",
-                    overlayColor: "rgba(0, 0, 0, 0.5)",
-                    primaryColor: "#007aff",
-                    textColor: "#004a14",
+                    arrowColor: 'var(--color-gray1)',
+                    backgroundColor: 'var(--color-gray1)',
+                    overlayColor: 'rgba(0, 0, 0, 0.5)',
+                    primaryColor: 'var(--block-main-color)',
+                    textColor: 'var(--color-gray9)',
                     width: 300,
-                    zIndex: 1000,
+                    zIndex: 1000
+                },
+                beacon: {
+                    width: 20,
+                    height: 20,
+                    borderRadius: '50%',
+                },
+                tooltip: { 
+                    padding: 20,
+                    borderRadius: 10,
+                },
+                buttonNext: {
+                    backgroundColor: 'var(--block-main-color)',
+                    borderRadius: 30,
+                    padding: '8px 12px',
+                },
+                buttonSkip: {
+                    backgroundColor: "transparent",
+                    color: "var(--color-gray5)",
+                    border: "none",
                 },
             }}
             callback={handleJoyrideCallback}

@@ -114,8 +114,11 @@ const SavePromptModal = ({
             onSubmit={handleSave}
             children
         >
-            <div>
-                <RefinedPromptText />
+             <div className={styles.formGroup}>
+                 <H5>{t(`promptMaking.promptPreView`)}</H5>
+                 <div className={styles.promptPreview}>
+                    <RefinedPromptText />
+                </div>
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="promptTitle">
