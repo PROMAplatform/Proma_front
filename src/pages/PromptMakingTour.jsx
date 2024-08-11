@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Joyride, { STATUS } from "react-joyride";
-import { getIsFirstVisited } from "../util/localStorage";
+import { getIsFirstVisited, setIsFirstVisited } from "../util/localStorage";
 
 const PromptMakingTour = () => {
     const [runTour, setRunTour] = useState(true);
@@ -42,10 +42,11 @@ const PromptMakingTour = () => {
         const { status } = data;
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             setRunTour(false);
+            setIsFirstVisited(false);
         }
     };
     
-    if (!getIsFirstVisited) return null;
+    if (!getIsFirstVisited()) return null;
 
     return (
         <Joyride
@@ -75,6 +76,7 @@ const PromptMakingTour = () => {
                 },
                 buttonNext: {
                     backgroundColor: 'var(--block-main-color)',
+                    border: '1px solid var(--block-main-color)',
                     borderRadius: 30,
                     padding: '8px 12px',
                 },
