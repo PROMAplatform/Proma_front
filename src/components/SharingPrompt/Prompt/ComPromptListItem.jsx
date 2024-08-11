@@ -74,7 +74,9 @@ function ComPromptListItem({ post }) {
                         </div>
                         <div className={styles.backExplainSection}>
                             <H5>{t(`promptMaking.promptPreView`)}</H5>
-                            <B6>{post.promptPreview}</B6>
+                            <div className={styles.promptPreviewContainer}>
+                                <B6>{post.promptPreview}</B6>
+                            </div>
                         </div>
                         <div className={styles.userSection}>
                             <div>{post.userName}</div>
