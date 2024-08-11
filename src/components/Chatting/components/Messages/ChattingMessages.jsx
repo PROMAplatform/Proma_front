@@ -40,10 +40,12 @@ function ChattingMessages() {
         if (file && file.type) {
             return file.type.startsWith("image/");
         }
+        if (file && file.isImage !== undefined) {
+            return file.isImage;
+        }
         return false;
     };
 
-    //보낼 때는 File이고, 올 때는 File의 url이기 때문에, 다르게 해줘야 함.
     const getFileName = (file) => {
         if (typeof file === "string") {
             const parts = file.split("/");
@@ -55,7 +57,6 @@ function ChattingMessages() {
         return "Unknown File";
     };
 
-    //보낼 때는 File이고, 올 때는 File의 url이기 때문에, 다르게 해줘야 함.
     const getFileUrl = (file) => {
         if (typeof file === "string") {
             return file;
@@ -69,7 +70,7 @@ function ChattingMessages() {
     return (
         <div className={styles.messagesContainer}>
             {messages.map((message, index) => (
-                <div key={message.chatroomId} className="b5">
+                <div key={message.messageId || index} className="b5">
                     <div className={styles.sendMessage}>
                         {message.messageFile && (
                             <div className={styles.imageContainer}>
@@ -89,15 +90,13 @@ function ChattingMessages() {
                                         className={styles.image}
                                     />
                                 </a>
-                                {!isImageFile(message.messageFile) && (
-                                    <p
-                                        className={[styles.fileName, "b6"].join(
-                                            " ",
-                                        )}
-                                    >
-                                        {getFileName(message.messageFile)}
-                                    </p>
-                                )}
+                                <p
+                                    className={[styles.fileName, "b6"].join(
+                                        " ",
+                                    )}
+                                >
+                                    {getFileName(message.messageFile)}
+                                </p>
                             </div>
                         )}
                         {message.messageQuestion && (
