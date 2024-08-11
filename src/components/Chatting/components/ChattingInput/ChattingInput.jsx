@@ -52,7 +52,7 @@ function ChattingInput() {
                 messageId: Date.now(),
                 promptId: currentPrompt ? currentPrompt.id : null,
                 messageQuestion: input.value,
-                messageFile: selectedFile,
+                messageFile: selectedFile ? selectedFile.url : null, // 여기를 url 문자열로 변경
                 messageCreateAt: new Date().toISOString(),
                 chatroomId: roomId,
             };
@@ -62,8 +62,8 @@ function ChattingInput() {
                 currentPrompt ? currentPrompt.id : null,
                 input.value,
                 roomId,
-                selectedFile ? (selectedFile.isImage ? "image" : "pdf") : "",
-                selectedFile ? selectedFile.url : "",
+                selectedFile,
+                selectedFile,
             );
 
             const chattingResponse = await fetchChattingAnswer(
@@ -101,18 +101,29 @@ function ChattingInput() {
     const onSelectFile = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            try {
-                const s3Url = await uploadS3(file);
-                const fileInfo = {
-                    url: s3Url,
-                    name: file.name,
-                    isImage: file.type.startsWith("image/"),
-                    type: file.type.startsWith("image/") ? "Image" : "PDF",
-                };
-                setSelectedFile(fileInfo);
-            } catch (error) {
-                console.error("파일 업로드 실패:", error);
+            await processFile(file);
+        }
+    };
+
+    const handlePaste = async (e) => {
+        e.preventDefault();
+        const items = e.clipboardData.items;
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            if (item.kind === "file") {
+                const file = item.getAsFile();
+                if (file) {
+                    await processFile(file);
+                    return;
+                }
             }
+        }
+
+        // 파일이 아닌 경우 텍스트로 처리
+        const text = e.clipboardData.getData("text");
+        if (text) {
+            input.setValue((prevValue) => prevValue + text);
         }
     };
 
@@ -127,6 +138,37 @@ function ChattingInput() {
         if (textareaRef.current) {
             textareaRef.current.style.height = "auto";
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+        }
+    };
+    const isImageFile = (file) => {
+        if (file.type) {
+            return file.type.startsWith("image/");
+        }
+        const imageExtensions = [
+            ".png",
+            ".jpg",
+            ".jpeg",
+            ".gif",
+            ".bmp",
+            ".webp",
+        ];
+        return imageExtensions.some((ext) =>
+            file.name.toLowerCase().endsWith(ext),
+        );
+    };
+
+    const processFile = async (file) => {
+        try {
+            const s3Url = await uploadS3(file);
+            const fileInfo = {
+                url: s3Url,
+                name: file.name,
+                isImage: isImageFile(file),
+                type: isImageFile(file) ? "Image" : "PDF",
+            };
+            setSelectedFile(fileInfo);
+        } catch (error) {
+            console.error("파일 업로드 실패:", error);
         }
     };
 
@@ -166,6 +208,7 @@ function ChattingInput() {
                         placeholder={t(`input.inputDefault`)}
                         className={styles.textInput}
                         ref={textareaRef}
+                        onPaste={handlePaste}
                         rows={1}
                         disabled={isLoading}
                     />

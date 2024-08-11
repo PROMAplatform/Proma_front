@@ -61,13 +61,17 @@ function PromptDetailModal({ close, post }) {
                         <H4>{t(`community.postCategory`)}</H4>
                         <B3>{post.postCategory}</B3>
                     </div>
-                    <div className={styles.explainSection}>
+                    <div>
                         <H4>{t(`community.postDescription`)}</H4>
-                        <B3>{post.postDescription}</B3>
+                        <div className={styles.explainSection}>
+                            <B3>{post.postDescription}</B3>
+                        </div>
                     </div>
-                    <div className={styles.previewSection}>
+                    <div>
                         <H4>{t(`promptMaking.promptPreView`)}</H4>
-                        <B3>{post.promptPreview}</B3>
+                        <div className={styles.previewSectionText}>
+                            <B3>{post.promptPreview}</B3>
+                        </div>
                     </div>
                 </div>
                 <ButtonSection onClose={handleClose} post={post} block={promptBlock}/>

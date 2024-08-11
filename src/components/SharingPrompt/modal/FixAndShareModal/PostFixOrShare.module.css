@@ -87,6 +87,7 @@
 }
 
 .inputTextBoxEx {
+    resize: none;
     margin-top: 1vh;
     margin-bottom: 1vh;
     height: 20vh;
@@ -104,6 +105,21 @@
     font-style: normal;
     font-weight: 500;
     line-height: 20px;
+}
+
+.inputTextBoxEx::-webkit-scrollbar {
+    width: 10px;
+}
+.inputTextBoxEx::-webkit-scrollbar-thumb {
+    background-color: #543fd6;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.inputTextBoxEx::-webkit-scrollbar-track {
+    background-color: rgba(84, 63, 214, 0.5);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
 }
 
 .categoryContainer {
