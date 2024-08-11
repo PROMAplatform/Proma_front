@@ -48,7 +48,22 @@
 }
 
 .promptListWrapper {
-    overflow-y: scroll;
+    overflow: auto;
+}
+
+.promptListWrapper::-webkit-scrollbar {
+    width: 10px;
+}
+.promptListWrapper::-webkit-scrollbar-thumb {
+    background-color: #543fd6;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+}
+.promptListWrapper::-webkit-scrollbar-track {
+    background-color: rgba(84, 63, 214, 0.5);
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
 }
 
 .empty {
