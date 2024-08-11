@@ -49,6 +49,7 @@
 
 .promptListWrapper {
     overflow: auto;
+    overflow-x: hidden;
 }
 
 .promptListWrapper::-webkit-scrollbar {
