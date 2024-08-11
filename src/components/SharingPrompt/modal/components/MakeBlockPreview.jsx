@@ -11,7 +11,7 @@ const BlockContainer = styled.div`
 
 const ValueBlockContainer = styled.div`
   position: relative;
-  left: -6.65px;
+  left: -9px;
   display: flex;
   align-items: center;
 `;

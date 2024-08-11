@@ -19,7 +19,7 @@ const RefinedPromptText = () => {
                     style={{
                         display: "block",
                         borderBottom: `2px solid ${categoryColors[category]}`,
-                        lineHeight: "150%",
+                        lineHeight: "130%",
                         wordBreak: "break-all",
                     }}
                 >

@@ -19,7 +19,7 @@
         "choosePromptType": "Choose prompt type!",
         "endChoose": "Choose",
         "emptyPrompt": "Your promptList is empty.",
-        "emptyChatting": "Your chatting is empty",
+        "emptyChatting": "Your chatting is empty.",
         "deleteChattingRoom": "Are you sure you want to delete the chat room?",
         "deletePrompt": "Are you sure you want to delete the prompt?",
         "deleteChattingRoomHistory": "Your chat room's history will be completely deleted.",
@@ -92,5 +92,10 @@
         "cancel": "Cancel",
         "deleteText": " The post will be removed from the community.",
         "deleteMent": "Are you sure you want to delete this post?"
+    },
+    "quality": {
+        "noPromptYet": "No prompts yet! Create one by dragging and dropping blocks.",
+        "perfectPrompt": "100%! You've crafted a perfect prompt!",
+        "progressingPrompt": "{{percentage}}% You're on your way to a great prompt!"
     }
 }

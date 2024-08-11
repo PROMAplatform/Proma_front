@@ -5,6 +5,8 @@ import { useRecoilValue } from "recoil";
 import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
 import SkeletonListItem from "../SkeletonListItem";
+import blockIcon from "../../../../assets/images/blockIcon.svg";
+import { B4 } from "../../../../styles/font-styles";
 import { t } from "i18next";
 
 function PromptList() {
@@ -60,28 +62,33 @@ function PromptList() {
                     </button>
                 ))}
             </div>
-            {isLoading ? ( // 로딩 중일 때
-                <div className={styles.promptListContainer}>
-                    {Array.from({ length: filteredPrompts.length || 5 }).map(
-                        (_, index) => (
-                            <SkeletonListItem key={index} />
-                        ),
-                    )}
-                </div>
-            ) : filteredPrompts.length > 0 ? (
-                <div className={styles.promptListContainer}>
-                    {filteredPrompts.slice().map((prompt, index) => (
-                        <PromptListItem
-                            key={index}
-                            emoji={prompt.emoji}
-                            promptId={prompt.promptId}
-                            name={prompt.promptTitle}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <p>{t(`sideBar.emptyPrompt`)}</p>
-            )}
+            <div className={styles.promptListWrapper}>
+                {isLoading ? ( // 로딩 중일 때
+                    <div className={styles.promptListContainer}>
+                        {Array.from({ length: filteredPrompts.length || 5 }).map(
+                            (_, index) => (
+                                <SkeletonListItem key={index} />
+                            ),
+                        )}
+                    </div>
+                ) : filteredPrompts.length > 0 ? (
+                    <div className={styles.promptListContainer}>
+                        {filteredPrompts.slice().map((prompt, index) => (
+                            <PromptListItem
+                                key={index}
+                                emoji={prompt.emoji}
+                                promptId={prompt.promptId}
+                                name={prompt.promptTitle}
+                            />
+                        ))}
+                    </div>
+                ) : (
+                    <div className={styles.empty}>
+                        <img src={blockIcon} alt="empty"/>
+                        <B4 color="gray6">{t(`sideBar.emptyPrompt`)}</B4>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

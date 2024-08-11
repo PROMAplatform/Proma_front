@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
-import { H5, B4 } from "../../../styles/font-styles";
+import { H5, H6, B4 } from "../../../styles/font-styles";
 import {
     categoryColorsState,
     availableCategoriesState,
@@ -67,7 +67,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
                                             : "var(--color-gray4)",
                                     transform:
                                         category === selectedCategory
-                                            ? "Scale(1.3)"
+                                            ? "Scale(1.1)"
                                             : "Scale(1)",
                                 }}
                             >
@@ -79,7 +79,7 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
             </div>
             <div className={styles.formGroup}>
                 <label htmlFor="blockTitle">
-                    <H5>{t(`promptMaking.blockTitle`)}</H5>
+                    <H6>{t(`promptMaking.blockTitle`)}</H6>
                 </label>
                 <input
                     id="blockTitle"

@@ -7,6 +7,7 @@ import PromptValueBlock from "../../common/Prompt/PromptValueBlock";
 import { H2, H5 } from "../../../styles/font-styles";
 import saveButtonIcon from "../../../assets/images/saveButtonIcon.svg";
 import FinalPromptArea from "../FinalPromptArea/FinalPromptArea";
+import PromptQuality from "./PromptQuality";
 import {
     combinationsState,
     categoryColorsState,
@@ -32,6 +33,14 @@ const CombinationArea = ({ promptId }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+    const [filledBlockCount, setFilledBlockCount] = useState(1);
+    const total = categories.length;
+
+    useEffect(() => {
+        // combinations가 변경될 때마다 filledBlockCount 업데이트
+        const count = Object.values(combinations).filter(Boolean).length;
+        setFilledBlockCount(count);
+    }, [combinations]); 
 
     useEffect(() => {
         const prompt = promptList.find((p) => p.promptId === promptId);
@@ -159,6 +168,7 @@ const CombinationArea = ({ promptId }) => {
                     promptId={promptId}
                 />
             </div>
+            <PromptQuality quality={filledBlockCount} total={total}/>
         </div>
     );
 };
