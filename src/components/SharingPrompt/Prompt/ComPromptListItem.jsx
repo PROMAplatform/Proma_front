@@ -44,7 +44,9 @@ function ComPromptListItem({ post }) {
                             </div>
                             <div className={styles.descriptionSection}>
                                 <H5>{post.postTitle}</H5>
-                                <B7>{post.postDescription}</B7>
+                                <div className={styles.descriptionSectionText}>
+                                    <B7>{post.postDescription}</B7>
+                                </div>
                             </div>
                         </div>
                         <div className={styles.userSection}>
