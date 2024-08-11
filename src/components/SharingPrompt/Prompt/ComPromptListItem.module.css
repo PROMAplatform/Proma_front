@@ -71,10 +71,20 @@
 }
 
 .descriptionSection {
+    width: 18vw;
     margin-top: 6vh;
     display: flex;
     flex-direction: column;
     gap: 1vh;
+}
+
+.descriptionSectionText {
+    width: 100%;
+    height: 5vh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
 }
 
 .explainSection {
