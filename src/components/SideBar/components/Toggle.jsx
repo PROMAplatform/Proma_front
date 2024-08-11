@@ -5,7 +5,7 @@ import { t } from "i18next";
 
 function Toggle({ isChatting, setIsChatting }) {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} data-tour="toggle">
             <div className={styles.toggleContainer}>
                 {isChatting ? (
                     <H4>{t(`sideBar.chatting`)}</H4>

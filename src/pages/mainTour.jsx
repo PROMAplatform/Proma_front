@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Joyride, { STATUS } from "react-joyride";
-import { getIsFirstVisited, setIsFirstVisited, setTourFinish } from "../util/localStorage";
+import { getTourFinished, setTourFinish } from "../util/localStorage";
 import { t } from "i18next";
 
-const PromptMakingTour = () => {
+const MainTour = () => {
     const [runTour, setRunTour] = useState(true);
     const [steps, setSteps] = useState([]);
 
     useEffect(() => {
         const tourSteps = [
             {
-                target: '[data-tour="categories"]',
+                target: '[data-tour="toggle"]',
                 content:
-                    t(`tour.promptMakingTour.step1`),
+                    t(`tour.mainTour.step1`),
                 disableBeacon: true,
             },
             {
-                target: '[data-tour="blocks"]',
-                content: t(`tour.promptMakingTour.step2`),
+                target: '[data-tour="promptList"]',
+                content: t(`tour.mainTour.step2`),
             },
             {
-                target: '[data-tour="combinationArea"]',
-                content: t(`tour.promptMakingTour.step3`),
+                target: '[data-tour="currentPrompt"]',
+                content: t(`tour.mainTour.step3`),
             },
             {
-                target: '[data-tour="promptPreview"]',
-                content: t(`tour.promptMakingTour.step4`),
-            },
-            {
-                target: '[data-tour="saveButton"]',
-                content: t(`tour.promptMakingTour.step5`),
+                target: '[data-tour="chattingInput"]',
+                content: t(`tour.mainTour.step4`),
             },
         ];
 
@@ -40,12 +36,13 @@ const PromptMakingTour = () => {
         const { status } = data;
         if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
             setRunTour(false);
-            setIsFirstVisited(false);
-            setTourFinish(false);
+            setTourFinish(true);
         }
     };
     
-    if (!getIsFirstVisited()) return null;
+    if (getTourFinished() || getTourFinished() === 'true') {
+        return null;
+    }
 
     return (
         <Joyride
@@ -90,4 +87,4 @@ const PromptMakingTour = () => {
     );
 };
 
-export default PromptMakingTour;
+export default MainTour;

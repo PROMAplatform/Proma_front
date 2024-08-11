@@ -7,12 +7,29 @@ export const getLocalPromptMethod = () => {
     return localPromptMethod;
 };
 
+export const getTourFinished = () => {
+    const tourFinished = localStorage.getItem("tourFinished");
+    if (tourFinished === 'false') {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+export const setTourFinish = (tourFinished) => {
+    localStorage.setItem("tourFinished", tourFinished.toString());
+}
+
 export const getIsFirstVisited = () => {
     const hasVisited = localStorage.getItem('hasVisited');
-    if (hasVisited) {
+    if (hasVisited === 'false') {
         return false;
     } else {
         localStorage.setItem("hasVisited", 'true');
         return true;
     }
+};
+
+export const setIsFirstVisited = (isFirstVisit) => {
+    localStorage.setItem("hasVisited", isFirstVisit.toString());
 };
