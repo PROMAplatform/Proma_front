@@ -101,8 +101,7 @@ function PostFixOrShare({close, onApi, state}) {
                 </div>
                 <div className={styles.titleSection}>
                     <H4>{t(`community.postDescription`)}</H4>
-                    <input
-                        type="text"
+                    <textarea
                         className={styles.inputTextBoxEx}
                         placeholder={promptExample.promptDescription}
                         value={description}
