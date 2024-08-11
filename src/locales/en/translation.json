@@ -112,5 +112,9 @@
             "step3": "You can easily apply prompts with the shortcut [cmd/control + shift + 1]!",
             "step4": "After applying a prompt, try chatting!"
         }
+    },
+    "login": {
+        "login": "☺️ Additional features are available after logging in!",
+        "social": "😋 Access in just 1 second with social login!"
     }
 }

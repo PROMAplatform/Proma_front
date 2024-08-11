@@ -5,14 +5,25 @@
     justify-content: center;
     padding: 20px;
     box-sizing: border-box;
+    margin: 50px;
 }
 .container .logo {
-    width: 200px;
+    width: 15%;
+    min-width: 150px;
     margin-bottom: 20px;
 }
 .container img {
-    width: 35%;
+    width: 25%;
+    min-width: 250px;
 }
 .container .login:hover {
-    transform: scale(1.1); /* 호버 시 약간 확대 효과 */
+    transform: scale(1.05); /* 호버 시 약간 확대 효과 */
+}
+
+.socialLoginContainer {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
