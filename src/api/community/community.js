@@ -34,6 +34,7 @@ export const useCommunityHooks = () => {
                 search: searchQuery,
                 page: currentPage,
                 size: 9,
+                method: "",
             };
 
             // sortOrder에 따라 정렬 기준 추가
@@ -83,6 +84,7 @@ export const useCommunityHooks = () => {
                 search: searchQuery,
                 page: currentPage,
                 size: 9,
+                method: "",
             };
 
             // sortOrder에 따라 정렬 기준 추가

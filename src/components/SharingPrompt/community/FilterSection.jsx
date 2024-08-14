@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./FilterSection.module.css";
 import { ReactComponent as WriteIcon } from "../../../assets/images/writeIcon.svg";
 import SelectPromptModal from "../modal/SelectModal/SelectPromptModal";
@@ -26,6 +26,12 @@ function FilterSection() {
     };
     const { getCommunityPreviewPromptList, getCommunityPromptList, getMakePromptList } = useCommunityHooks();
     const userName = localStorage.getItem("userName");
+
+    //const [selectedPromptMethod, setSelectedPromptMethod] = useState(''); // 선택된 값 저장
+
+    // const handleSelectChange = (event) => {
+    //     setSelectedPromptMethod(event.target.value);
+    // };
 
     const handleListModal = () => {
         if (userName) {
@@ -98,7 +104,7 @@ function FilterSection() {
     console.log({
         params: {
             category: selectCategory === "전체" ? "" : selectCategory,
-            sort: sortOrder,
+            sort: sortOrder
         },
     });
 
@@ -117,6 +123,12 @@ function FilterSection() {
             <CategoryButton setSelectCategory={setSelectCategory} />
             <div className={styles.buttonSection}>
                 <SortButton setSortOrder={setSortOrder} />
+                {/*<select value={selectedPromptMethod} onChange={handleSelectChange}>*/}
+                {/*    <option value="">ALL</option>*/}
+                {/*    <option value="Task/Research">Task</option>*/}
+                {/*    <option value="Character">Character</option>*/}
+                {/*    <option value="Free">Free</option>*/}
+                {/*</select>*/}
                 <div>
                     <button
                         className={styles.writeButton}
