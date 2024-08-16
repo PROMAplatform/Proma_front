@@ -58,7 +58,9 @@
         "userPromptError": "🚀 카테고리가 일치하지 않습니다!",
         "userPromptError2": " 블럭에 넣어주세요!",
         "userPromptError3": "🚀 카테고리 간 이동은 불가능합니다!",
-        "userPromptError4": "에서 다음 카테고리로 이동 불가능합니다 :"
+        "userPromptError4": "에서 다음 카테고리로 이동 불가능합니다 :",
+        "blockDeleteFailed": "⚠️ 디폴트 블록은 삭제가 불가능합니다.",
+        "blockDeleted": "블록 삭제가 완료되었습니다!"
     },
     "introduce": {
         "introduceOne": "모두를 위한 프롬프트 엔지니어링",
@@ -91,7 +93,7 @@
         "cancel": "취소",
         "deleteText": " 게시글이 커뮤니티에서 삭제됩니다.",
         "deleteMent": "게시글을 삭제하시겠습니까?"
-    }, 
+    },
     "quality": {
         "noPromptYet": "프롬프트가 아직 없어요! 드래그 앤 드랍을 통해 프롬프트를 만들어보아요!",
         "perfectPrompt": "100%! 완벽한 프롬프트가 완성되었어요!",
