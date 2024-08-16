@@ -133,6 +133,17 @@ export const usePromptHook = () => {
         });
     };
 
+    const deleteBlock = async (blockId) => {
+        await sendRequest(
+            promptInstance,
+            "delete",
+            `/block/delete/${blockId}`,
+            {
+                blockId,
+            },
+        );
+    };
+
     const savePrompt = async (
         promptTitle,
         promptDescription,
@@ -155,5 +166,6 @@ export const usePromptHook = () => {
         fetchBlocks,
         makeBlock,
         savePrompt,
+        deleteBlock,
     };
 };

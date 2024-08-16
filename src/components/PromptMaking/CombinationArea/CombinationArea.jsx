@@ -20,7 +20,7 @@ import {
 } from "../../../recoil/prompt/promptRecoilState";
 import SavePromptModal from "./SavePromptModal";
 import { t } from "i18next";
-
+import deleteIcon from "../../../assets/images/trash-icon.png";
 const CombinationArea = ({ promptId }) => {
     const [combinations, setCombinations] = useRecoilState(combinationsState);
     const promptMethod = useRecoilValue(promptMethodState);
@@ -40,7 +40,7 @@ const CombinationArea = ({ promptId }) => {
         // combinations가 변경될 때마다 filledBlockCount 업데이트
         const count = Object.values(combinations).filter(Boolean).length;
         setFilledBlockCount(count);
-    }, [combinations]); 
+    }, [combinations]);
 
     useEffect(() => {
         const prompt = promptList.find((p) => p.promptId === promptId);
@@ -160,6 +160,27 @@ const CombinationArea = ({ promptId }) => {
                     ))}
                     <FinalPromptArea />
                 </div>
+                <Droppable droppableId="deleteArea">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                            className={`${styles.deleteArea} ${
+                                snapshot.isDraggingOver
+                                    ? styles.deleteAreaActive
+                                    : ""
+                            }`}
+                        >
+                            <img
+                                src={deleteIcon}
+                                alt="Delete"
+                                className={styles.deleteIcon}
+                                width={180}
+                            />
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
                 <SavePromptModal
                     isOpen={isModalOpen}
                     onClose={closeModal}
@@ -168,7 +189,7 @@ const CombinationArea = ({ promptId }) => {
                     promptId={promptId}
                 />
             </div>
-            <PromptQuality quality={filledBlockCount} total={total}/>
+            <PromptQuality quality={filledBlockCount} total={total} />
         </div>
     );
 };

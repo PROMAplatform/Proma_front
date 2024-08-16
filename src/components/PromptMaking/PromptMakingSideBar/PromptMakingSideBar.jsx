@@ -90,7 +90,7 @@ const PromptMakingSidebar = () => {
                                         return (
                                             <Draggable
                                                 key={blockId}
-                                                draggableId={`${blockId}|${activeCategory}`}
+                                                draggableId={`${blockId}|${activeCategory}|${block.isDefault}`}
                                                 index={index}
                                             >
                                                 {(provided) => (
