@@ -20,6 +20,10 @@
 }
 
 .text {
-    color: var(--color-gray6);
     margin: 0;
+}
+
+.clearIcon {
+    width: 16px;
+    cursor: pointer;
 }

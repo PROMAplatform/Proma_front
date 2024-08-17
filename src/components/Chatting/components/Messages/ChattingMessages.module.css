@@ -48,7 +48,6 @@
 }
 
 .fileName {
-    color: var(--color-gray7);
     margin: 0;
     white-space: nowrap;
     overflow: visible;
@@ -86,4 +85,5 @@
     width: 100%;
     box-sizing: border-box;
     flex-grow: 1;
+    line-height: 22px;
 }

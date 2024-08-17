@@ -61,8 +61,14 @@ const SavePromptModal = ({
                     blockCategory: category,
                     blockValue: blockDetails[blockId].blockValue,
                 }));
+            const promptPreview = Object.values(refinedPromptParts).join(" ");
             console.log("listPromptAtom:", listPromptAtom);
-            patchPromptBlock(promptId, listPromptAtom);
+            console.log("promptPreview", promptPreview);
+            patchPromptBlock(
+                promptId, 
+                listPromptAtom,
+                promptPreview,
+            );
             patchPromptInfo(
                 promptId,
                 promptTitle,
