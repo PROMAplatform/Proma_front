@@ -175,7 +175,7 @@ const CombinationArea = ({ promptId }) => {
                                 src={deleteIcon}
                                 alt="Delete"
                                 className={styles.deleteIcon}
-                                width={180}
+                                width={100}
                             />
                             {provided.placeholder}
                         </div>

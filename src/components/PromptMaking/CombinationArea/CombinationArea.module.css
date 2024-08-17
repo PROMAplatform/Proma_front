@@ -82,3 +82,7 @@
     position: relative;
     left: -11px;
 }
+
+.deleteArea {
+    margin-left: 30px;
+}
