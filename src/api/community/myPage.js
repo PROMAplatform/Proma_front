@@ -26,6 +26,7 @@ export const useMyPageHooks = () => {
                 category: selectedCategory,
                 page: currentPage,
                 size: 9,
+                method: "",
             };
 
             // sortOrder에 따라 정렬 기준 추가
@@ -78,6 +79,7 @@ export const useMyPageHooks = () => {
                 category: selectedCategory,
                 page: currentPage,
                 size: 9,
+                method: "",
             };
 
             // sortOrder에 따라 정렬 기준 추가
