@@ -53,6 +53,8 @@
     margin: 0px;
     padding: 0px;
     max-height: 300px;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 .textInput::placeholder {

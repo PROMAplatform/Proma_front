@@ -3,6 +3,8 @@ import styles from "./PromptPreview.module.css";
 import blockIcon from "../../../../assets/images/blockIcon.svg";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { currentPromptState } from "../../../../recoil/prompt/promptRecoilState";
+import clearIcon from "../../../../assets/images/exitIcon.svg";
+import { B5 } from "../../../../styles/font-styles";
 import { t } from "i18next";
 
 function PromptPreview() {
@@ -18,16 +20,16 @@ function PromptPreview() {
             </div>
             {currentPrompt ? (
                 <>
-                    <p className={[styles.text, "b6"].join(" ")}>
+                    <B5 color="gray6" className={styles.text}>
                         '{currentPrompt.name}'{" "}
                         {t(`input.currentPromptIntroduce`)}
-                    </p>
-                    <button onClick={onDeleteHandler}> X </button>
+                    </B5>
+                    <img src={clearIcon} alt="x" className={styles.clearIcon} onClick={onDeleteHandler}/>
                 </>
             ) : (
-                <p className={[styles.text, "b6"].join(" ")}>
+                <B5 color="gray6" className={styles.text}>
                     {t(`main.promptClickIntend`)}
-                </p>
+                </B5>
             )}
         </div>
     );
