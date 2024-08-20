@@ -108,6 +108,7 @@ function ChattingInput() {
     const handlePaste = async (e) => {
         e.preventDefault();
         const items = e.clipboardData.items;
+        let isFileProcessed = false;
 
         for (let i = 0; i < items.length; i++) {
             const item = items[i];
@@ -115,15 +116,18 @@ function ChattingInput() {
                 const file = item.getAsFile();
                 if (file) {
                     await processFile(file);
-                    return;
+                    isFileProcessed = true;
+                    break; // 파일 처리 후 루프 종료
                 }
             }
         }
 
-        // 파일이 아닌 경우 텍스트로 처리
-        const text = e.clipboardData.getData("text");
-        if (text) {
-            input.setValue((prevValue) => prevValue + text);
+        // 파일이 처리되지 않았을 경우에만 텍스트 처리
+        if (!isFileProcessed) {
+            const text = e.clipboardData.getData("text");
+            if (text) {
+                input.onChange({ target: { value: input.value + text } });
+            }
         }
     };
 
@@ -179,7 +183,11 @@ function ChattingInput() {
     return (
         <div className={styles.container}>
             <PromptPreview />
-            <form onSubmit={handleSubmit} className={styles.inputContainer} data-tour="chattingInput">
+            <form
+                onSubmit={handleSubmit}
+                className={styles.inputContainer}
+                data-tour="chattingInput"
+            >
                 <div className={styles.filePreviewContainer}>
                     <Preview
                         selectedFile={selectedFile}
