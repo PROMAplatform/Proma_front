@@ -24,6 +24,7 @@ export const useCommunityHooks = () => {
         sortOrder,
         searchQuery,
         currentPage,
+        selectedMethod,
     ) => {
         applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
@@ -34,7 +35,7 @@ export const useCommunityHooks = () => {
                 search: searchQuery,
                 page: currentPage,
                 size: 9,
-                method: "",
+                method: selectedMethod,
             };
 
             // sortOrder에 따라 정렬 기준 추가
@@ -75,6 +76,7 @@ export const useCommunityHooks = () => {
         sortOrder,
         searchQuery,
         currentPage,
+        selectedMethod,
     ) => {
         setIsLoadingcommunity(true);
         try {
@@ -84,7 +86,7 @@ export const useCommunityHooks = () => {
                 search: searchQuery,
                 page: currentPage,
                 size: 9,
-                method: "",
+                method: selectedMethod,
             };
 
             // sortOrder에 따라 정렬 기준 추가

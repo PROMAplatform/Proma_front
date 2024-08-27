@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 import styles from "./FilterSection.module.css";
 import { ReactComponent as WriteIcon } from "../../../assets/images/writeIcon.svg";
-import SelectPromptModal from "../modal/SelectModal/SelectPromptModal";
-import SortButton from "../components/FilterComponents/SortButton";
-import CategoryButton from "../components/FilterComponents/CategoryButton";
+import SelectPromptModal from "./modal/SelectModal/SelectPromptModal";
+import SortButton from "./components/SortButton";
+import CategoryButton from "./components/CategoryButton";
 import { useModalStack } from "../../../hooks/useModalStack";
 import { useCommunityHooks } from "../../../api/community/community";
 import {
@@ -27,11 +27,11 @@ function FilterSection() {
     const { getCommunityPreviewPromptList, getCommunityPromptList, getMakePromptList } = useCommunityHooks();
     const userName = localStorage.getItem("userName");
 
-    //const [selectedPromptMethod, setSelectedPromptMethod] = useState(''); // 선택된 값 저장
+    const [selectedPromptMethod, setSelectedPromptMethod] = useState(''); // 선택된 값 저장
 
-    // const handleSelectChange = (event) => {
-    //     setSelectedPromptMethod(event.target.value);
-    // };
+    const handleSelectChange = (event) => {
+        setSelectedPromptMethod(event.target.value);
+    };
 
     const handleListModal = () => {
         if (userName) {
@@ -63,6 +63,7 @@ function FilterSection() {
                     sortOrder,
                     searchQuery,
                     currentPage,
+                    selectedPromptMethod,
                 );
             } else {
                 getCommunityPromptList(
@@ -70,6 +71,7 @@ function FilterSection() {
                     sortOrder,
                     searchQuery,
                     currentPage,
+                    selectedPromptMethod,
                 );
             }
         }
@@ -86,6 +88,7 @@ function FilterSection() {
                     sortOrder,
                     searchQuery,
                     currentPage,
+                    selectedPromptMethod,
                 );
             } else {
                 getCommunityPromptList(
@@ -93,18 +96,20 @@ function FilterSection() {
                     sortOrder,
                     searchQuery,
                     currentPage,
+                    selectedPromptMethod,
                 );
             }
         }, 300);
 
         return () => clearTimeout(delayDebounceFn);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectCategory, sortOrder, searchQuery, isStateChange]);
+    }, [selectedPromptMethod, selectCategory, sortOrder, searchQuery, isStateChange]);
 
     console.log({
         params: {
             category: selectCategory === "전체" ? "" : selectCategory,
-            sort: sortOrder
+            sort: sortOrder,
+            method: selectedPromptMethod,
         },
     });
 
@@ -120,15 +125,20 @@ function FilterSection() {
                     onKeyDown={handleSearchKeyDown}
                 />
             </div>
-            <CategoryButton setSelectCategory={setSelectCategory} />
+            <div className={styles.sortSection}>
+                <div className={styles.methodSection}>
+                    <select value={selectedPromptMethod} onChange={handleSelectChange}>
+                        <option value="">ALL</option>
+                        <option value="Task/Research">Task</option>
+                        <option value="Character">Character</option>
+                        <option value="Free">Free</option>
+                    </select>
+                </div>
+                <CategoryButton setSelectCategory={setSelectCategory} />
+            </div>
+
             <div className={styles.buttonSection}>
                 <SortButton setSortOrder={setSortOrder} />
-                {/*<select value={selectedPromptMethod} onChange={handleSelectChange}>*/}
-                {/*    <option value="">ALL</option>*/}
-                {/*    <option value="Task/Research">Task</option>*/}
-                {/*    <option value="Character">Character</option>*/}
-                {/*    <option value="Free">Free</option>*/}
-                {/*</select>*/}
                 <div>
                     <button
                         className={styles.writeButton}

@@ -27,6 +27,22 @@
     line-height: normal;
 }
 
+.sortSection {
+    display: flex;
+    justify-content: center;
+}
+
+.methodSection {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.methodSection select {
+    padding: 1vh 0.8vw;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 .buttonSection {
     margin-right: auto;
     margin-left: auto;
