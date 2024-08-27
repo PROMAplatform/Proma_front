@@ -1,5 +1,6 @@
 .container {
     display: flex;
+
     padding: 1vh 0.5vw 1vh 0.3vw;
     align-items: center;
 
@@ -13,6 +14,7 @@
 
 .active {
     display: flex;
+
     padding: 1vh 0.5vw 1vh 0.3vw;
     align-items: center;
 
