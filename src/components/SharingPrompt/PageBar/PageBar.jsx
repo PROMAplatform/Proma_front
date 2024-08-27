@@ -4,7 +4,7 @@ import {
     communityPromptListPageState,
     isLoadingCommunityState,
     stateChange,
-} from "../../recoil/community/communityRecoilState";
+} from "../../../recoil/community/communityRecoilState";
 import styles from "./PageBar.module.css";
 
 function PageBar() {

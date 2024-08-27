@@ -9,6 +9,7 @@
 .methodSection {
     grid-column: 1;
     justify-self: start;
+    text-align: center;
 }
 
 .likeSection {

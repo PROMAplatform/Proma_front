@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./ComPromptListItem.module.css";
 import { ReactComponent as LikeButton } from "../../../assets/images/likeButton.svg";
 import { ReactComponent as LikeTrue } from "../../../assets/images/heartTrue.svg";
-import PromptDetailModal from "../modal/DetailModal/PromptDetailModal";
+import PromptDetailModal from "./modal/DetailModal/PromptDetailModal";
 import {useModalStack} from "../../../hooks/useModalStack";
 import {B6, B7, H5} from "../../../styles/font-styles";
 import {useCommunityHooks} from "../../../api/community/community";

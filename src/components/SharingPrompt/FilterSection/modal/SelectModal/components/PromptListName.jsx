@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./PromptListName.module.css";
-import { ReactComponent as WritePromptListIcon } from "../../../../../assets/images/writePromptListIcon.svg";
+import { ReactComponent as WritePromptListIcon } from "../../../../../../assets/images/writePromptListIcon.svg";
 
 function PromptListName({ name, isSelected, onSelect }) {
     return (

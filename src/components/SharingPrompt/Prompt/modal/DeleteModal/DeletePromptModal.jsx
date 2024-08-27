@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './DeletePromptModal.module.css';
 import {useSetRecoilState} from "recoil";
-import {stateChange} from "../../../../recoil/community/communityRecoilState";
-import {B3, H3} from "../../../../styles/font-styles";
-import ModalButton from "../../../common/ModalButton";
+import {stateChange} from "../../../../../recoil/community/communityRecoilState";
+import {B3, H3} from "../../../../../styles/font-styles";
+import ModalButton from "../../../../common/ModalButton";
 import {t} from "i18next";
 
 function DeletePromptModal({close, onDelete, post}) {

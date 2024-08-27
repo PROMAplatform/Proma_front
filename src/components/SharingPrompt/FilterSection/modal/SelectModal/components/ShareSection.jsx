@@ -3,16 +3,16 @@ import styles from "./ShareSection.module.css";
 import PromptListName from "./PromptListName";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import PostFixOrShare from "../../FixAndShareModal/PostFixOrShare";
-import { H5 } from "../../../../../styles/font-styles";
-import { useModalStack } from "../../../../../hooks/useModalStack";
+import PostFixOrShare from "../../../../Prompt/modal/FixAndShareModal/PostFixOrShare";
+import { H5 } from "../../../../../../styles/font-styles";
+import { useModalStack } from "../../../../../../hooks/useModalStack";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
     communityPromptListPageState,
     makePromptListState,
     stateChange,
-} from "../../../../../recoil/community/communityRecoilState";
-import { useCommunityHooks } from "../../../../../api/community/community";
+} from "../../../../../../recoil/community/communityRecoilState";
+import { useCommunityHooks } from "../../../../../../api/community/community";
 import { t } from "i18next";
 
 const Alert = React.forwardRef(function Alert(props, ref) {

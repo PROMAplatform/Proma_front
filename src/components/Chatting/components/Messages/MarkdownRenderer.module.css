@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.listItem {
+    width: 90%;
+}
+
 .codeBlockContainer {
     width: 100%;
     overflow-x: auto;

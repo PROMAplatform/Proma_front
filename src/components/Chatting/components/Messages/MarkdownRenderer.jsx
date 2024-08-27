@@ -36,6 +36,14 @@ function BlockQuote({ children }) {
     );
 }
 
+function LiStyle({ children, ...props }) { // LiStyle 컴포넌트 추가
+    return (
+        <li className={styles.listItem} {...props}>
+            {children}
+        </li>
+    );
+}
+
 function MarkdownRenderer({ text }) {
     return (
         <div className={styles.markdownContainer}>
@@ -44,6 +52,7 @@ function MarkdownRenderer({ text }) {
                 components={{
                     code: CodeBlock,
                     blockquote: BlockQuote,
+                    li: LiStyle,
                 }}
             >
                 {text}
