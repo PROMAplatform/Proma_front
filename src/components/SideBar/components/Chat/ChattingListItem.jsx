@@ -17,7 +17,9 @@ function ChattingListItem(props) {
                     roomId={props.roomId}
                     emoji={props.emoji}
                 />
-                <H5>{props.chatRoomTitle}</H5>
+                <div className={styles.titleWrapper}>
+                    <H5>{props.chatRoomTitle}</H5>
+                </div>
             </div>
             <CustomIconButton
                 icon={TrashIcon}

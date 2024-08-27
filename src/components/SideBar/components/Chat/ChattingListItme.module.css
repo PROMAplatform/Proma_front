@@ -24,6 +24,15 @@
     align-items: center;
 }
 
+.titleWrapper {
+    max-width: 250px; /* 적절한 최대 너비 설정 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
 .icon {
     width: 20px;
 }

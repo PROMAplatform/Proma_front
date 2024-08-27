@@ -5,6 +5,7 @@
     min-width: 600px;
     display: flex;
     margin: 0 auto;
+    padding: 0 20px;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: auto;
@@ -48,7 +49,6 @@
 }
 
 .fileName {
-    color: var(--color-gray7);
     margin: 0;
     white-space: nowrap;
     overflow: visible;
@@ -86,4 +86,5 @@
     width: 100%;
     box-sizing: border-box;
     flex-grow: 1;
+    line-height: 22px;
 }

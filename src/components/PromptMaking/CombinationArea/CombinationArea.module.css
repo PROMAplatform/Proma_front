@@ -59,7 +59,7 @@
 .categoryList {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
     position: relative;
     margin: 25px;
 }
@@ -84,5 +84,6 @@
 }
 
 .deleteArea {
+    margin: 20px;
     margin-left: 30px;
 }
