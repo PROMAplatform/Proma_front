@@ -26,15 +26,17 @@
 }
 
 .shareButton {
+    margin-top: 1vh;
+
     display: inline-flex;
-    height: 52px;
-    padding: 16px 70px;
+    height: 6vh;
+    padding: 1vh 4vw;
     justify-content: center;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
 
-    border-radius: 30.612px;
+    border-radius: 3vw;
     border: 1px solid #543fd6;
     background: #543fd6;
 
