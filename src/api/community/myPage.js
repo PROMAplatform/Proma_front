@@ -17,6 +17,7 @@ export const useMyPageHooks = () => {
         selectedCategory,
         sortOrder,
         currentPage,
+        selectedMethod,
     ) => {
         applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
@@ -26,7 +27,7 @@ export const useMyPageHooks = () => {
                 category: selectedCategory,
                 page: currentPage,
                 size: 9,
-                method: "",
+                method: selectedMethod,
             };
 
             // sortOrder에 따라 정렬 기준 추가
@@ -70,6 +71,7 @@ export const useMyPageHooks = () => {
         selectedCategory,
         sortOrder,
         currentPage,
+        selectedMethod,
     ) => {
         applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
@@ -79,7 +81,7 @@ export const useMyPageHooks = () => {
                 category: selectedCategory,
                 page: currentPage,
                 size: 9,
-                method: "",
+                method: selectedMethod,
             };
 
             // sortOrder에 따라 정렬 기준 추가

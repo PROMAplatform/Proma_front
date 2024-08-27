@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./SelectPromptModal.module.css";
 import ShareSection from "./components/ShareSection";
-import { ReactComponent as ExitIcon } from "../../../../assets/images/exitIcon.svg";
-import { B4, H3 } from "../../../../styles/font-styles";
+import { ReactComponent as ExitIcon } from "../../../../../assets/images/exitIcon.svg";
+import { B4, H3 } from "../../../../../styles/font-styles";
 import { t } from "i18next";
 import {useRecoilValue} from "recoil";
-import {makePromptListState} from "../../../../recoil/community/communityRecoilState";
+import {makePromptListState} from "../../../../../recoil/community/communityRecoilState";
 
 function SelectPromptModal({ close }) {
     const promas = useRecoilValue(makePromptListState);

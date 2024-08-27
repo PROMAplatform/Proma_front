@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import styles from "./PostFixOrShare.module.css";
-import MakeBlockPreview from "../components/MakeBlockPreview";
-import CategoryButton from "../../components/FilterComponents/CategoryButton";
-import {H3, H4} from "../../../../styles/font-styles";
-import ModalButton from "../../../common/ModalButton";
+import MakeBlockPreview from "../../../modal/components/MakeBlockPreview";
+import CategoryButton from "../../../FilterSection/components/CategoryButton";
+import {H3, H4} from "../../../../../styles/font-styles";
+import ModalButton from "../../../../common/ModalButton";
 import {useRecoilValue, useSetRecoilState} from "recoil";
-import {makePromptDetailState, stateChange} from "../../../../recoil/community/communityRecoilState";
-import {isLoadingState} from "../../../../recoil/chatting/chattingRecoilState";
-import {ReactComponent as ExitIcon} from "../../../../assets/images/exitIcon.svg";
+import {makePromptDetailState, stateChange} from "../../../../../recoil/community/communityRecoilState";
+import {isLoadingState} from "../../../../../recoil/chatting/chattingRecoilState";
+import {ReactComponent as ExitIcon} from "../../../../../assets/images/exitIcon.svg";
 import {t} from "i18next";
 
 function PostFixOrShare({close, onApi, state}) {

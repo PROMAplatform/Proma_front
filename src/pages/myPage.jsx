@@ -1,7 +1,7 @@
 import React from "react";
-import MyFilterSection from "../components/SharingPrompt/mypage/filterSection/MyFilterSection";
+import MyFilterSection from "../components/SharingPrompt/FilterSection/MyFilterSection";
 import SharePromptList from "../components/SharingPrompt/Prompt/SharePromptList";
-import PageBar from "../components/PageBar/PageBar";
+import PageBar from "../components/SharingPrompt/PageBar/PageBar";
 
 function MyPage() {
   return (

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./TopSection.module.css";
-import {ReactComponent as LikeImg} from "../../../../../assets/images/likeImg.svg";
-import {ReactComponent as LikeTrue} from "../../../../../assets/images/heartTrue.svg";
-import {ReactComponent as ExitIcon} from "../../../../../assets/images/exitIcon.svg";
-import {useCommunityHooks} from "../../../../../api/community/community";
+import {ReactComponent as LikeImg} from "../../../../../../assets/images/likeImg.svg";
+import {ReactComponent as LikeTrue} from "../../../../../../assets/images/heartTrue.svg";
+import {ReactComponent as ExitIcon} from "../../../../../../assets/images/exitIcon.svg";
+import {useCommunityHooks} from "../../../../../../api/community/community";
 import {useSetRecoilState} from "recoil";
-import {stateChange} from "../../../../../recoil/community/communityRecoilState";
-import {methodImage} from "../../../util/methodImage";
-import {B4, B6, H3} from "../../../../../styles/font-styles";
+import {stateChange} from "../../../../../../recoil/community/communityRecoilState";
+import {methodImage} from "../../../../util/methodImage";
+import {B4, B6, H3} from "../../../../../../styles/font-styles";
 import {useNavigate} from "react-router-dom";
 
 function TopSection({ post, onClose }) {

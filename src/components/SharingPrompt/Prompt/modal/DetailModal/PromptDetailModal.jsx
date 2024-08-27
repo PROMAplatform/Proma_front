@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./PromptDetailModal.module.css";
-import MakeBlockPreview from "../components/MakeBlockPreview";
+import MakeBlockPreview from "../../../modal/components/MakeBlockPreview";
 import ButtonSection from "./components/ButtonSection";
 import TopSection from "./components/TopSection";
-import {B3, H4} from "../../../../styles/font-styles";
+import {B3, H4} from "../../../../../styles/font-styles";
 import {useRecoilValue} from "recoil";
-import {communityPromptDetailState, isLoadingCommunityState} from "../../../../recoil/community/communityRecoilState";
+import {communityPromptDetailState, isLoadingCommunityState} from "../../../../../recoil/community/communityRecoilState";
 import {t} from "i18next";
 
 function PromptDetailModal({ close, post }) {
@@ -56,20 +56,32 @@ function PromptDetailModal({ close, post }) {
                         <div>데이터가 없습니다.</div>
                     )}
                 </div>
-                <div className={styles.textSection}>
+                <div className={styles.textSection}
+                     style={{
+                         minHeight: '20vh',
+                         maxHeight: '30vh'
+                     }}>
                     <div className={styles.categorySection}>
                         <H4>{t(`community.postCategory`)}</H4>
                         <B3>{post.postCategory}</B3>
                     </div>
                     <div>
                         <H4>{t(`community.postDescription`)}</H4>
-                        <div className={styles.explainSection}>
+                        <div className={styles.explainSection}
+                             style={{
+                                 maxHeight: '10vh',
+                                 overflowY: 'auto'
+                             }}>
                             <B3>{post.postDescription}</B3>
                         </div>
                     </div>
                     <div>
                         <H4>{t(`promptMaking.promptPreView`)}</H4>
-                        <div className={styles.previewSectionText}>
+                        <div className={styles.previewSectionText}
+                             style={{
+                                 maxHeight: '10vh',
+                                 overflowY: 'auto'
+                             }}>
                             <B3>{post.promptPreview}</B3>
                         </div>
                     </div>
