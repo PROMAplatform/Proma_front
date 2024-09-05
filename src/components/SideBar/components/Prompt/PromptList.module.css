@@ -2,21 +2,45 @@
     width: 100%;
     overflow-x: hidden;
 }
+
 .categoryContainer {
+    position: sticky;
+}
+.categoryScrollContainer {
     display: flex;
     justify-content: flex-start;
     padding: 10px;
     gap: 10px;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
-    position: sticky;
+    position: relative;
     background-color: var(--color-gray1);
     overflow-x: auto;
     top: 0;
+    scroll-behavior: smooth;
 }
 
 .categoryContainer::-webkit-scrollbar {
     display: none;
+}
+
+.leftScrollIcon, .rightScrollIcon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+    background: radial-gradient(circle, var(--color-gray1) 30%, transparent 70%);
+}
+
+.leftScrollIcon {
+    left: 10px;
+}
+
+.rightScrollIcon {
+    right: 10px;
 }
 
 .categoryButton {
