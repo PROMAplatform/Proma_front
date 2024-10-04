@@ -1,64 +1,74 @@
-import React, {useState} from "react";
+import React, { useState, useCallback } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { useTranslation } from "react-i18next";
+import { 
+    User, 
+    ChevronDown, 
+    ThumbsUp, 
+    PenTool, 
+    LogOut 
+} from "lucide-react";
+import { myPageState } from "../../../recoil/community/myPageRecoilState";
+import { communityPromptListPageState } from "../../../recoil/community/communityRecoilState";
 import styles from "./ExpandableButton.module.css";
-import {Link, useNavigate} from "react-router-dom";
-import {useRecoilState} from "recoil";
-import {myPageState} from "../../../recoil/community/myPageRecoilState";
-import {communityPromptListPageState} from "../../../recoil/community/communityRecoilState";
-import {t} from "i18next";
 
-function ExpandableButton({buttonText}) {
-    const navigate = useNavigate();
+function ExpandableButton({ buttonText }) {
     const [isExpanded, setIsExpanded] = useState(false);
-    const [, setIsMyPageState] = useRecoilState(myPageState);
-    const [, setCurrentPage] = useRecoilState(communityPromptListPageState);
-    const handleMouseEnter = () => {
+    const navigate = useNavigate();
+    const setMyPageState = useSetRecoilState(myPageState);
+    const setCurrentPage = useSetRecoilState(communityPromptListPageState);
+    const { t } = useTranslation();
+
+    const handleMouseEnter = useCallback(() => {
         setIsExpanded(true);
-    };
+    }, []);
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = useCallback(() => {
         setIsExpanded(false);
-    }
+    }, []);
 
-    const handleMouseLeaveExpanding = () => {
-        setIsExpanded(false);
-    };
-
-    const handleClick = (type) => {
-        setIsMyPageState(type);
+    const handleClick = useCallback((type) => {
+        setMyPageState(type);
         setCurrentPage(0);
-    };
-    const handleLogout = () => {
-        localStorage.clear("accessToken");
-        localStorage.clear("refreshToken");
-        localStorage.clear("userName");
+    }, [setMyPageState, setCurrentPage]);
+
+    const handleLogout = useCallback(() => {
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userName");
         navigate("/login");
-    };
+    }, [navigate]);
 
     return (
-        <>
-            <div
-                className={styles.container}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                <div className={styles.button}>{buttonText}</div>
-                <div
-                    onMouseLeave={handleMouseLeaveExpanding}
-                    className={`${styles.expandableSection} ${isExpanded ? styles.expanded : ""}`}
-                >
-                    <Link to={`/mypage`} onClick={() => handleClick("like")}>
-                        {t(`header.isLike`)}
+        <div
+            className={styles.container}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <button className={styles.button} aria-haspopup="true" aria-expanded={isExpanded}>
+                <User size={18} />
+                {buttonText}
+                <ChevronDown size={18} className={isExpanded ? styles.rotated : ''} />
+            </button>
+            {isExpanded && (
+                <div className={styles.expandableSection} role="menu">
+                    <Link to="/mypage" onClick={() => handleClick("like")} role="menuitem" className={styles.menuItem}>
+                        <ThumbsUp size={18} />
+                        {t("header.isLike")}
                     </Link>
-                    <Link to={`/mypage`} onClick={() => handleClick("write")}>
-                        {t(`header.writtenByYou`)}
+                    <Link to="/mypage" onClick={() => handleClick("write")} role="menuitem" className={styles.menuItem}>
+                        <PenTool size={18} />
+                        {t("header.writtenByYou")}
                     </Link>
-                    <p onClick={handleLogout} style={{color: "red", cursor: "pointer", margin: 0}}>
-                        {t(`header.logout`)}
-                    </p>
+                    <button onClick={handleLogout} className={`${styles.menuItem} ${styles.logoutButton}`} role="menuitem">
+                        <LogOut size={18} />
+                        {t("header.logout")}
+                    </button>
                 </div>
-            </div>
-        </>
+            )}
+        </div>
     );
 }
 
-export default ExpandableButton;
+export default React.memo(ExpandableButton);
