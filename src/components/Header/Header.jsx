@@ -34,7 +34,7 @@ function Header() {
     };
 
     const toggleLanguage = () => {
-        const newLang = language === 'ko' ? 'en' : 'ko';
+        const newLang = language === "ko" ? "en" : "ko";
         setLanguage(newLang);
         i18n.changeLanguage(newLang).then(() => {
             window.location.reload();
@@ -66,13 +66,19 @@ function Header() {
                 <MessageSquare size={20} />
                 {showText && <span>{t(`header.chatting`)}</span>}
             </Link>
-            <Link to="/community" className={styles.navItem} onClick={useResetMyPageState}>
+            <Link
+                to="/community"
+                className={styles.navItem}
+                onClick={useResetMyPageState}
+            >
                 <Users size={20} />
                 {showText && <span>{t(`header.community`)}</span>}
             </Link>
             {userName ? (
                 <div className={styles.navItem}>
-                    {showText && <ExpandableButton buttonText={t(`header.mypage`)} />}
+                    {showText && (
+                        <ExpandableButton buttonText={t(`header.mypage`)} />
+                    )}
                 </div>
             ) : (
                 <div className={styles.navItem} onClick={handleLogin}>
@@ -85,15 +91,15 @@ function Header() {
 
     const LanguageSelector = () => (
         <div className={styles.languageSelector}>
-            <img 
-                src={language === 'ko' ? koreaFlag : usaFlag} 
-                alt={language === 'ko' ? "Korean flag" : "USA flag"}
+            <img
+                src={language === "ko" ? koreaFlag : usaFlag}
+                alt={language === "ko" ? "Korean flag" : "USA flag"}
                 className={styles.flagImage}
             />
             <label className={styles.switch}>
-                <input 
-                    type="checkbox" 
-                    checked={language === 'en'}
+                <input
+                    type="checkbox"
+                    checked={language === "en"}
                     onChange={toggleLanguage}
                 />
                 <span className={styles.slider}></span>

@@ -169,8 +169,7 @@ input:checked + .slider:before {
 
 @media (max-width: 480px) {
     .headerContainer {
-        justify-content: center;
-        position: relative;
+        height: 60px;
     }
 
     .centerLogo {
@@ -191,7 +190,8 @@ input:checked + .slider:before {
 
     .mobileMenu {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-evenly;
         position: absolute;
         top: 60px;
         left: 0;
