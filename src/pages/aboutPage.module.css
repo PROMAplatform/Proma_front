@@ -56,9 +56,13 @@
     }
 
     .contentContainer {
-        padding: 10px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
     .contentContainer h1 {
+        padding-left: 30px;
+        padding-right: 30px;
+
         font-size: 45px;
         font-weight: 800;
     }

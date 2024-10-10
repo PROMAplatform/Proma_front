@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { H1, B1 } from "../styles/font-styles";
 import NavigateButton from "../components/common/NavigateButton";
 import styles from "./aboutPage.module.css";
 import { useTranslation } from "react-i18next";
