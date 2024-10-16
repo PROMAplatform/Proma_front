@@ -35,7 +35,7 @@ communityIntstance.defaults.baseURL += "/posts";
 applyInterceptors(communityIntstance);
 
 const publicIntstance = axios.create(defaultInstance.defaults);
-communityIntstance.defaults.baseURL += "/public";
+publicIntstance.defaults.baseURL += "/public";
 
 // const authInstance = axios.create(defaultInstance.defaults);
 // authInstance.defaults.baseURL += "/auth";
