@@ -28,7 +28,6 @@ function CategoryButton({ selectCategory, setSelectCategory }) {
             : allCategories.filter((category) => category !== "전체");
 
     useEffect(() => {
-        console.log(filteredCategories);
         setSelectCategory(selectedCategory);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedCategory, modalState, setSelectedCategory, filteredCategories]);

@@ -56,7 +56,6 @@ function ButtonSection({post, block, onClose}) {
             setStateChange(prevValue => prevValue + 1);
 
             onClose();
-            console.log("프로젝트 게시글 스크랩 : ", post.postId);
         } else {
             navigate("/login");
             onClose();
@@ -68,21 +67,13 @@ function ButtonSection({post, block, onClose}) {
         setStateChange(prevValue => prevValue + 1);
 
         onClose();
-        console.log("프로젝트 게시글 삭제 : ", post.postId);
     }
 
     function handleFix(data) {
         fixSharePost(post.postId, data);
         setStateChange(prevValue => prevValue + 1);
 
-        console.log({
-            postTitle: data.title,
-            postDescription: data.description,
-            post_category: data.category,
-        });
-
         onClose();
-        console.log("프로젝트 게시글 수정 : ", post.postId);
     }
 
     return (

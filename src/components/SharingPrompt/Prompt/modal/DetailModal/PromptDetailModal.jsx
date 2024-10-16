@@ -37,7 +37,6 @@ function PromptDetailModal({ close, post }) {
     });
 
     const handleClose = () => {
-        console.log("닫기");
         close();
     };
 

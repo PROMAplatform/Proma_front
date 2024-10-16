@@ -38,13 +38,6 @@ function MyFilterSection() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectCategory, sortOrder, isMyPageState, isStateChange, selectedPromptMethod]);
 
-    console.log({
-        params: {
-            category: selectCategory === "전체" ? "" : selectCategory,
-            sort: sortOrder,
-        },
-    });
-
     const handleSelectChange = (event) => {
         setSelectedPromptMethod(event.target.value);
     };
