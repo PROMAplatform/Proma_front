@@ -97,7 +97,7 @@ export const useCommunityHooks = () => {
                 //params.latest = "";
             }
 
-            const response = await sendRequest(publicIntstance, "get", "/preview", {
+            const response = await sendRequest(publicIntstance, "get", "/posts", {
                 params
             });
 
