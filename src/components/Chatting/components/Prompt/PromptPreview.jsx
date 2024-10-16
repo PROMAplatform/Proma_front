@@ -10,26 +10,34 @@ import { t } from "i18next";
 function PromptPreview() {
     const currentPrompt = useRecoilValue(currentPromptState);
     const setCurrentPrompt = useSetRecoilState(currentPromptState);
+
     function onDeleteHandler() {
         setCurrentPrompt(null);
     }
+
     return (
-        <div className={styles.container} data-tour="currentPrompt">
+        <div
+            className={`${styles.container} ${currentPrompt ? styles.containerActive : ""}`}
+            data-tour="currentPrompt"
+        >
             <div className={styles.iconContainer}>
                 <img src={blockIcon} alt="block" />
             </div>
             {currentPrompt ? (
                 <>
-                    <B5 color="gray6" className={styles.text}>
+                    <B5 className={styles.text}>
                         '{currentPrompt.name}'{" "}
                         {t(`input.currentPromptIntroduce`)}
                     </B5>
-                    <img src={clearIcon} alt="x" className={styles.clearIcon} onClick={onDeleteHandler}/>
+                    <img
+                        src={clearIcon}
+                        alt="x"
+                        className={styles.clearIcon}
+                        onClick={onDeleteHandler}
+                    />
                 </>
             ) : (
-                <B5 color="gray6" className={styles.text}>
-                    {t(`main.promptClickIntend`)}
-                </B5>
+                <B5 className={styles.text}>{t(`main.promptClickIntend`)}</B5>
             )}
         </div>
     );
