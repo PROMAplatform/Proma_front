@@ -14,25 +14,28 @@ const defaultAIInstance = axios.create({
 });
 // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
 
-//규진
-const promptInstance = axios.create(defaultInstance.defaults);
-promptInstance.defaults.baseURL += "/prompt";
+const blockInstance = axios.create(defaultInstance.defaults);
+blockInstance.defaults.baseURL += "/blocks";
+applyInterceptors(blockInstance);
 
+const promptInstance = axios.create(defaultInstance.defaults);
+promptInstance.defaults.baseURL += "/prompts";
 applyInterceptors(promptInstance);
 
-//규진
 const aiChatInstance = axios.create(defaultAIInstance.defaults);
 aiChatInstance.defaults.baseURL += "/llm";
 applyInterceptors(aiChatInstance);
-//규진, 정선
-const chattingInstance = axios.create(defaultInstance.defaults);
-chattingInstance.defaults.baseURL += "/chatting";
 
+const chattingInstance = axios.create(defaultInstance.defaults);
+chattingInstance.defaults.baseURL += "/chatrooms";
 applyInterceptors(chattingInstance);
 
-//동현
 const communityIntstance = axios.create(defaultInstance.defaults);
-communityIntstance.defaults.baseURL += "/community";
+communityIntstance.defaults.baseURL += "/posts";
+applyInterceptors(communityIntstance);
+
+const publicIntstance = axios.create(defaultInstance.defaults);
+communityIntstance.defaults.baseURL += "/public";
 
 // const authInstance = axios.create(defaultInstance.defaults);
 // authInstance.defaults.baseURL += "/auth";
@@ -42,8 +45,10 @@ communityIntstance.defaults.baseURL += "/community";
 
 export {
     defaultInstance,
+    blockInstance,
     promptInstance,
     aiChatInstance,
     chattingInstance,
     communityIntstance,
+    publicIntstance,
 };

@@ -5,7 +5,7 @@ import {
     messageState,
 } from "../../recoil/chatting/chattingRecoilState";
 import { sendRequest } from "../request";
-import { aiChatInstance, chattingInstance } from "../instance";
+import {aiChatInstance, chattingInstance, promptInstance} from "../instance";
 import { promptListState } from "../../recoil/prompt/promptRecoilState";
 
 // import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
@@ -54,12 +54,12 @@ export const useChattingRoomHooks = () => {
     // ];
 
     //채팅방 리스트 가져오기
-    const getChattingRoomList = async (roomId) => {
+    const getChattingRoomList = async () => {
         const response = await sendRequest(
             chattingInstance,
             "get",
-            `/sidebar/room/list${mockUserId}`,
-            roomId,
+            ``,
+            //roomId,
         );
         if (response.data.success) {
             await setChattingRoomList(response.data.responseDto.selectChatroom);
@@ -70,7 +70,7 @@ export const useChattingRoomHooks = () => {
         const response = await sendRequest(
             chattingInstance,
             "get",
-            `/${roomId}${mockUserId}`,
+            `/${roomId}`,
         );
         if (response.data.success) {
             setMessages(response.data.responseDto.selectChatting);
@@ -82,7 +82,7 @@ export const useChattingRoomHooks = () => {
             const response = await sendRequest(
                 chattingInstance,
                 "post",
-                `/sidebar/room/save${mockUserId}`,
+                ``,
                 {
                     roomTitle: roomTitle,
                     emoji: emoji,
@@ -104,7 +104,7 @@ export const useChattingRoomHooks = () => {
         await sendRequest(
             chattingInstance,
             "patch",
-            `/sidebar/room/emoji/${chatroomId}${mockUserId}`,
+            `/${chatroomId}/emojis`,
             {
                 emoji,
             },
@@ -115,24 +115,24 @@ export const useChattingRoomHooks = () => {
         await sendRequest(
             chattingInstance,
             "delete",
-            `/sidebar/room/${chatroomId}${mockUserId}`,
+            `/${chatroomId}`,
         );
     };
 
     const fetchPromptList = async () => {
         const response = await sendRequest(
-            chattingInstance,
+            promptInstance,
             "get",
-            `/sidebar/prompt/list${mockUserId}`,
+            ``,
         );
         setPromptList(response.data.responseDto.selectPrompt);
     };
 
     const deletePrompt = async (promptId) => {
         await sendRequest(
-            chattingInstance,
+            promptInstance,
             "delete",
-            `/sidebar/prompt/${promptId}${mockUserId}`,
+            `/${promptId}`,
         );
         setPromptList((oldPromptList) =>
             oldPromptList.filter((prompt) => prompt.promptId !== promptId),
@@ -141,9 +141,9 @@ export const useChattingRoomHooks = () => {
 
     const patchPromptEmoji = async (promptId, emoji) => {
         await sendRequest(
-            chattingInstance,
+            promptInstance,
             "patch",
-            `/sidebar/prompt/emoji/${promptId}${mockUserId}`,
+            `/${promptId}/emojis`,
             { emoji },
         );
     };
@@ -154,9 +154,9 @@ export const useChattingRoomHooks = () => {
         promptCategory,
     ) => {
         await sendRequest(
-            chattingInstance,
+            promptInstance,
             "delete",
-            `/sidebar/prompt/${promptId}${mockUserId}`,
+            `/${promptId}`,
             {
                 promptId,
                 promptTitle,
@@ -174,9 +174,9 @@ export const useChattingRoomHooks = () => {
         promptCategory,
     ) => {
         await sendRequest(
-            chattingInstance,
+            promptInstance,
             "patch",
-            `/sidebar/prompt/${promptId}${mockUserId}`,
+            `/${promptId}`,
             {
                 promptId,
                 promptTitle,
@@ -201,14 +201,14 @@ export const useChattingRoomHooks = () => {
 
     // 프롬프트 블록 수정
     const patchPromptBlock = async (
-        promptId, 
+        promptId,
         listPromptAtom,
         promptPreview
     ) => {
         await sendRequest(
-            chattingInstance,
+            promptInstance,
             "patch",
-            `/prompt/block/${promptId}${mockUserId}`,
+            `/${promptId}/blocks`,
             {
                 listPromptAtom,
                 promptPreview,
@@ -217,10 +217,10 @@ export const useChattingRoomHooks = () => {
         setPromptList((oldPromptList) =>
             oldPromptList.map((prompt) => {
                 if (prompt.promptId === promptId) {
-                    return { 
-                        ...prompt, 
-                        listPromptAtom, 
-                        promptPreview 
+                    return {
+                        ...prompt,
+                        listPromptAtom,
+                        promptPreview
                     };
                 }
                 return prompt;
@@ -232,7 +232,7 @@ export const useChattingRoomHooks = () => {
         await sendRequest(
             chattingInstance,
             "get",
-            `/${chatroomId}${mockUserId}`,
+            `/${chatroomId}`,
         );
     };
 
