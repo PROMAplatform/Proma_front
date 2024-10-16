@@ -108,11 +108,11 @@ export const usePromptHook = () => {
     };
 
     const fetchBlocks = async (promptMethod) => {
-        //CHARACTER
+        const query = promptMethod ? `?promptMethod=${promptMethod}` : "";
         const response = await sendRequest(
             blockInstance,
             "get",
-            `?promptMethod=${promptMethod}`,
+            query,
         );
         await updatePromptStructureFromApiData(response.data);
     };
