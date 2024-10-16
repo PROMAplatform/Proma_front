@@ -112,7 +112,7 @@ export const usePromptHook = () => {
         const response = await sendRequest(
             blockInstance,
             "get",
-            `promptMethod=${promptMethod}`,
+            `?promptMethod=${promptMethod}`,
         );
         await updatePromptStructureFromApiData(response.data);
     };
