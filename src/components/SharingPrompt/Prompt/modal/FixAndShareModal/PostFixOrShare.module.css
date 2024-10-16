@@ -17,10 +17,10 @@
     flex-direction: column;
     justify-items: left;
 
-    padding: 2vw;
+    padding: 20px;
 
-    width: 30vw;
-    height: 80vh;
+    width: 600px;
+    height: 700px;
     border-radius: 20px;
     background: #fff;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
@@ -45,16 +45,15 @@
 }
 
 .blockSection {
-    margin-top: 4vh;
-    width: 15vw;
-    height: 25vh;
+    margin: 20px auto;
+    margin-bottom: auto;
+
+    width: auto;
+    height: auto;
 
     justify-content: center;
     justify-items: center;
     text-align: center;
-
-    margin-left: 10vw;
-    margin-right: auto;
 }
 
 .titleSection {
@@ -65,17 +64,19 @@
 .buttonSection {
     display: flex;
     justify-items: center;
+
+    margin-top: 20px;
 }
 
 .inputTextBox {
-    margin-top: 1vh;
-    margin-bottom: 1vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
 
     border: none;
     border-radius: 10px;
     background: #f4f4f4;
 
-    padding: 0.5vw;
+    padding: 10px;
 
     color: #393939;
 
@@ -88,15 +89,15 @@
 
 .inputTextBoxEx {
     resize: none;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    height: 20vh;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 150px;
 
     border: none;
     border-radius: 10px;
     background: #F4F4F4;
 
-    padding: 0.5vw;
+    padding: 10px;
 
     color: #393939;
 
@@ -120,39 +121,4 @@
     background-color: rgba(84, 63, 214, 0.5);
     border-radius: 10px;
     box-shadow: inset 0px 0px 5px white;
-}
-
-.categoryContainer {
-    display: flex;
-    gap: 10px;
-    margin: 1vh;
-
-    align-items: center;
-    justify-content: center;
-}
-
-.categoryButton {
-    border-radius: 10px;
-    border: 1.5px solid #5a5a5a;
-    padding: 5px 10px;
-    background-color: #fff;
-    cursor: pointer;
-
-    color: #5a5a5a;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-.active {
-    border-radius: 10px;
-    border: 1px solid #543fd6;
-    background-color: #543fd6;
-
-    color: #fff;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
 }

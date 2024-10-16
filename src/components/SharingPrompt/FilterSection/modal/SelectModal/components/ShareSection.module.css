@@ -5,7 +5,7 @@
     margin: auto;
 
     width: 80%;
-    height: 25vh;
+    height: 250px;
 
     overflow: auto;
 }
@@ -26,10 +26,10 @@
 }
 
 .shareButton {
-    margin-top: 1vh;
+    margin-top: 15px;
 
     display: inline-flex;
-    height: 6vh;
+    height: 40px;
     padding: 1vh 4vw;
     justify-content: center;
     align-items: center;

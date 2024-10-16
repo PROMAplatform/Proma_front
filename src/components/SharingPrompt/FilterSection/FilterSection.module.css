@@ -11,9 +11,9 @@
     align-items: center;
     gap: 16px;
     flex-shrink: 0;
-    padding: 1vh 1vw;
-    width: 45vw;
-    height: 5vh;
+    padding: 10px 20px;
+    width: 700px;
+    height: 45px;
     margin: 3vh;
     border-radius: 100px;
     border: 1px solid #000000;

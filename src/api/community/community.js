@@ -25,6 +25,7 @@ export const useCommunityHooks = () => {
         searchQuery,
         currentPage,
         selectedMethod,
+        size,
     ) => {
         applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
@@ -34,7 +35,7 @@ export const useCommunityHooks = () => {
                 category: selectedCategory,
                 search: searchQuery,
                 page: currentPage,
-                size: 9,
+                size: size,
                 method: selectedMethod,
             };
 
@@ -77,6 +78,7 @@ export const useCommunityHooks = () => {
         searchQuery,
         currentPage,
         selectedMethod,
+        size,
     ) => {
         setIsLoadingcommunity(true);
         try {
@@ -85,7 +87,7 @@ export const useCommunityHooks = () => {
                 category: selectedCategory,
                 search: searchQuery,
                 page: currentPage,
-                size: 9,
+                size: size,
                 method: selectedMethod,
             };
 

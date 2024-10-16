@@ -26,12 +26,15 @@ function FilterSection() {
     };
     const { getCommunityPreviewPromptList, getCommunityPromptList, getMakePromptList } = useCommunityHooks();
     const userName = localStorage.getItem("userName");
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const [selectedPromptMethod, setSelectedPromptMethod] = useState(''); // 선택된 값 저장
 
-    const handleSelectChange = (event) => {
-        setSelectedPromptMethod(event.target.value);
-    };
+    useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
     const handleListModal = () => {
         if (userName) {
@@ -47,37 +50,17 @@ function FilterSection() {
         }
     };
 
+    const handleSelectChange = (event) => {
+        setSelectedPromptMethod(event.target.value);
+    };
+
     const handleSearchInputChange = (e) => {
         setSearchQuery(e.target.value);
     };
 
-    const handleSearchKeyDown = (e) => {
-        if (e.key === "Enter") {
-            e.preventDefault(); // 엔터 키 기본 동작(폼 제출 등) 방지
-            let categoryParam =
-                selectCategory === "전체" ? null : selectCategory;
-
-            if (userName === null) {
-                getCommunityPreviewPromptList(
-                    categoryParam,
-                    sortOrder,
-                    searchQuery,
-                    currentPage,
-                    selectedPromptMethod,
-                );
-            } else {
-                getCommunityPromptList(
-                    categoryParam,
-                    sortOrder,
-                    searchQuery,
-                    currentPage,
-                    selectedPromptMethod,
-                );
-            }
-        }
-    };
-
     useEffect(() => {
+        const size = windowWidth > 1100 ? 9 : 8;
+
         const delayDebounceFn = setTimeout(() => {
             let categoryParam =
                 selectCategory === "전체" ? null : selectCategory;
@@ -89,6 +72,7 @@ function FilterSection() {
                     searchQuery,
                     currentPage,
                     selectedPromptMethod,
+                    size,
                 );
             } else {
                 getCommunityPromptList(
@@ -97,21 +81,14 @@ function FilterSection() {
                     searchQuery,
                     currentPage,
                     selectedPromptMethod,
+                    size,
                 );
             }
         }, 300);
 
         return () => clearTimeout(delayDebounceFn);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedPromptMethod, selectCategory, sortOrder, searchQuery, isStateChange]);
-
-    console.log({
-        params: {
-            category: selectCategory === "전체" ? "" : selectCategory,
-            sort: sortOrder,
-            method: selectedPromptMethod,
-        },
-    });
+    }, [selectedPromptMethod, selectCategory, sortOrder, searchQuery, isStateChange, windowWidth]);
 
     return (
         <div>
@@ -122,7 +99,6 @@ function FilterSection() {
                     placeholder={t(`community.search`)}
                     value={searchQuery}
                     onChange={handleSearchInputChange}
-                    onKeyDown={handleSearchKeyDown}
                 />
             </div>
             <div className={styles.sortSection}>

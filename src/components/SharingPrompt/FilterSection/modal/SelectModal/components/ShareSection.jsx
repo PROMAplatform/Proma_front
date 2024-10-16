@@ -56,17 +56,6 @@ function ShareSection({ onClose }) {
     const handleWrite = (data, promptId) => {
         sharePrompt(promptId, data);
         setStateChange((prevValue) => prevValue + 1);
-
-        console.log({ modalStack });
-        console.log(currentPage);
-
-        console.log({
-            postTitle: data.title,
-            postDescription: data.description,
-            postCategory: data.category,
-            promptId: promptId,
-        });
-
         onClose();
     };
 
