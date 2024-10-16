@@ -4,13 +4,12 @@ import ComPromptListItem from "./ComPromptListItem";
 import { useRecoilValue } from "recoil";
 import {
     communityPromptListState,
-    modalStackState,
 } from "../../../recoil/community/communityRecoilState";
 import EmptyPromptListItem from "./components/EmptyPromptListItem";
 
 function SharePromptList() {
     const postList = useRecoilValue(communityPromptListState);
-    const modalStack = useRecoilValue(modalStackState);
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [filledPostList, setFilledPostList] = useState([]);
     const [gridClassName, setGridClassName] = useState(styles.threeItems);
@@ -34,7 +33,8 @@ function SharePromptList() {
                   )
                 : Array.from({ length: size }, () => null),
         );
-    }, [postList]);
+    }, [postList, windowWidth]);
+
 
     return (
         <>

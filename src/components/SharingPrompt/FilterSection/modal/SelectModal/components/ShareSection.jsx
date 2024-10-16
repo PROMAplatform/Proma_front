@@ -8,7 +8,6 @@ import { H5 } from "../../../../../../styles/font-styles";
 import { useModalStack } from "../../../../../../hooks/useModalStack";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
-    communityPromptListPageState,
     makePromptListState,
     stateChange,
 } from "../../../../../../recoil/community/communityRecoilState";
@@ -24,7 +23,6 @@ function ShareSection({ onClose }) {
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const setStateChange = useSetRecoilState(stateChange);
-    const currentPage = useRecoilValue(communityPromptListPageState);
     const modalStack = useModalStack();
     const { sharePrompt, getPromptDetail } = useCommunityHooks();
 
