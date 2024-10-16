@@ -8,7 +8,7 @@ import promaChattingProfile from "../../../../assets/images/promaChattingProfile
 import SkeletonMessage from "./SkeletonMessage";
 import filePreview from "../../../../assets/images/filePreview.svg";
 import MarkdownRenderer from "./MarkdownRenderer";
-import { B6 } from "../../../../styles/font-styles";
+// import { B6 } from "../../../../styles/font-styles";
 import styles from "./ChattingMessages.module.css";
 
 function ChattingMessages() {
@@ -91,9 +91,9 @@ function ChattingMessages() {
                                         className={styles.image}
                                     />
                                 </a>
-                                <B6 color="gray7" className={styles.fileName}>
+                                {/* <B6 color="gray7" className={styles.fileName}>
                                     {getFileName(message.messageFile)}
-                                </B6>
+                                </B6> */}
                             </div>
                         )}
                         {message.messageQuestion && (
