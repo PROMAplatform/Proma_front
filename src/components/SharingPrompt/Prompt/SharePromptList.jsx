@@ -9,6 +9,7 @@ import EmptyPromptListItem from "./components/EmptyPromptListItem";
 
 function SharePromptList() {
     const postList = useRecoilValue(communityPromptListState);
+
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [filledPostList, setFilledPostList] = useState([]);
     const [gridClassName, setGridClassName] = useState(styles.threeItems);
@@ -33,6 +34,7 @@ function SharePromptList() {
                 : Array.from({ length: size }, () => null),
         );
     }, [postList, windowWidth]);
+
 
     return (
         <>
