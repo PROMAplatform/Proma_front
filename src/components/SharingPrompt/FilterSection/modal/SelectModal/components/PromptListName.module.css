@@ -1,7 +1,7 @@
 .container {
     display: flex;
 
-    padding: 1vh 0.5vw 1vh 0.3vw;
+    padding: 10px 5px 10px 3px;
     align-items: center;
 
     border: 0;
@@ -15,7 +15,7 @@
 .active {
     display: flex;
 
-    padding: 1vh 0.5vw 1vh 0.3vw;
+    padding: 10px 5px 10px 3px;
     align-items: center;
 
     border-radius: 0.5vw;
