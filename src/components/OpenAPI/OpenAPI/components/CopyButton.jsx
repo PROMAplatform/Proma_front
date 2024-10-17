@@ -9,7 +9,6 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 function CopyButton({ category, text }) {
     const [snackbarOpen, setSnackbarOpen] = useState(false);
-    const [copied, setCopied] = useState(false);
 
     const handleSnackbarClose = (event, reason) => {
         if (reason === "clickaway") {
@@ -22,7 +21,6 @@ function CopyButton({ category, text }) {
         navigator.clipboard
             .writeText(text)
             .then(() => {
-                setCopied(true);
                 setSnackbarOpen(true);
             })
             .catch((err) => console.errer("Failed to copy"));
