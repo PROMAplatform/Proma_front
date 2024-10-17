@@ -5,7 +5,7 @@ import {
     messageState,
 } from "../../recoil/chatting/chattingRecoilState";
 import { sendRequest } from "../request";
-import {aiChatInstance, chattingInstance, promptInstance} from "../instance";
+import { aiChatInstance, chattingInstance, promptInstance } from "../instance";
 import { promptListState } from "../../recoil/prompt/promptRecoilState";
 
 // import { getUserIdInLocalStorage } from "../../util/localStorageUtil";
@@ -79,15 +79,10 @@ export const useChattingRoomHooks = () => {
     //채팅방 생성
     const createChattingRoom = async (roomTitle, emoji) => {
         try {
-            const response = await sendRequest(
-                chattingInstance,
-                "post",
-                ``,
-                {
-                    roomTitle: roomTitle,
-                    emoji: emoji,
-                },
-            );
+            const response = await sendRequest(chattingInstance, "post", ``, {
+                roomTitle: roomTitle,
+                emoji: emoji,
+            });
             if (response.data.success) {
                 console.log("성공");
                 setCurrentRoomId(response.data.responseDto.roomId);
@@ -101,51 +96,31 @@ export const useChattingRoomHooks = () => {
 
     //채팅방 이모지 수정
     const patchChattingRoomEmoji = async (chatroomId, emoji) => {
-        await sendRequest(
-            chattingInstance,
-            "patch",
-            `/${chatroomId}/emojis`,
-            {
-                emoji,
-            },
-        );
+        await sendRequest(chattingInstance, "patch", `/${chatroomId}/emojis`, {
+            emoji,
+        });
     };
     //채팅 방 삭제
     const deleteChattingRoom = async (chatroomId, emoji) => {
-        await sendRequest(
-            chattingInstance,
-            "delete",
-            `/${chatroomId}`,
-        );
+        await sendRequest(chattingInstance, "delete", `/${chatroomId}`);
     };
 
     const fetchPromptList = async () => {
-        const response = await sendRequest(
-            promptInstance,
-            "get",
-            ``,
-        );
+        const response = await sendRequest(promptInstance, "get", ``);
         setPromptList(response.data.responseDto.selectPrompt);
     };
 
     const deletePrompt = async (promptId) => {
-        await sendRequest(
-            promptInstance,
-            "delete",
-            `/${promptId}`,
-        );
+        await sendRequest(promptInstance, "delete", `/${promptId}`);
         setPromptList((oldPromptList) =>
             oldPromptList.filter((prompt) => prompt.promptId !== promptId),
         );
     };
 
     const patchPromptEmoji = async (promptId, emoji) => {
-        await sendRequest(
-            promptInstance,
-            "patch",
-            `/${promptId}/emojis`,
-            { emoji },
-        );
+        await sendRequest(promptInstance, "patch", `/${promptId}/emojis`, {
+            emoji,
+        });
     };
     const patchPrompt = async (
         promptId,
@@ -153,17 +128,12 @@ export const useChattingRoomHooks = () => {
         promptDescription,
         promptCategory,
     ) => {
-        await sendRequest(
-            promptInstance,
-            "delete",
-            `/${promptId}`,
-            {
-                promptId,
-                promptTitle,
-                promptDescription,
-                promptCategory,
-            },
-        );
+        await sendRequest(promptInstance, "delete", `/${promptId}`, {
+            promptId,
+            promptTitle,
+            promptDescription,
+            promptCategory,
+        });
     };
 
     // 프롬프트 정보 수정
@@ -173,17 +143,12 @@ export const useChattingRoomHooks = () => {
         promptDescription,
         promptCategory,
     ) => {
-        await sendRequest(
-            promptInstance,
-            "patch",
-            `/${promptId}`,
-            {
-                promptId,
-                promptTitle,
-                promptDescription,
-                promptCategory,
-            },
-        );
+        await sendRequest(promptInstance, "patch", `/${promptId}`, {
+            promptId,
+            promptTitle,
+            promptDescription,
+            promptCategory,
+        });
         setPromptList((oldPromptList) =>
             oldPromptList.map((prompt) => {
                 if (prompt.promptId === promptId) {
@@ -203,37 +168,29 @@ export const useChattingRoomHooks = () => {
     const patchPromptBlock = async (
         promptId,
         listPromptAtom,
-        promptPreview
+        promptPreview,
     ) => {
-        await sendRequest(
-            promptInstance,
-            "patch",
-            `/${promptId}/blocks`,
-            {
-                listPromptAtom,
-                promptPreview,
-            },
-        );
-        setPromptList((oldPromptList) =>
-            oldPromptList.map((prompt) => {
-                if (prompt.promptId === promptId) {
-                    return {
-                        ...prompt,
-                        listPromptAtom,
-                        promptPreview
-                    };
-                }
-                return prompt;
-            }),
-        );
+        await sendRequest(promptInstance, "patch", `/${promptId}/blocks`, {
+            listPromptAtom,
+            promptPreview,
+        });
+        await fetchPromptList();
+        // setPromptList((oldPromptList) =>
+        //     oldPromptList.map((prompt) => {
+        //         if (prompt.promptId === promptId) {
+        //             return {
+        //                 ...prompt,
+        //                 listPromptAtom,
+        //                 promptPreview
+        //             };
+        //         }
+        //         return prompt;
+        //     }),
+        // );
     };
 
     const fetchChattingMessages = async (chatroomId) => {
-        await sendRequest(
-            chattingInstance,
-            "get",
-            `/${chatroomId}`,
-        );
+        await sendRequest(chattingInstance, "get", `/${chatroomId}`);
     };
 
     const fetchChattingAnswer = async (
