@@ -51,3 +51,14 @@ th {
     border-left: none;
     border-right: none;
 }
+
+.reissueContainer {
+    text-align: center;
+}
+
+.reissueButton {
+    border: 1px solid var(--block-main-color);
+    border-radius: 3px;
+    background-color: white;
+    color: var(--block-main-color);
+}

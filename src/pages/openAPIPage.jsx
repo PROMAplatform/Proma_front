@@ -1,44 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SquareButton from "../components/OpenAPI/SquareButton";
 import styles from "./openAPIPage.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import OpenAPIInfo from "../components/OpenAPI/OpenAPIInfo";
-import UseGuide from "../components/OpenAPI/UseGuide";
-import OpenAPIList from "../components/OpenAPI/OpenAPIList";
-import APISpecification from "../components/OpenAPI/OpenAPIDocs/APISpecification";
-import { H3 } from "../styles/font-styles";
+import PromaAPIList from "../components/OpenAPI/PromaAPI/PromaAPIList";
+import { useRecoilValue } from "recoil";
+import { promptListState } from "../recoil/prompt/promptRecoilState";
+import PromptDetailTable from "../components/OpenAPI/PromaAPI/PromptDetailTable";
 
 function OpenAPIPage() {
     const location = useLocation();
     const navigate = useNavigate();
+    const [currentPrompt, setCurrentPrompt] = useState(null);
+    const promptList = useRecoilValue(promptListState);
     const accessToken = location.state?.accessToken ?? null;
     const secretKey = location.state?.secretKey ?? null;
+    const promptId = location.state?.promptId ?? null;
 
     const handleMainClick = () => {
         navigate("/openapi");
     };
 
+    const handleDocsClick = () => {
+        navigate("/openapi/docs");
+    };
+
+    useEffect(() => {
+        if (promptId) {
+            setCurrentPrompt(promptList.find((p) => p.promptId === promptId));
+        }
+    }, [promptId, promptList]);
+
     return (
         <div className={styles.container}>
-            <div className={styles.header}>
+            <div className={styles.headerContainer}>
                 {accessToken && secretKey ? (
-                    <H3>PROMA API 발급 완료</H3>
+                    <p className={styles.header}>PROMA API 발급 완료</p>
                 ) : (
-                    <H3>PROMA API 목록</H3>
+                    <p className={styles.header}>PROMA API 목록</p>
                 )}
+                <hr className={styles.line} />
+                <p className={styles.headerContent}>
+                    발급한 PROMA API에 대한 내용을 확인하세요!
+                </p>
             </div>
-            {accessToken && secretKey ? (
+            {accessToken && secretKey && currentPrompt ? (
                 <div className={styles.contentContainer}>
-                    <p>
-                        PROMA API 키가 발급되었습니다! 아래의 사용 안내를
-                        참고해주세요.
-                    </p>
+                    <PromptDetailTable prompt={currentPrompt} />
                     <OpenAPIInfo
                         accessToken={accessToken}
                         secretKey={secretKey}
                     />
-                    <UseGuide />
-                    <APISpecification />
                     <SquareButton
                         title="메인으로"
                         variant="primary"
@@ -47,15 +59,19 @@ function OpenAPIPage() {
                 </div>
             ) : (
                 <div className={styles.contentContainer}>
-                    <p>현재까지 발급한 PROMA API 키에 대한 정보입니다.</p>
-                    <OpenAPIList />
-                    <UseGuide />
-                    <APISpecification />
-                    <SquareButton
-                        title="메인으로"
-                        variant="primary"
-                        onClick={handleMainClick}
-                    />
+                    <PromaAPIList />
+                    <div className={styles.buttonContainer}>
+                        <SquareButton
+                            title="메인으로"
+                            variant="primary"
+                            onClick={handleMainClick}
+                        />
+                        <SquareButton
+                            title="사용 가이드"
+                            variant="secondary"
+                            onClick={handleDocsClick}
+                        />
+                    </div>
                 </div>
             )}
         </div>

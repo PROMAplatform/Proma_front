@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useOpenAPIHook } from "../../api/business/openAPI";
-import { openapiListState } from "../../recoil/openapi/openapiState";
-import CopyButton from "./CopyButton";
+import { useOpenAPIHook } from "../../../api/business/openAPI";
+import { openapiListState } from "../../../recoil/openapi/openapiState";
+import CopyButton from "../CopyButton";
 import { useRecoilValue } from "recoil";
-import PromptDetailModal from "./PromptDetailModal";
-import styles from "./OpenAPIList.module.css";
-import { H4 } from "../../styles/font-styles";
-function OpenAPIList() {
+import { H4 } from "../../../styles/font-styles";
+import PromptDetailModal from "../PromptDetailModal";
+import styles from "./PromaAPIList.module.css";
+function PromaAPIList() {
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
     const [selectedPromptId, setSelectedPromptId] = useState(null);
-    const { fetchOpenAPIList } = useOpenAPIHook();
+    const { fetchOpenAPIList, makeOpenAPI } = useOpenAPIHook();
     const openapiList = useRecoilValue(openapiListState);
 
     useEffect(() => {
@@ -17,26 +17,36 @@ function OpenAPIList() {
             await fetchOpenAPIList();
         };
         fetchDate();
-    }, []);
+    }, [openapiList]);
 
     const handleTitleClick = (id) => {
         setSelectedPromptId(id);
         setIsDetailModalOpen(true);
     };
 
+    const reissueOpenAPI = (prompt) => {
+        const fetchData = async () => {
+            await makeOpenAPI(prompt.promptId);
+        };
+        fetchData();
+        alert(`[${prompt.promptTitle}] API가 재발행되었습니다! `);
+    };
+
     return (
         <div className={styles.container}>
-            <H4>PROMA API 키 목록</H4>
+            <H4>PROMA API 목록 관리</H4>
             <table>
                 <colgroup>
                     <col style={{ width: "30%" }} />
-                    <col style={{ width: "60%" }} />
+                    <col style={{ width: "50%" }} />
+                    <col style={{ width: "auto" }} />
                     <col style={{ width: "auto" }} />
                 </colgroup>
                 <thead>
                     <tr>
                         <th>프롬프트 이름</th>
                         <th colSpan="2">키 정보</th>
+                        <th>재발급</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,6 +73,17 @@ function OpenAPIList() {
                                         text={prompt.apiToken}
                                     />
                                 </td>
+                                <td
+                                    rowSpan="2"
+                                    className={styles.reissueContainer}
+                                >
+                                    <button
+                                        onClick={() => reissueOpenAPI(prompt)}
+                                        className={styles.reissueButton}
+                                    >
+                                        재발급
+                                    </button>
+                                </td>
                             </tr>
                             <tr>
                                 <td className={styles.categoryContainer}>
@@ -87,4 +108,4 @@ function OpenAPIList() {
         </div>
     );
 }
-export default OpenAPIList;
+export default PromaAPIList;

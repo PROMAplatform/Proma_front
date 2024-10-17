@@ -1,4 +1,12 @@
 .container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.guideContainer {
     width: 100%;
     display: flex;
     flex-direction: column;

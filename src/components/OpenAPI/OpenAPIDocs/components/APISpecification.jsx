@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import styles from "./APISpecification.module.css";
-import requestExample from "../../../locales/openapiExample/requestExample.json";
-import responseExample from "../../../locales/openapiExample/responseExample.json";
-import { H4, B3 } from "../../../styles/font-styles";
+import requestExample from "../../../../locales/openapiExample/requestExample.json";
+import responseExample from "../../../../locales/openapiExample/responseExample.json";
+import { H4, B3 } from "../../../../styles/font-styles";
 
 const CodeBlock = ({ node, inline, className, children, ...props }) => {
     return (

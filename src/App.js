@@ -13,6 +13,7 @@ import ModalStack from "./components/SharingPrompt/modal/ModalStack";
 import SocialLoginPageAfter from "./components/Login/socialLoginPageAfter";
 import SocialLoginPage from "./pages/socialLoginPage";
 import AboutOpenAPIPage from "./pages/aboutOpenAPIPage";
+import OpenAPIDocsPage from "./pages/OpenAPIDocsPage";
 import OpenAPIPage from "./pages/openAPIPage";
 import "../src/locales/i18n";
 
@@ -39,6 +40,7 @@ function App() {
                     />
                     <Route path="/openapi" element={<AboutOpenAPIPage />} />
                     <Route path="/openapi/list" element={<OpenAPIPage />} />
+                    <Route path="openapi/docs" element={<OpenAPIDocsPage />} />
                 </Routes>
                 <ModalStack />
             </BrowserRouter>

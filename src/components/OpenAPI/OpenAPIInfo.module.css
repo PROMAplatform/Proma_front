@@ -9,7 +9,7 @@
     border: 1px solid var(--color-gray5);
     border-collapse: collapse;
     table-layout: fixed;
-    width: 80%;
+    width: 100%;
 }
 
 .dataContainer {

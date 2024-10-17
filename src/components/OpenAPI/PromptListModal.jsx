@@ -48,7 +48,7 @@ function PromptListModal({ isOpen, onClose }) {
             const { accessToken, secretKey } = await makeOpenAPI(promptId);
             onClose();
             navigate("/openapi/list", {
-                state: { accessToken, secretKey },
+                state: { accessToken, secretKey, promptId },
             });
         };
 
