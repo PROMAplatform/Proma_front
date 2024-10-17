@@ -32,6 +32,7 @@ function PromaAPIList() {
             await fetchOpenAPIList();
         };
         fetchDate();
+        // eslint-disable-next-line
     }, [openapiList]);
 
     const handleTitleClick = (id) => {
