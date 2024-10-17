@@ -1,3 +1,8 @@
 .detailContainer {
     margin: 0 auto;
 }
+
+.previewContainer {
+    max-height: 120px;
+    overflow-y: scroll;
+}

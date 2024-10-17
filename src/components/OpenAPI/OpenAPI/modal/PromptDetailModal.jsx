@@ -44,7 +44,7 @@ function PromptDetailModal({ isOpen, onClose, promptId }) {
                         </label>
                         <B4>{currentPrompt.promptDescription}</B4>
                     </div>
-                    <div>
+                    <div className={styles.previewContainer}>
                         <label htmlFor="promptPreview">
                             <H5>프롬프트 미리보기</H5>
                         </label>
