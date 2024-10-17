@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./SquareButton.module.css";
-import { B4 } from "../../styles/font-styles";
+import { B4 } from "../../../styles/font-styles";
 
 function SquareButton({ title, onClick, variant }) {
     return (

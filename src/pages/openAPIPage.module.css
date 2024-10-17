@@ -3,6 +3,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 92.5vh;
+    gap: 40px;
 }
 
 .headerContainer {
@@ -13,7 +15,8 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .header {
@@ -26,7 +29,7 @@
 .line {
     width: 40px;
     border: none;
-    height: 2px;
+    height: 1.5px;
     background-color: white;
 }
 
@@ -40,11 +43,9 @@
     width: 60%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     height: 100%;
     padding: 20px;
     gap: 50px;
-    min-height: 92.5vh;
     padding-bottom: 40px;
 }
 
@@ -57,5 +58,6 @@
 .buttonContainer {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 8px;
 }

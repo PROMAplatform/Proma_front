@@ -13,7 +13,7 @@ import ModalStack from "./components/SharingPrompt/modal/ModalStack";
 import SocialLoginPageAfter from "./components/Login/socialLoginPageAfter";
 import SocialLoginPage from "./pages/socialLoginPage";
 import AboutOpenAPIPage from "./pages/aboutOpenAPIPage";
-import OpenAPIDocsPage from "./pages/OpenAPIDocsPage";
+import OpenAPIDocsPage from "./pages/openAPIDocsPage";
 import OpenAPIPage from "./pages/openAPIPage";
 import "../src/locales/i18n";
 

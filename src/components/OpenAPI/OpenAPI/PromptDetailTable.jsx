@@ -1,10 +1,10 @@
-import { H4 } from "../../../styles/font-styles";
+import { B1 } from "../../../styles/font-styles";
 import styles from "./PromptDetailTable.module.css";
 
 function PromptDetailTable({ prompt }) {
     return (
-        <div className={styles.promptContainer}>
-            <H4>프롬프트 정보</H4>
+        <div className={styles.container}>
+            <B1>프롬프트 정보</B1>
             <table className={styles.tableContainer}>
                 <tr>
                     <th>프롬프트 이름</th>

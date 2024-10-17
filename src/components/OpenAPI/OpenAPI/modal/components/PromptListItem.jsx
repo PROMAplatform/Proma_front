@@ -1,6 +1,6 @@
-import blockIcon from "../../assets/images/blockIcon.svg";
+import blockIcon from "../../../../../assets/images/blockIcon.svg";
 import styles from "./PromptListItem.module.css";
-import { B4 } from "../../styles/font-styles";
+import { B4 } from "../../../../../styles/font-styles";
 function PromptListItem({ title, isSelected, onClick }) {
     return (
         <div

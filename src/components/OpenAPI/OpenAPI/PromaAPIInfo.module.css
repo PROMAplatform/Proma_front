@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
+
     gap: 10px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .container th {
-    text-align: right;
+    text-align: center;
     border: 1px solid var(--color-gray5);
     width: 100px;
     padding: 5px;

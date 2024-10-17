@@ -6,7 +6,7 @@ import openapiStepBig4 from "../../../../assets/images/openapiStep/openapiStepBi
 import openapiStepBig5 from "../../../../assets/images/openapiStep/openapiStepBig5.svg";
 import openapiStepBig6 from "../../../../assets/images/openapiStep/openapiStepBig6.svg";
 
-import { H4, B4 } from "../../../../styles/font-styles";
+import { B1, B4 } from "../../../../styles/font-styles";
 
 const StepContent = ({ step, content }) => {
     return (
@@ -33,7 +33,7 @@ function UseGuide() {
 
     return (
         <div className={styles.container}>
-            <H4>PROMA API 사용 가이드</H4>
+            <B1>PROMA API 사용 가이드</B1>
 
             <div className={styles.guideContainer}>
                 <div className={styles.stepContainer}>

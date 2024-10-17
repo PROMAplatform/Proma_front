@@ -119,5 +119,9 @@
     "login": {
         "login": "☺️ Additional features are available after logging in!",
         "social": "😋 Access in just 1 second with social login!"
+    },
+    "openapi": {
+        "proma": "PROMA",
+        "promaApi": "PROMA API"
     }
 }

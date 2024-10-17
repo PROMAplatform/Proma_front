@@ -1,23 +1,37 @@
-import ModalButton from "../common/ModalButton";
-import ModalContainer from "../common/ModalContainer";
+import ModalButton from "../../../common/ModalButton";
+import ModalContainer from "../../../common/ModalContainer";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PromptListItem from "./PromptListItem";
+import PromptListItem from "./components/PromptListItem";
 import { useRecoilValue } from "recoil";
-import { useChattingRoomHooks } from "../../api/chatting/chatting";
-import { promptListState } from "../../recoil/prompt/promptRecoilState";
+import { useChattingRoomHooks } from "../../../../api/chatting/chatting";
+import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
 import styles from "./PromptListModal.module.css";
-import { useOpenAPIHook } from "../../api/business/openAPI";
-import PromptDetail from "../common/Prompt/PromptDetail";
-import { H5, B4 } from "../../styles/font-styles";
+import { useOpenAPIHook } from "../../../../api/business/openAPI";
+import PromptDetail from "../../../common/Prompt/PromptDetail";
+import { H5, B4 } from "../../../../styles/font-styles";
+import { Snackbar } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
 import { useState } from "react";
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 function PromptListModal({ isOpen, onClose }) {
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
     const [selectedPromptId, setSelectedPromptId] = useState("");
     const [currentPrompt, setCurrentPrompt] = useState(null);
     const { makeOpenAPI } = useOpenAPIHook();
     const navigate = useNavigate();
+
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+        setSnackbarOpen(false);
+    };
 
     const { fetchPromptList } = useChattingRoomHooks();
 
@@ -52,11 +66,23 @@ function PromptListModal({ isOpen, onClose }) {
             });
         };
 
-        fetchData();
+        if (promptId) {
+            fetchData();
+        } else {
+            setSnackbarOpen(true);
+        }
     };
 
     if (!promptList || promptList.length === 0) {
-        return <div>프롬프트가 없습니다</div>;
+        return (
+            <ModalContainer
+                isOpen={isOpen}
+                onClose={onClose}
+                title="프롬프트 선택하기"
+            >
+                <div className={styles.emptyContainer}>프롬프트가 없습니다</div>
+            </ModalContainer>
+        );
     }
 
     return (
@@ -124,6 +150,18 @@ function PromptListModal({ isOpen, onClose }) {
                     onClick={handleSecondModalClose}
                 />
             </ModalContainer>
+            <div className={styles.snackbarContainer}>
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={3000}
+                    onClose={handleSnackbarClose}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                >
+                    <Alert onClose={handleSnackbarClose} severity="warning">
+                        API를 발급할 프롬프트를 선택하세요!
+                    </Alert>
+                </Snackbar>
+            </div>
         </>
     );
 }

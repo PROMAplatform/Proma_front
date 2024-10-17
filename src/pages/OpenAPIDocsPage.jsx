@@ -1,7 +1,7 @@
 import PromaAPIDocs from "../components/OpenAPI/OpenAPIDocs/PromaAPIDocs";
-import SquareButton from "../components/OpenAPI/SquareButton";
+import SquareButton from "../components/OpenAPI/components/SquareButton";
 import { useNavigate } from "react-router-dom";
-import styles from "./OpenAPIDocsPage.module.css";
+import styles from "./openAPIDocsPage.module.css";
 
 function OpenAPIDocsPage() {
     const navigate = useNavigate();
@@ -20,11 +20,13 @@ function OpenAPIDocsPage() {
             </div>
             <div className={styles.contentContainer}>
                 <PromaAPIDocs />
-                <SquareButton
-                    title="메인으로"
-                    variant="primary"
-                    onClick={handleMainClick}
-                />
+                <div className={styles.buttonContainer}>
+                    <SquareButton
+                        title="메인으로"
+                        variant="primary"
+                        onClick={handleMainClick}
+                    />
+                </div>
             </div>
         </div>
     );

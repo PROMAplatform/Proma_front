@@ -45,6 +45,7 @@ publicIntstance.defaults.baseURL += "/public";
 
 const openapiInstance = axios.create(defaultInstance.defaults);
 openapiInstance.defaults.baseURL += "/openapi";
+applyInterceptors(openapiInstance);
 
 export {
     defaultInstance,

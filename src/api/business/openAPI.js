@@ -1,4 +1,4 @@
-import { sendRequest, applyInterceptors } from "../request";
+import { sendRequest } from "../request";
 import { openapiListState } from "../../recoil/openapi/openapiState";
 import { useSetRecoilState } from "recoil";
 import { openapiInstance } from "../instance";
@@ -6,7 +6,6 @@ import { openapiInstance } from "../instance";
 export const useOpenAPIHook = () => {
     const setOpenapiListState = useSetRecoilState(openapiListState);
     const makeOpenAPI = async (promptId) => {
-        applyInterceptors(openapiInstance);
         try {
             const response = await sendRequest(
                 openapiInstance,
@@ -24,7 +23,6 @@ export const useOpenAPIHook = () => {
     };
 
     const fetchOpenAPIList = async () => {
-        applyInterceptors(openapiInstance);
         const response = await sendRequest(openapiInstance, "get", `/list`);
         setOpenapiListState(response.data.responseDto.apiList);
     };

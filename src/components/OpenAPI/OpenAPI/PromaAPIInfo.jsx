@@ -1,10 +1,10 @@
-import styles from "./OpenAPIInfo.module.css";
-import { H5 } from "../../styles/font-styles";
-import CopyButton from "./CopyButton";
-function OpenAPIInfo({ accessToken, secretKey }) {
+import styles from "./PromaAPIInfo.module.css";
+import { B1 } from "../../../styles/font-styles";
+import CopyButton from "./components/CopyButton";
+function PromaAPIInfo({ accessToken, secretKey }) {
     return (
         <div className={styles.container}>
-            <H5>PROMA API 키</H5>
+            <B1>PROMA API 키</B1>
             <table>
                 <tr>
                     <th>apiToken</th>
@@ -24,4 +24,4 @@ function OpenAPIInfo({ accessToken, secretKey }) {
         </div>
     );
 }
-export default OpenAPIInfo;
+export default PromaAPIInfo;

@@ -1,24 +1,26 @@
-import ModalContainer from "../common/ModalContainer";
+import ModalContainer from "../../../common/ModalContainer";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { H5, B4 } from "../../styles/font-styles";
-import PromptDetail from "../common/Prompt/PromptDetail";
-import { promptListState } from "../../recoil/prompt/promptRecoilState";
-import ModalButton from "../common/ModalButton";
+import { H5, B4 } from "../../../../styles/font-styles";
+import PromptDetail from "../../../common/Prompt/PromptDetail";
+import { promptListState } from "../../../../recoil/prompt/promptRecoilState";
+import ModalButton from "../../../common/ModalButton";
 import styles from "./PromptDetailModal.module.css";
 
 function PromptDetailModal({ isOpen, onClose, promptId }) {
     const [currentPrompt, setCurrentPrompt] = useState(null);
     const promptList = useRecoilValue(promptListState);
     useEffect(() => {
-        setCurrentPrompt(promptList.find((p) => p.promptId == promptId));
+        const selectedPrompt = promptList.find((p) => p.promptId === promptId);
+        setCurrentPrompt(selectedPrompt);
         console.log(currentPrompt);
-    }, [promptId]);
+        // eslint-disable-next-line
+    }, [promptId, promptList]);
     return (
         <ModalContainer
             isOpen={isOpen}
             onClose={onClose}
-            title="프롬프트 디테일"
+            title="프롬프트 세부 정보"
             exitButton={false}
         >
             <div className={styles.detailContainer}>
