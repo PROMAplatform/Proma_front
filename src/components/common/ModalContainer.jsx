@@ -23,7 +23,7 @@ const Container = styled.div`
     padding: 35px;
     border-radius: 20px;
     max-width: 700px;
-    min-width: 500px;
+    min-width: 400px;
     display: inline-flex;
     flex-direction: column;
     align-items: center;

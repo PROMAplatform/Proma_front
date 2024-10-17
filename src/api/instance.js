@@ -43,6 +43,10 @@ publicIntstance.defaults.baseURL += "/public";
 // // 요청 인터셉터를 추가하여 요청이 전송되기 전에 실행
 // applyInterceptors(authInstance);
 
+const openapiInstance = axios.create(defaultInstance.defaults);
+openapiInstance.defaults.baseURL += "/openapi";
+applyInterceptors(openapiInstance);
+
 export {
     defaultInstance,
     blockInstance,
@@ -50,5 +54,6 @@ export {
     aiChatInstance,
     chattingInstance,
     communityIntstance,
+    openapiInstance,
     publicIntstance,
 };

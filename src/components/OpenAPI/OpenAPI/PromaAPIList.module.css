@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+}
+.container table {
+    border: 1px solid var(--color-gray5);
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+}
+
+tr,
+td,
+th {
+    border: 1px solid var(--color-gray4);
+
+    padding: 10px;
+}
+
+th {
+    background-color: var(--color-gray2);
+}
+
+.titleContainer {
+    font-weight: 600;
+    transition: color 0.3s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.titleContainer:hover {
+    color: var(--block-main-color);
+}
+
+.categoryContainer {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    border-left: 1px solid var(--color-gray4);
+    border-right: none;
+}
+
+.copyContainer {
+    text-align: right;
+    border-left: none;
+    border-right: none;
+}
+
+.reissueContainer {
+    text-align: center;
+}
+
+.reissueButton {
+    border: 1px solid var(--block-main-color);
+    border-radius: 3px;
+    background-color: white;
+    color: var(--block-main-color);
+    cursor: pointer;
+    transition: 0.3s background-color;
+}
+
+.reissueButton:hover {
+    background-color: var(--color-gray2);
+}
+
+.emptyContainer {
+    padding: 50px;
+    text-align: center;
+}

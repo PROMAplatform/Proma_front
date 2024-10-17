@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo2 } from "../../assets/images/comlogo2.svg";
 import { ReactComponent as Logo1 } from "../../assets/images/comlogo1.svg";
 import ExpandableButton from "./expandableButton/ExpandableButton";
+import AboutExpandableButton from "./expandableButton/AboutExpandableButton";
 import { useSetRecoilState } from "recoil";
 import { useTranslation } from "react-i18next";
-import { Home, Users, MessageSquare, LogIn, Menu } from "lucide-react";
+import { Users, MessageSquare, LogIn, Menu } from "lucide-react";
 import { myPageState } from "../../recoil/community/myPageRecoilState";
 import { communityPromptListPageState } from "../../recoil/community/communityRecoilState";
 import styles from "./Header.module.css";
@@ -58,10 +59,7 @@ function Header() {
 
     const NavItems = () => (
         <>
-            <Link to="/" className={styles.navItem}>
-                <Home size={20} />
-                {showText && <span>{t(`header.introduce`)}</span>}
-            </Link>
+            <AboutExpandableButton buttonText={t(`header.introduce`)} />
             <Link to="/main" className={styles.navItem}>
                 <MessageSquare size={20} />
                 {showText && <span>{t(`header.chatting`)}</span>}
