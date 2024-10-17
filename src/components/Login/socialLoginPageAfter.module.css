@@ -1,0 +1,19 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.logo {
+    width: 150px;
+    margin-bottom: 20px;
+}
+.container h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.container p {
+    font-size: 24px;
+    color: #666;
+}

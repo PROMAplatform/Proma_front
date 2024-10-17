@@ -28,7 +28,9 @@
         "cancel": "취소하기",
         "patch": "수정하기",
         "delete": "삭제하기",
-        "share": "공유하기"
+        "share": "공유하기",
+        "evaluation": "평가하기",
+        "startEvaluation": "평가 시작하기"
     },
     "main": {
         "makeYourOwnPrompt": "님의 프롬프트 만들기",
