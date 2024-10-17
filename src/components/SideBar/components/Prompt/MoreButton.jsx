@@ -4,12 +4,14 @@ import { ReactComponent as MoreIcon } from "../../../../assets/images/moreIcon.s
 import editIcon from "../../../../assets/images/editIcon.svg";
 import trashIcon from "../../../../assets/images/trashIcon.svg";
 import shareIcon from "../../../../assets/images/shareIcon.svg";
+import evaluateIcon from "../../../../assets/images/evaluateIcon.svg";
 import EditPromptInfoModal from "./Modal/EditPromptInfoModal";
 import DeletePromptModal from "./Modal/DeletePromptModal";
 import SharePromptModal from "./Modal/SharePromptModal";
 import styles from "./MoreButton.module.css";
 import { B6 } from "../../../../styles/font-styles";
 import { t } from "i18next";
+import EvaluationModal from "./Modal/EvaluationModal";
 
 const MoreButton = ({ promptId }) => {
     const [showMenu, setShowMenu] = useState(false);
@@ -19,6 +21,7 @@ const MoreButton = ({ promptId }) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [isEvaluationModalOpen, setIsEvaluationModalOpen] = useState(false);
 
     const handleClickOutside = (event) => {
         if (
@@ -67,6 +70,11 @@ const MoreButton = ({ promptId }) => {
         setShowMenu(false);
     };
 
+    const handleEvaluation = () => {
+        setIsEvaluationModalOpen(true);
+        setShowMenu(false);
+    };
+
     function MenuComponent({ icon, title, onClick }) {
         return (
             <div className={styles.menuButtonContainer} onClick={onClick}>
@@ -100,6 +108,11 @@ const MoreButton = ({ promptId }) => {
                     title={t(`sideBar.share`)}
                     onClick={handleShareClick}
                 />
+                <MenuComponent
+                    icon={evaluateIcon}
+                    title={t(`sideBar.evaluation`)}
+                    onClick={handleEvaluation}
+                />
             </div>
         );
     }
@@ -126,6 +139,13 @@ const MoreButton = ({ promptId }) => {
                 <EditPromptInfoModal
                     isOpen={isEditModalOpen}
                     onClose={() => setIsEditModalOpen(false)}
+                    promptId={promptId}
+                />
+            )}
+            {prompt && (
+                <EvaluationModal
+                    isOpen={isEvaluationModalOpen}
+                    onClose={() => setIsEvaluationModalOpen(false)}
                     promptId={promptId}
                 />
             )}

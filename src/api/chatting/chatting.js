@@ -174,18 +174,19 @@ export const useChattingRoomHooks = () => {
             listPromptAtom,
             promptPreview,
         });
-        setPromptList((oldPromptList) =>
-            oldPromptList.map((prompt) => {
-                if (prompt.promptId === promptId) {
-                    return {
-                        ...prompt,
-                        listPromptAtom,
-                        promptPreview,
-                    };
-                }
-                return prompt;
-            }),
-        );
+        await fetchPromptList();
+        // setPromptList((oldPromptList) =>
+        //     oldPromptList.map((prompt) => {
+        //         if (prompt.promptId === promptId) {
+        //             return {
+        //                 ...prompt,
+        //                 listPromptAtom,
+        //                 promptPreview
+        //             };
+        //         }
+        //         return prompt;
+        //     }),
+        // );
     };
 
     const fetchChattingMessages = async (chatroomId) => {

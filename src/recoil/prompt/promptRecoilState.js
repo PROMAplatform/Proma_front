@@ -205,6 +205,20 @@ export const refinedPromptPartsState = selector({
     },
 });
 
+export const promptEvaluationState = atom({
+    key: "promptEvaluationState",
+    default: null,
+});
+
+export const promptEvaluationLoadingState = atom({
+    key: "promptEvaluationLoadingState",
+    default: false,
+});
+
+export const promptEvaluationErrorState = atom({
+    key: "promptEvaluationErrorState",
+    default: null,
+});
 // // 각종 상태 초기화 함수
 // export const useResetCategoriesOnTypeChange = () => {
 //   return useRecoilCallback(({ snapshot, set }) => async () => {

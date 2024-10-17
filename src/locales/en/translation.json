@@ -29,7 +29,9 @@
         "cancel": "Cancel",
         "patch": "Patch",
         "delete": "Delete",
-        "share": "Share"
+        "share": "Share",
+        "evaluation": "Evaluation",
+        "startEvaluation": "Start Evaluation"
     },
     "main": {
         "makeYourOwnPrompt": "'s Own Prompt Creation",
