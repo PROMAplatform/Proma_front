@@ -1,4 +1,5 @@
 import AWS from "aws-sdk";
+import { generateRandomStringWithExtension } from "./randomString";
 
 export const uploadS3 = async (file) => {
     const REGION = process.env.REACT_APP_REGION;
@@ -11,12 +12,13 @@ export const uploadS3 = async (file) => {
         accessKeyId: ACCESS_KEY_ID,
         secretAccessKey: SECRET_ACCESS_KEY,
     });
+    const randomFileName = generateRandomStringWithExtension(file.name);
 
     const upload = new AWS.S3.ManagedUpload({
         params: {
             ACL: "public-read",
             Bucket: BUCKET_NAME,
-            Key: `proma-files/${file.name}`,
+            Key: `proma-files/${randomFileName}`,
             Body: file,
             ContentType: file.type,
         },

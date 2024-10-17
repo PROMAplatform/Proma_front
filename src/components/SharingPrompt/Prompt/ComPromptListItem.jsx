@@ -8,10 +8,16 @@ import {B6, B7, H5} from "../../../styles/font-styles";
 import {useCommunityHooks} from "../../../api/community/community";
 import {methodImage} from "../util/methodImage";
 import {t} from "i18next";
+import {categoryImage} from "../util/categoryImage";
 
 function ComPromptListItem({ post }) {
     const modalStack = useModalStack();
     const { getCommunityPromptDetail } = useCommunityHooks();
+
+    const CategoryIcon = ({ category }) => {
+        const IconComponent = categoryImage[category];
+        return IconComponent ? <IconComponent /> : null;
+    };
 
     const handleDetailModal = () => {
         getCommunityPromptDetail(post.postId);
@@ -32,6 +38,9 @@ function ComPromptListItem({ post }) {
                         className={styles.containerFront}
                         onClick={handleDetailModal}
                     >
+                        <div className={styles.categoryBackgroundIcon}>
+                            <CategoryIcon category={post.postCategory} />
+                        </div>
                         <div className={styles.typeSection}>
                             <img src={methodImage[post.promptMethod]} alt={post.promptMethod}/>
                             <div className={styles.typeText}>
@@ -40,6 +49,7 @@ function ComPromptListItem({ post }) {
                         </div>
                         <div className={styles.explainSection}>
                             <div className={styles.categorieSection}>
+                                <CategoryIcon category={post.postCategory}/>
                                 {post.postCategory}
                             </div>
                             <div className={styles.descriptionSection}>

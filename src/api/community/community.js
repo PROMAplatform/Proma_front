@@ -1,6 +1,6 @@
 import {useSetRecoilState} from "recoil";
-import {sendRequest, createUrl, applyInterceptors} from "../request";
-import {communityIntstance} from "../instance";
+import {sendRequest} from "../request";
+import {communityIntstance, promptInstance, publicIntstance} from "../instance";
 import {
     communityPromptListState,
     communityPromptDetailState,
@@ -25,16 +25,15 @@ export const useCommunityHooks = () => {
         searchQuery,
         currentPage,
         selectedMethod,
+        size,
     ) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
             const params = {
-                userId: 1,
                 category: selectedCategory,
                 search: searchQuery,
                 page: currentPage,
-                size: 9,
+                size: size,
                 method: selectedMethod,
             };
 
@@ -77,15 +76,15 @@ export const useCommunityHooks = () => {
         searchQuery,
         currentPage,
         selectedMethod,
+        size,
     ) => {
         setIsLoadingcommunity(true);
         try {
             const params = {
-                userId: 1,
                 category: selectedCategory,
                 search: searchQuery,
                 page: currentPage,
-                size: 9,
+                size: size,
                 method: selectedMethod,
             };
 
@@ -98,7 +97,7 @@ export const useCommunityHooks = () => {
                 //params.latest = "";
             }
 
-            const response = await sendRequest(communityIntstance, "get", "/preview", {
+            const response = await sendRequest(publicIntstance, "get", "/posts", {
                 params
             });
 
@@ -126,9 +125,9 @@ export const useCommunityHooks = () => {
         setIsLoadingcommunity(true);
         try {
             const response = await sendRequest(
-                communityIntstance,
+                publicIntstance,
                 "get",
-                `/block/${postId}`,
+                `/posts/${postId}`,
             );
             setCommunityPromptDetail(
                 response.data.responseDto.selectPromptAtom,
@@ -143,14 +142,9 @@ export const useCommunityHooks = () => {
 
     //공유된 프롬프트 스크랩
     const scrapPrompt = async (postId) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
-            const params = {
-                userId: 1,
-            };
-            const url = createUrl(`/scrap/${postId}`, params);
-            const response = await sendRequest(communityIntstance, "post", url);
+            const response = await sendRequest(communityIntstance, "post", `/${postId}`);
 
             return response.data.responseDto;
         } catch (error) {
@@ -162,16 +156,9 @@ export const useCommunityHooks = () => {
 
     //공유된 프롬프트 좋아요 버튼
     const likePost = async (postId) => {
-
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
-            const params = {
-                userId: 1,
-            };
-            const url = createUrl(`/like/${postId}`, params);
-
-            const response = await sendRequest(communityIntstance, "post", url);
+            const response = await sendRequest(communityIntstance, "post", `/${postId}/likes`);
 
             return response.data.responseDto;
         } catch (error) {
@@ -183,19 +170,12 @@ export const useCommunityHooks = () => {
 
     //내가 작성한 프롬프트 리스트 id, title
     const getMakePromptList = async () => {
-
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
             const response = await sendRequest(
-                communityIntstance,
+                promptInstance,
                 "get",
-                "/titleList",
-                {
-                    params: {
-                        userId: 1,
-                    },
-                },
+                "/titles",
             );
 
             setMakePromptList(response.data.responseDto.promptList);
@@ -208,18 +188,13 @@ export const useCommunityHooks = () => {
 
     //내 프롬프트 상세조회
     const getPromptDetail = async (promptId) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
             const response = await sendRequest(
-                communityIntstance,
+                promptInstance,
                 "get",
-                `/detail/${promptId}`,
-                {
-                    params: {
-                        userId: 1,
-                    }
-                });
+                `/${promptId}`,
+            );
             setMakePromptDetail({
                 pomptId: response.data.responseDto.promptId,
                 promptMethod: response.data.responseDto.promptMethod,
@@ -238,19 +213,12 @@ export const useCommunityHooks = () => {
 
     //프롬프트 공유
     const sharePrompt = async (promptId, data) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
-            const params = {
-                userId: 1,
-            };
-
-            const url = createUrl(`/distribute/${promptId}`, params);
-
             const response = await sendRequest(
-                communityIntstance,
+                promptInstance,
                 "post",
-                url,
+                `/${promptId}`,
                 {
                     postTitle: data.title,
                     postDescription: data.description,

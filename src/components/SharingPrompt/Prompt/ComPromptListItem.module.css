@@ -1,17 +1,18 @@
 .wrapper {
-    width: 20vw;
-    height: 30vh;
+    width: 330px;
+    height: 250px;
     border-radius: 2vw;
 }
 
 .wrapper:hover .card {
     transform: rotateY(180deg);
+    box-shadow: 0 0 5px -1px #007bff;
 }
 
 .card {
     text-align: center;
-    width: 20vw;
-    height: 30vh;
+    width: 330px;
+    height: 250px;
     border-radius: 2vw;
     box-shadow: 0 0 5px -1px;
     transition: all 0.7s;
@@ -26,13 +27,32 @@
     justify-items: center;
     align-items: center;
 
-    width: 20vw;
-    height: 30vh;
+    width: 330px;
+    height: 250px;
     border-radius: 2vw;
     position: absolute;
     backface-visibility: hidden;
     z-index: 2;
     background-color: white;
+
+    overflow: hidden;
+}
+
+.categoryBackgroundIcon {
+    position: absolute;
+    bottom: -30px;
+    left: -40px;
+    opacity: 0.1;
+    z-index: 0;
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+    color: #6933d3;
+}
+
+.categoryBackgroundIcon svg {
+    width: 100%;
+    height: 100%;
 }
 
 .typeSection {
@@ -40,38 +60,40 @@
     justify-content: center;
     align-items: center;
 
-    margin: 2vh 2vw 2vh auto;
+    margin: 20px 20px 20px auto;
 }
 
 .typeText {
     color: #5a5a5a;
     text-align: center;
-    font-size: 0.8vw;
+    font-size: 10px;
     font-style: normal;
     font-weight: 600;
     line-height: 9.825px; /* 120% */
 }
 
 .categorieSection {
+    gap: 5px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: auto;
-    height: 3vh;
-    padding: 0 0.7vw 0 0.7vw;
+    height: 30px;
+    padding: 0.1vh 0.5vw 0.1vh 0.5vw;
     border-radius: 0.3vw;
     background: #543fd6;
 
     color: #fff;
-    font-size: 1vw;
+    font-size: 16px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
 }
 
 .descriptionSection {
-    width: 18vw;
+    width: 280px;
     margin-top: 6vh;
     display: flex;
     flex-direction: column;
@@ -93,7 +115,7 @@
     justify-items: center;
     align-items: center;
 
-    height: 20vh;
+    height: 150px;
 }
 
 .backExplainSection {
@@ -103,14 +125,14 @@
     align-items: center;
     gap: 1vh;
 
-    height: 16vh;
-    width: 16vw;
+    height: 120px;
+    width: 250px;
 
     border-radius: 15px;
     border: 0.424px solid #5a5a5a;
     background: var(--white, #fff);
 
-    padding: 2vh;
+    padding: 20px;
 }
 
 .userSection {
@@ -126,11 +148,16 @@
     align-items: center;
 }
 
+.likeSection svg {
+    width: 20px;
+    height: 20px;
+}
+
 .likeText {
     color: #000;
     text-align: center;
 
-    font-size: 0.8vw;
+    font-size: 16px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
@@ -142,8 +169,8 @@
     justify-items: center;
     align-items: center;
 
-    width: 20vw;
-    height: 30vh;
+    width: 330px;
+    height: 250px;
     border-radius: 2vw;
     position: absolute;
     transform: rotateY(180deg);

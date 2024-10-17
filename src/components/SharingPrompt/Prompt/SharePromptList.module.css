@@ -8,10 +8,18 @@
 }
 
 .promptContainer {
-    width: 70vw;
     margin-top: 2vh;
-    display: flex;
+
+    display: grid;
     flex-wrap: wrap;
-    gap: 2vw;
+    gap: 3vw;
     justify-content: space-between;
+}
+
+.promptContainer.threeItems {
+    grid-template-columns: repeat(3, 1fr); /* 한 줄에 3개씩 */
+}
+
+.promptContainer.twoItems {
+    grid-template-columns: repeat(2, 1fr); /* 한 줄에 2개씩 */
 }

@@ -1,5 +1,5 @@
 import { sendRequest } from "../request";
-import { promptInstance } from "../instance";
+import {blockInstance, promptInstance} from "../instance";
 import {
     activeBlocksState,
     activeCategoryState,
@@ -19,8 +19,6 @@ export const usePromptHook = () => {
     const setCategoryColors = useSetRecoilState(categoryColorsState);
     const setBlockDetails = useSetRecoilState(blockDetailsState);
     const setCategoryBlockShapes = useSetRecoilState(categoryBlockShapesState);
-    const mockUserId = "?userId=1";
-    const NmockUserId = "&userId=1";
 
     // 새로운 함수: API 데이터로부터 프롬프트 구조 갱신
     const updatePromptStructureFromApiData = (apiData) => {
@@ -110,11 +108,15 @@ export const usePromptHook = () => {
     };
 
     const fetchBlocks = async (promptMethod) => {
-        //CHARACTER
+        const params = {
+            promptMethod: promptMethod,
+        };
+
         const response = await sendRequest(
-            promptInstance,
+            blockInstance,
             "get",
-            `/block?promptMethod=${promptMethod}${NmockUserId}`,
+            ``,
+            {params},
         );
         await updatePromptStructureFromApiData(response.data);
     };
@@ -125,7 +127,7 @@ export const usePromptHook = () => {
         blockCategory,
         promptMethod,
     ) => {
-        await sendRequest(promptInstance, "post", `/block/save${mockUserId}`, {
+        await sendRequest(blockInstance, "post", ``, {
             blockValue,
             blockDescription,
             blockCategory,
@@ -135,9 +137,9 @@ export const usePromptHook = () => {
 
     const deleteBlock = async (blockId) => {
         await sendRequest(
-            promptInstance,
+            blockInstance,
             "delete",
-            `/block/delete/${blockId}`,
+            `/${blockId}`,
             {
                 blockId,
             },
@@ -152,7 +154,7 @@ export const usePromptHook = () => {
         promptMethod,
         listPromptAtom,
     ) => {
-        await sendRequest(promptInstance, "post", `/save${mockUserId}`, {
+        await sendRequest(promptInstance, "post", ``, {
             promptTitle,
             promptDescription,
             promptPreview,

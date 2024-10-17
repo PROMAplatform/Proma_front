@@ -1,5 +1,5 @@
 import {useSetRecoilState} from "recoil";
-import {applyInterceptors, createUrl, sendRequest} from "../request";
+import {sendRequest} from "../request";
 import {communityIntstance} from "../instance";
 import {
     communityPromptListPageState,
@@ -18,15 +18,14 @@ export const useMyPageHooks = () => {
         sortOrder,
         currentPage,
         selectedMethod,
+        size,
     ) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
             const params = {
-                userId: 1,
                 category: selectedCategory,
                 page: currentPage,
-                size: 9,
+                size: size,
                 method: selectedMethod,
             };
 
@@ -42,7 +41,7 @@ export const useMyPageHooks = () => {
             const response = await sendRequest(
                 communityIntstance,
                 "get",
-                "/my-like",
+                "/likes",
                 {params},
             );
 
@@ -72,15 +71,14 @@ export const useMyPageHooks = () => {
         sortOrder,
         currentPage,
         selectedMethod,
+        size,
     ) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
             const params = {
-                userId: 1,
                 category: selectedCategory,
                 page: currentPage,
-                size: 9,
+                size: size,
                 method: selectedMethod,
             };
 
@@ -96,7 +94,7 @@ export const useMyPageHooks = () => {
             const response = await sendRequest(
                 communityIntstance,
                 "get",
-                "/my-distribute",
+                "/distributed",
                 {params},
             );
 
@@ -121,19 +119,12 @@ export const useMyPageHooks = () => {
     };
 
     const fixSharePost = async (postId, data) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
-            const params = {
-                userId: 1,
-            };
-
-            const url = createUrl(`/my-distribute/patch/${postId}`, params);
-
             const response = await sendRequest(
                 communityIntstance,
                 "patch",
-                url,
+                `/${postId}`,
                 {
                     postTitle: data.title,
                     postDescription: data.description,
@@ -150,19 +141,12 @@ export const useMyPageHooks = () => {
     };
 
     const deleteSharePost = async (postId) => {
-        applyInterceptors(communityIntstance);
         setIsLoadingcommunity(true);
         try {
-            const params = {
-                userId: 1,
-            };
-
-            const url = createUrl(`/my-distribute/delete/${postId}`, params);
-
             const response = await sendRequest(
                 communityIntstance,
                 "delete",
-                url,
+                `/${postId}`,
             );
 
             return response.data.responseDto;

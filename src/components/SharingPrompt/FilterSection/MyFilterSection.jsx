@@ -22,7 +22,7 @@ function MyFilterSection() {
     const [selectCategory, setSelectCategory] = useState("전체");
     const [sortOrder, setSortOrder] = useState("latest");
     const [selectedPromptMethod, setSelectedPromptMethod] = useState(''); // 선택된 값 저장
-
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     const categoryParam = useMemo(
         () => (selectCategory === "전체" ? null : selectCategory),
@@ -30,20 +30,21 @@ function MyFilterSection() {
     );
 
     useEffect(() => {
+        const handleResize = () => setWindowWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    useEffect(() => {
+        const size = windowWidth > 1100 ? 9 : 8;
+
         if (isMyPageState === "like") {
-            getLikePromptList(categoryParam, sortOrder, currentPage, selectedPromptMethod);
+            getLikePromptList(categoryParam, sortOrder, currentPage, selectedPromptMethod, size);
         } else {
-            getWritePromptList(categoryParam, sortOrder, currentPage, selectedPromptMethod);
+            getWritePromptList(categoryParam, sortOrder, currentPage, selectedPromptMethod, size);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectCategory, sortOrder, isMyPageState, isStateChange, selectedPromptMethod]);
-
-    console.log({
-        params: {
-            category: selectCategory === "전체" ? "" : selectCategory,
-            sort: sortOrder,
-        },
-    });
+    }, [selectCategory, sortOrder, isMyPageState, isStateChange, selectedPromptMethod, windowWidth]);
 
     const handleSelectChange = (event) => {
         setSelectedPromptMethod(event.target.value);
