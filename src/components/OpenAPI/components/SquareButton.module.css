@@ -1,0 +1,24 @@
+.squareContainer {
+    background-color: var(--block-main-color);
+    border: 1.5px solid var(--block-main-color);
+    border-radius: 5px;
+    padding: 8px 20px;
+    transition: background-color 0.3s;
+}
+
+.primary {
+    color: var(--white);
+    background-color: var(--block-main-color);
+}
+.secondary {
+    color: var(--block-main-color);
+    background-color: var(--white);
+}
+
+.primary:hover {
+    background-color: #3821ca;
+}
+
+.secondary:hover {
+    background-color: var(--color-gray2);
+}

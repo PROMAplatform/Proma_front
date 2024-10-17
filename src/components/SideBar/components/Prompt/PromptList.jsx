@@ -54,7 +54,7 @@ function PromptList() {
     useEffect(() => {
         const handleScroll = (event) => {
             const scrollContainer = scrollRef.current;
-            const {scrollLeft, scrollWidth, clientWidth} = scrollContainer;
+            const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
 
             if (scrollContainer) {
                 if (scrollLeft <= (scrollWidth - clientWidth) / 2) {
@@ -63,30 +63,31 @@ function PromptList() {
                     setScrollState("left");
                 }
             }
-        }
+        };
         const scrollContainer = scrollRef.current;
-        scrollContainer.addEventListener('scroll', handleScroll);
+        scrollContainer.addEventListener("scroll", handleScroll);
 
         handleScroll();
-         // 컴포넌트가 unmount될 때 이벤트 리스너 제거
+        // 컴포넌트가 unmount될 때 이벤트 리스너 제거
         return () => {
-            scrollContainer.removeEventListener('scroll', handleScroll);
+            scrollContainer.removeEventListener("scroll", handleScroll);
         };
-    }, [])
+    }, []);
 
     const handleLeftScroll = () => {
         const scrollContainer = scrollRef.current;
         if (scrollContainer) {
             scrollContainer.scrollLeft = 0;
         }
-    }
+    };
 
     const handleRightScroll = () => {
         const scrollContainer = scrollRef.current;
         if (scrollContainer) {
-            scrollContainer.scrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+            scrollContainer.scrollLeft =
+                scrollContainer.scrollWidth - scrollContainer.clientWidth;
         }
-    }
+    };
     return (
         <div className={styles.container}>
             <div className={styles.categoryContainer}>
@@ -95,7 +96,9 @@ function PromptList() {
                         <button
                             key={category}
                             className={`${styles.categoryButton} ${
-                                selectedCategory === category ? styles.active : ""
+                                selectedCategory === category
+                                    ? styles.active
+                                    : ""
                             }`}
                             onClick={() => setSelectedCategory(category)}
                         >
@@ -104,20 +107,30 @@ function PromptList() {
                     ))}
                 </div>
                 {scrollState !== "left" && (
-                    <img src={rightScrollIcon} alt="right scroll" className={styles.rightScrollIcon} onClick={handleRightScroll}/>
+                    <img
+                        src={rightScrollIcon}
+                        alt="right scroll"
+                        className={styles.rightScrollIcon}
+                        onClick={handleRightScroll}
+                    />
                 )}
                 {scrollState !== "right" && (
-                    <img src={leftScrollIcon} alt="left scroll" className={styles.leftScrollIcon} onClick={handleLeftScroll}/>
+                    <img
+                        src={leftScrollIcon}
+                        alt="left scroll"
+                        className={styles.leftScrollIcon}
+                        onClick={handleLeftScroll}
+                    />
                 )}
             </div>
             <div className={styles.promptListWrapper} data-tour="promptList">
                 {isLoading ? ( // 로딩 중일 때
                     <div className={styles.promptListContainer}>
-                        {Array.from({ length: filteredPrompts.length || 5 }).map(
-                            (_, index) => (
-                                <SkeletonListItem key={index} />
-                            ),
-                        )}
+                        {Array.from({
+                            length: filteredPrompts.length || 5,
+                        }).map((_, index) => (
+                            <SkeletonListItem key={index} />
+                        ))}
                     </div>
                 ) : filteredPrompts.length > 0 ? (
                     <div className={styles.promptListContainer}>
@@ -132,7 +145,7 @@ function PromptList() {
                     </div>
                 ) : (
                     <div className={styles.empty}>
-                        <img src={blockIcon} alt="empty"/>
+                        <img src={blockIcon} alt="empty" />
                         <B4 color="gray6">{t(`sideBar.emptyPrompt`)}</B4>
                     </div>
                 )}

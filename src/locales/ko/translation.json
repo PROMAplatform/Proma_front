@@ -7,6 +7,7 @@
         "introduce": "소개",
         "community": "커뮤니티",
         "chatting": "채팅",
+        "business": "비즈니스",
         "isLike": "좋아요",
         "writtenByYou": "작성한 글",
         "welcomeComment": "님 반갑습니다!"
@@ -119,5 +120,9 @@
     "login": {
         "login": "☺️ 로그인 후에 추가기능 이용 가능합니다!",
         "social": "😋 1초만에 소셜 로그인으로 이용가능합니다!"
+    },
+    "openapi": {
+        "proma": "PROMA 소개",
+        "promaApi": "PROMA API 소개"
     }
 }

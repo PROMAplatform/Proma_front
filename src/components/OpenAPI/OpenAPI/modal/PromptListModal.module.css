@@ -1,0 +1,19 @@
+.promptListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 300px;
+    overflow: scroll;
+}
+
+.promptDetailContainer {
+    margin: 0 auto;
+}
+
+.snackbarContainer {
+    z-index: 10000;
+}
+
+.emptyContainer {
+    text-align: center;
+}

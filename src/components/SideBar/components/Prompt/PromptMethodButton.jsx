@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./PromptMethodButton.module.css";
-import { H5 } from "../../../../styles/font-styles";
+import { H6 } from "../../../../styles/font-styles";
 
 function PromptMethodButton({ icon, type, onClick, isSelected }) {
     return (
@@ -9,7 +9,7 @@ function PromptMethodButton({ icon, type, onClick, isSelected }) {
             className={`${styles.container} ${isSelected ? styles.containerSelected : ""}`}
         >
             <img className={styles.icon} src={icon} alt="type icon" />
-            <H5>{type}</H5>
+            <H6>{type}</H6>
         </div>
     );
 }

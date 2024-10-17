@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./SharePromptList.module.css";
 import ComPromptListItem from "./ComPromptListItem";
 import { useRecoilValue } from "recoil";
-import {
-    communityPromptListState,
-} from "../../../recoil/community/communityRecoilState";
+import { communityPromptListState } from "../../../recoil/community/communityRecoilState";
 import EmptyPromptListItem from "./components/EmptyPromptListItem";
 
 function SharePromptList() {
@@ -34,7 +32,6 @@ function SharePromptList() {
                 : Array.from({ length: size }, () => null),
         );
     }, [postList, windowWidth]);
-
 
     return (
         <>

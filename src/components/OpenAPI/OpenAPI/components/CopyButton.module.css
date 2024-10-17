@@ -1,0 +1,13 @@
+.buttonContainer {
+    border: none;
+    background-color: var(--block-main-color);
+    padding: 3px 10px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonContainer:hover {
+    background-color: #3821ca;
+    transition: background-color 0.3s;
+}
