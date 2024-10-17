@@ -12,6 +12,8 @@ import useGlobalShortcuts from "./hooks/common/useGlobalShortCut";
 import ModalStack from "./components/SharingPrompt/modal/ModalStack";
 import SocialLoginPageAfter from "./components/Login/socialLoginPageAfter";
 import SocialLoginPage from "./pages/socialLoginPage";
+import AboutOpenAPIPage from "./pages/aboutOpenAPIPage";
+import OpenAPIPage from "./pages/openAPIPage";
 import "../src/locales/i18n";
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
                         path="/api/v1/auth/user/:provider"
                         element={<SocialLoginPageAfter />}
                     />
+                    <Route path="/openapi" element={<AboutOpenAPIPage />} />
+                    <Route path="/openapi/list" element={<OpenAPIPage />} />
                 </Routes>
                 <ModalStack />
             </BrowserRouter>

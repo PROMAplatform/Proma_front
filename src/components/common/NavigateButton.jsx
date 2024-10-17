@@ -1,5 +1,5 @@
 import React from "react";
-import { B3 as BaseB3 } from "../../styles/font-styles";
+import { B2 as BaseB2 } from "../../styles/font-styles";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -19,7 +19,7 @@ const Container = styled.div`
     background-color: var(--block-main-color);
     &:hover {
       background-color: #3821CA;
-    }
+    } 
   `}
 
     ${({ variant }) =>
@@ -33,7 +33,7 @@ const Container = styled.div`
   `}
 `;
 
-const B3 = styled(BaseB3)`
+const B2 = styled(BaseB2)`
     ${({ variant }) =>
         variant === "primary" &&
         `
@@ -50,7 +50,7 @@ const B3 = styled(BaseB3)`
 function NavigateButton({ title, variant, onClick }) {
     return (
         <Container variant={variant} onClick={onClick}>
-            <B3 variant={variant}>{title}</B3>
+            <B2 variant={variant}>{title}</B2>
         </Container>
     );
 }

@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.container table {
+    border: 1px solid var(--color-gray5);
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 80%;
+}
+
+.dataContainer {
+    text-align: left;
+    border: 1px solid var(--color-gray5);
+    width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-right: none;
+    padding: 5px;
+}
+
+.container th {
+    text-align: right;
+    border: 1px solid var(--color-gray5);
+    width: 100px;
+    padding: 5px;
+}
+
+.copyButtonContainer {
+    border: 1px solid var(--color-gray5);
+    border-left: none;
+    width: 40px;
+    padding: 5px;
+    text-align: right;
+}

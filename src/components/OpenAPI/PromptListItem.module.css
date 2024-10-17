@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-gray5);
+    padding: 15px;
+    cursor: pointer;
+}
+
+.selectedContainer {
+    background-color: var(--logo-purple1);
+    box-shadow: 0px 0px 8px 0px rgba(84, 63, 214, 0.3);
+}

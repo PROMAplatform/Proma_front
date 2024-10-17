@@ -28,6 +28,6 @@
     height: 1rem;
     background: linear-gradient(90deg, var(--color-gray3), var(--color-gray4));
     background-size: 200% 100%;
-    animation: loadingAnimation 1.5s infinite;
+    animation: loadingAnimation 2s infinite;
     border-radius: 4px;
 }

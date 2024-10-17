@@ -1,0 +1,9 @@
+.promptListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.promptDetailContainer {
+    margin: 0 auto;
+}

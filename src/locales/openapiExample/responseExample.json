@@ -1,0 +1,7 @@
+{
+    "responseDto": {
+        "messageAnswer": "string"
+    },
+    "error": null,
+    "success": true
+}

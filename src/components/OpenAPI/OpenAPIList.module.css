@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.container table {
+    border: 1px solid var(--color-gray5);
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+    border-left: none;
+    border-right: none;
+}
+
+tr,
+td,
+th {
+    border: 1px solid var(--color-gray4);
+
+    padding: 10px;
+}
+
+th {
+    background-color: var(--color-gray2);
+}
+
+.titleContainer {
+    font-weight: 600;
+    transition: color 0.3s;
+    cursor: pointer;
+    text-align: center;
+}
+
+.titleContainer:hover {
+    color: var(--block-main-color);
+}
+
+.categoryContainer {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    border-left: 1px solid var(--color-gray4);
+    border-right: none;
+}
+
+.copyContainer {
+    text-align: right;
+    border-left: none;
+    border-right: none;
+}

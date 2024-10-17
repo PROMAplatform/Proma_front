@@ -11,7 +11,6 @@ import EmptyPromptListItem from "./components/EmptyPromptListItem";
 function SharePromptList() {
     const postList = useRecoilValue(communityPromptListState);
     const modalStack = useRecoilValue(modalStackState);
-
     const [filledPostList, setFilledPostList] = useState([]);
 
     useEffect(() => {

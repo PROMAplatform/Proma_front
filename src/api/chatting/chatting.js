@@ -201,9 +201,9 @@ export const useChattingRoomHooks = () => {
 
     // 프롬프트 블록 수정
     const patchPromptBlock = async (
-        promptId, 
+        promptId,
         listPromptAtom,
-        promptPreview
+        promptPreview,
     ) => {
         await sendRequest(
             chattingInstance,
@@ -217,10 +217,10 @@ export const useChattingRoomHooks = () => {
         setPromptList((oldPromptList) =>
             oldPromptList.map((prompt) => {
                 if (prompt.promptId === promptId) {
-                    return { 
-                        ...prompt, 
-                        listPromptAtom, 
-                        promptPreview 
+                    return {
+                        ...prompt,
+                        listPromptAtom,
+                        promptPreview,
                     };
                 }
                 return prompt;
