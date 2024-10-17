@@ -1,25 +1,30 @@
 import { sendRequest } from "../request";
-import {blockInstance, promptInstance} from "../instance";
+import { aiChatInstance, blockInstance, promptInstance } from "../instance";
 import {
     activeBlocksState,
-    activeCategoryState,
+    // activeCategoryState,
     availableCategoriesState,
     blockDetailsState,
     categoryColorsState,
     combinationsState,
     categoryBlockShapesState,
+    activeCategoryState,
+    promptEvaluationState,
+    promptEvaluationErrorState,
 } from "../../recoil/prompt/promptRecoilState";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 export const usePromptHook = () => {
     const setAvailableCategories = useSetRecoilState(availableCategoriesState);
-    const setActiveCategory = useSetRecoilState(activeCategoryState);
+    const [activeCategory, setActiveCategory] =
+        useRecoilState(activeCategoryState);
     const setActiveBlocks = useSetRecoilState(activeBlocksState);
     const setCombinations = useSetRecoilState(combinationsState);
     const setCategoryColors = useSetRecoilState(categoryColorsState);
     const setBlockDetails = useSetRecoilState(blockDetailsState);
     const setCategoryBlockShapes = useSetRecoilState(categoryBlockShapesState);
-
+    const setEvaluation = useSetRecoilState(promptEvaluationState);
+    const setEvaluationError = useSetRecoilState(promptEvaluationErrorState);
     // 새로운 함수: API 데이터로부터 프롬프트 구조 갱신
     const updatePromptStructureFromApiData = (apiData) => {
         if (
@@ -80,7 +85,12 @@ export const usePromptHook = () => {
         // 1. 카테고리 설정
         setAvailableCategories(categories);
         // 2. 카테고리 중 첫번째로 active되게끔 설정
-        setActiveCategory(categories[0] || null);
+        //TODO- 에러나면 무조건 여기임 -QA 이후 확인
+        // 2. activeCategory가 없거나 categories에 없는 경우에만 새로 설정
+        if (!activeCategory || !categories.includes(activeCategory)) {
+            setActiveCategory(categories[0] || null);
+        }
+
         // 3. 모든 카테고리들에 해당하는 블록들을 설정
         const activeBlocksData = Object.fromEntries(
             categories.map((category) => [
@@ -112,12 +122,9 @@ export const usePromptHook = () => {
             promptMethod: promptMethod,
         };
 
-        const response = await sendRequest(
-            blockInstance,
-            "get",
-            ``,
-            {params},
-        );
+        const response = await sendRequest(blockInstance, "get", ``, {
+            params,
+        });
         await updatePromptStructureFromApiData(response.data);
     };
 
@@ -136,14 +143,9 @@ export const usePromptHook = () => {
     };
 
     const deleteBlock = async (blockId) => {
-        await sendRequest(
-            blockInstance,
-            "delete",
-            `/${blockId}`,
-            {
-                blockId,
-            },
-        );
+        await sendRequest(blockInstance, "delete", `/${blockId}`, {
+            blockId,
+        });
     };
 
     const savePrompt = async (
@@ -162,6 +164,27 @@ export const usePromptHook = () => {
             promptMethod,
             listPromptAtom,
         });
+        //TODO- ㅡ프롬프트 생성 후에, 프롬프트 리스트를 다시 불러오는 것
+        // await fetchPromptList();
+    };
+
+    const evaluatePrompt = async (promptId) => {
+        setEvaluationError(null);
+        setEvaluation(null);
+        const response = await sendRequest(
+            aiChatInstance,
+            "post",
+            `/evaluation`,
+            {
+                promptId,
+            },
+        );
+        if (response.data.error == null) {
+            setEvaluation(response.data.responseDto);
+        } else {
+            setEvaluationError(response.data.error);
+        }
+        return response;
     };
 
     return {
@@ -169,5 +192,6 @@ export const usePromptHook = () => {
         makeBlock,
         savePrompt,
         deleteBlock,
+        evaluatePrompt,
     };
 };

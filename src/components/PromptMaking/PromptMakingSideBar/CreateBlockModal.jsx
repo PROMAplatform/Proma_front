@@ -12,7 +12,7 @@ import ModalButton from "../../common/ModalButton";
 import { getLocalPromptMethod } from "../../../util/localStorage";
 import { t } from "i18next";
 
-const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
+const CreateBlockModal = ({ isOpen, onClose }) => {
     const categories = useRecoilValue(availableCategoriesState);
     const categoryColors = useRecoilValue(categoryColorsState);
     const [selectedCategory, setSelectedCategory] = useState(categories[0]);
@@ -35,7 +35,6 @@ const CreateBlockModal = ({ isOpen, onClose, onBlockCreated }) => {
             localPromptMethod,
         );
         fetchBlocks(localPromptMethod);
-        onBlockCreated();
         setBlockValue("");
         setBlockDescription("");
         onClose();

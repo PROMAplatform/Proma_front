@@ -17,6 +17,7 @@ import CreateBlockModal from "./CreateBlockModal";
 import { usePromptHook } from "../../../api/prompt/prompt";
 import { getLocalPromptMethod } from "../../../util/localStorage";
 import { t } from "i18next";
+import { Link } from "react-router-dom";
 
 const PromptMakingSidebar = () => {
     const [activeCategory, setActiveCategory] =
@@ -34,23 +35,21 @@ const PromptMakingSidebar = () => {
         return categoryColors[activeCategory] || "purple";
     };
 
-    const handleBlockCreated = () => {
-        fetchBlocks(localPromptMethod);
-    };
-
     useEffect(() => {
-        handleBlockCreated();
+        fetchBlocks(localPromptMethod);
         console.log("blocks 불러오기");
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className={styles.container}>
-            <img
-                alt="sideBar 헤더 로고"
-                src={logo}
-                className={styles.promaLogo}
-            />
+            <Link to="/main">
+                <img
+                    alt="sideBar 헤더 로고"
+                    src={logo}
+                    className={styles.promaLogo}
+                />
+            </Link>
             <div className={styles.promptTitle}>
                 <H4>PROMA prompt</H4>
             </div>
@@ -139,7 +138,6 @@ const PromptMakingSidebar = () => {
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
                     categories={categories}
-                    onBlockCreated={handleBlockCreated}
                 />
             </div>
         </div>
