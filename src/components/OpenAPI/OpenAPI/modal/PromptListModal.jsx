@@ -47,14 +47,16 @@ function PromptListModal({ isOpen, onClose }) {
 
     const handleChooseClick = (prompt) => {
         setIsSecondModalOpen(true);
-        setSelectedPromptId(prompt.promptId);
         setCurrentPrompt(
             promptList.find((p) => p.promptId === prompt.promptId),
         );
     };
 
-    const handleSecondModalClose = () => {
-        setIsSecondModalOpen(false);
+    const handleSecondModalClose = (prompt) => {
+        if (prompt) {
+            setSelectedPromptId(prompt.promptId);
+            setIsSecondModalOpen(false);
+        }
     };
 
     const requestOpenAPI = (promptId) => {
@@ -112,7 +114,6 @@ function PromptListModal({ isOpen, onClose }) {
                 onClose={() => setIsSecondModalOpen(false)}
                 title="프롬프트 내용 확인"
                 onSubmit={handleSecondModalClose}
-                exitButton={false}
             >
                 <div className={styles.promptDetailContainer}>
                     {currentPrompt && (
@@ -147,7 +148,7 @@ function PromptListModal({ isOpen, onClose }) {
                     title="확인"
                     variant="primary"
                     type="submit"
-                    onClick={handleSecondModalClose}
+                    onClick={() => handleSecondModalClose(currentPrompt)}
                 />
             </ModalContainer>
             <div className={styles.snackbarContainer}>

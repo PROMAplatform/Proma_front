@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./aboutOpenAPIPage.module.css";
 import logIcon from "../assets/images/logIcon.svg";
@@ -7,14 +7,7 @@ import SquareButton from "../components/OpenAPI/components/SquareButton";
 import PromptListModal from "../components/OpenAPI/OpenAPI/modal/PromptListModal";
 function AboutOpenAPIPage() {
     const [isOpenModel, setIsOpenModel] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
 
     const openModal = () => {
         setIsOpenModel(true);
